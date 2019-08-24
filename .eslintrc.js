@@ -20,15 +20,10 @@ module.exports = {
     'airbnb',
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:prettier/recommended',
     'plugin:import/errors',
-    'plugin:import/warnings',
-    'prettier',
-    'prettier/standard',
-    'prettier/react'
+    'plugin:import/warnings'
   ],
   plugins: [
-    'prettier',
     'react',
     'react-hooks',
     'jsx-a11y'
@@ -38,5 +33,6 @@ module.exports = {
     semi: ['error', 'always'],
     'react-hooks/rules-of-hooks': "error",
     'react-hooks/exhaustive-deps': "warn",
+    'comma-dangle': ["error", "always-multiline"],
   },
 };
