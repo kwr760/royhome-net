@@ -4,16 +4,13 @@
   "description": "Base page for home web site",
   "main": "index.js",
   "scripts": {
-    "client": "webpack-dev-server --config webpack.dev.js --port 3000"
+    "client": "webpack-dev-server --config webpack.dev.js --port 3000",
+    "eslint": "eslint src"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/kwr760/royhome-net.git"
   },
-  "keywords": [
-    "home",
-    "page"
-  ],
   "author": "Kevin Roy <kroy760@gmail.com>",
   "license": "Apache-2.0",
   "bugs": {
@@ -42,6 +39,7 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.18.2",
     "style-loader": "^1.0.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
