@@ -8,7 +8,7 @@ process.env.NODE_ENV = 'development';
 
 module.exports = {
   mode: 'development',
-  // target: 'web',
+  target: 'web',
   devtool: 'inline-source-map',
   entry: './src/web/index.js',
   output: {
@@ -18,7 +18,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env.API_URL': JSON.stringify('http://localhost:3000'),
+      'process.env.API_URL': JSON.stringify('http://0.0.0.0:3000'),
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/web', 'index.html'),

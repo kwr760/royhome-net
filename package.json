@@ -4,7 +4,7 @@
   "description": "Base page for home web site",
   "private": true,
   "scripts": {
-    "client": "webpack-dev-server --config webpack.dev.js --port 3000",
+    "client": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0 --port 3000",
     "eslint": "eslint src"
   },
   "repository": {
