@@ -18,12 +18,20 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env.API_URL': JSON.stringify('http://0.0.0.0:3000'),
+      'process.env.API_URL': JSON.stringify('http://localhost:7001'),
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/web', 'index.html'),
       favicon: path.resolve(__dirname, 'src/web', 'favicon.ico'),
-      filename: './index.html',
+      filename: 'index.html',
+    }),
+    new webpack.EnvironmentPlugin({
+      AUTH0_DOMAIN: 'royk.auth0.com',
+      AUTH0_CLIENT_ID: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
+      AUTH0_CALLBACK_URL: 'http://localhost:7000/callback',
+      AUTH0_AUDIENCE: 'http://localhost:7001',
+      API_URL: 'http://localhost:7001',
+      API_PORT: 7001,
     }),
   ],
   devServer: {
@@ -32,7 +40,10 @@ module.exports = {
     historyApiFallback: true,
     disableHostCheck: true,
     contentBase: './dist',
-    headers: { 'Access-Control-Allow-Origin': '*' },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+    },
     https: false,
   },
   resolve: {
@@ -48,7 +59,14 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               babelrc: false,
-              presets: ['@babel/preset-react', '@babel/preset-env'],
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-react',
+              ],
+              plugins: [
+                '@babel/plugin-syntax-dynamic-import',
+                '@babel/plugin-proposal-class-properties',
+              ],
             },
           },
           {
