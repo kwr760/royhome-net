@@ -20,7 +20,7 @@ const Private = ({ auth }) => {
         setMessage(response.message);
       })
       .catch((error) => setMessage(error.message));
-  });
+  }, [auth]);
 
   return <p>{ message }</p>;
 };

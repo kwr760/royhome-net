@@ -1,24 +1,24 @@
 {
   "name": "royhome-net",
   "version": "1.0.0",
+  "author": "Kevin Roy <kroy760@gmail.com>",
   "description": "Base page for home web site",
+  "license": "Apache-2.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kwr760/royhome-net.git"
+  },
+  "homepage": "https://github.com/kwr760/royhome-net#readme",
+  "bugs": {
+    "url": "https://github.com/kwr760/royhome-net/issues"
+  },
   "scripts": {
     "start": "run-p start:client start:server",
     "start:client": "webpack-dev-server --config webpack.dev.js --host localhost --port 7000",
     "start:server": "node src/server/index.js",
     "eslint": "eslint src"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/kwr760/royhome-net.git"
-  },
-  "author": "Kevin Roy <kroy760@gmail.com>",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/kwr760/royhome-net/issues"
-  },
-  "homepage": "https://github.com/kwr760/royhome-net#readme",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "auth0-js": "^9.11.3",

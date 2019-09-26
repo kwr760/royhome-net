@@ -21,7 +21,7 @@ const Courses = ({ auth }) => {
         setCourses(response.courses);
       })
       .catch((error) => setMessage(error.message));
-  });
+  }, [auth]);
 
   useEffect(() => {
     fetch('http://localhost:7001/admin', {
@@ -29,17 +29,17 @@ const Courses = ({ auth }) => {
         Authorization: `Bearer ${auth.getAccessToken()}`,
       },
     })
+    // eslint-disable-next-line consistent-return
       .then((res) => {
         if (res.ok) {
           return res.json();
         }
-        throw new Error('Network response was not good.');
       })
       .then((response) => {
         console.log(response);
       })
       .catch((error) => setMessage(error.message));
-  });
+  }, [auth]);
 
   if (message) {
     return (

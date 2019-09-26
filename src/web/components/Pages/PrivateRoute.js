@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AuthContext from '../Auth/AuthContext';
 
-function PrivateRoute({ component: Component, scopes, ...rest }) {
+function PrivateRoute({ component: Component, userRole, ...rest }) {
   return (
     <AuthContext.Consumer>
       { (auth) => (
@@ -14,14 +14,12 @@ function PrivateRoute({ component: Component, scopes, ...rest }) {
               return auth.login();
             }
 
-            if (scopes.length > 0 && !auth.userHasScopes(scopes)) {
+            if (userRole.length > 0 && !auth.userHasRole(userRole)) {
               return (
                 <h1>
-                                    Unauthorized - You need the following scopes(s) to
-                                    view this page:
+                  Unauthorized - You need the following role to view this page:
                   {' '}
-                  {scopes.join(', ')}
-.
+                  {userRole}
                 </h1>
               );
             }
@@ -36,11 +34,11 @@ function PrivateRoute({ component: Component, scopes, ...rest }) {
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  scopes: PropTypes.arrayOf(PropTypes.oneOfType(PropTypes.string)),
+  userRole: PropTypes.string,
 };
 
 PrivateRoute.defaultProps = {
-  scopes: [],
+  userRole: '',
 };
 
 export default PrivateRoute;

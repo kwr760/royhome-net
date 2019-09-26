@@ -2,7 +2,6 @@ const express = require('express');
 require('dotenv').config();
 const jwt = require('express-jwt');
 const jwtRsa = require('jwks-rsa');
-const checkScope = require('express-jwt-authz');
 
 const checkJwt = jwt({
   secret: jwtRsa.expressJwtSecret({
@@ -46,7 +45,23 @@ app.get('/private', checkJwt, (req, res) => {
   });
 });
 
-app.get('/courses', checkJwt, checkScope(['read:courses']), (req, res) => {
+function checkRole(role) {
+  return (req, res, next) => {
+    const userData = req.user['http://royhome.net'];
+
+    const grantedRoles = (userData.role || '').split(' ');
+    if (userData.role === 'owner') {
+      grantedRoles.push('friend', 'engineer', 'family', 'company');
+    }
+    if (grantedRoles.includes(role)) {
+      return next();
+    }
+
+    return res.status(401).send('Insufficient role');
+  };
+}
+
+app.get('/courses', checkJwt, checkRole('engineer'), (req, res) => {
   res.json({
     courses: [
       { id: 1, title: 'Building Apps with React and Redux' },
@@ -54,17 +69,6 @@ app.get('/courses', checkJwt, checkScope(['read:courses']), (req, res) => {
     ],
   });
 });
-
-function checkRole(role) {
-  return (req, res, next) => {
-    const assignedRoles = req.user['http://localhost:7000/roles'];
-    if (Array.isArray(assignedRoles) && assignedRoles.includes(role)) {
-      return next();
-    }
-
-    return res.status(401).send('Insufficient role');
-  };
-}
 
 app.get('/admin', checkJwt, checkRole('admin'), (req, res) => {
   res.json({

@@ -1,5 +1,4 @@
-// import React, { useState, useEffect } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -19,8 +18,12 @@ import AuthContext from './Auth/AuthContext';
  * @return {string}
  */
 function App({ history }) {
-  const [tokenRenewalComplete] = useState(true);
+  const [tokenRenewalComplete, setTokenRenewalComplete] = useState(false);
   const [auth] = useState(new Auth(history));
+
+  useEffect(() => {
+    auth.renewToken(() => setTokenRenewalComplete(true));
+  }, [auth]);
 
   if (!tokenRenewalComplete) {
     return <div className="container-fluid">Loading...</div>;
@@ -28,12 +31,12 @@ function App({ history }) {
 
   return (
     <AuthContext.Provider value={auth}>
-      <Nav auth={auth} />
+      <Nav />
       <div className="body">
         <Route
           path="/"
           exact
-          render={(props) => <Home auth={auth} {...props} />}
+          render={(props) => <Home {...props} />}
         />
         <Route
           path="/callback"
@@ -42,13 +45,13 @@ function App({ history }) {
           )}
         />
         <PrivateRoute path="/profile" component={Profile} />
-        <Route path="/resume" auth={auth} component={Resume} />
-        <Route path="/public" auth={auth} component={Public} />
+        <Route path="/resume" component={Resume} />
+        <Route path="/public" component={Public} />
         <PrivateRoute path="/private" component={Private} />
         <PrivateRoute
           path="/courses"
           component={Courses}
-          scopes={['read:courses']}
+          userRole="engineer"
         />
       </div>
     </AuthContext.Provider>

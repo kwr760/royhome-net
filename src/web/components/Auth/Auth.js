@@ -1,29 +1,23 @@
 import auth0 from 'auth0-js';
 
 const REDIRECT_ON_LOGIN = 'redirect_on_login';
+const TOKEN_URL = 'http://royhome.net';
 
-// let gIdToken = null;
 let gAccessToken = null;
-let gScopes = null;
+let gData = null;
 let gExpiresAt = null;
 
 export default class Auth {
   constructor(history) {
     this.history = history;
-    this.userProfile = null;
-    this.requestedScopes = 'openid profile email read:courses';
-    const domain = process.env.AUTH0_DOMAIN ? process.env.AUTH0_DOMAIN : 'royk.auth0.com';
-    const clientID = process.env.AUTH0_CLIENT_ID ? process.env.AUTH0_CLIENT_ID : 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL';
-    const redirectUri = process.env.AUTH0_CALLBACK_URL ? process.env.AUTH0_CALLBACK_URL : 'http://localhost:7000/callback';
-    const audience = process.env.AUTH0_AUDIENCE ? process.env.AUTH0_AUDIENCE : 'http://localhost:7001';
 
     this.auth0 = new auth0.WebAuth({
-      domain,
-      clientID,
-      redirectUri,
-      audience,
+      domain: process.env.AUTH0_DOMAIN,
+      clientID: process.env.AUTH0_CLIENT_ID,
+      redirectUri: process.env.AUTH0_CALLBACK_URL,
+      audience: process.env.AUTH0_AUDIENCE,
       responseType: 'token id_token',
-      scope: this.requestedScopes,
+      scope: 'openid profile email',
     });
   }
 
@@ -51,19 +45,14 @@ export default class Auth {
 
   setSession = (authResult) => {
     gExpiresAt = authResult.expiresIn * 1000 + new Date().getTime();
-    gScopes = authResult.scope || this.requestedScopes || '';
     gAccessToken = authResult.accessToken;
-    // gIdToken = authResult.idToken;
+    gData = authResult.idTokenPayload[TOKEN_URL];
     this.scheduleTokenRenewal();
   };
 
   isAuthenticated = () => new Date().getTime() < gExpiresAt;
 
   logout = () => {
-    gAccessToken = null;
-    // gIdToken = null;
-    gExpiresAt = null;
-    gScopes = null;
     this.auth0.logout({
       clientID: process.env.AUTH0_CLIENT_ID,
       returnTo: 'http://localhost:7000',
@@ -79,20 +68,15 @@ export default class Auth {
 
   // eslint-disable-next-line consistent-return
   getProfile = (cb) => {
-    if (this.userProfile) {
-      return cb(this.userProfile);
-    }
-    this.auth0.client.userInfo(this.getAccessToken(), (err, profile) => {
-      if (profile) {
-        this.userProfile = profile;
-      }
-      return cb(profile, err);
-    });
+    this.auth0.client.userInfo(this.getAccessToken(), (err, profile) => cb(profile, err));
   };
 
-  userHasScopes = (scopes) => {
-    const grantedScopes = (gScopes || '').split(' ');
-    return scopes.every((scope) => grantedScopes.includes(scope));
+  userHasRole = (role) => {
+    const grantedRoles = (gData.role || '').split(' ');
+    if (gData.role === 'owner') {
+      grantedRoles.push('friend', 'engineer', 'family', 'company');
+    }
+    return grantedRoles.includes(role);
   };
 
   renewToken(cb) {

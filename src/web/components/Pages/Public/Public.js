@@ -15,7 +15,7 @@ const Public = () => {
         setMessage(response.message);
       })
       .catch((error) => setMessage(error.message));
-  });
+  }, []);
 
   return <p>{ message }</p>;
 };

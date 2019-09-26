@@ -10,7 +10,7 @@ const Profile = ({ auth }) => {
       setProfile(newProfile);
       setError(newError);
     });
-  });
+  }, [auth]);
 
   if (!profile) {
     return null;
