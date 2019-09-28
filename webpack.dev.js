@@ -28,7 +28,7 @@ module.exports = {
     new webpack.EnvironmentPlugin({
       AUTH0_DOMAIN: 'royk.auth0.com',
       AUTH0_CLIENT_ID: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
-      AUTH0_CALLBACK_URL: 'http://localhost:7000/callback',
+      AUTH0_CALLBACK_URL: 'http://127.0.0.1:7000/callback',
       AUTH0_AUDIENCE: 'http://localhost:7001',
       API_URL: 'http://localhost:7001',
       API_PORT: 7001,

@@ -55,7 +55,7 @@ export default class Auth {
   logout = () => {
     this.auth0.logout({
       clientID: process.env.AUTH0_CLIENT_ID,
-      returnTo: 'http://localhost:7000',
+      returnTo: 'http://127.0.0.1:7000',
     });
   };
 
