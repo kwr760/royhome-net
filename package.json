@@ -15,10 +15,11 @@
   },
   "scripts": {
     "start": "run-p start:client start:server",
-    "start:client": "webpack-dev-server --config webpack.dev.js --host 127.0.0.1 --port 7000",
+    "start:client": "webpack-dev-server --config webpack.conf.js --host 127.0.0.1 --port 7000",
     "start:server": "node src/server/index.js",
     "eslint": "eslint src",
-    "test": "jest "
+    "test": "jest --config jest.config.js",
+    "test2": "jest"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -37,10 +38,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
+    "@testing-library/react": "^9.3.0",
     "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "eslint": "^6.2.1",
@@ -52,9 +56,11 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
+    "history": "^4.10.1",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
+    "react-test-renderer": "^16.10.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
