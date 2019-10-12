@@ -34,7 +34,8 @@ module.exports = {
     semi: ['error', 'always'],
     'react-hooks/rules-of-hooks': "error",
     'react-hooks/exhaustive-deps': "warn",
-    "no-console": "off",
+    'no-console': 'off',
     'comma-dangle': ["error", "always-multiline"],
+    'import/no-dynamic-require': 0
   },
 };

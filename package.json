@@ -14,9 +14,14 @@
     "url": "https://github.com/kwr760/royhome-net/issues"
   },
   "scripts": {
-    "start": "run-p start:client start:server",
-    "start:client": "webpack-dev-server --config webpack.conf.js --host 127.0.0.1 --port 7000",
-    "start:server": "node src/server/index.js",
+    "build": "webpack --env production",
+    "watch": "npm run build -- --watch",
+    "start": "webpack-dev-server --env development",
+    "start:webpack": "webpack --env development",
+    "start:client": "webpack-dev-server --config webpack.client.js",
+    "start:server": "webpack --config webpack.server.js",
+    "dist:server": "node --inspect dist/server/bundle.js",
+    "server": "node src/server/index.js",
     "eslint": "eslint src",
     "test": "jest --verbose"
   },
@@ -28,7 +33,10 @@
     "express-jwt": "^5.3.1",
     "express-jwt-authz": "^2.3.1",
     "jwks-rsa": "^1.6.0",
+    "lodash": "^4.17.15",
+    "lodash-es": "^4.17.15",
     "npm-run-all": "^4.1.5",
+    "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -63,11 +71,13 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
     "jest-html-reporter": "^2.6.2",
-    "prettier": "^1.18.2",
+    "nodemon": "^1.19.3",
     "react-test-renderer": "^16.10.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.2",
+    "webpack-stats-graph": "^1.0.8"
   }
 }

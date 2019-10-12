@@ -1,7 +1,8 @@
-const express = require('express');
-require('dotenv').config();
-const jwt = require('express-jwt');
-const jwtRsa = require('jwks-rsa');
+import express from 'express';
+import jwt from 'express-jwt';
+import jwtRsa from 'jwks-rsa';
+
+import env from '../config';
 
 const checkJwt = jwt({
   secret: jwtRsa.expressJwtSecret({
@@ -13,8 +14,8 @@ const checkJwt = jwt({
     }/.well-known/jwks.json`,
   }),
 
-  audience: process.env.AUTH0_AUDIENCE,
-  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+  audience: env.auth0.audience,
+  issuer: `https://${env.auth0.domain}/`,
   algorithms: ['RS256'],
 });
 
@@ -76,5 +77,5 @@ app.get('/admin', checkJwt, checkRole('admin'), (req, res) => {
   });
 });
 
-app.listen(process.env.API_PORT);
-console.log(`API server listening on ${process.env.API_PORT}`);
+app.listen(env.api.port);
+console.log(`API server listening on ${env.api.port}`);
