@@ -3,10 +3,11 @@ import _ from 'lodash';
 import base from './env/base';
 
 let envType = 'dev';
-if (process.env.CONFIG_TYPE) {
-  envType = `${process.env.CONFIG_TYPE}`;
+if (process.env.RELEASE_ENV) {
+  envType = `${process.env.RELEASE_ENV}`;
 }
-const envPath = `./env/${envType}`;
-const envConfig = require(envPath);
+const envConfig = require(`./env/${envType}.js`).default;
 
-export default _.merge({}, base, envConfig);
+const env = _.merge({}, base, envConfig);
+
+export default env;
