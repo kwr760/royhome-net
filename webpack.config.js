@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
@@ -60,7 +59,15 @@ module.exports = (env) => {
     entry: {
       server: path.resolve(__dirname, './src/server/index.js'),
     },
-    context: path.resolve(__dirname, 'src/server'),
+    context: path.resolve(__dirname),
+    // plugins: [
+    //   new webpack.ContextReplacementPlugin(
+    //     /build-info-config/,
+    //     path.resolve(__dirname, './src/config'),
+    //     false,
+    //     /build-info\.js$/
+    //   ),
+    // ],
   };
 
   let devServerConfig = {};
