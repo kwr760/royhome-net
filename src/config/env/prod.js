@@ -1,12 +1,12 @@
-const webPort = process.env.WEB_PORT || 9000;
+const webPort = process.env.WEB_PORT || 9200;
 const webHost = process.env.WEB_HOST || 'http://localhost';
 const webUrl = `${webHost}:${webPort}`;
-const apiPort = process.env.API_PORT || 9001;
+const apiPort = process.env.API_PORT || 9201;
 const apiHost = process.env.API_HOST || 'http://localhost';
 const apiUrl = `${apiHost}:${apiPort}`;
 
 const env = {
-  mode: 'development',
+  mode: 'production',
   web: {
     port: webPort,
     host: webHost,
