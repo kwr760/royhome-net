@@ -5,7 +5,7 @@ const Private = ({ auth }) => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:7001/private', {
+    fetch('http://localhost:9000/private', {
       headers: {
         Authorization: `Bearer ${auth.getAccessToken()}`,
       },

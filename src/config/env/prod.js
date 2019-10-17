@@ -1,26 +1,14 @@
-const webPort = process.env.WEB_PORT || 9200;
-const webHost = process.env.WEB_HOST || 'http://localhost';
-const webUrl = `${webHost}:${webPort}`;
-const apiPort = process.env.API_PORT || 9201;
-const apiHost = process.env.API_HOST || 'http://localhost';
-const apiUrl = `${apiHost}:${apiPort}`;
+const port = process.env.PORT || 9200;
+const host = process.env.HOST || 'http://localhost';
+const url = `${host}:${port}`;
 
 const env = {
   mode: 'production',
-  web: {
-    port: webPort,
-    host: webHost,
-    url: webUrl,
-  },
-  api: {
-    port: apiPort,
-    host: apiHost,
-    url: apiUrl,
-  },
-  auth0: {
-    callbackUrl: `${webUrl}/callback`,
-    audience: `${apiUrl}`,
-  },
+  port,
+  host,
+  url,
+  callbackUrl: `${url}/callback`,
+  audience: `${url}`,
 };
 
 export default env;

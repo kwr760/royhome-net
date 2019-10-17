@@ -4,7 +4,7 @@ const Public = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:7001/public')
+    fetch('http://localhost:9000/public')
       .then((res) => {
         if (res.ok) {
           return res.json();

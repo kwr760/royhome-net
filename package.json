@@ -15,14 +15,13 @@
     "url": "https://github.com/kwr760/royhome-net/issues"
   },
   "scripts": {
-    "clean": "rimraf dist/*",
-    "build:prod": "webpack --env production",
-    "build:dev": "webpack --env development",
-    "start": "yarn clean && yarn build:dev",
-    "start:server": "node --version && node src/start-server.js",
-    "start:server:dist": "node --inspect dist/server.bundle.js",
+    "build": "yarn clean && yarn build:dev",
+    "start": "nodemon --watch dist --exec \"node --inspect dist/server.bundle.js\"",
     "eslint": "eslint src",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "clean": "rimraf dist/*",
+    "build:dev": "webpack --env development --watch",
+    "build:prod": "webpack --env production --watch"
   },
   "dependencies": {
     "@babel/register": "^7.6.2",

@@ -10,10 +10,6 @@ module.exports = (env) => {
 
   const baseConfig = {
     mode,
-    output: {
-      path: path.resolve(__dirname, 'dist'),
-      filename: '[name].bundle.js',
-    },
     devtool: 'source-map',
     node: {
       __dirname: true,
@@ -37,6 +33,10 @@ module.exports = (env) => {
     entry: {
       app: path.resolve(__dirname, './src/web/index.js'),
     },
+    output: {
+      path: path.resolve(__dirname, 'dist/public'),
+      filename: '[name].bundle.js',
+    },
     context: path.resolve(__dirname),
     plugins: [
       new HtmlWebpackPlugin({
@@ -59,15 +59,11 @@ module.exports = (env) => {
     entry: {
       server: path.resolve(__dirname, './src/server/index.js'),
     },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].bundle.js',
+    },
     context: path.resolve(__dirname),
-    // plugins: [
-    //   new webpack.ContextReplacementPlugin(
-    //     /build-info-config/,
-    //     path.resolve(__dirname, './src/config'),
-    //     false,
-    //     /build-info\.js$/
-    //   ),
-    // ],
   };
 
   let devServerConfig = {};

@@ -12,5 +12,5 @@ it('renders without crashing', () => {
     </Router>
   );
 
-  expect(container.innerHTML).toMatch('You are home');
+  expect(container.innerHTML).toContain('This is the home page of Kevin Roy');
 });

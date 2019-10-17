@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import jwt from 'express-jwt';
 import jwtRsa from 'jwks-rsa';
@@ -23,10 +24,15 @@ const app = express();
 
 const allowCrossDomain = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
+  // res.header('Access-Control-Allow-Headers', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 };
 app.use(allowCrossDomain);
+
+const publicDir = path.resolve(env.root, './dist/public');
+console.log(publicDir);
+app.use('/', express.static(publicDir));
 
 app.get('/public', (req, res) => {
   res.json({
@@ -77,5 +83,5 @@ app.get('/admin', checkJwt, checkRole('admin'), (req, res) => {
   });
 });
 
-app.listen(env.api.port);
-console.log(`API server listening on ${env.api.port}`);
+app.listen(env.port);
+console.log(`Server listening on ${env.port}`);

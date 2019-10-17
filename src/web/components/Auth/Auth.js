@@ -12,18 +12,15 @@ export default class Auth {
   constructor(history) {
     this.history = history;
 
-    const webPort = process.env.WEB_PORT || 7000;
-    const webHost = process.env.WEB_HOST || 'http://localhost';
-    const webUrl = `${webHost}:${webPort}`;
-    const apiPort = process.env.API_PORT || 7001;
-    const apiHost = process.env.API_HOST || 'http://localhost';
-    const apiUrl = `${apiHost}:${apiPort}`;
+    const port = process.env.PORT || 9000;
+    const host = process.env.HOST || 'http://localhost';
+    const url = `${host}:${port}`;
     const env = {
       auth0: {
         domain: 'royk.auth0.com',
         clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
-        callbackUrl: `${webUrl}/callback`,
-        audience: `${apiUrl}`,
+        callbackUrl: `${url}/callback`,
+        audience: `${url}`,
       },
     };
 
@@ -69,20 +66,18 @@ export default class Auth {
   isAuthenticated = () => new Date().getTime() < gExpiresAt;
 
   logout = () => {
-    const webPort = process.env.WEB_PORT || 7000;
-    const webHost = process.env.WEB_HOST || 'http://localhost';
-    const webUrl = `${webHost}:${webPort}`;
+    const port = process.env.PORT || 9000;
+    const host = process.env.HOST || 'http://localhost';
+    const url = `${host}:${port}`;
     const env = {
       auth0: {
         clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
       },
-      web: {
-        url: webUrl,
-      },
+      url,
     };
     this.auth0.logout({
       clientID: env.auth0.clientId,
-      returnTo: env.web.url,
+      returnTo: env.url,
     });
   };
 

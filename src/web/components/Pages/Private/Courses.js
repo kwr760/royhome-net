@@ -6,7 +6,7 @@ const Courses = ({ auth }) => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:7001/courses', {
+    fetch('http://localhost:9000/courses', {
       headers: {
         Authorization: `Bearer ${auth.getAccessToken()}`,
       },
@@ -24,7 +24,7 @@ const Courses = ({ auth }) => {
   }, [auth]);
 
   useEffect(() => {
-    fetch('http://localhost:7001/admin', {
+    fetch('http://localhost:9000/admin', {
       headers: {
         Authorization: `Bearer ${auth.getAccessToken()}`,
       },

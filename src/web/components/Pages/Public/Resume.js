@@ -4,7 +4,7 @@ const Resume = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:7001/resume')
+    fetch('http://localhost:9000/resume')
       .then((res) => {
         if (res.ok) {
           return res.json();
