@@ -12,6 +12,7 @@ node_modules/
 .idea/
 
 # build
+unit/
 coverage/
 dist/
 
