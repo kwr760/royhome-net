@@ -30,9 +30,12 @@ module.exports = {
   ],
   rules: {
     'react/jsx-filename-extension': [ 1, { "extensions": [".js", ".jsx"] } ],
+    'react/jsx-props-no-spreading': [ 0 ],
     semi: ['error', 'always'],
     'react-hooks/rules-of-hooks': "error",
     'react-hooks/exhaustive-deps': "warn",
+    'no-console': 'off',
     'comma-dangle': ["error", "always-multiline"],
+    'import/no-dynamic-require': 0
   },
 };
