@@ -67,7 +67,7 @@ module.exports = {
     },
   ],
   collectCoverage: true,
-  coverageDirectory: './build/coverage',
+  coverageDirectory: './coverage',
   coverageThreshold: {
     global: {
       branches: 20,
@@ -81,7 +81,7 @@ module.exports = {
       './node_modules/jest-html-reporter',
       {
         pageTitle: 'Test Results',
-        outputPath: './build/test-results.html',
+        outputPath: './unit/test-results.html',
       },
     ],
   ],
