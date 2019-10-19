@@ -5,9 +5,9 @@ node_js:
 
 #script: npm test
 script:
-#  - echo "Branch: ($TRAVIS_BRANCH) PR: ($TRAVIS_PULL_REQUEST) Tag: ($TRAVIS_TAG)"
+  - echo "Branch: ($TRAVIS_BRANCH) PR: ($TRAVIS_PULL_REQUEST) Tag: ($TRAVIS_TAG)"
   - npm test
-  if: branch != master
+#  if: branch != master
 #    (branch = master AND type = push) OR \
 #    (branch != master AND type = pull_request)
 
