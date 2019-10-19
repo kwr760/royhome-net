@@ -3,8 +3,9 @@ language: node_js
 node_js:
   - "10"
 
+#script: npm test
 script:
-  - echo "Branch: ($TRAVIS_BRANCH) PR: ($TRAVIS_PULL_REQUEST) Tag: ($TRAVIS_TAG)"
+#  - echo "Branch: ($TRAVIS_BRANCH) PR: ($TRAVIS_PULL_REQUEST) Tag: ($TRAVIS_TAG)"
   - npm test
 #  if:
 #    (branch = master AND type = push) OR \
