@@ -4,17 +4,17 @@ language: node_js
 node_js:
   - "10"
 
-# script: npm test
-script:
-  - echo $TRAVIS_BRANCH
-  - echo $TRAVIS_PULL_REQUEST
-  - echo $TRAVIS_TAG
-  - npm test
-#  if: branch != master
-#    (branch = master AND type = push) OR \
-#    (branch != master AND type = pull_request)
+jobs:
+  include:
+    - stage: test
+      script:
+        echo "Kevin"
+        echo $TRAVIS_BRANCH - $TRAVIS_PULL_REQUEST - $TRAVIS_TAG
+        npm test
+    - stage: deploy
+      script: ./scripts/deploy.sh
 
-deploy:
-  provider: script
-  script: bash ./scripts/deploy.sh
-  on: branch = master
+stages:
+  - name: test
+  - name: deploy
+    if: branch = master
