@@ -1,11 +1,15 @@
+---
 language: node_js
 
 node_js:
   - "10"
 
-#script: npm test
+# script: npm test
 script:
-  - echo "ranch: ($TRAVIS_BRANCH) PR: ($TRAVIS_PULL_REQUEST) Tag: ($TRAVIS_TAG)"
+  - echo "Kevin"
+  - echo "Branch: $TRAVIS_BRANCH"
+  - echo "PR: $TRAVIS_PULL_REQUEST"
+  - echo "Tag: $TRAVIS_TAG"
   - npm test
 #  if: branch != master
 #    (branch = master AND type = push) OR \
@@ -14,5 +18,4 @@ script:
 deploy:
   provider: script
   script: bash ./scripts/deploy.sh
-  on:
-    branch: master
+  on: branch = master
