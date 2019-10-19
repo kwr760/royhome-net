@@ -5,9 +5,5 @@ node_js:
   - "10"
 
 script:
-  - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST"  = "false" ];
-  then
-    ./scripts/deploy.sh;
-  else
-    npm test;
-  fi
+  - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_"  = "false" ]; then
+    ./scripts/deploy.sh; else npm test; fi
