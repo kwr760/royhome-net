@@ -4,6 +4,10 @@ language: node_js
 node_js:
   - "10"
 
-script:
-  - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_"  = "false" ]; then
-    ./scripts/deploy.sh; else npm test; fi
+jobs:
+  include:
+    - stage: test
+      script: echo "Kevin"
+    - stage: deploy
+      script: ./scripts/deploy.sh
+      on: branch = master
