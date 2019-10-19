@@ -7,8 +7,11 @@ node_js:
 jobs:
   include:
     - stage: test
-      script: echo "Kevin"
-      npm test
+      script: echo "Kevin"; npm test;
     - stage: deploy
       script: ./scripts/deploy.sh
-      if: branch = master
+
+stages:
+  - test
+  - name: deploy
+    if: branch = master
