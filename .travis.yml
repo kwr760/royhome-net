@@ -10,16 +10,12 @@ jobs:
       script:
         - npm test
     - stage: master
-      script: if [ "$TRAVIS_BRANCH" = "master" ]; then \
-      echo "Here"; fi
+      script: if [ "$TRAVIS_BRANCH" = "master" ]; then echo "Here"; fi
     - stage: Not master
-      script: if [ "$TRAVIS_BRANCH" != "master" ]; then \
-      echo "Here"; fi
+      script: if [ "$TRAVIS_BRANCH" != "master" ]; then echo "Here"; fi
     - stage: PR
-      script: if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then \
-      echo "Here"; fi
+      script: if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then echo "Here"; fi
     - stage: bot PR
-      script: if [ "$TRAVIS_PULL_REQUEST != "false" ]; then \
-      echo "Here"; fi
+      script: if [ "$TRAVIS_PULL_REQUEST != "false" ]; then echo "Here"; fi
     - stage: deploy
       script: ./scripts/deploy.sh
