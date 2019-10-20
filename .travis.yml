@@ -8,6 +8,7 @@ jobs:
   include:
     - stage: test
       script:
+        - echo $TRAVIS_BRANCH - $TRAVIS_PULL_REQUEST
         - npm test
     - stage: master
       script: if [ "$TRAVIS_BRANCH" = "master" ]; then echo "Here"; fi
