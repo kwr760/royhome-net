@@ -6,7 +6,7 @@ node_js:
 
 jobs:
   include:
-    if: type = pull_request OR (type = push AND branch = "master")
+    if: type = pull_request
 
 script:
   - echo TRAVIS_BRANCH - $TRAVIS_BRANCH
