@@ -7,7 +7,7 @@ node_js:
 jobs:
   include:
   - node_js: "10"
-    on: branch = "master"
+    if: branch = "master"
 
 script:
   - echo TRAVIS_BRANCH - $TRAVIS_BRANCH
