@@ -1,1 +1,1 @@
-echo "deploy script has run"
+echo "The deploy script has run!"
