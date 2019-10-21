@@ -8,6 +8,7 @@ jobs:
   include:
   - stage: test
     script:
+      - echo "$RELEASE_IP_ADDR"
       - npm test
     if: type = pull_request
   - stage: deploy
