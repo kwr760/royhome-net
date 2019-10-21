@@ -8,15 +8,10 @@ jobs:
   include:
   - stage: test
     script:
-      - echo "Test me"
+      - npm test
     if: type = pull_request
   - stage: deploy
     script:
-      - echo "Deploy me"
+      - npm test
+      - ./scripts/deploy.sh
     if: type = push AND branch = master
-
-script:
-  - echo TRAVIS_BRANCH - $TRAVIS_BRANCH
-  - echo TRAVIS_PULL_REQUEST - $TRAVIS_PULL_REQUEST
-  - echo TRAVIS_PULL_REQUEST_BRANCH - $TRAVIS_PULL_REQUEST_BRANCH
-  - echo TRAVIS_EVENT_TYPE - $TRAVIS_EVENT_TYPE
