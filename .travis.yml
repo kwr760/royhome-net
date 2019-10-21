@@ -6,7 +6,7 @@ node_js:
 
 jobs:
   include:
-    if: type = pull_request
+    if: type IN (pull_request)
 
 script:
   - echo TRAVIS_BRANCH - $TRAVIS_BRANCH
