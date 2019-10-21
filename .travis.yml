@@ -4,6 +4,17 @@ language: node_js
 node_js:
   - "10"
 
+jobs:
+  include:
+  - stage: test
+    script:
+      - echo "Test me"
+    if: type = pull_request
+  - stage: deploy
+    script:
+      - echo "Deploy me"
+    if: type = push AND branch = master
+
 script:
   - echo TRAVIS_BRANCH - $TRAVIS_BRANCH
   - echo TRAVIS_PULL_REQUEST - $TRAVIS_PULL_REQUEST
