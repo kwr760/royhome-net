@@ -13,5 +13,5 @@ jobs:
   - stage: deploy
     script:
       - npm test
-      - ./scripts/deploy.sh
+      - ./.travis/deploy.sh
     if: type = push AND branch = master
