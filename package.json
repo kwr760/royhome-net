@@ -17,11 +17,12 @@
   "scripts": {
     "build": "yarn clean && yarn build:dev",
     "start": "nodemon --watch dist --exec \"node --inspect dist/server.bundle.js\"",
+    "start:prod": "RELEASE_ENV=prod node dist/server.bundle.js",
     "eslint": "eslint src",
     "test": "jest --verbose",
     "clean": "rimraf dist/*",
     "build:dev": "webpack --env development --watch",
-    "build:prod": "webpack --env production --watch"
+    "build:prod": "webpack --env production"
   },
   "dependencies": {
     "@babel/register": "^7.6.2",
