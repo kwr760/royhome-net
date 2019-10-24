@@ -10,6 +10,7 @@ jobs:
     script:
       - echo "$RELEASE_IP_ADDR"
       - npm test
+      - ./.travis/deploy.sh
     if: type = pull_request
   - stage: deploy
     script:
