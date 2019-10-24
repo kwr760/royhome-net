@@ -5,6 +5,7 @@ echo $RELEASE_PASSWORD
 echo $GH_USER
 echo $GH_PASS
 
+apt install sshpass
 sshpass -p $RELEASE_PASSWORD ssh $RELEASE_IP_ADDR ls
 
 #git clone https://${GH_USER}:${GH_PASS}@github.com/kwr760/royhome-net.git /var/www/royhome.net
