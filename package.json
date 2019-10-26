@@ -26,7 +26,8 @@
     "pm2:start": "RELEASE_ENV=prod pm2 start dist/server.bundle.js",
     "pm2:stop": "pm2 stop dist/server.bundle.js",
     "pm2:kill": "pm2 kill",
-    "pm2:status": "pm2 status"
+    "pm2:status": "pm2 status",
+    "release": "yarn install --production && yarn run build:prod && yarn run pm2:start"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
