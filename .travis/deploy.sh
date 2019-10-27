@@ -4,7 +4,6 @@ eval "$(ssh-agent -s)"
 openssl aes-256-cbc -K $encrypted_85fdd383440b_key -iv $encrypted_85fdd383440b_iv -in .travis/private-key.enc -out .travis/private-key -d
 chmod 600 .travis/private-key
 ssh-add .travis/private-key
-cat .travis/private-key
 rm .travis/private-key
 
 # List out your new key's fingerprint
