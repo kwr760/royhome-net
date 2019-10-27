@@ -11,25 +11,12 @@ ssh-add -l
 
 echo $(date +%F_%T)
 
-ssh $RELEASE_HOST  ls -la
-echo "8"
 ssh $RELEASE_HOST  mv /var/app/royhome-net.last /var/app/royhome-net.$(date +%F_%T)
-echo "9"
 ssh $RELEASE_HOST  mv /var/app/royhome-net /var/app/royhome-net.last
-echo "10"
-ssh $RELEASE_HOST  git clone https://$GITHUB_LOGIN@github.com/kwr760/royhome-net.git /var/app
+ssh $RELEASE_HOST  git clone git@github.com:kwr760/royhome-net.git /var/app/2
+ssh $RELEASE_HOST  ls -la /var/app
 
 # Don't forget to cleanup your agent after you're done using it if you're not on an ephemeral build server.
 ssh-agent -k
-echo "11"
-
-ssh-add -l
-echo "12"
-
-#git clone https://${GH_USER}:${GH_PASS}@github.com/kwr760/royhome-net.git /var/www/royhome.net
-#cd /var/www/royhome.net
-#yarn install
-#yarn run build:prod
-#yarn run start:prod
 
 
