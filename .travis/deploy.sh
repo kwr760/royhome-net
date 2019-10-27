@@ -8,13 +8,14 @@ rm .travis/private-key
 
 # List out your new key's fingerprint
 ssh-add -l
-echo "7"
+
+echo $(date +%F_%T)
 
 ssh $RELEASE_HOST  ls -la
 echo "8"
-ssh $RELEASE_HOST  rm -rf /var/app/royhome-net.sav
+ssh $RELEASE_HOST  mv /var/app/royhome-net.last /var/app/royhome-net.$(date +%F_%T)
 echo "9"
-ssh $RELEASE_HOST  mv /var/app/royhome-net /var/app/royhome-net.sav
+ssh $RELEASE_HOST  mv /var/app/royhome-net /var/app/royhome-net.last
 echo "10"
 ssh $RELEASE_HOST  git clone https://$GITHUB_LOGIN@github.com/kwr760/royhome-net.git /var/app
 
