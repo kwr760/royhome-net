@@ -2,6 +2,10 @@ echo "The deploy script has run!"
 
 eval "$(ssh-agent -s)"
 
+openssl aes-256-cbc -K $encrypted_5880cf525281_key -iv $encrypted_5880cf525281_iv -in .travis/private-key.enc -out .travis/private-key -d
+ssh-add .travis/private-key
+rm .travis/private-key
+
 ssh-add <(echo "$SSH_PRIVATE_KEY")
 
 # List out your new key's fingerprint
