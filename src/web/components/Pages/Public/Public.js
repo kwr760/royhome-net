@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import env from '../../../../config';
 
 const Public = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:9000/public')
+    const url = `${env.url}/api/public`;
+    fetch(url)
       .then((res) => {
         if (res.ok) {
           return res.json();

@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import env from '../../../../config';
 
 const Private = ({ auth }) => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:9000/private', {
+    const url = `${env.url}/api/private`;
+    const accessToken = auth.getAccessToken();
+    fetch(url, {
       headers: {
-        Authorization: `Bearer ${auth.getAccessToken()}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     })
       .then((res) => {

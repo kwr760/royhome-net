@@ -1,5 +1,5 @@
 import auth0 from 'auth0-js';
-// import env from '../../../config';
+import env from '../../../config';
 
 const REDIRECT_ON_LOGIN = 'redirect_on_login';
 const TOKEN_URL = 'http://royhome.net';
@@ -12,26 +12,16 @@ export default class Auth {
   constructor(history) {
     this.history = history;
 
-    const port = process.env.PORT || 9000;
-    const host = process.env.HOST || 'http://localhost';
-    const url = `${host}:${port}`;
-    const env = {
-      auth0: {
-        domain: 'royk.auth0.com',
-        clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
-        callbackUrl: `${url}/callback`,
-        audience: `${url}`,
-      },
-    };
-
-    this.auth0 = new auth0.WebAuth({
+    const webConfig = {
       domain: env.auth0.domain,
       clientID: env.auth0.clientId,
       redirectUri: env.auth0.callbackUrl,
       audience: env.auth0.audience,
       responseType: 'token id_token',
       scope: 'openid profile email',
-    });
+    };
+
+    this.auth0 = new auth0.WebAuth(webConfig);
   }
 
   login = () => {
@@ -63,18 +53,13 @@ export default class Auth {
     this.scheduleTokenRenewal();
   };
 
-  isAuthenticated = () => new Date().getTime() < gExpiresAt;
+  isAuthenticated = () => {
+    const currTime = new Date().getTime();
+    const isAuth = currTime < gExpiresAt;
+    return isAuth;
+  };
 
   logout = () => {
-    const port = process.env.PORT || 9000;
-    const host = process.env.HOST || 'http://localhost';
-    const url = `${host}:${port}`;
-    const env = {
-      auth0: {
-        clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
-      },
-      url,
-    };
     this.auth0.logout({
       clientID: env.auth0.clientId,
       returnTo: env.url,

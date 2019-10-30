@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import env from '../../../../config';
 
 const Courses = ({ auth }) => {
   const [courses, setCourses] = useState([]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:9000/courses', {
+    const url = `${env.url}/api/courses`;
+    fetch(url, {
       headers: {
         Authorization: `Bearer ${auth.getAccessToken()}`,
       },
@@ -24,7 +26,8 @@ const Courses = ({ auth }) => {
   }, [auth]);
 
   useEffect(() => {
-    fetch('http://localhost:9000/admin', {
+    const url = `${env.url}/api/admin`;
+    fetch(url, {
       headers: {
         Authorization: `Bearer ${auth.getAccessToken()}`,
       },
