@@ -4,15 +4,15 @@ import env from '../../../../config';
 
 const Private = ({ auth }) => {
   const [message, setMessage] = useState('');
+  const init = {
+    headers: {
+      Authorization: `Bearer ${auth.getAccessToken()}`,
+    },
+  };
 
   useEffect(() => {
     const url = `${env.url}/api/private`;
-    const accessToken = auth.getAccessToken();
-    fetch(url, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
+    fetch(url, init)
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -22,7 +22,9 @@ const Private = ({ auth }) => {
       .then((response) => {
         setMessage(response.message);
       })
-      .catch((error) => setMessage(error.message));
+      .catch((error) => {
+        setMessage(error.message);
+      });
   }, [auth]);
 
   return <p>{ message }</p>;

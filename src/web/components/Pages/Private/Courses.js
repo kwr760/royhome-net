@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import env from '../../../../config';
 
 const Courses = ({ auth }) => {
+  const init = {
+    headers: {
+      Authorization: `Bearer ${auth.getAccessToken()}`,
+    },
+  };
   const [courses, setCourses] = useState([]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
     const url = `${env.url}/api/courses`;
-    fetch(url, {
-      headers: {
-        Authorization: `Bearer ${auth.getAccessToken()}`,
-      },
-    })
+    fetch(url, init)
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -22,17 +23,14 @@ const Courses = ({ auth }) => {
       .then((response) => {
         setCourses(response.courses);
       })
-      .catch((error) => setMessage(error.message));
+      .catch((error) => {
+        setMessage(error.message);
+      });
   }, [auth]);
 
   useEffect(() => {
     const url = `${env.url}/api/admin`;
-    fetch(url, {
-      headers: {
-        Authorization: `Bearer ${auth.getAccessToken()}`,
-      },
-    })
-    // eslint-disable-next-line consistent-return
+    fetch(url, init)
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -41,7 +39,9 @@ const Courses = ({ auth }) => {
       .then((response) => {
         console.log(response);
       })
-      .catch((error) => setMessage(error.message));
+      .catch((error) => {
+        setMessage(error.message);
+      });
   }, [auth]);
 
   if (message) {

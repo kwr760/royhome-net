@@ -16,7 +16,9 @@ const Resume = () => {
       .then((response) => {
         setMessage(response.message);
       })
-      .catch((error) => setMessage(error.message));
+      .catch((error) => {
+        setMessage(error.message);
+      });
   }, []);
 
   return <p>{ message }</p>;

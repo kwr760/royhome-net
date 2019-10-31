@@ -30,7 +30,6 @@ const allowCrossDomain = (req, res, next) => {
 app.use(allowCrossDomain);
 
 const publicDir = path.resolve(env.root, './dist/public');
-console.log(publicDir);
 app.use('/', express.static(publicDir));
 
 app.get('/api/public', (req, res) => {
@@ -51,13 +50,18 @@ app.get('/api/private', checkJwt, (req, res) => {
   });
 });
 
-// app.get('/api/private', (req, res) => {
-//   res.json({
-//     message: 'Hello from a private API!',
-//   });
-// });
-
 app.use('/callback', express.static(publicDir));
+
+app.get('/*', (req, res) => {
+  console.log('Running the catch all');
+  const indexFile = path.resolve(publicDir, './index.html');
+  res.sendFile(indexFile, (err) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    return res.status(200);
+  });
+});
 
 function checkRole(role) {
   return (req, res, next) => {
