@@ -52,16 +52,14 @@ app.get('/api/private', checkJwt, (req, res) => {
 
 app.use('/callback', express.static(publicDir));
 
-app.get('/*', (req, res) => {
-  console.log('Running the catch all');
-  const indexFile = path.resolve(publicDir, './index.html');
-  res.sendFile(indexFile, (err) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-    return res.status(200);
-  });
-});
+// app.get('/*', (req, res) => {
+//   const indexFile = path.resolve(publicDir, './index.html');
+//   res.sendFile(indexFile, (err) => {
+//     if (err) {
+//       return res.status(500).send(err);
+//     }
+//   });
+// });
 
 function checkRole(role) {
   return (req, res, next) => {
@@ -79,7 +77,7 @@ function checkRole(role) {
   };
 }
 
-app.get('/courses', checkJwt, checkRole('engineer'), (req, res) => {
+app.get('/api/courses', checkJwt, checkRole('engineer'), (req, res) => {
   res.json({
     courses: [
       { id: 1, title: 'Building Apps with React and Redux' },
@@ -88,7 +86,7 @@ app.get('/courses', checkJwt, checkRole('engineer'), (req, res) => {
   });
 });
 
-app.get('/admin', checkJwt, checkRole('admin'), (req, res) => {
+app.get('/api/admin', checkJwt, checkRole('engineer'), (req, res) => {
   res.json({
     message: 'Hello to an admin!',
   });
