@@ -81,7 +81,7 @@ export default class Auth {
   userHasRole = (role) => {
     const grantedRoles = (gData.role || '').split(' ');
     if (gData.role === 'owner') {
-      grantedRoles.push('friend', 'engineer', 'family', 'company');
+      grantedRoles.push('friend', 'engineer', 'family', 'company', 'admin');
     }
     return grantedRoles.includes(role);
   };
