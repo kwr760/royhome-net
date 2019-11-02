@@ -3,12 +3,11 @@ node_js:
 - '10'
 jobs:
   include:
-  - stage: test
+  - stage: Test PR
     script:
     - npm test
-    - "./.travis/deploy.sh"
     if: type = pull_request
-  - stage: deploy
+  - stage: Deploy latest code
     script:
     - npm test
     - "./.travis/deploy.sh"
