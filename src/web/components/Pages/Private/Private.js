@@ -4,14 +4,14 @@ import env from '../../../../config';
 
 const Private = ({ auth }) => {
   const [message, setMessage] = useState('');
-  const init = {
-    headers: {
-      Authorization: `Bearer ${auth.getAccessToken()}`,
-    },
-  };
 
   useEffect(() => {
     const url = `${env.url}/api/private`;
+    const init = {
+      headers: {
+        Authorization: `Bearer ${auth.getAccessToken()}`,
+      },
+    };
     fetch(url, init)
       .then((res) => {
         if (res.ok) {
