@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import env from '../../../../config';
 
 const Courses = ({ auth }) => {
-  const init = {
-    headers: {
-      Authorization: `Bearer ${auth.getAccessToken()}`,
-    },
-  };
   const [courses, setCourses] = useState([]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
     const url = `${env.url}/api/courses`;
+    const init = {
+      headers: {
+        Authorization: `Bearer ${auth.getAccessToken()}`,
+      },
+    };
     fetch(url, init)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
         }
         throw new Error('Network response was not good.');
       })
@@ -30,11 +30,17 @@ const Courses = ({ auth }) => {
 
   useEffect(() => {
     const url = `${env.url}/api/admin`;
+    const init = {
+      headers: {
+        Authorization: `Bearer ${auth.getAccessToken()}`,
+      },
+    };
     fetch(url, init)
       .then((res) => {
         if (res.ok) {
           return res.json();
         }
+        throw new Error('Network response was not good.');
       })
       .then((response) => {
         console.log(response);
