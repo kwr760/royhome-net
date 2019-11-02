@@ -67,7 +67,7 @@ function checkRole(role) {
 
     const grantedRoles = (userData.role || '').split(' ');
     if (userData.role === 'owner') {
-      grantedRoles.push('friend', 'engineer', 'family', 'company');
+      grantedRoles.push('friend', 'engineer', 'family', 'company', 'admin');
     }
     if (grantedRoles.includes(role)) {
       return next();
@@ -86,7 +86,7 @@ app.get('/api/courses', checkJwt, checkRole('engineer'), (req, res) => {
   });
 });
 
-app.get('/api/admin', checkJwt, checkRole('engineer'), (req, res) => {
+app.get('/api/admin', checkJwt, checkRole('admin'), (req, res) => {
   res.json({
     message: 'Hello to an admin!',
   });
