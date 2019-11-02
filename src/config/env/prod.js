@@ -7,8 +7,9 @@ const env = {
   port,
   host,
   url,
-  callbackUrl: `${url}/callback`,
-  audience: `${url}`,
+  auth0: {
+    callbackUrl: `${url}/callback`,
+  },
 };
 
 export default env;

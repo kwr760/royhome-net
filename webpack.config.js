@@ -66,33 +66,9 @@ module.exports = (env) => {
     context: path.resolve(__dirname),
   };
 
-  let devServerConfig = {};
-  if (mode === 'development') {
-    devServerConfig = {
-      devServer: {
-        stats: 'minimal',
-        overlay: true,
-        historyApiFallback: true,
-        disableHostCheck: true,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-        },
-        https: false,
-        contentBase: path.resolve(__dirname, 'dist'),
-        watchContentBase: false,
-        hotOnly: true,
-      },
-      plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-      ],
-    };
-  }
-
   const frontPack = merge(
     webConfig,
     baseConfig,
-    devServerConfig,
   );
   const backPack = merge(
     nodeConfig,

@@ -1,4 +1,4 @@
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 9100;
 const host = process.env.HOST || 'http://localhost';
 const url = `${host}:${port}`;
 
@@ -9,7 +9,6 @@ const env = {
   url,
   auth0: {
     callbackUrl: `${url}/callback`,
-    audience: `${url}`,
   },
 };
 

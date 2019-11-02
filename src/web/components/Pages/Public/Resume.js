@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import env from '../../../../config';
 
 const Resume = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:9000/resume')
+    const url = `${env.url}/api/resume`;
+    fetch(url)
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -14,7 +16,9 @@ const Resume = () => {
       .then((response) => {
         setMessage(response.message);
       })
-      .catch((error) => setMessage(error.message));
+      .catch((error) => {
+        setMessage(error.message);
+      });
   }, []);
 
   return <p>{ message }</p>;

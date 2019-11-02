@@ -11,7 +11,7 @@ const checkJwt = jwt({
     rateLimit: true,
     jwksRequestsPerMinute: 5,
     jwksUri: `https://${
-      process.env.AUTH0_DOMAIN
+      env.auth0.domain
     }/.well-known/jwks.json`,
   }),
 
@@ -24,33 +24,42 @@ const app = express();
 
 const allowCrossDomain = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  // res.header('Access-Control-Allow-Headers', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 };
 app.use(allowCrossDomain);
 
 const publicDir = path.resolve(env.root, './dist/public');
-console.log(publicDir);
 app.use('/', express.static(publicDir));
 
-app.get('/public', (req, res) => {
+app.get('/api/public', (req, res) => {
   res.json({
     message: 'Hello from a public API!',
   });
 });
 
-app.get('/resume', (req, res) => {
+app.get('/api/resume', (req, res) => {
   res.json({
     message: 'Return to my resume!',
   });
 });
 
-app.get('/private', checkJwt, (req, res) => {
+app.get('/api/private', checkJwt, (req, res) => {
   res.json({
     message: 'Hello from a private API!',
   });
 });
+
+app.use('/callback', express.static(publicDir));
+
+// app.get('/*', (req, res) => {
+//   const indexFile = path.resolve(publicDir, './index.html');
+//   res.sendFile(indexFile, (err) => {
+//     if (err) {
+//       return res.status(500).send(err);
+//     }
+//   });
+// });
 
 function checkRole(role) {
   return (req, res, next) => {
@@ -68,7 +77,7 @@ function checkRole(role) {
   };
 }
 
-app.get('/courses', checkJwt, checkRole('engineer'), (req, res) => {
+app.get('/api/courses', checkJwt, checkRole('engineer'), (req, res) => {
   res.json({
     courses: [
       { id: 1, title: 'Building Apps with React and Redux' },
@@ -77,7 +86,7 @@ app.get('/courses', checkJwt, checkRole('engineer'), (req, res) => {
   });
 });
 
-app.get('/admin', checkJwt, checkRole('admin'), (req, res) => {
+app.get('/api/admin', checkJwt, checkRole('engineer'), (req, res) => {
   res.json({
     message: 'Hello to an admin!',
   });
