@@ -10,7 +10,6 @@ module.exports = {
       },
       testMatch: [
         '**/src/web/**/?(*.)(spec|test).js',
-        '**/src/server/**/?(*.)(spec|test).js',
       ],
       modulePathIgnorePatterns: [
         '/node_modules/',
@@ -43,6 +42,7 @@ module.exports = {
       },
       testMatch: [
         '**/src/server/**/?(*.)(spec|test).js',
+        '**/src/config/**/?(*.)(spec|test).js',
       ],
       modulePathIgnorePatterns: [
         '/node_modules/',
@@ -70,10 +70,10 @@ module.exports = {
   coverageDirectory: './coverage',
   coverageThreshold: {
     global: {
-      branches: 20,
-      functions: 20,
-      lines: 20,
-      statements: 20,
+      branches: 99,
+      functions: 99,
+      lines: 99,
+      statements: 99,
     },
   },
   reporters: [
@@ -86,7 +86,7 @@ module.exports = {
     ],
   ],
   coverageReporters: [
-    'html',
+    'text', 'html',
   ],
   clearMocks: true,
 };
