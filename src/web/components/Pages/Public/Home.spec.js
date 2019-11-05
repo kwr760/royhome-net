@@ -5,7 +5,8 @@ import Home from './Home';
 import AuthContext from '../../Auth/AuthContext';
 
 jest.mock('../../Auth/Auth');
-describe('web/components/Pages/Public/Resume', () => {
+
+describe('web/components/Pages/Public/Home', () => {
   it('should render an unauthenticated page', () => {
     // Arrange
     const auth = {
