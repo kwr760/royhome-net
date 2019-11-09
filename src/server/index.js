@@ -32,12 +32,6 @@ app.use(allowCrossDomain);
 const publicDir = path.resolve(env.root, './dist/public');
 app.use('/', express.static(publicDir));
 
-app.get('/api/public', (req, res) => {
-  res.json({
-    message: 'Hello from a public API!',
-  });
-});
-
 app.get('/api/resume', (req, res) => {
   res.json({
     message: 'Return to my resume!',
