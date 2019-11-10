@@ -27,4 +27,19 @@ describe('web/components/Pages/Private/Profile', () => {
     getByText(/picture/);
     getByText(/Loaded Arg/);
   });
+  it('should render error', async () => {
+    // Arrange
+    const error = 'This is an error message';
+    const profile = {};
+
+    const auth = {
+      getAccessToken: jest.fn(),
+      getProfile: jest.fn((cb) => cb(profile, error)),
+    };
+
+    // Arrange
+    const { getByText } = render(<Profile auth={auth} />);
+
+    await waitForElement(() => getByText('This is an error message'));
+  });
 });

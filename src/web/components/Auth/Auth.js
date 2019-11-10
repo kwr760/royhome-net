@@ -4,11 +4,13 @@ import env from '../../../config';
 const REDIRECT_ON_LOGIN = 'redirect_on_login';
 const TOKEN_URL = 'http://royhome.net';
 
-let gAccessToken = null;
-let gData = null;
-let gExpiresAt = null;
-
 export default class Auth {
+  accessToken = null;
+
+  data = null;
+
+  expiresAt = null;
+
   constructor(history) {
     this.history = history;
 
@@ -28,34 +30,36 @@ export default class Auth {
     this.auth0.authorize();
     localStorage.setItem(
       REDIRECT_ON_LOGIN,
-      JSON.stringify(this.history.location)
+      JSON.stringify(this.history.location),
     );
   };
 
+  useHashToSetSession = (err, authResult) => {
+    if (authResult && authResult.accessToken && authResult.idToken) {
+      this.setSession(authResult);
+      const redirectLocation = localStorage.getItem(REDIRECT_ON_LOGIN) === 'undefined' ? '/' : JSON.parse(localStorage.getItem(REDIRECT_ON_LOGIN));
+      this.history.push(redirectLocation);
+    } else if (err) {
+      this.history.push('/');
+      console.log(err);
+    }
+    localStorage.removeItem(REDIRECT_ON_LOGIN);
+  };
+
   handleAuthentication = () => {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-        const redirectLocation = localStorage.getItem(REDIRECT_ON_LOGIN) === 'undefined' ? '/' : JSON.parse(localStorage.getItem(REDIRECT_ON_LOGIN));
-        this.history.push(redirectLocation);
-      } else if (err) {
-        this.history.push('/');
-        console.log(err);
-      }
-      localStorage.removeItem(REDIRECT_ON_LOGIN);
-    });
+    this.auth0.parseHash(this.useHashToSetSession);
   };
 
   setSession = (authResult) => {
-    gExpiresAt = authResult.expiresIn * 1000 + new Date().getTime();
-    gAccessToken = authResult.accessToken;
-    gData = authResult.idTokenPayload[TOKEN_URL];
+    this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+    this.accessToken = authResult.accessToken;
+    this.data = authResult.idTokenPayload[TOKEN_URL];
     this.scheduleTokenRenewal();
   };
 
   isAuthenticated = () => {
     const currTime = new Date().getTime();
-    const isAuth = currTime < gExpiresAt;
+    const isAuth = currTime < this.expiresAt;
     return isAuth;
   };
 
@@ -67,10 +71,10 @@ export default class Auth {
   };
 
   getAccessToken = () => {
-    if (!gAccessToken) {
+    if (!this.accessToken) {
       throw new Error('No access token found.');
     }
-    return gAccessToken;
+    return this.accessToken;
   };
 
   // eslint-disable-next-line consistent-return
@@ -79,7 +83,7 @@ export default class Auth {
   };
 
   userHasRole = (role) => {
-    const currentRole = (gData && gData.role) || '';
+    const currentRole = (this.data && this.data.role) || '';
     const grantedRoles = currentRole.split(' ');
     if (currentRole === 'owner') {
       grantedRoles.push('friend', 'engineer', 'family', 'company');
@@ -101,7 +105,7 @@ export default class Auth {
   }
 
   scheduleTokenRenewal() {
-    const delay = gExpiresAt - Date.now();
+    const delay = this.expiresAt - Date.now();
     if (delay > 0) {
       setTimeout(() => this.renewToken(), delay);
     }

@@ -37,12 +37,7 @@ function App({ history }) {
           exact
           render={(props) => <Home {...props} />}
         />
-        <Route
-          path="/callback"
-          render={(props) => (
-            <Callback auth={auth} {...props} />
-          )}
-        />
+        <Route path="/callback" component={Callback} />
         <PrivateRoute path="/profile" component={Profile} />
         <Route path="/resume" component={Resume} />
         <PrivateRoute path="/private" component={Private} />

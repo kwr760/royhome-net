@@ -77,17 +77,17 @@ module.exports = {
       lines: 100,
       functions: 100,
     },
-    'src/server': {
+    'src/server/index.js': {
       statements: 50,
       branches: 0,
       lines: 50,
       functions: 10,
     },
-    'src/web': {
-      statements: 90,
-      branches: 70,
-      lines: 90,
-      functions: 90,
+    'src/web/components/Auth/Auth.js': {
+      statements: 94,
+      branches: 86,
+      lines: 98,
+      functions: 86,
     },
   },
   reporters: [
