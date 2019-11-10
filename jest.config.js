@@ -84,10 +84,10 @@ module.exports = {
       functions: 10,
     },
     'src/web': {
-      statements: 80,
-      branches: 60,
-      lines: 80,
-      functions: 80,
+      statements: 90,
+      branches: 70,
+      lines: 90,
+      functions: 90,
     },
   },
   reporters: [
