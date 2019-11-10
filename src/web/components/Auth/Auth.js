@@ -86,7 +86,8 @@ export default class Auth {
     const currentRole = (this.data && this.data.role) || '';
     const grantedRoles = currentRole.split(' ');
     if (currentRole === 'owner') {
-      grantedRoles.push('friend', 'engineer', 'family', 'company');
+      grantedRoles.push('friend', 'engineer', 'family', 'company', 'admin');
+      grantedRoles.push('friend', 'engineer', 'family', 'company', 'admin');
     }
     return grantedRoles.includes(role);
   };
