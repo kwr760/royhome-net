@@ -1,6 +1,7 @@
 module.exports = {
   projects: [
     {
+      name: 'browser',
       displayName: 'browser',
       testEnvironment: 'jsdom',
       verbose: true,
@@ -33,6 +34,7 @@ module.exports = {
       },
     },
     {
+      name: 'server',
       displayName: 'server',
       testEnvironment: 'node',
       verbose: true,
@@ -70,10 +72,22 @@ module.exports = {
   coverageDirectory: './coverage',
   coverageThreshold: {
     global: {
-      branches: 99,
-      functions: 99,
-      lines: 99,
-      statements: 99,
+      statements: 100,
+      branches: 100,
+      lines: 100,
+      functions: 100,
+    },
+    'src/server': {
+      statements: 50,
+      branches: 0,
+      lines: 50,
+      functions: 10,
+    },
+    'src/web': {
+      statements: 80,
+      branches: 60,
+      lines: 80,
+      functions: 80,
     },
   },
   reporters: [
