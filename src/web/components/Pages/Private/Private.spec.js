@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 import Private from './Private';
 
-describe('web/components/Pages/Public/Private', () => {
+describe('web/components/Pages/Private/Private', () => {
   beforeEach(() => {
     global.fetch = jest.fn();
   });
