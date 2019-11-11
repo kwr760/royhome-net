@@ -25,7 +25,7 @@ describe('config/index', () => {
           host: 'http://45.79.110.249',
           mode: 'production',
           port: 9200,
-          root: '/home/royk/git/web/royhome-net',
+          root: expect.stringContaining('/royhome-net'),
           url: 'http://45.79.110.249:9200',
         },
       };
@@ -62,7 +62,7 @@ describe('config/index', () => {
           host: 'http://localhost',
           mode: 'development',
           port: 9100,
-          root: '/home/royk/git/web/royhome-net',
+          root: expect.stringContaining('/royhome-net'),
           url: 'http://localhost:9100',
         },
       };
