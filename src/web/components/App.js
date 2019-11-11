@@ -7,7 +7,6 @@ import Home from './Pages/Public/Home';
 import Profile from './Pages/Private/Profile';
 import Nav from './Pages/Nav';
 import Callback from './Pages/Public/Callback';
-import Public from './Pages/Public/Public';
 import Resume from './Pages/Public/Resume';
 import Private from './Pages/Private/Private';
 import Courses from './Pages/Private/Courses';
@@ -38,15 +37,9 @@ function App({ history }) {
           exact
           render={(props) => <Home {...props} />}
         />
-        <Route
-          path="/callback"
-          render={(props) => (
-            <Callback auth={auth} {...props} />
-          )}
-        />
+        <Route path="/callback" component={Callback} />
         <PrivateRoute path="/profile" component={Profile} />
         <Route path="/resume" component={Resume} />
-        <Route path="/public" component={Public} />
         <PrivateRoute path="/private" component={Private} />
         <PrivateRoute
           path="/courses"
