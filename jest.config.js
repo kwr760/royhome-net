@@ -77,12 +77,6 @@ module.exports = {
       lines: 100,
       functions: 100,
     },
-    'src/server/index.js': {
-      statements: 50,
-      branches: 0,
-      lines: 50,
-      functions: 10,
-    },
     'src/web/components/Auth/Auth.js': {
       statements: 94,
       branches: 86,

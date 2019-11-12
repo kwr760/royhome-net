@@ -1,7 +1,8 @@
-import _ from 'lodash';
 import express from 'express';
+import allowCrossDomain from './middleware/allow-cross-domain';
 
 jest.mock('express');
+jest.mock('./routes');
 
 describe('server/index', () => {
   const mockExpress = {
@@ -34,14 +35,8 @@ describe('server/index', () => {
     });
 
     // Assert
-    expect(mockExpress.get).toHaveBeenCalledTimes(4);
-    expect(mockExpress.get).toHaveBeenCalledWith('/api/resume', expect.any(Function));
-    expect(mockExpress.get).toHaveBeenCalledWith('/api/private', expect.any(Function), expect.any(Function));
-    expect(mockExpress.get).toHaveBeenCalledWith('/api/courses', expect.any(Function), expect.any(Function), expect.any(Function));
-    expect(mockExpress.get).toHaveBeenCalledWith('/api/admin', expect.any(Function), expect.any(Function), expect.any(Function));
-
-    expect(mockExpress.use).toHaveBeenCalledTimes(3);
-    expect(mockExpress.use).toHaveBeenCalledWith(expect.any(Function));
+    expect(mockExpress.use).toHaveBeenCalledTimes(4);
+    expect(mockExpress.use).toHaveBeenCalledWith(allowCrossDomain);
     expect(mockExpress.use).toHaveBeenCalledWith('/', undefined);
     expect(mockExpress.use).toHaveBeenCalledWith('/callback', undefined);
 
