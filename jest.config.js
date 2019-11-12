@@ -1,6 +1,7 @@
 module.exports = {
   projects: [
     {
+      name: 'browser',
       displayName: 'browser',
       testEnvironment: 'jsdom',
       verbose: true,
@@ -10,7 +11,6 @@ module.exports = {
       },
       testMatch: [
         '**/src/web/**/?(*.)(spec|test).js',
-        '**/src/server/**/?(*.)(spec|test).js',
       ],
       modulePathIgnorePatterns: [
         '/node_modules/',
@@ -34,6 +34,7 @@ module.exports = {
       },
     },
     {
+      name: 'server',
       displayName: 'server',
       testEnvironment: 'node',
       verbose: true,
@@ -43,6 +44,7 @@ module.exports = {
       },
       testMatch: [
         '**/src/server/**/?(*.)(spec|test).js',
+        '**/src/config/**/?(*.)(spec|test).js',
       ],
       modulePathIgnorePatterns: [
         '/node_modules/',
@@ -70,10 +72,22 @@ module.exports = {
   coverageDirectory: './coverage',
   coverageThreshold: {
     global: {
-      branches: 20,
-      functions: 20,
-      lines: 20,
-      statements: 20,
+      statements: 100,
+      branches: 100,
+      lines: 100,
+      functions: 100,
+    },
+    'src/server/index.js': {
+      statements: 50,
+      branches: 0,
+      lines: 50,
+      functions: 10,
+    },
+    'src/web/components/Auth/Auth.js': {
+      statements: 94,
+      branches: 86,
+      lines: 98,
+      functions: 86,
     },
   },
   reporters: [
@@ -86,7 +100,7 @@ module.exports = {
     ],
   ],
   coverageReporters: [
-    'html',
+    'text', 'html',
   ],
   clearMocks: true,
 };
