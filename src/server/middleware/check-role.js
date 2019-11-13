@@ -1,3 +1,5 @@
+import { UNAUTHORIZED } from 'http-status-codes';
+
 const checkRole = (neededRole) => (req, res, next) => {
   const { user = {} } = req;
   const { 'http://royhome.net': data = {} } = user;
@@ -11,7 +13,7 @@ const checkRole = (neededRole) => (req, res, next) => {
     return next();
   }
 
-  return res.sendStatus(401);
+  return res.sendStatus(UNAUTHORIZED);
 };
 
 export default checkRole;
