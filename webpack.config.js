@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 
 module.exports = (env) => {
-  const mode = env === 'development' ? 'development' : 'production';
+  const mode = env === 'dev' ? 'development' : 'production';
   console.log(`This is a ${mode} build`);
 
   const baseConfig = {
@@ -17,6 +17,11 @@ module.exports = (env) => {
     resolve: {
       extensions: ['.js', '.jsx'],
     },
+    plugins: [
+      new webpack.EnvironmentPlugin({
+        RELEASE_ENV: env,
+      }),
+    ],
     module: {
       rules: [
         {
