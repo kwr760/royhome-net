@@ -1,3 +1,5 @@
+import { UNAUTHORIZED } from 'http-status-codes';
+
 import checkRole from './check-role';
 
 describe('server/middleware/check-role', () => {
@@ -13,7 +15,7 @@ describe('server/middleware/check-role', () => {
     checkRole('bogus')(req, res, next);
 
     // Assert
-    expect(res.sendStatus).toHaveBeenCalledWith(401);
+    expect(res.sendStatus).toHaveBeenCalledWith(UNAUTHORIZED);
   });
   it('should continue if owner', () => {
     // Arrange
