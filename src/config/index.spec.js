@@ -18,15 +18,19 @@ describe('config/index', () => {
           appName: 'roy-home',
           auth0: {
             audience: 'http://royk.us',
-            callbackUrl: 'http://45.79.110.249:9200/callback',
+            callbackUrl: 'https://royk.us/callback',
             clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
             domain: 'royk.auth0.com',
           },
-          host: 'http://45.79.110.249',
+          host: 'https://royk.us',
           mode: 'production',
-          port: 9200,
           root: expect.stringContaining('/royhome-net'),
-          url: 'http://45.79.110.249:9200',
+          server: {
+            https: true,
+            cert: '/etc/letsencrypt/live/royk.us/cert.pem',
+            key: '/etc/letsencrypt/live/royk.us/privkey.pem',
+            ca: '/etc/letsencrypt/live/royk.us/chain.pem',
+          },
         },
       };
 
@@ -55,15 +59,16 @@ describe('config/index', () => {
           appName: 'roy-home',
           auth0: {
             audience: 'http://royk.us',
-            callbackUrl: 'http://localhost:9100/callback',
+            callbackUrl: 'http://localhost:3000/callback',
             clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
             domain: 'royk.auth0.com',
           },
-          host: 'http://localhost',
+          host: 'http://localhost:3000',
           mode: 'development',
-          port: 9100,
           root: expect.stringContaining('/royhome-net'),
-          url: 'http://localhost:9100',
+          server: {
+            https: false,
+          },
         },
       };
 

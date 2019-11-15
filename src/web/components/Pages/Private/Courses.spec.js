@@ -30,7 +30,7 @@ describe('web/components/Pages/Private/Courses', () => {
   it('should render fetched message', async () => {
     // Arrange
     const multiFetch = (url) => {
-      if (url === 'http://localhost:9100/api/admin') {
+      if (url === 'http://localhost:3000/api/admin') {
         return Promise.resolve({
           ok: true,
           json: () => Promise.resolve(adminMessage),
@@ -53,7 +53,7 @@ describe('web/components/Pages/Private/Courses', () => {
   it('should throw exception with bad response', () => {
     // Arrange
     const multiFetch = (url) => {
-      if (url === 'http://localhost:9100/api/admin') {
+      if (url === 'http://localhost:3000/api/admin') {
         return Promise.resolve({
           ok: false,
           json: () => Promise.resolve(adminMessage),

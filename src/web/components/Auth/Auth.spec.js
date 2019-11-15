@@ -128,7 +128,7 @@ describe('web/components/Pages/Nav', () => {
     expect(testAuth.auth0.logout).toBeCalled();
     expect(testAuth.auth0.logout).toBeCalledWith({
       clientID: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
-      returnTo: 'http://localhost:9100',
+      returnTo: 'http://localhost:3000',
     });
   });
   it('getAccessToken', () => {

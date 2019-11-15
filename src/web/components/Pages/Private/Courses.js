@@ -7,7 +7,7 @@ const Courses = ({ auth }) => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const url = `${env.url}/api/courses`;
+    const url = `${env.host}/api/courses`;
     const init = {
       headers: {
         Authorization: `Bearer ${auth.getAccessToken()}`,
@@ -29,7 +29,7 @@ const Courses = ({ auth }) => {
   }, [auth]);
 
   useEffect(() => {
-    const url = `${env.url}/api/admin`;
+    const url = `${env.host}/api/admin`;
     const init = {
       headers: {
         Authorization: `Bearer ${auth.getAccessToken()}`,
