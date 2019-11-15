@@ -66,7 +66,7 @@ export default class Auth {
   logout = () => {
     this.auth0.logout({
       clientID: env.auth0.clientId,
-      returnTo: env.url,
+      returnTo: env.host,
     });
   };
 

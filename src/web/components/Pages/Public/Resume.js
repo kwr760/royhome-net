@@ -6,7 +6,7 @@ const Resume = () => {
     const [value, setValue] = useState('');
 
     useEffect(() => {
-      const url = `${env.url}/api/resume`;
+      const url = `${env.host}/api/resume`;
       fetch(url)
         .then((res) => {
           if (res.ok) {

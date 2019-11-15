@@ -1,5 +1,8 @@
+import fs from 'fs';
 import path from 'path';
 import express from 'express';
+import http from 'http';
+import https from 'https';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
@@ -19,10 +22,19 @@ const publicDir = path.resolve(env.root, './dist/public');
 
 const app = express();
 
-app.set('port', env.port);
 app.set('json spaces', 2);
 app.enable('etag');
 app.enable('query parser');
+
+if (env.server.https) {
+  app.use((req, res, next) => {
+    if (!req.secure) {
+      res.redirect(`https://${req.headers.host}${req.url}`);
+      res.end();
+    }
+    next();
+  });
+}
 
 app.use(cors());
 app.use(helmet());
@@ -41,6 +53,34 @@ app.use('/api', generate(routes));
 app.use(handleError);
 app.use(notFound);
 
-app.listen(env.port);
+if (env.server.https) {
+  // Assume that the ports are available on real server.
+  const privateKey = fs.readFileSync(env.server.key, 'utf8');
+  const certificate = fs.readFileSync(env.server.cert, 'utf8');
+  const ca = fs.readFileSync(env.server.ca, 'utf8');
 
-console.log(`Server listening on ${env.port}`);
+  const credentials = {
+    key: privateKey,
+    cert: certificate,
+    ca,
+  };
+
+  const server = https.createServer(credentials, app);
+
+  server.listen(443, () => {
+    console.log('Secure server is running');
+  });
+
+  const httpServer = http.createServer(app);
+
+  httpServer.listen(80, () => {
+    console.log('Insecure server is being redirected');
+  });
+} else {
+  // On dev server the ports are locked to root, so use high port
+  const httpServer = http.createServer(app);
+
+  httpServer.listen(3000, () => {
+    console.log('Server is running');
+  });
+}

@@ -72,10 +72,10 @@ module.exports = {
   coverageDirectory: './coverage',
   coverageThreshold: {
     global: {
-      statements: 100,
-      branches: 100,
-      lines: 100,
-      functions: 100,
+      statements: 90,
+      branches: 90,
+      lines: 90,
+      functions: 90,
     },
     'src/web/components/Auth/Auth.js': {
       statements: 94,

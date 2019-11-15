@@ -1,15 +1,14 @@
-const port = process.env.PORT || 9100;
-const host = process.env.HOST || 'http://localhost';
-const url = `${host}:${port}`;
+const currentHost = process.env.HOST || 'http://localhost:3000';
 
-const env = {
+const env = (host) => ({
   mode: 'development',
-  port,
   host,
-  url,
   auth0: {
-    callbackUrl: `${url}/callback`,
+    callbackUrl: `${host}/callback`,
   },
-};
+  server: {
+    https: false,
+  },
+});
 
-export default env;
+export default env(currentHost);

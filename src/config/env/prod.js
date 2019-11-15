@@ -1,15 +1,21 @@
-const port = process.env.PORT || 9200;
-const host = process.env.HOST || 'http://45.79.110.249';
-const url = `${host}:${port}`;
+const currentHost = global.origin || 'https://royk.us';
 
-const env = {
+// if (global.origin) {
+//   currentHost = global.origin;
+// }
+
+const env = (host) => ({
   mode: 'production',
-  port,
   host,
-  url,
   auth0: {
-    callbackUrl: `${url}/callback`,
+    callbackUrl: `${host}/callback`,
   },
-};
+  server: {
+    https: true,
+    key: '/etc/letsencrypt/live/royk.us/privkey.pem',
+    cert: '/etc/letsencrypt/live/royk.us/cert.pem',
+    ca: '/etc/letsencrypt/live/royk.us/chain.pem',
+  },
+});
 
-export default env;
+export default env(currentHost);

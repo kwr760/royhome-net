@@ -6,7 +6,7 @@ const Private = ({ auth }) => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const url = `${env.url}/api/private`;
+    const url = `${env.host}/api/private`;
     const init = {
       headers: {
         Authorization: `Bearer ${auth.getAccessToken()}`,
