@@ -77,12 +77,6 @@ module.exports = {
       lines: 90,
       functions: 90,
     },
-    'src/web/components/Auth/Auth.js': {
-      statements: 94,
-      branches: 86,
-      lines: 98,
-      functions: 86,
-    },
   },
   reporters: [
     'default', [

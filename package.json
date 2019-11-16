@@ -19,7 +19,7 @@
     "build:dev": "webpack --env dev --watch",
     "start": "nodemon --watch dist --exec \"node --inspect dist/server.bundle.js\"",
     "eslint": "eslint src",
-    "test": "jest --colors",
+    "test": "eslint src && jest --colors",
     "clean": "rimraf dist/*",
     "start:prod": "RELEASE_ENV=prod node dist/server.bundle.js",
     "build:prod": "webpack --env prod",

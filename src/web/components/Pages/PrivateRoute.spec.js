@@ -60,7 +60,7 @@ describe('web/components/Pages/PrivateRoute', () => {
     const mockComponent = () => <div>Mocked</div>;
 
     // Act
-    const { getByText } = render(
+    render(
       <Router>
         <AuthContext.Provider value={auth}>
           <PrivateRoute component={mockComponent} userRole="admin" />

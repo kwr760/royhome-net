@@ -10,6 +10,8 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import httpContext from 'express-http-context';
 
+import redirectInsecure from './middleware/redirect-insecure';
+import displayMessage from './middleware/display-message';
 import handleError from './middleware/handle-error';
 import notFound from './middleware/not-found';
 
@@ -27,13 +29,7 @@ app.enable('etag');
 app.enable('query parser');
 
 if (env.server.https) {
-  app.use((req, res, next) => {
-    if (!req.secure) {
-      res.redirect(`https://${req.headers.host}${req.url}`);
-      res.end();
-    }
-    next();
-  });
+  app.use(redirectInsecure);
 }
 
 app.use(cors());
@@ -66,21 +62,12 @@ if (env.server.https) {
   };
 
   const server = https.createServer(credentials, app);
-
-  server.listen(443, () => {
-    console.log('Secure server is running');
-  });
+  server.listen(443, displayMessage('Secure server is running'));
 
   const httpServer = http.createServer(app);
-
-  httpServer.listen(80, () => {
-    console.log('Insecure server is being redirected');
-  });
+  httpServer.listen(80, displayMessage('Insecure server is being redirected'));
 } else {
   // On dev server the ports are locked to root, so use high port
   const httpServer = http.createServer(app);
-
-  httpServer.listen(3000, () => {
-    console.log('Server is running');
-  });
+  httpServer.listen(3000, displayMessage('Server is running'));
 }
