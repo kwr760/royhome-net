@@ -108,7 +108,7 @@ export default class Auth {
   scheduleTokenRenewal() {
     const delay = this.expiresAt - Date.now();
     if (delay > 0) {
-      setTimeout(() => this.renewToken(), delay);
+      setTimeout(this.renewToken, delay);
     }
   }
 }

@@ -20,38 +20,38 @@ describe('web/components/Pages/Nav', () => {
 
   it('constructor', () => {
     // Arrange/Act
-    const testAuth = new Auth(history);
+    const test = new Auth(history);
 
     // Assert
-    expect(testAuth.auth0).not.toBeNull();
-    expect(testAuth.history).toEqual(history);
+    expect(test.auth0).not.toBeNull();
+    expect(test.history).toEqual(history);
   });
   it('login', () => {
     // Arrange
-    const testAuth = new Auth(history);
+    const test = new Auth(history);
 
     // Act
-    testAuth.login();
+    test.login();
 
     // Assert
-    expect(testAuth.auth0.authorize).toBeCalled();
+    expect(test.auth0.authorize).toBeCalled();
   });
   it('handleAuthentication', () => {
     // Arrange
-    const testAuth = new Auth(history);
+    const test = new Auth(history);
 
     // Act
-    testAuth.handleAuthentication();
+    test.handleAuthentication();
 
     // Assert
-    expect(testAuth.auth0.parseHash).toBeCalled();
+    expect(test.auth0.parseHash).toBeCalled();
   });
   it('useHashToSetSession - authResult', () => {
     // Arrange
-    const testAuth = new Auth(history);
+    const test = new Auth(history);
 
     // Act
-    testAuth.useHashToSetSession('', {
+    test.useHashToSetSession('', {
       accessToken: 'AccessToken',
       idToken: 'IdToken',
       idTokenPayload: {
@@ -60,15 +60,15 @@ describe('web/components/Pages/Nav', () => {
     });
 
     // Assert
-    expect(testAuth.history).toContain('/');
+    expect(test.history).toContain('/');
   });
   it('useHashToSetSession - authResult - localstorage', () => {
     // Arrange
-    const testAuth = new Auth(history);
+    const test = new Auth(history);
     localStorage.setItem('redirect_on_login', JSON.stringify('/redirect'));
 
     // Act
-    testAuth.useHashToSetSession('', {
+    test.useHashToSetSession('', {
       accessToken: 'AccessToken',
       idToken: 'IdToken',
       idTokenPayload: {
@@ -77,26 +77,38 @@ describe('web/components/Pages/Nav', () => {
     });
 
     // Assert
-    expect(testAuth.history).toContain('/redirect');
+    expect(test.history).toContain('/redirect');
   });
   it('useHashToSetSession - error', () => {
     // Arrange
-    const testAuth = new Auth(history);
+    const err = 'There was an error';
+    const test = new Auth(history);
 
     // Act
-    testAuth.useHashToSetSession('There was an error');
+    test.useHashToSetSession(err);
 
     // Assert
-    expect(console.log).toBeCalledWith('There was an error');
-    expect(testAuth.history).toContain('/');
+    expect(console.log).toBeCalledWith(err);
+    expect(test.history).toContain('/');
+  });
+  it('useHashToSetSession - no arguments', () => {
+    // Arrange
+    const test = new Auth(history);
+
+    // Act
+    test.useHashToSetSession();
+
+    // Assert
+    expect(console.log).not.toBeCalled();
+    expect(test.history).toEqual([]);
   });
   it('setSession', () => {
     // Arrange
-    const testAuth = new Auth(history);
-    testAuth.scheduleTokenRenewal = jest.fn();
+    const test = new Auth(history);
+    test.scheduleTokenRenewal = jest.fn();
 
     // Act
-    testAuth.setSession({
+    test.setSession({
       expiresIn: 0,
       accessToken: expect.anything(),
       idTokenPayload: {
@@ -105,50 +117,50 @@ describe('web/components/Pages/Nav', () => {
     });
 
     // Assert
-    expect(testAuth.scheduleTokenRenewal).toBeCalled();
+    expect(test.scheduleTokenRenewal).toBeCalled();
   });
   it('isAuthenticated', () => {
     // Arrange
-    const testAuth = new Auth(history);
+    const test = new Auth(history);
 
     // Act
-    const result = testAuth.isAuthenticated();
+    const result = test.isAuthenticated();
 
     // Assert
     expect(result).toBe(false);
   });
   it('logout', () => {
     // Arrange
-    const testAuth = new Auth(history);
+    const test = new Auth(history);
 
     // Act
-    testAuth.logout();
+    test.logout();
 
     // Assert
-    expect(testAuth.auth0.logout).toBeCalled();
-    expect(testAuth.auth0.logout).toBeCalledWith({
+    expect(test.auth0.logout).toBeCalled();
+    expect(test.auth0.logout).toBeCalledWith({
       clientID: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
       returnTo: 'http://localhost:3000',
     });
   });
   it('getAccessToken', () => {
     // Arrange
-    const testAuth = new Auth(history);
-    testAuth.accessToken = 'AccessToken';
+    const test = new Auth(history);
+    test.accessToken = 'AccessToken';
 
     // Act
-    const token = testAuth.getAccessToken();
+    const token = test.getAccessToken();
 
     // Assert
     expect(token).not.toBeNull();
   });
   it('getAccessToken - throws Error', () => {
     // Arrange
-    const testAuth = new Auth(history);
+    const test = new Auth(history);
 
     // Act/Assert
     try {
-      testAuth.getAccessToken();
+      test.getAccessToken();
       expect(true).toBe(false);
     } catch (e) {
       expect(e.message).toMatch('No access token found.');
@@ -156,59 +168,99 @@ describe('web/components/Pages/Nav', () => {
   });
   it('getProfile', () => {
     // Arrange
-    const testAuth = new Auth(history);
-    testAuth.accessToken = 'AccessToken';
-    const cb = () => {};
-    testAuth.auth0.client = {
-      userInfo: jest.fn(),
+    const test = new Auth(history);
+    test.accessToken = 'AccessToken';
+    const callback = jest.fn(() => {});
+    const err = 'Error message';
+    const profile = {
+      name: 'Name',
+    };
+    const userInfo = jest.fn((str, cb) => {
+      cb(err, profile);
+    });
+    test.auth0.client = {
+      userInfo,
     };
 
     // Act
-    testAuth.getProfile(cb);
+    test.getProfile(callback);
 
     // Assert
-    expect(testAuth.auth0.client.userInfo).toBeCalled();
+    expect(test.auth0.client.userInfo).toBeCalledWith('AccessToken', expect.any(Function));
+    expect(callback).toBeCalledWith(profile, err);
   });
   it('userHasRole - returns false', () => {
     // Arrange
-    const testAuth = new Auth(history);
+    const test = new Auth(history);
 
     // Act
-    const result = testAuth.userHasRole('engineer');
+    const result = test.userHasRole('engineer');
 
     // Assert
     expect(result).toBe(false);
   });
   it('userHasRole - is owner returns true', () => {
     // Arrange
-    const testAuth = new Auth(history);
-    testAuth.data = {
+    const test = new Auth(history);
+    test.data = {
       role: 'owner',
     };
 
     // Act
-    const result = testAuth.userHasRole('engineer');
+    const result = test.userHasRole('engineer');
 
     // Assert
     expect(result).toBe(true);
   });
-  it('renewToken', () => {
+  it('renewToken - resulting in error', () => {
     // Arrange
-    const testAuth = new Auth(history);
-    const cb = () => {};
+    const test = new Auth(history);
+    test.setSession = jest.fn();
+
+    const callback = jest.fn();
+    const err = { error: 500, error_description: 'There was an error' };
+    const result = {};
+    test.auth0.checkSession = jest.fn((obj, cb) => {
+      cb(err, result);
+    });
 
     // Act
-    testAuth.renewToken(cb);
+    test.renewToken(callback);
 
     // Assert
-    expect(testAuth.auth0.checkSession).toBeCalled();
+    expect(test.auth0.checkSession).toBeCalled();
+    expect(console.log).toBeCalledWith(`Error: ${err.error} - ${err.error_description}.`);
+    expect(callback).toBeCalledWith(err, result);
+    expect(test.setSession).not.toBeCalled();
   });
-  it('scheduleTokenRenewal', () => {
+  it('renewToken - success', () => {
     // Arrange
-    const testAuth = new Auth(history);
+    const test = new Auth(history);
+    test.setSession = jest.fn();
+    const callback = undefined;
+    const err = undefined;
+    const result = {
+      obj: 'test',
+    };
+    test.auth0.checkSession = jest.fn((obj, cb) => {
+      cb(err, result);
+    });
 
     // Act
-    testAuth.scheduleTokenRenewal();
+    test.renewToken(callback);
+
+    // Assert
+    expect(test.auth0.checkSession).toBeCalled();
+    expect(console.log).not.toBeCalled();
+    expect(test.setSession).toBeCalledWith(result);
+  });
+
+  it('scheduleTokenRenewal', () => {
+    // Arrange
+    const test = new Auth(history);
+
+    // Act
+    test.scheduleTokenRenewal();
 
     // Assert
     expect(setTimeout).toBeCalled();
