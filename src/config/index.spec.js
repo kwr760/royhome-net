@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 describe('config/index', () => {
   const { RELEASE_ENV } = process.env;
 

@@ -53,6 +53,6 @@ describe('server/routes/generate', () => {
     expect(generatedRoutes.get).toHaveBeenCalledWith('/admin', [expect.any(Function), expect.any(Function)], getAdminHandler);
     expect(generatedRoutes.post).toHaveBeenCalledWith('/resume', [], getResumeHandler);
     expect(generatedRoutes.put).toHaveBeenCalledWith('/private', [], getPrivateHandler);
-    expect(console.error).toHaveBeenCalledWith('Unknown route: {\"method\":\"bad\"}');
+    expect(console.error).toHaveBeenCalledWith('Unknown route: {"method":"bad"}');
   });
 });

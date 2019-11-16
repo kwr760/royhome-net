@@ -9,7 +9,7 @@ it('renders without crashing', () => {
   const { container } = render(
     <Router>
       <App history={history} />
-    </Router>
+    </Router>,
   );
 
   expect(container.innerHTML).toContain('This is the home page of Kevin Roy');
