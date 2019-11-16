@@ -7,7 +7,7 @@ module.exports = {
       verbose: true,
       moduleNameMapper: {
         '\\.(jpg|jpeg|png|gif|eot|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$': '<rootDir>/test/mocks/file.js',
-        '\\.(css)$': '<rootDir>/node_modules/jest-css-modules',
+        '\\.(css)$': 'identity-obj-proxy',
       },
       testMatch: [
         '**/src/web/**/?(*.)(spec|test).js',
@@ -31,6 +31,7 @@ module.exports = {
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',
+        '^.+\\.html$': 'html-loader-jest',
       },
     },
     {
@@ -40,7 +41,6 @@ module.exports = {
       verbose: true,
       moduleNameMapper: {
         '\\.(jpg|jpeg|png|gif|eot|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$': '<rootDir>/test/mocks/file.js',
-        '\\.(css)$': '<rootDir>/node_modules/jest-css-modules',
       },
       testMatch: [
         '**/src/server/**/?(*.)(spec|test).js',

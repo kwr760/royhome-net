@@ -1,0 +1,53 @@
+body {
+  font-size: large;
+}
+.title {
+  text-transform: uppercase;
+  font-size: larger;
+  font-weight: bold;
+  margin-top: 10px;
+  border-bottom: 1px solid;
+}
+.header {
+  margin-bottom: 10px;
+}
+#address {
+  margin-top: 20px;
+  font-style: italic;
+  font-size: smaller;
+}
+#name {
+  font-size: xx-large;
+  font-weight: bold;
+}
+#contact {
+  margin-top: 20px;
+  font-size: smaller;
+}
+#phone {
+  font-weight: bolder;
+}
+dt {
+  font-style: italic;
+  font-weight: normal;
+}
+dl {
+  margin-top: .5em;
+  margin-bottom: 0;
+}
+ul {
+  margin-bottom: 0;
+}
+.role {
+  font-weight: bold;
+  font-style: italic;
+}
+.position-info {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+@media print {
+  .no-print, .no-print * {
+    display: none;
+  }
+}
