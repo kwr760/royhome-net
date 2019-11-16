@@ -1,32 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import env from '../../../../config';
+import React from 'react';
+
+import ResumeHtml from './Resume.html';
+import './Resume.css';
 
 const Resume = () => {
-  const useResume = () => {
-    const [value, setValue] = useState('');
+  const template = { __html: ResumeHtml };
 
-    useEffect(() => {
-      const url = `${env.host}/api/resume`;
-      fetch(url)
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-          throw new Error('Network response was not good.');
-        })
-        .then((response) => {
-          setValue(response.message);
-        })
-        .catch((error) => {
-          setValue(error.message);
-        });
-    }, []);
-
-    return [value, setValue];
-  };
-
-  const [message] = useResume();
-  return <p>{ message }</p>;
+  return (
+    // eslint-disable-next-line react/no-danger
+    <div dangerouslySetInnerHTML={template} />
+  );
 };
 
 export default Resume;

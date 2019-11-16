@@ -1,0 +1,1205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`web/components/Pages/Public/Resume should render resume html 1`] = `
+<div>
+  <div>
+    
+
+  
+    <meta
+      charset="UTF-8"
+    />
+    
+  
+    <title>
+      Resume of Kevin Roy
+    </title>
+    
+
+
+
+    <div
+      class="header row"
+    >
+      
+  
+      <div
+        class="col"
+      >
+        
+    
+        <div
+          class="row"
+        >
+          
+      
+          <div
+            class="col-sm-4 pull-left"
+            id="address"
+          >
+            760 Highwood Drive SW
+            <br />
+            Issaquah, WA 98027
+          </div>
+          
+      
+          <div
+            class="col-sm-4 text-center"
+            id="name"
+          >
+            Kevin Roy
+          </div>
+          
+      
+          <div
+            class="col-sm-4 text-right"
+            id="contact"
+          >
+            
+        
+            <div
+              id="phone"
+            >
+              (425) 208-1223
+            </div>
+            
+        
+            <div
+              id="email"
+            >
+              <a
+                href="mailto:kroy760@gmaile.com?Subject=In%20response%20to%20your%20resume"
+                target="_top"
+              >
+                kroy760@gmail.com
+              </a>
+            </div>
+            
+      
+          </div>
+          
+    
+        </div>
+        
+  
+      </div>
+      
+
+    </div>
+    
+
+    <div
+      class="row"
+      id="summary"
+    >
+      
+  
+      <div
+        class="col"
+      >
+        
+    
+        <div
+          class="title"
+        >
+          Summary
+        </div>
+        
+    
+        <div
+          class="content text-justify"
+        >
+          
+      Proactive and results-oriented professional with experience as technical leader on fast-paced and
+      time-critical projects. Aggressive at overcoming challenges by developing robust solutions. Exceptional
+      communicator and practitioner of full-cycle communications with capacity to independently manage complex
+      software projects and support organizational customer service, quality assurance and sales goals.
+    
+        </div>
+        
+  
+      </div>
+      
+
+    </div>
+    
+
+    <div
+      class="row"
+      id="technical"
+    >
+      
+  
+      <div
+        class="col"
+      >
+        
+    
+        <div
+          class="title"
+        >
+          Skills
+        </div>
+        
+    
+        <div
+          class="content"
+        >
+          
+      
+          <dl
+            class="row"
+          >
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Languages
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              PHP, HTML, JavaScript, CSS, C, C++, Java, Perl, bash, XML, json
+            </dd>
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Frameworks and Toolkits
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              jquery, ajax, PHPUnit, PL/SQL, node.js, bootstrap
+            </dd>
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Databases
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              MySQL, Oracle, SQL Server
+            </dd>
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Tools
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              git, Jira, phantomjs, Selenium (1 & 2), maven, aws, IntelliJ, Eclipse, vim, clearcase, docker, splunk
+            </dd>
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Platforms
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              Apache, JBoss, LAMP
+            </dd>
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Methodologies
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              SDLC, Agile, Scrum, Waterfall
+            </dd>
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Operating Systems
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              Ubuntu, Windows, Red Hat, HP-UX, Mac/OS, Solaris, SCO, AIX, AS/400
+            </dd>
+            
+      
+          </dl>
+          
+    
+        </div>
+        
+  
+      </div>
+      
+
+    </div>
+    
+
+    <div
+      class="row"
+      id="experience"
+    >
+      
+  
+      <div
+        class="col"
+      >
+        
+    
+        <div
+          class="title"
+        >
+          Professional Experience
+        </div>
+        
+    
+        <div
+          class="position"
+        >
+          
+      
+          <div
+            class="row position-info"
+          >
+            
+        
+            <div
+              class="col-sm-8 role"
+            >
+              Technical Lead at Sterling Talent Solutions
+            </div>
+            
+        
+            <div
+              class="col-sm-4 text-right"
+            >
+              May 2012 - Current
+            </div>
+            
+      
+          </div>
+          
+      
+          <div
+            class="content row"
+          >
+            
+        
+            <div
+              class="col text-justify"
+            >
+              
+          
+              <p>
+                
+            A key contributor on developing a product in a small aggressive company to be acquired by a
+            large industry leader.  We provided quality background screening and onboarding solutions.
+            Worked in major areas of the company and developed multiple large features individually and as a
+            leader in the team.
+          
+              </p>
+              
+          
+              <p>
+                
+            I worked on two major aspects of the company's product.  The first is a highly configurable form
+            based data collection framework.  The second being the order and processing of the various
+            searches and the compliance around them.
+          
+              </p>
+              
+          
+              <ul
+                class="text-justify"
+              >
+                
+            
+                <li>
+                  
+              Fair Chance: Implemented the current states requirements for a process similar to
+              Individualized Assessment including filling out state provided forms.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Individualized Assessment: Implemented the ability for the customer to request and
+              process a candidate's response to an adverse action being preformed on a candidate.
+            
+                </li>
+                
+            
+                <li>
+                  
+              eDispute: Implemented the ability for candidate to review and dispute the reports or
+              searches preformed on them.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Form Review:  Implemented the customers ability to review the customized forms, including
+              sending the form back to the candidate for modification.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Esignature: Developed the signing experience to provide confirmation that the user is
+              certifying their actions.  Including the generate of a PDF from HTML.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Candidate Model Export: Provided a feature to enable customer to export the data about
+              their candidates.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Professional Services Billing System: Enable another team to easily bill customer based
+              on their individual contracts.
+            
+                </li>
+                
+          
+              </ul>
+              
+        
+            </div>
+            
+      
+          </div>
+          
+      
+          <dl
+            class="row text-justify"
+          >
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Technology
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              
+          Ubuntu, Apache, MySQL, Php, Html, JavaScript, Css, phantomJs, IntelliJ, and PhpUnit
+        
+            </dd>
+            
+      
+          </dl>
+          
+    
+        </div>
+        
+    
+        <div
+          class="position"
+        >
+          
+      
+          <div
+            class="row position-info"
+          >
+            
+        
+            <div
+              class="col-sm-8 role"
+            >
+              Senior Software Engineer at Applied Discovery, Inc.
+            </div>
+            
+        
+            <div
+              class="col-sm-4 text-right"
+            >
+              October 2010 - April 2012
+            </div>
+            
+      
+          </div>
+          
+      
+          <div
+            class="content row"
+          >
+            
+        
+            <div
+              class="col text-justify"
+            >
+              
+          
+              <p>
+                
+            Worked on team to design the next generation e-Discovery processing line using open source
+            technologies.
+          
+              </p>
+              
+          
+              <ul
+                class="text-justify"
+              >
+                
+            
+                <li>
+                  
+              Researched and evaluated various technologies:  Parallel Processing Framework and
+              grid (Globus/Condor/JPPF), workflow technologies (jPBM), JBoss, RESTful, Hibernate,
+              Boost, Oracle’s OutsideIn, Google’s Guice, Talend and others.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Implemented Straw man of new system written in Java using a RESTful API.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Implemented an Object Oriented Application (C++) to utilize Oracle’s OutsideIn
+              Technology to parse and load Microsoft Outlook pst file.
+            
+                </li>
+                
+          
+              </ul>
+              
+        
+            </div>
+            
+      
+          </div>
+          
+      
+          <dl
+            class="row text-justify"
+          >
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Technology
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              Java, C, C++, Windows, Unix, SQL
+            </dd>
+            
+      
+          </dl>
+          
+    
+        </div>
+        
+    
+        <div
+          class="position"
+        >
+          
+      
+          <div
+            class="row position-info"
+          >
+            
+        
+            <div
+              class="col-sm-8 role"
+            >
+              Software Engineer/Technical Lead at SofTech, Inc.
+            </div>
+            
+        
+            <div
+              class="col-sm-4 text-right"
+            >
+              March 2001 - October 2010
+            </div>
+            
+      
+          </div>
+          
+      
+          <div
+            class="content row"
+          >
+            
+        
+            <div
+              class="col text-justify"
+            >
+              
+          
+              <p>
+                
+            Worked on a product lifecycle management product to provide new features, maintenance and
+            customer support for medium-sized businesses. Managed Pro/C coding, data, large
+            configuration loading, APIs, licensing, installations and research third-party
+            product technical issues.
+          
+              </p>
+              
+          
+              <ul>
+                
+            
+                <li>
+                  
+              Led technical effort to internationalize products into local languages that allowed sales
+              in foreign markets.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Designed and implemented revision editing tool that enabled administrators to define
+              multiple revision sequences and apply them to classes, which increased value of company’s
+              product line.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Built feature that pushed files into replication servers to increase performance over the
+              WANs.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Transited to server-based report generation using libxml2 and libxslt technology to improve
+              performance.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Improved querying ability and performance by implementing a list like clause.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Redesigned aspects of the product to enable developers to use QT technology that minimized
+              maintenance costs and enabled code reuse.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Cross over to new code layers to resolve problems; demonstrated extra effort in fixing root
+              causes, keeping code simple, removing unused code and using build tools that increase
+              productivity.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Took initiative to rewrite header file architecture, which saved up to two hours of compile
+              time.
+            
+                </li>
+                
+          
+              </ul>
+              
+        
+            </div>
+            
+      
+          </div>
+          
+      
+          <dl
+            class="row text-justify"
+          >
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Technology
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              C, C++, Unix, SQL and Perl
+            </dd>
+            
+      
+          </dl>
+          
+    
+        </div>
+        
+    
+        <div
+          class="position"
+        >
+          
+      
+          <div
+            class="row position-info"
+          >
+            
+        
+            <div
+              class="col-sm-8 role"
+            >
+              Contractor/Software Engineer at OrderTrust
+            </div>
+            
+        
+            <div
+              class="col-sm-4 text-right"
+            >
+              February 2000 - March 2001
+            </div>
+            
+      
+          </div>
+          
+      
+          <div
+            class="content row"
+          >
+            
+        
+            <div
+              class="col text-justify"
+            >
+              
+          
+              <p>
+                
+            Worked on main payment application in UNIX using C++ and Informix for provider of
+            marketing and order management services for online retailers and catalogs. Developed prototype
+            value-added payment program in J2EE and loyalty-based system of electronic coupons. Cleaned code
+            and automated processes.
+          
+              </p>
+              
+          
+              <ul>
+                
+            
+                <li>
+                  
+              Simplified code maintenance of entire system by moving legacy code into standardized
+              build environment.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Automated testing Dining A La Card system with new systems using Perl script that improved
+              accuracy and reduced time needed to test systems and removed element of human error.
+            
+                </li>
+                
+          
+              </ul>
+              
+        
+            </div>
+            
+      
+          </div>
+          
+      
+          <dl
+            class="row"
+          >
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Technology
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              C++, Unix, SQL, Java and Perl
+            </dd>
+            
+      
+          </dl>
+          
+    
+        </div>
+        
+    
+        <div
+          class="position"
+        >
+          
+      
+          <div
+            class="row position-info"
+          >
+            
+        
+            <div
+              class="col-sm-8 role"
+            >
+              Software Engineer at PSW Technology
+            </div>
+            
+        
+            <div
+              class="col-sm-4 text-right"
+            >
+              April 1999 - February 2000
+            </div>
+            
+      
+          </div>
+          
+      
+          <div
+            class="content row"
+          >
+            
+        
+            <div
+              class="col text-justify"
+            >
+              
+          
+              <p>
+                
+            Worked for consulting company for the IBM/Lotus Notes with 10 employees to port Lotus Notes and
+            toolkits to IBM AS/400 system and to correct bugs. Developed and convinced engineers to buy into
+            solutions to problems.
+          
+              </p>
+              
+          
+              <ul>
+                
+            
+                <li>
+                  
+              Built portable code using a cross-compiler and corrected bugs using native AS/400 debugger.
+            
+                </li>
+                
+          
+              </ul>
+              
+        
+            </div>
+            
+      
+          </div>
+          
+      
+          <dl
+            class="row"
+          >
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Technology
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              C on the AS400
+            </dd>
+            
+      
+          </dl>
+          
+    
+        </div>
+        
+    
+        <div
+          class="position"
+        >
+          
+      
+          <div
+            class="row position-info"
+          >
+            
+        
+            <div
+              class="col-sm-8 role"
+            >
+              Contractor at Celestica, Inc.
+            </div>
+            
+        
+            <div
+              class="col-sm-4 text-right"
+            >
+              May 1997 - April 1999
+            </div>
+            
+      
+          </div>
+          
+      
+          <div
+            class="content row"
+          >
+            
+        
+            <div
+              class="col text-justify"
+            >
+              
+          
+              <p>
+                
+            Developed, repaired and enhanced programs and processes for electronics manufacturer using
+            in-house client/server application system to manage flow of process lines. Developed and
+            debugged client/server applications in C, Informix Embedded SQL and Korn Shell and created new
+            modules for integration with X Windows program and ESQL.
+          
+              </p>
+              
+          
+              <ul>
+                
+            
+                <li>
+                  
+              Redesigned process of changing bill-of-materials workstation structures that avoided
+              deadlocks.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Fixed key user interface, enabling users to step through process of building workstations
+              and PCs.
+            
+                </li>
+                
+            
+                <li>
+                  
+              Determined report needs of users that included finding lost workstations and bottlenecks
+              and implemented intranet-accessible reports using C, Korn Shell, HTML and Sapphire CGI
+              generator.
+            
+                </li>
+                
+          
+              </ul>
+              
+        
+            </div>
+            
+      
+          </div>
+          
+      
+          <dl
+            class="row"
+          >
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Technology
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              C/C++, HP Unix
+            </dd>
+            
+      
+          </dl>
+          
+    
+        </div>
+        
+    
+        <div
+          class="position"
+        >
+          
+      
+          <div
+            class="row position-info"
+          >
+            
+        
+            <div
+              class="col-sm-8 role"
+            >
+              Project Leader/Software Engineer at Boston Technology, Inc.
+            </div>
+            
+        
+            <div
+              class="col-sm-4 text-right"
+            >
+              December 1995 - May 1997
+            </div>
+            
+      
+          </div>
+          
+      
+          <div
+            class="content row"
+          >
+            
+        
+            <div
+              class="col text-justify no-print"
+            >
+              
+          
+              <p>
+                
+            Worked in the leading communications company that implemented voicemail systems for large
+            telecommunications companies to lead feature development and bug fixing projects. Including a
+            traffic statistic feature for voicemail application and fixed bugs for various international
+            projects written in C/C++ and fixed bugs in billing systems.
+          
+              </p>
+              
+        
+            </div>
+            
+      
+          </div>
+          
+      
+          <dl
+            class="row"
+          >
+            
+        
+            <dt
+              class="col-sm-3"
+            >
+              Technology
+            </dt>
+            
+        
+            <dd
+              class="col-sm-9"
+            >
+              C/C++, SCO  Unix, SQL
+            </dd>
+            
+      
+          </dl>
+          
+    
+        </div>
+        
+    
+        <div
+          class="position"
+        >
+          
+      
+          <div
+            class="row position-info"
+          >
+            
+        
+            <div
+              class="col-sm-8 role"
+            >
+              Software Engineer at ESSENSE Systems, Inc.
+            </div>
+            
+        
+            <div
+              class="col-sm-4 text-right"
+            >
+              August 1994 - December 1995
+            </div>
+            
+      
+          </div>
+          
+      
+          <div
+            class="content row col text-justify no-print"
+          >
+            
+        
+            <p>
+              
+          Developed aspects of a data-driven GUI that empowered employees to manage their own human
+          resource records.
+        
+            </p>
+            
+      
+          </div>
+          
+    
+        </div>
+        
+  
+      </div>
+      
+
+    </div>
+    
+
+    <div
+      class="row"
+      id="eduction"
+    >
+      
+  
+      <div
+        class="col"
+      >
+        
+    
+        <div
+          class="title"
+        >
+          
+      Education
+    
+        </div>
+        
+    
+        <div
+          class="row school"
+        >
+          
+      
+          <div
+            class="col-sm-9"
+          >
+            Master of Science in Computer Science, 
+            <i>
+              University of Massachusetts at Lowell
+            </i>
+          </div>
+          
+      
+          <div
+            class="col-sm-3 text-right"
+          >
+            February 2001
+          </div>
+          
+    
+        </div>
+        
+    
+        <div
+          class="row school"
+        >
+          
+      
+          <div
+            class="col-sm-9"
+          >
+            Bachelor of Science in Computer Science, 
+            <i>
+              Worcester Polytechnic Institute
+            </i>
+          </div>
+          
+      
+          <div
+            class="col-sm-3 text-right"
+          >
+            May 1994
+          </div>
+          
+    
+        </div>
+        
+    
+        <br />
+        
+  
+      </div>
+      
+
+    </div>
+    
+
+
+
+  </div>
+</div>
+`;
