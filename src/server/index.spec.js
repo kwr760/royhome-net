@@ -35,6 +35,14 @@ describe('server/index', () => {
     listen: jest.fn(),
     enable: jest.fn(),
   };
+  const corsCb = jest.fn();
+  const helmetCb = jest.fn();
+  const compressionCb = jest.fn();
+  const bodyParserJsonCb = jest.fn();
+  const bodyParserUrlencodedCb = jest.fn();
+  const cookieParserCb = jest.fn();
+  const httpListen = jest.fn();
+  const httpsListen = jest.fn();
 
   function setupMockModules(callback) {
     jest.isolateModules(() => {
@@ -44,29 +52,21 @@ describe('server/index', () => {
 
   beforeEach(() => {
     express.mockReturnValue(mockExpress);
+    cors.mockReturnValue(corsCb);
+    helmet.mockReturnValue(helmetCb);
+    compression.mockReturnValue(compressionCb);
+    bodyParser.json.mockReturnValue(bodyParserJsonCb);
+    bodyParser.urlencoded.mockReturnValue(bodyParserUrlencodedCb);
+    cookieParser.mockReturnValue(cookieParserCb);
+    http.createServer = jest.fn(() => ({ listen: httpListen }));
+    https.createServer = jest.fn(() => ({ listen: httpsListen }));
   });
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   it('should start http server', () => {
-    // Arrange
-    const corsCb = jest.fn();
-    cors.mockReturnValue(corsCb);
-    const helmetCb = jest.fn();
-    helmet.mockReturnValue(helmetCb);
-    const compressionCb = jest.fn();
-    compression.mockReturnValue(compressionCb);
-    const bodyParserJsonCb = jest.fn();
-    bodyParser.json.mockReturnValue(bodyParserJsonCb);
-    const bodyParserUrlencodedCb = jest.fn();
-    bodyParser.urlencoded.mockReturnValue(bodyParserUrlencodedCb);
-    const cookieParserCb = jest.fn();
-    cookieParser.mockReturnValue(cookieParserCb);
-    const httpListen = jest.fn();
-    http.createServer = jest.fn(() => ({ listen: httpListen }));
-
-    // Act
+    // Arrange/Act
     setupMockModules(() => {
       require('./index');
     });
@@ -101,25 +101,7 @@ describe('server/index', () => {
   });
 
   it('should start https server', () => {
-    // Arrange
-    const corsCb = jest.fn();
-    cors.mockReturnValue(corsCb);
-    const helmetCb = jest.fn();
-    helmet.mockReturnValue(helmetCb);
-    const compressionCb = jest.fn();
-    compression.mockReturnValue(compressionCb);
-    const bodyParserJsonCb = jest.fn();
-    bodyParser.json.mockReturnValue(bodyParserJsonCb);
-    const bodyParserUrlencodedCb = jest.fn();
-    bodyParser.urlencoded.mockReturnValue(bodyParserUrlencodedCb);
-    const cookieParserCb = jest.fn();
-    cookieParser.mockReturnValue(cookieParserCb);
-    const httpListen = jest.fn();
-    http.createServer = jest.fn(() => ({ listen: httpListen }));
-    const httpsListen = jest.fn();
-    https.createServer = jest.fn(() => ({ listen: httpsListen }));
-
-    // Act
+    // Arrange/Act
     setupMockModules(() => {
       process.env.RELEASE_ENV = 'prod';
       require('./index');
@@ -127,31 +109,8 @@ describe('server/index', () => {
     });
 
     // Assert
-    expect(mockExpress.set).toHaveBeenCalledWith('json spaces', 2);
-
-    expect(mockExpress.enable).toHaveBeenCalledWith('etag');
-    expect(mockExpress.enable).toHaveBeenCalledWith('query parser');
-
     expect(mockExpress.use).toHaveBeenCalledTimes(13);
-    expect(mockExpress.use).toHaveBeenCalledWith('/', undefined);
-    expect(mockExpress.use).toHaveBeenCalledWith('/callback', undefined);
-    expect(cors).toHaveBeenCalledWith();
-    expect(mockExpress.use).toHaveBeenCalledWith(corsCb);
-    expect(helmet).toHaveBeenCalledWith();
-    expect(mockExpress.use).toHaveBeenCalledWith(helmetCb);
-    expect(compression).toHaveBeenCalledWith();
-    expect(mockExpress.use).toHaveBeenCalledWith(compressionCb);
-    expect(bodyParser.json).toHaveBeenCalledWith();
-    expect(mockExpress.use).toHaveBeenCalledWith(bodyParserJsonCb);
-    expect(bodyParser.urlencoded).toHaveBeenCalledWith({ extended: false });
-    expect(mockExpress.use).toHaveBeenCalledWith(bodyParserUrlencodedCb);
-    expect(cookieParser).toHaveBeenCalledWith();
-    expect(mockExpress.use).toHaveBeenCalledWith(cookieParserCb);
-    expect(mockExpress.use).toHaveBeenCalledWith(httpContext.middleware);
-    expect(mockExpress.use).toHaveBeenCalledWith(handleError);
-    expect(mockExpress.use).toHaveBeenCalledWith(notFound);
     expect(mockExpress.use).toHaveBeenCalledWith(redirectInsecure);
-
     expect(https.createServer).toHaveBeenCalled();
     expect(httpsListen).toHaveBeenCalledWith(443, expect.any(Function));
     expect(http.createServer).toHaveBeenCalled();
