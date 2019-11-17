@@ -1,6 +1,22 @@
+import { OK, INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
 import express from 'express';
+
 import checkJwt from '../middleware/check-jwt';
 import checkRole from '../middleware/check-role';
+import Logger from '../logger';
+
+const handleRoute = async (route, req, res) => {
+  try {
+    const response = await route.handler(req, res);
+    const status = response.status ? response.status : OK;
+    return res.status(status).send(response.body);
+  } catch (e) {
+    const status = e.status ? e.status : INTERNAL_SERVER_ERROR;
+    const msg = `${getStatusText(status)}: ${e.msg ? e.msg : ''}`;
+    Logger.error(msg);
+    return res.status(status).json(msg);
+  }
+};
 
 const generate = (routes) => {
   const router = express.Router();
@@ -8,7 +24,7 @@ const generate = (routes) => {
 
   routes.forEach((route) => {
     const {
-      method, path, handler, authenticate, role,
+      method, path, authenticate, role,
     } = route;
     middleware = [];
     if (authenticate) {
@@ -17,26 +33,27 @@ const generate = (routes) => {
     if (role) {
       middleware.push(checkRole(role));
     }
+
     switch (method) {
       case 'get':
         router.get(
           path,
           middleware,
-          handler,
+          (req, res) => handleRoute(route, req, res),
         );
         break;
       case 'put':
         router.put(
           path,
           middleware,
-          handler,
+          (req, res) => handleRoute(route, req, res),
         );
         break;
       case 'post':
         router.post(
           path,
           middleware,
-          handler,
+          (req, res) => handleRoute(route, req, res),
         );
         break;
       default:
