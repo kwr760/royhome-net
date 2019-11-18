@@ -1,4 +1,6 @@
 /* eslint-disable global-require */
+import LOG_LEVELS from '../logger/levels';
+
 describe('config/index', () => {
   const { RELEASE_ENV } = process.env;
 
@@ -31,6 +33,11 @@ describe('config/index', () => {
             cert: '/etc/letsencrypt/live/royk.us/cert.pem',
             key: '/etc/letsencrypt/live/royk.us/privkey.pem',
             ca: '/etc/letsencrypt/live/royk.us/chain.pem',
+          },
+          log: {
+            dir: '/var/log/royhome.net',
+            level: LOG_LEVELS.WARN,
+            stdout: false,
           },
         },
       };
@@ -69,6 +76,11 @@ describe('config/index', () => {
           root: expect.stringContaining('/royhome-net'),
           server: {
             https: false,
+          },
+          log: {
+            dir: './log',
+            level: LOG_LEVELS.DEBUG,
+            stdout: true,
           },
         },
       };

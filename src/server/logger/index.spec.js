@@ -1,48 +1,26 @@
 import Logger from './index';
+import LOG_LEVELS from '../../logger/levels';
+import log from './log';
+
+jest.mock('./log');
 
 describe('server/logger/index', () => {
-  beforeEach(() => {
-    global.console.log = jest.fn();
-    global.console.warn = jest.fn();
-    global.console.error = jest.fn();
-  });
+  test.each([
+    [Logger.debug, LOG_LEVELS.DEBUG],
+    [Logger.log, LOG_LEVELS.INFO],
+    [Logger.warning, LOG_LEVELS.WARN],
+    [Logger.error, LOG_LEVELS.ERROR],
+    [Logger.fatal, LOG_LEVELS.FATAL],
+  ])(
+    'Each method should call the log with the right level', (logger, level) => {
+      // Arrange/Act
+      logger('Test Message');
 
-  afterEach(() => {
-    global.console.log.mockRestore();
-    global.console.warn.mockRestore();
-    global.console.error.mockRestore();
-  });
-
-  it('Logger.log', () => {
-    // Arrange
-    const msg = 'This is a log';
-
-    // Arrange/Act
-    Logger.log(msg);
-
-    // Assert
-    expect(console.log).toBeCalledWith(msg);
-  });
-
-  it('Logger.warn', () => {
-    // Arrange
-    const msg = 'This is a warning';
-
-    // Arrange/Act
-    Logger.warning(msg);
-
-    // Assert
-    expect(console.warn).toBeCalledWith(msg);
-  });
-
-  it('Logger.error', () => {
-    // Arrange
-    const msg = 'This is a error';
-
-    // Arrange/Act
-    Logger.error(msg);
-
-    // Assert
-    expect(console.error).toBeCalledWith(msg);
-  });
+      // Assert
+      expect(log).toBeCalledWith({
+        level,
+        msg: 'Test Message',
+      });
+    },
+  );
 });

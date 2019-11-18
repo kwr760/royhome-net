@@ -1,3 +1,5 @@
+import LOG_LEVELS from '../../logger/levels';
+
 const currentHost = global.origin || 'https://royk.us';
 
 // if (global.origin) {
@@ -15,6 +17,11 @@ const env = (host) => ({
     key: '/etc/letsencrypt/live/royk.us/privkey.pem',
     cert: '/etc/letsencrypt/live/royk.us/cert.pem',
     ca: '/etc/letsencrypt/live/royk.us/chain.pem',
+  },
+  log: {
+    dir: '/var/log/royhome.net',
+    level: LOG_LEVELS.WARN,
+    stdout: false,
   },
 });
 
