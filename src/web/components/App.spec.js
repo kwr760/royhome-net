@@ -4,13 +4,23 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import App from './App';
 
-it('renders without crashing', () => {
-  const history = createMemoryHistory();
-  const { container } = render(
-    <Router>
-      <App history={history} />
-    </Router>,
-  );
+describe('src/web/components/App', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+  it('renders without crashing', () => {
+    // Arrange
+    console.log = jest.fn();
 
-  expect(container.innerHTML).toContain('This is the home page of Kevin Roy');
+    // Act
+    const history = createMemoryHistory();
+    const { container } = render(
+      <Router>
+        <App history={history} />
+      </Router>,
+    );
+
+    // Assert
+    expect(container.innerHTML).toContain('This is the home page of Kevin Roy');
+  });
 });
