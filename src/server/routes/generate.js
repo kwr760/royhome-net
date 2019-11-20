@@ -36,6 +36,7 @@ const generate = (routes) => {
 
     switch (method) {
       case 'get':
+        Logger.info(`GET: ${JSON.stringify(route)}`);
         router.get(
           path,
           middleware,
@@ -43,6 +44,7 @@ const generate = (routes) => {
         );
         break;
       case 'put':
+        Logger.info(`PUT: ${JSON.stringify(route)}`);
         router.put(
           path,
           middleware,
@@ -50,6 +52,7 @@ const generate = (routes) => {
         );
         break;
       case 'post':
+        Logger.info(`POST: ${JSON.stringify(route)}`);
         router.post(
           path,
           middleware,
@@ -57,7 +60,7 @@ const generate = (routes) => {
         );
         break;
       default:
-        console.error(`Unknown route: ${JSON.stringify(route)}`);
+        Logger.error(`Unknown route: ${JSON.stringify(route)}`);
         break;
     }
   });
