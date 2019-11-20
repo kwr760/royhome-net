@@ -1,4 +1,4 @@
-import LOG_LEVELS from '../../logger/levels';
+import LOG_LEVELS from '../../util/logger/levels';
 
 const currentHost = process.env.HOST || 'http://localhost:3000';
 

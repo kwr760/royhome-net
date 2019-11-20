@@ -1,4 +1,4 @@
-import LOG_LEVELS from '../../logger/levels';
+import LOG_LEVELS from '../../util/logger/levels';
 import log from './log';
 
 class Logger {

@@ -1,6 +1,6 @@
 import LOG_LEVELS, { LEVEL_NAMES } from './levels';
 
-describe('logger/levels', () => {
+describe('util/logger/levels', () => {
   it('should load the expected levels', () => {
     // Arrange/Act
     const loadedLevels = LOG_LEVELS;

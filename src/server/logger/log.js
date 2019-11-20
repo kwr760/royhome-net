@@ -1,7 +1,7 @@
 import env from '../../config';
 
-import getConsole from '../../logger/get-console';
-import formatMessage from '../../logger/format-message';
+import getConsole from '../../util/logger/get-console';
+import formatMessage from '../../util/logger/format-message';
 import getLogFilename from './get-filename';
 import writeToLog from './write-to-log';
 

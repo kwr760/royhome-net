@@ -1,17 +1,17 @@
 import env from '../../config';
 
-import LOG_LEVELS from '../../logger/levels';
+import LOG_LEVELS from '../../util/logger/levels';
 import log from './log';
 
-import getConsole from '../../logger/get-console';
+import getConsole from '../../util/logger/get-console';
 import writeToLog from './write-to-log';
-import formatMessage from '../../logger/format-message';
+import formatMessage from '../../util/logger/format-message';
 import getLogFilename from './get-filename';
 
-jest.mock('../../logger/format-message');
+jest.mock('../../util/logger/format-message');
 jest.mock('./get-filename');
 jest.mock('./write-to-log');
-jest.mock('../../logger/get-console');
+jest.mock('../../util/logger/get-console');
 
 describe('server/logger/log', () => {
   beforeEach(() => {

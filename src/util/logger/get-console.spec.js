@@ -1,7 +1,7 @@
 import LOG_LEVELS from './levels';
 import getConsole from './get-console';
 
-describe('logger/get-console', () => {
+describe('util/logger/get-console', () => {
   test.each([LOG_LEVELS.DEBUG, LOG_LEVELS.INFO])(
     'should return the console.log', (level) => {
       // Arrange/Act
