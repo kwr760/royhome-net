@@ -2,8 +2,6 @@ import _ from 'lodash';
 
 import base from './env/base';
 
-console.log('RELEASE_ENV: ', process.env.RELEASE_ENV);
-
 let envType = 'dev';
 if (process.env.RELEASE_ENV) {
   envType = process.env.RELEASE_ENV;

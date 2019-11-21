@@ -4,8 +4,11 @@ import fs from 'fs';
  * Assumes that the location being written to has been created.
  */
 const writeToLog = (file, msg) => {
-  fs.appendFile(file, msg, (err) => {
-    throw err;
+  fs.appendFile(file, `${msg}\n`, (err) => {
+    if (err) {
+      console.error(err);
+      throw err;
+    }
   });
 };
 
