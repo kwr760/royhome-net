@@ -12,6 +12,7 @@ import httpContext from 'express-http-context';
 import handleError from './middleware/handle-error';
 import notFound from './middleware/not-found';
 import redirectInsecure from './middleware/redirect-insecure';
+import env from '../config';
 
 jest.mock('fs', () => ({
   readFileSync: jest.fn(),
@@ -27,6 +28,7 @@ jest.mock('body-parser', () => ({
 jest.mock('cookie-parser');
 jest.mock('express-http-context');
 jest.mock('./routes');
+jest.mock('../config');
 
 describe('server/index', () => {
   const mockExpress = {
@@ -103,9 +105,11 @@ describe('server/index', () => {
   it('should start https server', () => {
     // Arrange/Act
     setupMockModules(() => {
-      process.env.RELEASE_ENV = 'prod';
+      // This is a little wonkie for me.  The problem is that some of the files were already loaded
+      // and setting the RELEASE_ENV would not reload the config for production.
+      const prod = require('../config/env/prod').default;
+      env.server = prod.server;
       require('./index');
-      process.env.RELEASE_ENV = undefined;
     });
 
     // Assert

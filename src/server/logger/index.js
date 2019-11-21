@@ -1,37 +1,48 @@
 import LOG_LEVELS from '../../util/logger/levels';
 import log from './log';
+import setup from './setup';
 
 class Logger {
+  isSetup = false;
+
+  writeLog = (msg) => {
+    if (!this.isSetup) {
+      setup();
+      this.isSetup = true;
+    }
+    log(msg);
+  };
+
   debug = (msg) => {
-    log({
+    this.writeLog({
       level: LOG_LEVELS.DEBUG,
       msg,
     });
   };
 
   log = (msg) => {
-    log({
+    this.writeLog({
       level: LOG_LEVELS.INFO,
       msg,
     });
   };
 
   warning = (msg) => {
-    log({
+    this.writeLog({
       level: LOG_LEVELS.WARN,
       msg,
     });
   };
 
   error = (msg) => {
-    log({
+    this.writeLog({
       level: LOG_LEVELS.ERROR,
       msg,
     });
   };
 
   fatal = (msg) => {
-    log({
+    this.writeLog({
       level: LOG_LEVELS.FATAL,
       msg,
     });

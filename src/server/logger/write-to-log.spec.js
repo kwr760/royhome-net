@@ -8,7 +8,7 @@ describe('server/logger/write-to-log', () => {
 
     // Act
     writeToLog('filename', 'message');
-
+    // writeToLog('/home/royk/git/web/royhome-net/log/server-20191119-22271.log', 'message');
     // Assert
     expect(fs.appendFile).toBeCalledWith('filename', 'message', expect.any(Function));
   });

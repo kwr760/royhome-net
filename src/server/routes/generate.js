@@ -36,7 +36,7 @@ const generate = (routes) => {
 
     switch (method) {
       case 'get':
-        Logger.info(`GET: ${JSON.stringify(route)}`);
+        Logger.log(`GET: ${JSON.stringify(route)}`);
         router.get(
           path,
           middleware,
@@ -44,7 +44,7 @@ const generate = (routes) => {
         );
         break;
       case 'put':
-        Logger.info(`PUT: ${JSON.stringify(route)}`);
+        Logger.log(`PUT: ${JSON.stringify(route)}`);
         router.put(
           path,
           middleware,
@@ -52,7 +52,7 @@ const generate = (routes) => {
         );
         break;
       case 'post':
-        Logger.info(`POST: ${JSON.stringify(route)}`);
+        Logger.log(`POST: ${JSON.stringify(route)}`);
         router.post(
           path,
           middleware,
