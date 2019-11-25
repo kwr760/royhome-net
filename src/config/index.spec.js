@@ -1,3 +1,5 @@
+import LOG_LEVELS from '../util/logger/levels';
+
 /* eslint-disable global-require */
 import LOG_LEVELS from '../util/logger/levels';
 
