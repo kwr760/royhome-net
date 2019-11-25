@@ -17,9 +17,11 @@ describe('server/routes/generate', () => {
 
   describe('generate routes', () => {
     beforeEach(() => {
+      Logger.log = jest.fn();
       Logger.error = jest.fn();
     });
     afterEach(() => {
+      Logger.log.mockRestore();
       Logger.error.mockRestore();
     });
 
