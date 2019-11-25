@@ -9,22 +9,15 @@ import Logger from '../logger';
 
 describe('server/routes/generate', () => {
   beforeEach(() => {
-    global.console.log = jest.fn();
+    Logger.log = jest.fn();
+    Logger.error = jest.fn();
   });
   afterEach(() => {
-    global.console.log.mockRestore();
+    Logger.log.mockRestore();
+    Logger.error.mockRestore();
   });
 
   describe('generate routes', () => {
-    beforeEach(() => {
-      Logger.log = jest.fn();
-      Logger.error = jest.fn();
-    });
-    afterEach(() => {
-      Logger.log.mockRestore();
-      Logger.error.mockRestore();
-    });
-
     it('should generate routes', () => {
       // Arrange
       const mockRouter = {
