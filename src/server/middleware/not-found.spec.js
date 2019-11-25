@@ -1,13 +1,14 @@
 import { NOT_FOUND } from 'http-status-codes';
 
 import notFound from './not-found';
+import Logger from '../logger';
 
 describe('server/middleware/not-found', () => {
   beforeEach(() => {
-    global.console.error = jest.fn();
+    Logger.error = jest.fn();
   });
   afterEach(() => {
-    global.console.error.mockRestore();
+    Logger.error.mockRestore();
   });
 
   it('should return a status when called', () => {
@@ -22,6 +23,6 @@ describe('server/middleware/not-found', () => {
 
     // Assert
     expect(res.sendStatus).toHaveBeenCalledWith(NOT_FOUND);
-    expect(console.error).toHaveBeenCalledWith('Endpoint was not found');
+    expect(Logger.error).toHaveBeenCalledWith('Endpoint was not found');
   });
 });

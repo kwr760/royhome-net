@@ -10,10 +10,12 @@ import Logger from '../logger';
 describe('server/routes/generate', () => {
   describe('generate routes', () => {
     beforeEach(() => {
-      global.console.error = jest.fn();
+      Logger.log = jest.fn();
+      Logger.error = jest.fn();
     });
     afterEach(() => {
-      global.console.error.mockRestore();
+      Logger.log.mockRestore();
+      Logger.error.mockRestore();
     });
 
     it('should generate routes', () => {
@@ -54,7 +56,7 @@ describe('server/routes/generate', () => {
       expect(generatedRoutes.get).toHaveBeenCalledWith('/admin', [expect.any(Function), expect.any(Function)], expect.any(Function));
       expect(generatedRoutes.post).toHaveBeenCalledWith('/resume', [], expect.any(Function));
       expect(generatedRoutes.put).toHaveBeenCalledWith('/private', [], expect.any(Function));
-      expect(console.error).toHaveBeenCalledWith('Unknown route: {"method":"bad"}');
+      expect(Logger.error).toHaveBeenCalledWith('Unknown route: {"method":"bad"}');
     });
   });
   describe('execute route', () => {

@@ -1,13 +1,14 @@
 import { INTERNAL_SERVER_ERROR } from 'http-status-codes';
 
 import handleError from './handle-error';
+import Logger from '../logger';
 
 describe('server/middleware/handle-error', () => {
   beforeEach(() => {
-    global.console.error = jest.fn();
+    Logger.error = jest.fn();
   });
   afterEach(() => {
-    global.console.error.mockRestore();
+    Logger.error.mockRestore();
   });
 
   it('should return a status when called', () => {
@@ -26,6 +27,6 @@ describe('server/middleware/handle-error', () => {
 
     // Assert
     expect(res.sendStatus).toHaveBeenCalledWith(INTERNAL_SERVER_ERROR);
-    expect(console.error).toHaveBeenCalledWith('Test message');
+    expect(Logger.error).toHaveBeenCalledWith('Test message');
   });
 });

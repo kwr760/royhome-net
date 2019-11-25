@@ -1,14 +1,44 @@
+import LOG_LEVELS from '../../util/logger/levels';
+import log from './log';
+
 class Logger {
+  writeLog = (msg) => {
+    log(msg);
+  };
+
+  debug = (msg) => {
+    this.writeLog({
+      level: LOG_LEVELS.DEBUG,
+      msg,
+    });
+  };
+
   log = (msg) => {
-    console.log(msg);
+    this.writeLog({
+      level: LOG_LEVELS.INFO,
+      msg,
+    });
   };
 
   warning = (msg) => {
-    console.warn(msg);
+    this.writeLog({
+      level: LOG_LEVELS.WARN,
+      msg,
+    });
   };
 
   error = (msg) => {
-    console.error(msg);
+    this.writeLog({
+      level: LOG_LEVELS.ERROR,
+      msg,
+    });
+  };
+
+  fatal = (msg) => {
+    this.writeLog({
+      level: LOG_LEVELS.FATAL,
+      msg,
+    });
   };
 }
 
