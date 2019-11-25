@@ -21,10 +21,12 @@ describe('web/components/Pages/Private/Courses', () => {
   beforeEach(() => {
     global.fetch = jest.fn();
     global.console.log = jest.fn();
+    global.console.error = jest.fn();
   });
   afterEach(() => {
     global.fetch.mockRestore();
     global.console.log.mockRestore();
+    global.console.error.mockRestore();
   });
 
   it('should render fetched message', async () => {

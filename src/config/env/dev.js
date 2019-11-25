@@ -15,6 +15,7 @@ const env = (host) => ({
     dir: './log',
     level: LOG_LEVELS.DEBUG,
     stdout: true,
+    includePidFilename: false,
   },
 });
 

@@ -38,6 +38,7 @@ describe('config/index', () => {
             dir: '/var/log/royhome.net',
             level: LOG_LEVELS.WARN,
             stdout: false,
+            includePidFilename: true,
           },
         },
       };
@@ -81,6 +82,7 @@ describe('config/index', () => {
             dir: './log',
             level: LOG_LEVELS.DEBUG,
             stdout: true,
+            includePidFilename: false,
           },
         },
       };

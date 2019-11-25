@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+import Logger from '../../../logger';
 import env from '../../../../config';
 
 const Courses = ({ auth }) => {
@@ -43,9 +45,10 @@ const Courses = ({ auth }) => {
         throw new Error('Network response was not good.');
       })
       .then((response) => {
-        console.log(response);
+        Logger.log(response);
       })
       .catch((error) => {
+        Logger.error(error.message);
         setMessage(error.message);
       });
   }, [auth]);

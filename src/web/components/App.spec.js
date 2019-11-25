@@ -5,6 +5,10 @@ import { createMemoryHistory } from 'history';
 import App from './App';
 
 describe('src/web/components/App', () => {
+  beforeEach(() => {
+    global.fetch = jest.fn(() => ({ catch: jest.fn() }));
+    global.console.error = jest.fn();
+  });
   afterEach(() => {
     jest.clearAllMocks();
   });

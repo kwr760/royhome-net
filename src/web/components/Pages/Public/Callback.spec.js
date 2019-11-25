@@ -5,6 +5,12 @@ import '@testing-library/jest-dom/extend-expect';
 import Callback from './Callback';
 
 describe('web/components/Pages/Public/Callback', () => {
+  beforeEach(() => {
+    global.console.error = jest.fn().mockImplementation(() => {});
+  });
+  afterEach(() => {
+    global.console.error.mockRestore();
+  });
   it('should throw exception with bad url hash', () => {
     // Arrange
     const auth = {
@@ -13,7 +19,6 @@ describe('web/components/Pages/Public/Callback', () => {
     const location = {
       hash: 'http://url/kevin',
     };
-    global.console.error = jest.fn().mockImplementation(() => {});
 
     // Act/Assert
     try {
@@ -22,9 +27,6 @@ describe('web/components/Pages/Public/Callback', () => {
     } catch (e) {
       expect(e.message).toMatch('Invalid callback URL.');
     }
-
-    // Rearrange
-    global.console.error.mockRestore();
   });
   it('should call handleAuthentication on good url hash', () => {
     // Arrange

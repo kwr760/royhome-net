@@ -1,20 +1,22 @@
+import { OK } from 'http-status-codes';
 import getPrivateHandler from './get';
 
 describe('server/routes/private/get', () => {
   it('should return default response', () => {
     // Arrange
     const req = {};
-    const res = {
-      json: jest.fn(),
-    };
+    const res = {};
     const expected = {
-      message: 'Hello from a private API!',
+      status: OK,
+      body: {
+        message: 'Hello from a private API!',
+      },
     };
 
     // Act
-    getPrivateHandler(req, res);
+    const response = getPrivateHandler(req, res);
 
     // Assert
-    expect(res.json).toBeCalledWith(expected);
+    expect(response).toEqual(expected);
   });
 });

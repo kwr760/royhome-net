@@ -13,6 +13,6 @@ describe('util/logger/format-message', () => {
 
     // Assert
     expect(result).toMatch(/^2000-01-01_01:01:01.000:/);
-    expect(result).toMatch(/:ERROR:The log message$/);
+    expect(result).toMatch(/:ERROR:"The log message"$/);
   });
 });

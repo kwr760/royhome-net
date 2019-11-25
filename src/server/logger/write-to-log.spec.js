@@ -2,15 +2,23 @@ import fs from 'fs';
 import writeToLog from './write-to-log';
 
 describe('server/logger/write-to-log', () => {
+  beforeEach(() => {
+    global.console.error = jest.fn();
+  });
+  afterEach(() => {
+    global.console.error.mockRestore();
+  });
   it('should write to the file', () => {
     // Arrange
-    fs.appendFile = jest.fn();
+    fs.appendFile = jest.fn((f, m, cb) => {
+      cb();
+    });
 
     // Act
     writeToLog('filename', 'message');
-    // writeToLog('/home/royk/git/web/royhome-net/log/server-20191119-22271.log', 'message');
+
     // Assert
-    expect(fs.appendFile).toBeCalledWith('filename', 'message', expect.any(Function));
+    expect(fs.appendFile).toBeCalledWith('filename', 'message\n', expect.any(Function));
   });
   it('should throw error on failure', () => {
     // Arrange

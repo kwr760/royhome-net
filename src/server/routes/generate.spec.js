@@ -8,6 +8,13 @@ import getAdminHandler from './admin/get';
 import Logger from '../logger';
 
 describe('server/routes/generate', () => {
+  beforeEach(() => {
+    global.console.log = jest.fn();
+  });
+  afterEach(() => {
+    global.console.log.mockRestore();
+  });
+
   describe('generate routes', () => {
     beforeEach(() => {
       Logger.error = jest.fn();

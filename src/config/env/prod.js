@@ -18,6 +18,7 @@ const env = (host) => ({
     dir: '/var/log/royhome.net',
     level: LOG_LEVELS.WARN,
     stdout: false,
+    includePidFilename: true,
   },
 });
 
