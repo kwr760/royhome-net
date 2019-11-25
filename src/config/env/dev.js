@@ -1,3 +1,5 @@
+import LOG_LEVELS from '../../util/logger/levels';
+
 const currentHost = process.env.HOST || 'http://localhost:3000';
 
 const env = (host) => ({
@@ -8,6 +10,12 @@ const env = (host) => ({
   },
   server: {
     https: false,
+  },
+  log: {
+    dir: './log',
+    level: LOG_LEVELS.DEBUG,
+    stdout: true,
+    includePidFilename: false,
   },
 });
 
