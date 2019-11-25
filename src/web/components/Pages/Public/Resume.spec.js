@@ -1,13 +1,13 @@
-// import React from 'react';
-// import { render } from '@testing-library/react';
+import React from 'react';
+import { render } from '@testing-library/react';
 
-// import Resume from './Resume';
+import Resume from './Resume';
 
 describe('web/components/Pages/Public/Resume', () => {
-  xit('should render resume html', async () => {
+  it('should render resume html', async () => {
     // Arrange
-    // const { container } = render(<Resume />);
+    const { container } = render(<Resume />);
 
-    // expect(container).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

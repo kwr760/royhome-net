@@ -31,7 +31,7 @@ module.exports = {
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',
-        // '^.+\\.html$': 'html-loader-jest',
+        '^.+\\.html$': 'html-loader-jest',
       },
     },
     {

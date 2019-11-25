@@ -1,8 +1,8 @@
-// import React from 'react';
-// import { render } from '@testing-library/react';
-// import { BrowserRouter as Router } from 'react-router-dom';
-// import { createMemoryHistory } from 'history';
-// import App from './App';
+import React from 'react';
+import { render } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import App from './App';
 
 describe('src/web/components/App', () => {
   beforeEach(() => {
@@ -14,17 +14,17 @@ describe('src/web/components/App', () => {
   });
   it('renders without crashing', () => {
     // Arrange
-    // console.log = jest.fn();
+    console.log = jest.fn();
 
     // Act
-    // const history = createMemoryHistory();
-    // const { container } = render(
-    //   <Router>
-    //     <App history={history} />
-    //   </Router>,
-    // );
+    const history = createMemoryHistory();
+    const { container } = render(
+      <Router>
+        <App history={history} />
+      </Router>,
+    );
 
     // Assert
-    // expect(container.innerHTML).toContain('This is the home page of Kevin Roy');
+    expect(container.innerHTML).toContain('This is the home page of Kevin Roy');
   });
 });
