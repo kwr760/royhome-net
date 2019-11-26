@@ -7,9 +7,9 @@ const setup = () => {
   const { dir } = env.log;
   const logDir = path.resolve(root, dir);
 
-  if (!fs.existsSync(logDir)) {
-    fs.mkdirSync(logDir, { recursive: true });
-  }
+  // if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir, { recursive: true });
+  // }
 };
 
 export default setup;
