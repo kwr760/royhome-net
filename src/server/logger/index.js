@@ -1,8 +1,17 @@
 import LOG_LEVELS from '../../util/logger/levels';
+
+import setup from './setup';
 import log from './log';
 
 class Logger {
+  isSetup = false;
+
   writeLog = (msg) => {
+    if (!this.isSetup) {
+      setup();
+      this.isSetup = true;
+    }
+
     log(msg);
   };
 
