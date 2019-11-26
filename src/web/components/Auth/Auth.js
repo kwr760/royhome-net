@@ -1,5 +1,7 @@
 import auth0 from 'auth0-js';
+
 import env from '../../../config';
+import Logger from '../../logger';
 
 const REDIRECT_ON_LOGIN = 'redirect_on_login';
 const TOKEN_URL = 'http://royhome.net';
@@ -41,7 +43,7 @@ export default class Auth {
       this.history.push(redirectLocation);
     } else if (err) {
       this.history.push('/');
-      console.log(err);
+      Logger.error(err);
     }
     localStorage.removeItem(REDIRECT_ON_LOGIN);
   };
@@ -95,7 +97,7 @@ export default class Auth {
   renewToken(cb) {
     this.auth0.checkSession({}, (err, result) => {
       if (err) {
-        console.log(`Error: ${err.error} - ${err.error_description}.`);
+        Logger.error(`Error: ${err.error} - ${err.error_description}.`);
       } else {
         this.setSession(result);
       }

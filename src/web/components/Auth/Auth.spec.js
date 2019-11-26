@@ -1,4 +1,5 @@
 import Auth from './Auth';
+import Logger from '../../logger';
 
 jest.mock('auth0-js');
 
@@ -6,15 +7,15 @@ describe('web/components/Pages/Nav', () => {
   let history;
 
   beforeEach(() => {
+    Logger.error = jest.fn();
     global.setTimeout = jest.fn();
-    global.console.log = jest.fn();
     global.Date.now = jest.fn(() => -1);
     history = [];
   });
 
   afterEach(() => {
+    Logger.error.mockRestore();
     global.setTimeout.mockRestore();
-    global.console.log.mockRestore();
     global.Date.now.mockRestore();
   });
 
@@ -81,14 +82,14 @@ describe('web/components/Pages/Nav', () => {
   });
   it('useHashToSetSession - error', () => {
     // Arrange
-    const err = 'There was an error';
+    const err = { message: 'There was an error' };
     const test = new Auth(history);
 
     // Act
     test.useHashToSetSession(err);
 
     // Assert
-    expect(console.log).toBeCalledWith(err);
+    expect(Logger.error).toBeCalledWith(err);
     expect(test.history).toContain('/');
   });
   it('useHashToSetSession - no arguments', () => {
@@ -99,7 +100,7 @@ describe('web/components/Pages/Nav', () => {
     test.useHashToSetSession();
 
     // Assert
-    expect(console.log).not.toBeCalled();
+    expect(Logger.error).not.toBeCalled();
     expect(test.history).toEqual([]);
   });
   it('setSession', () => {
@@ -229,7 +230,7 @@ describe('web/components/Pages/Nav', () => {
 
     // Assert
     expect(test.auth0.checkSession).toBeCalled();
-    expect(console.log).toBeCalledWith(`Error: ${err.error} - ${err.error_description}.`);
+    expect(Logger.error).toBeCalledWith(`Error: ${err.error} - ${err.error_description}.`);
     expect(callback).toBeCalledWith(err, result);
     expect(test.setSession).not.toBeCalled();
   });
@@ -251,7 +252,7 @@ describe('web/components/Pages/Nav', () => {
 
     // Assert
     expect(test.auth0.checkSession).toBeCalled();
-    expect(console.log).not.toBeCalled();
+    expect(Logger.error).not.toBeCalled();
     expect(test.setSession).toBeCalledWith(result);
   });
 

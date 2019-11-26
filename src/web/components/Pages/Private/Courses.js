@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import env from '../../../../config';
+import Logger from '../../../logger';
 
 const Courses = ({ auth }) => {
   const [courses, setCourses] = useState([]);
@@ -43,9 +45,10 @@ const Courses = ({ auth }) => {
         throw new Error('Network response was not good.');
       })
       .then((response) => {
-        console.log(response);
+        Logger.log(response);
       })
       .catch((error) => {
+        Logger.error(error.response);
         setMessage(error.message);
       });
   }, [auth]);
