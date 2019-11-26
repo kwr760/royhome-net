@@ -11,11 +11,6 @@ const writeToServer = ({ level, msg }) => {
     headers: { 'Content-Type': 'application/json' },
   };
 
-  // try {
-  //   fetch(logUrl, args);
-  // } catch (e) {
-  //   console.error(`Logging to server failed: ${e.message}`);
-  // }
   fetch(logUrl, args)
     .catch((e) => {
       console.error(`Logging to server failed: ${e.message}`);
