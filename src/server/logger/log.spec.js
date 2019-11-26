@@ -2,12 +2,11 @@ import env from '../../config';
 
 import LOG_LEVELS from '../../util/logger/levels';
 
-import env from '../../config';
-import log from './log';
-
-import getConsole from '../../util/logger/get-console';
-import writeToLog from './write-to-log';
 import formatMessage from '../../util/logger/format-message';
+import getConsole from '../../util/logger/get-console';
+
+import log from './log';
+import writeToLog from './write-to-log';
 import getLogFilename from './get-filename';
 
 jest.mock('../../util/logger/format-message');
