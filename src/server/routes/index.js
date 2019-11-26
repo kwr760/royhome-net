@@ -2,6 +2,7 @@ import getResumeHandler from './resume/get';
 import getPrivateHandler from './private/get';
 import getCoursesHandler from './courses/get';
 import getAdminHandler from './admin/get';
+import putLogHandler from './log/put';
 
 const routes = [
   {
@@ -28,6 +29,11 @@ const routes = [
     handler: getAdminHandler,
     authenticate: true,
     role: 'admin',
+  },
+  {
+    method: 'put',
+    path: '/log',
+    handler: putLogHandler,
   },
 ];
 
