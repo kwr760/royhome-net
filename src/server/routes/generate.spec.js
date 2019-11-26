@@ -8,16 +8,16 @@ import getAdminHandler from './admin/get';
 import Logger from '../logger';
 
 describe('server/routes/generate', () => {
-  describe('generate routes', () => {
-    beforeEach(() => {
-      Logger.log = jest.fn();
-      Logger.error = jest.fn();
-    });
-    afterEach(() => {
-      Logger.log.mockRestore();
-      Logger.error.mockRestore();
-    });
+  beforeEach(() => {
+    Logger.log = jest.fn();
+    Logger.error = jest.fn();
+  });
+  afterEach(() => {
+    Logger.log.mockRestore();
+    Logger.error.mockRestore();
+  });
 
+  describe('generate routes', () => {
     it('should generate routes', () => {
       // Arrange
       const mockRouter = {
