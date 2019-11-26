@@ -11,7 +11,6 @@ class Logger {
       setup();
       this.isSetup = true;
     }
-
     log(msg);
   };
 

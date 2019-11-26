@@ -10,6 +10,7 @@ import cookieParser from 'cookie-parser';
 import httpContext from 'express-http-context';
 
 import env from '../config';
+
 import handleError from './middleware/handle-error';
 import notFound from './middleware/not-found';
 import redirectInsecure from './middleware/redirect-insecure';
@@ -28,6 +29,7 @@ jest.mock('body-parser', () => ({
 jest.mock('cookie-parser');
 jest.mock('express-http-context');
 jest.mock('./routes');
+jest.mock('../config');
 
 describe('server/index', () => {
   const mockExpress = {
