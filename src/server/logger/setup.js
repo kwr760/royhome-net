@@ -7,9 +7,11 @@ const setup = () => {
   const { dir } = env.log;
   const logDir = path.resolve(root, dir);
 
-  // if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir, { recursive: true });
-  // }
+  fs.access(logDir, fs.constants.F_OK, (err) => {
+    if (err) {
+      fs.mkdir(logDir, { recursive: true });
+    }
+  });
 };
 
 export default setup;

@@ -3,33 +3,34 @@ import setup from './setup';
 
 describe('server/logger/setup', () => {
   beforeEach(() => {
-    // fs.existsSync = jest.fn();
-    fs.mkdirSync = jest.fn();
+    fs.access = jest.fn();
+    fs.mkdir = jest.fn();
   });
   afterEach(() => {
-    // fs.existsSync.mockRestore();
-    fs.mkdirSync.mockRestore();
+    fs.access.mockRestore();
+    fs.mkdir.mockRestore();
   });
 
-  xit('should check for existence of log dir', () => {
+  it('should check for existence of log dir', () => {
     // Arrange
-    // fs.existsSync.mockImplementation(() => true);
+    fs.access.mockImplementation((file, options, cb) => { cb(); });
 
     // Act
     setup();
 
     // Assert
-    expect(fs.existsSync).toBeCalledWith(expect.stringMatching(/\/log/));
+    expect(fs.access).toBeCalledWith(expect.stringMatching(/\/log$/), 0, expect.any(Function));
+    expect(fs.mkdir).not.toBeCalled();
   });
   it('should mkdir dir is needed', () => {
     // Arrange
-    // fs.existsSync.mockImplementation(() => false);
+    fs.access.mockImplementation((file, options, cb) => { cb('not found'); });
 
     // Act
     setup();
 
     // Assert
-    // expect(fs.existsSync).toBeCalledWith(expect.stringMatching(/\/log/));
-    expect(fs.mkdirSync).toBeCalledWith(expect.stringMatching(/\/log/), { recursive: true });
+    expect(fs.access).toBeCalledWith(expect.stringMatching(/\/log$/), 0, expect.any(Function));
+    expect(fs.mkdir).toBeCalledWith(expect.stringMatching(/\/log$/), { recursive: true });
   });
 });
