@@ -2,7 +2,6 @@ import LOG_LEVELS from '../../util/logger/levels';
 
 import setup from './setup';
 import log from './log';
-import setup from './setup';
 
 class Logger {
   isSetup = false;
