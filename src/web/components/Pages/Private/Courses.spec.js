@@ -3,6 +3,7 @@ import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Courses from './Courses';
+import Logger from '../../../logger';
 
 describe('web/components/Pages/Private/Courses', () => {
   const courses = {
@@ -20,11 +21,13 @@ describe('web/components/Pages/Private/Courses', () => {
 
   beforeEach(() => {
     global.fetch = jest.fn();
-    global.console.log = jest.fn();
+    Logger.log = jest.fn();
+    Logger.error = jest.fn();
   });
   afterEach(() => {
     global.fetch.mockRestore();
-    global.console.log.mockRestore();
+    Logger.log.mockRestore();
+    Logger.error.mockRestore();
   });
 
   it('should render fetched message', async () => {
@@ -48,7 +51,7 @@ describe('web/components/Pages/Private/Courses', () => {
 
     await waitForElement(() => getByText(/Course #1/));
     getByText(/Course #2/);
-    expect(console.log).toBeCalledWith(adminMessage);
+    expect(Logger.log).toBeCalledWith(adminMessage);
   });
   it('should throw exception with bad response', () => {
     // Arrange
