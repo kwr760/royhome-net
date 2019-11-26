@@ -48,7 +48,7 @@ const Courses = ({ auth }) => {
         Logger.log(response);
       })
       .catch((error) => {
-        Logger.error(error.response);
+        Logger.error(error.message);
         setMessage(error.message);
       });
   }, [auth]);

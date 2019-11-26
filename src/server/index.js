@@ -10,6 +10,8 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import httpContext from 'express-http-context';
 
+import env from '../config';
+
 import redirectInsecure from './middleware/redirect-insecure';
 import displayMessage from './middleware/display-message';
 import handleError from './middleware/handle-error';
@@ -17,8 +19,6 @@ import notFound from './middleware/not-found';
 
 import routes from './routes';
 import generate from './routes/generate';
-
-import env from '../config';
 
 const publicDir = path.resolve(env.root, './dist/public');
 

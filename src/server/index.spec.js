@@ -9,6 +9,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import httpContext from 'express-http-context';
 
+import env from '../config';
 import handleError from './middleware/handle-error';
 import notFound from './middleware/not-found';
 import redirectInsecure from './middleware/redirect-insecure';
@@ -103,9 +104,9 @@ describe('server/index', () => {
   it('should start https server', () => {
     // Arrange/Act
     setupMockModules(() => {
-      process.env.RELEASE_ENV = 'prod';
+      const prod = require('../config/env/prod').default;
+      env.server = prod.server;
       require('./index');
-      process.env.RELEASE_ENV = undefined;
     });
 
     // Assert
