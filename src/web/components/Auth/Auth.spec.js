@@ -89,7 +89,7 @@ describe('web/components/Pages/Nav', () => {
     test.useHashToSetSession(err);
 
     // Assert
-    expect(Logger.error).toBeCalledWith(err);
+    expect(Logger.error).toBeCalledWith(err.message);
     expect(test.history).toContain('/');
   });
   it('useHashToSetSession - no arguments', () => {
