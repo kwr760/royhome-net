@@ -1,6 +1,8 @@
 import env from '../../config';
 
 import LOG_LEVELS from '../../util/logger/levels';
+
+import env from '../../config';
 import log from './log';
 
 import getConsole from '../../util/logger/get-console';
@@ -14,9 +16,10 @@ jest.mock('./write-to-log');
 jest.mock('../../util/logger/get-console');
 
 describe('server/logger/log', () => {
-  beforeEach(() => {
+  afterEach(() => {
     jest.clearAllMocks();
   });
+
   it('should not log anything', () => {
     // Arrange
     env.log = {

@@ -9,6 +9,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import httpContext from 'express-http-context';
 
+import env from '../config';
 import handleError from './middleware/handle-error';
 import notFound from './middleware/not-found';
 import redirectInsecure from './middleware/redirect-insecure';
@@ -105,8 +106,6 @@ describe('server/index', () => {
   it('should start https server', () => {
     // Arrange/Act
     setupMockModules(() => {
-      // This is a little wonkie for me.  The problem is that some of the files were already loaded
-      // and setting the RELEASE_ENV would not reload the config for production.
       const prod = require('../config/env/prod').default;
       env.server = prod.server;
       require('./index');
