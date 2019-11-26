@@ -9,7 +9,6 @@ describe('web/components/Pages/Nav', () => {
   beforeEach(() => {
     Logger.error = jest.fn();
     global.setTimeout = jest.fn();
-    global.console.log = jest.fn();
     global.Date.now = jest.fn(() => -1);
     history = [];
   });
@@ -17,7 +16,6 @@ describe('web/components/Pages/Nav', () => {
   afterEach(() => {
     Logger.error.mockRestore();
     global.setTimeout.mockRestore();
-    global.console.log.mockRestore();
     global.Date.now.mockRestore();
   });
 
@@ -91,7 +89,7 @@ describe('web/components/Pages/Nav', () => {
     test.useHashToSetSession(err);
 
     // Assert
-    expect(Logger.error).toBeCalledWith(err.message);
+    expect(Logger.error).toBeCalledWith(err);
     expect(test.history).toContain('/');
   });
   it('useHashToSetSession - no arguments', () => {
@@ -254,7 +252,7 @@ describe('web/components/Pages/Nav', () => {
 
     // Assert
     expect(test.auth0.checkSession).toBeCalled();
-    expect(console.log).not.toBeCalled();
+    expect(Logger.error).not.toBeCalled();
     expect(test.setSession).toBeCalledWith(result);
   });
 

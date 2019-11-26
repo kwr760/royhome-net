@@ -1,4 +1,5 @@
 import auth0 from 'auth0-js';
+
 import env from '../../../config';
 import Logger from '../../logger';
 

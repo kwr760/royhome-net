@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import Logger from '../../../logger';
 import env from '../../../../config';
+import Logger from '../../../logger';
 
 const Courses = ({ auth }) => {
   const [courses, setCourses] = useState([]);

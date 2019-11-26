@@ -11,6 +11,7 @@ describe('web/components/Pages/Public/Callback', () => {
   afterEach(() => {
     global.console.error.mockRestore();
   });
+
   it('should throw exception with bad url hash', () => {
     // Arrange
     const auth = {
