@@ -1,20 +1,22 @@
+import { OK } from 'http-status-codes';
 import getResumeHandler from './get';
 
 describe('server/routes/resume/get', () => {
   it('should return default response', () => {
     // Arrange
     const req = {};
-    const res = {
-      json: jest.fn(),
-    };
+    const res = {};
     const expected = {
-      message: 'Return to my resume!',
+      status: OK,
+      body: {
+        message: 'Return to my resume!',
+      },
     };
 
     // Act
-    getResumeHandler(req, res);
+    const response = getResumeHandler(req, res);
 
     // Assert
-    expect(res.json).toBeCalledWith(expected);
+    expect(response).toEqual(expected);
   });
 });
