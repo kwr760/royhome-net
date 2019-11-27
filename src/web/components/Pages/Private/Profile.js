@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useContext } from 'react';
+import AuthContext from '../../Auth/AuthContext';
 
-const Profile = ({ auth }) => {
+const Profile = () => {
+  const { getProfile } = useContext(AuthContext);
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    auth.getProfile((newProfile, newError) => {
+    getProfile((newProfile, newError) => {
       setProfile(newProfile);
       setError(newError);
     });
-  }, [auth]);
+  }, [getProfile]);
 
   if (!profile) {
     return null;
@@ -37,9 +38,6 @@ const Profile = ({ auth }) => {
 };
 
 Profile.propTypes = {
-  auth: PropTypes.shape({
-    getProfile: PropTypes.func.isRequired,
-  }).isRequired,
 };
 
 export default Profile;

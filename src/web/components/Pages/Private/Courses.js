@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useContext } from 'react';
 
 import env from '../../../../config';
 import Logger from '../../../logger';
+import AuthContext from '../../Auth/AuthContext';
 
-const Courses = ({ auth }) => {
+const Courses = () => {
+  const { getAccessToken } = useContext(AuthContext);
   const [courses, setCourses] = useState([]);
   const [message, setMessage] = useState('');
 
@@ -12,7 +13,7 @@ const Courses = ({ auth }) => {
     const url = `${env.host}/api/courses`;
     const init = {
       headers: {
-        Authorization: `Bearer ${auth.getAccessToken()}`,
+        Authorization: `Bearer ${getAccessToken()}`,
       },
     };
     fetch(url, init)
@@ -28,13 +29,13 @@ const Courses = ({ auth }) => {
       .catch((error) => {
         setMessage(error.message);
       });
-  }, [auth]);
+  }, [getAccessToken]);
 
   useEffect(() => {
     const url = `${env.host}/api/admin`;
     const init = {
       headers: {
-        Authorization: `Bearer ${auth.getAccessToken()}`,
+        Authorization: `Bearer ${getAccessToken()}`,
       },
     };
     fetch(url, init)
@@ -51,7 +52,7 @@ const Courses = ({ auth }) => {
         Logger.error(error.message);
         setMessage(error.message);
       });
-  }, [auth]);
+  }, [getAccessToken]);
 
   if (message) {
     return (
@@ -67,9 +68,6 @@ const Courses = ({ auth }) => {
 };
 
 Courses.propTypes = {
-  auth: PropTypes.shape({
-    getAccessToken: PropTypes.func.isRequired,
-  }).isRequired,
 };
 
 export default Courses;

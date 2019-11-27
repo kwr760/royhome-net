@@ -1,8 +1,11 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Profile from './Profile';
+import AuthContext from '../../Auth/AuthContext';
 
 describe('web/components/Pages/Private/Profile', () => {
   it('should render fetched message', async () => {
@@ -20,7 +23,13 @@ describe('web/components/Pages/Private/Profile', () => {
     };
 
     // Arrange
-    const { getByText } = render(<Profile auth={auth} />);
+    const { getByText } = render(
+      <Router>
+        <AuthContext.Provider value={auth}>
+          <Profile />
+        </AuthContext.Provider>
+      </Router>,
+    );
 
     await waitForElement(() => getByText('Profile'));
     getByText('Nickname');
@@ -38,7 +47,13 @@ describe('web/components/Pages/Private/Profile', () => {
     };
 
     // Arrange
-    const { getByText } = render(<Profile auth={auth} />);
+    const { getByText } = render(
+      <Router>
+        <AuthContext.Provider value={auth}>
+          <Profile />
+        </AuthContext.Provider>
+      </Router>,
+    );
 
     await waitForElement(() => getByText('This is an error message'));
   });
