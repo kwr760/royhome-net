@@ -1,8 +1,11 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Private from './Private';
+import AuthContext from '../../Auth/AuthContext';
 
 describe('web/components/Pages/Private/Private', () => {
   const message = 'test-message';
@@ -25,7 +28,13 @@ describe('web/components/Pages/Private/Private', () => {
     }));
 
     // Arrange
-    const { getByText } = render(<Private auth={auth} />);
+    const { getByText } = render(
+      <Router>
+        <AuthContext.Provider value={auth}>
+          <Private />
+        </AuthContext.Provider>
+      </Router>,
+    );
 
     await waitForElement(() => getByText(message));
     expect(auth.getAccessToken).toBeCalled();
@@ -38,7 +47,13 @@ describe('web/components/Pages/Private/Private', () => {
     }));
 
     // Arrange
-    const { getByText } = render(<Private auth={auth} />);
+    const { getByText } = render(
+      <Router>
+        <AuthContext.Provider value={auth}>
+          <Private />
+        </AuthContext.Provider>
+      </Router>,
+    );
 
     // Assert
     waitForElement(() => getByText(/Network response was not good/));

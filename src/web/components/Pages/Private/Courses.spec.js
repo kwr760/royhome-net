@@ -1,9 +1,12 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Courses from './Courses';
 import Logger from '../../../logger';
+import AuthContext from '../../Auth/AuthContext';
 
 describe('web/components/Pages/Private/Courses', () => {
   const courses = {
@@ -47,7 +50,13 @@ describe('web/components/Pages/Private/Courses', () => {
     global.fetch.mockImplementation(multiFetch);
 
     // Arrange
-    const { getByText } = render(<Courses auth={auth} />);
+    const { getByText } = render(
+      <Router>
+        <AuthContext.Provider value={auth}>
+          <Courses />
+        </AuthContext.Provider>
+      </Router>,
+    );
 
     await waitForElement(() => getByText(/Course #1/));
     getByText(/Course #2/);
@@ -70,7 +79,13 @@ describe('web/components/Pages/Private/Courses', () => {
     global.fetch.mockImplementation(multiFetch);
 
     // Arrange
-    const { getByText } = render(<Courses auth={auth} />);
+    const { getByText } = render(
+      <Router>
+        <AuthContext.Provider value={auth}>
+          <Courses />
+        </AuthContext.Provider>
+      </Router>,
+    );
 
     // Assert
     waitForElement(() => getByText(/Network response was not good/));
