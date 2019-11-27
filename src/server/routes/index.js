@@ -1,8 +1,8 @@
-import getResumeHandler from './resume/get';
-import getPrivateHandler from './private/get';
-import getCoursesHandler from './courses/get';
-import getAdminHandler from './admin/get';
-import putLogHandler from './log/put';
+import getResumeHandler from '../handler/resume/get';
+import getPrivateHandler from '../handler/private/get';
+import getCoursesHandler from '../handler/courses/get';
+import getAdminHandler from '../handler/admin/get';
+import putLogHandler from '../handler/log/put';
 
 const routes = [
   {
