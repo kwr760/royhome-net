@@ -1,9 +1,10 @@
 import { UNAUTHORIZED } from 'http-status-codes';
 
 import checkRole from './check-role';
+import { TOKEN_URL } from '../../util/auth0/constants';
 
 describe('server/middleware/check-role', () => {
-  it('should set status on response if no role', () => {
+  it('should return error if no role', () => {
     // Arrange
     const req = {};
     const res = {
@@ -21,29 +22,8 @@ describe('server/middleware/check-role', () => {
     // Arrange
     const req = {
       user: {
-        'http://royhome.net': {
+        [TOKEN_URL]: {
           role: 'owner',
-        },
-      },
-    };
-    const res = {
-      sendStatus: jest.fn(),
-    };
-    const next = jest.fn();
-
-    // Act
-    checkRole('engineer')(req, res, next);
-
-    // Assert
-    expect(next).toHaveBeenCalled();
-    expect(res.sendStatus).not.toHaveBeenCalled();
-  });
-  it('should continue if in list', () => {
-    // Arrange
-    const req = {
-      user: {
-        'http://royhome.net': {
-          role: 'admin engineer',
         },
       },
     };
