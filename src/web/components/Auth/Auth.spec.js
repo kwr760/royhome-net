@@ -49,7 +49,7 @@ describe('web/components/Pages/Nav', () => {
   });
   it('useHashToSetSession - authResult', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth(['/']);
 
     // Act
     test.useHashToSetSession('', {
@@ -84,6 +84,18 @@ describe('web/components/Pages/Nav', () => {
     // Arrange
     const err = { message: 'There was an error' };
     const test = new Auth(history);
+
+    // Act
+    test.useHashToSetSession(err);
+
+    // Assert
+    expect(Logger.error).toBeCalledWith(err.message);
+    expect(test.history).toContain('/');
+  });
+  it('useHashToSetSession - error - do not push', () => {
+    // Arrange
+    const err = { message: 'There was an error' };
+    const test = new Auth(['/']);
 
     // Act
     test.useHashToSetSession(err);
@@ -255,7 +267,6 @@ describe('web/components/Pages/Nav', () => {
     expect(Logger.error).not.toBeCalled();
     expect(test.setSession).toBeCalledWith(result);
   });
-
   it('scheduleTokenRenewal', () => {
     // Arrange
     const test = new Auth(history);

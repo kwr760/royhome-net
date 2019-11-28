@@ -1,15 +1,16 @@
 import auth0 from 'auth0-js';
 
 import env from '../../../config';
+import hasNeededRole from '../../../util/auth0/has-needed-role';
+import { TOKEN_URL } from '../../../util/auth0/constants';
 import Logger from '../../logger';
 
 const REDIRECT_ON_LOGIN = 'redirect_on_login';
-const TOKEN_URL = 'http://royhome.net';
 
 export default class Auth {
   accessToken = null;
 
-  data = null;
+  data = {};
 
   expiresAt = null;
 
@@ -40,9 +41,13 @@ export default class Auth {
     if (authResult && authResult.accessToken && authResult.idToken) {
       this.setSession(authResult);
       const redirectLocation = localStorage.getItem(REDIRECT_ON_LOGIN) === 'undefined' ? '/' : JSON.parse(localStorage.getItem(REDIRECT_ON_LOGIN));
-      this.history.push(redirectLocation);
+      if (!this.history.includes(redirectLocation)) {
+        this.history.push(redirectLocation);
+      }
     } else if (err) {
-      this.history.push('/');
+      if (!this.history.includes('/')) {
+        this.history.push('/');
+      }
       Logger.error(err.message);
     }
     localStorage.removeItem(REDIRECT_ON_LOGIN);
@@ -53,7 +58,7 @@ export default class Auth {
   };
 
   setSession = (authResult) => {
-    this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+    this.expiresAt = authResult.expiresIn + new Date().getTime();
     this.accessToken = authResult.accessToken;
     this.data = authResult.idTokenPayload[TOKEN_URL];
     this.scheduleTokenRenewal();
@@ -78,20 +83,11 @@ export default class Auth {
     return this.accessToken;
   };
 
-  // eslint-disable-next-line consistent-return
   getProfile = (cb) => {
     this.auth0.client.userInfo(this.getAccessToken(), (err, profile) => cb(profile, err));
   };
 
-  userHasRole = (role) => {
-    const currentRole = (this.data && this.data.role) || '';
-    const grantedRoles = currentRole.split(' ');
-    if (currentRole === 'owner') {
-      grantedRoles.push('friend', 'engineer', 'family', 'company', 'admin');
-      grantedRoles.push('friend', 'engineer', 'family', 'company', 'admin');
-    }
-    return grantedRoles.includes(role);
-  };
+  userHasRole = (role) => hasNeededRole(role, this.data);
 
   renewToken(cb) {
     this.auth0.checkSession({}, (err, result) => {
