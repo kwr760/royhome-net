@@ -47,12 +47,6 @@ describe('server/index', () => {
   const httpListen = jest.fn();
   const httpsListen = jest.fn();
 
-  function setupMockModules(callback) {
-    jest.isolateModules(() => {
-      callback();
-    });
-  }
-
   beforeEach(() => {
     express.mockReturnValue(mockExpress);
     cors.mockReturnValue(corsCb);
@@ -70,7 +64,7 @@ describe('server/index', () => {
 
   it('should start http server', () => {
     // Arrange/Act
-    setupMockModules(() => {
+    jest.isolateModules(() => {
       require('./index');
     });
 
@@ -80,9 +74,8 @@ describe('server/index', () => {
     expect(mockExpress.enable).toHaveBeenCalledWith('etag');
     expect(mockExpress.enable).toHaveBeenCalledWith('query parser');
 
-    expect(mockExpress.use).toHaveBeenCalledTimes(12);
+    expect(mockExpress.use).toHaveBeenCalledTimes(11);
     expect(mockExpress.use).toHaveBeenCalledWith('/', undefined);
-    expect(mockExpress.use).toHaveBeenCalledWith('/callback', undefined);
     expect(cors).toHaveBeenCalledWith();
     expect(mockExpress.use).toHaveBeenCalledWith(corsCb);
     expect(helmet).toHaveBeenCalledWith();
@@ -105,14 +98,14 @@ describe('server/index', () => {
 
   it('should start https server', () => {
     // Arrange/Act
-    setupMockModules(() => {
+    jest.isolateModules(() => {
       const prod = require('../config/env/prod').default;
       env.server = prod.server;
       require('./index');
     });
 
     // Assert
-    expect(mockExpress.use).toHaveBeenCalledTimes(13);
+    expect(mockExpress.use).toHaveBeenCalledTimes(12);
     expect(mockExpress.use).toHaveBeenCalledWith(redirectInsecure);
     expect(https.createServer).toHaveBeenCalled();
     expect(httpsListen).toHaveBeenCalledWith(443, expect.any(Function));

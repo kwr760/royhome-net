@@ -43,7 +43,6 @@ app.use(cookieParser());
 app.use(httpContext.middleware);
 
 app.use('/', express.static(publicDir));
-app.use('/callback', express.static(publicDir));
 app.use('/api', generate(routes));
 
 app.use(handleError);
