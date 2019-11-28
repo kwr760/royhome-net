@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+
 import env from '../../../../config';
 import AuthContext from '../../Auth/AuthContext';
 
@@ -8,20 +10,14 @@ const Private = () => {
 
   useEffect(() => {
     const url = `${env.host}/api/private`;
-    const init = {
+    const options = {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`,
       },
     };
-    fetch(url, init)
+    axios.get(url, options)
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw new Error('Network response was not good.');
-      })
-      .then((response) => {
-        setMessage(response.message);
+        setMessage(res.data.message);
       })
       .catch((error) => {
         setMessage(error.message);

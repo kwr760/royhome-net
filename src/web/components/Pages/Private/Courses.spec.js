@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import axios from 'axios';
 
 import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
@@ -7,6 +8,10 @@ import '@testing-library/jest-dom/extend-expect';
 import Courses from './Courses';
 import Logger from '../../../logger';
 import AuthContext from '../../Auth/AuthContext';
+
+jest.mock('axios', () => ({
+  get: jest.fn().mockResolvedValue({ data: {} }),
+}));
 
 describe('web/components/Pages/Private/Courses', () => {
   const courses = {
@@ -23,31 +28,23 @@ describe('web/components/Pages/Private/Courses', () => {
   };
 
   beforeEach(() => {
-    global.fetch = jest.fn();
     Logger.log = jest.fn();
     Logger.error = jest.fn();
   });
   afterEach(() => {
-    global.fetch.mockRestore();
     Logger.log.mockRestore();
     Logger.error.mockRestore();
   });
 
-  it('should render fetched message', async () => {
+  it('should render request', async () => {
     // Arrange
-    const multiFetch = (url) => {
-      if (url === 'http://localhost:3000/api/admin') {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve(adminMessage),
-        });
-      }
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(courses),
+    axios.get
+      .mockResolvedValueOnce({
+        data: courses,
+      })
+      .mockResolvedValueOnce({
+        data: adminMessage,
       });
-    };
-    global.fetch.mockImplementation(multiFetch);
 
     // Arrange
     const { getByText } = render(
@@ -62,21 +59,10 @@ describe('web/components/Pages/Private/Courses', () => {
     getByText(/Course #2/);
     expect(Logger.log).toBeCalledWith(adminMessage);
   });
-  it('should throw exception with bad response', () => {
+  it('should throw exception with bad response', async () => {
     // Arrange
-    const multiFetch = (url) => {
-      if (url === 'http://localhost:3000/api/admin') {
-        return Promise.resolve({
-          ok: false,
-          json: () => Promise.resolve(adminMessage),
-        });
-      }
-      return Promise.resolve({
-        ok: false,
-        json: () => Promise.resolve(courses),
-      });
-    };
-    global.fetch.mockImplementation(multiFetch);
+    axios.get
+      .mockRejectedValue(new Error('Request failed with status code 500'));
 
     // Arrange
     const { getByText } = render(
@@ -88,6 +74,6 @@ describe('web/components/Pages/Private/Courses', () => {
     );
 
     // Assert
-    waitForElement(() => getByText(/Network response was not good/));
+    await waitForElement(() => getByText(/Request failed with status code 500/));
   });
 });

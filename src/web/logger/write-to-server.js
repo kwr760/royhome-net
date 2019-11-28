@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import env from '../../config';
 
 /**
@@ -5,13 +7,13 @@ import env from '../../config';
  */
 const writeToServer = ({ level, msg }) => {
   const logUrl = `${env.host}/api/log`;
-  const args = {
-    method: 'PUT',
-    body: JSON.stringify({ level, msg }),
-    headers: { 'Content-Type': 'application/json' },
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
   };
 
-  fetch(logUrl, args)
+  axios.put(logUrl, { level, msg }, options)
     .catch((e) => {
       console.error(`Logging to server failed: ${e.message}`);
     });

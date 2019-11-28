@@ -8,7 +8,7 @@ import Profile from './Profile';
 import AuthContext from '../../Auth/AuthContext';
 
 describe('web/components/Pages/Private/Profile', () => {
-  it('should render fetched message', async () => {
+  it('should render request', async () => {
     // Arrange
     const error = undefined;
     const profile = {

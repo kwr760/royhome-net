@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 
 import env from '../../../../config';
 import Logger from '../../../logger';
@@ -10,21 +11,15 @@ const Courses = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const url = `${env.host}/api/courses`;
-    const init = {
+    const url = `${env.host}/api/course2s`;
+    const options = {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`,
       },
     };
-    fetch(url, init)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Network response was not good.');
-      })
-      .then((response) => {
-        setCourses(response.courses);
+    axios.get(url, options)
+      .then((res) => {
+        setCourses(res.data.courses);
       })
       .catch((error) => {
         setMessage(error.message);
@@ -33,20 +28,14 @@ const Courses = () => {
 
   useEffect(() => {
     const url = `${env.host}/api/admin`;
-    const init = {
+    const options = {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`,
       },
     };
-    fetch(url, init)
+    axios.get(url, options)
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw new Error('Network response was not good.');
-      })
-      .then((response) => {
-        Logger.log(response);
+        Logger.log(res.data);
       })
       .catch((error) => {
         Logger.error(error.message);
