@@ -1,12 +1,17 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+
+import { render } from '@testing-library/react';
+
 import App from './App';
+
+jest.mock('axios', () => ({
+  put: jest.fn().mockResolvedValue({}),
+}));
 
 describe('src/web/components/App', () => {
   beforeEach(() => {
-    global.fetch = jest.fn();
     global.console.error = jest.fn();
     global.console.log = jest.fn();
   });
@@ -15,13 +20,7 @@ describe('src/web/components/App', () => {
   });
 
   it('renders without crashing', () => {
-    // Arrange
-    fetch.mockImplementation(() => Promise.resolve({
-      ok: true,
-      json: () => Promise.resolve({}),
-    }));
-
-    // Act
+    // Arrange/Act
     const history = createMemoryHistory();
     const { container } = render(
       <Router>

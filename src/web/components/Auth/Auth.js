@@ -61,8 +61,7 @@ export default class Auth {
 
   isAuthenticated = () => {
     const currTime = new Date().getTime();
-    const isAuth = currTime < this.expiresAt;
-    return isAuth;
+    return currTime < this.expiresAt;
   };
 
   logout = () => {

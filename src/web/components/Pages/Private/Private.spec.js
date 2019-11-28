@@ -1,11 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import axios from 'axios';
 
 import { render, waitForElement } from '@testing-library/react';
+
 import '@testing-library/jest-dom/extend-expect';
 
 import Private from './Private';
 import AuthContext from '../../Auth/AuthContext';
+
+jest.mock('axios', () => ({
+  get: jest.fn().mockResolvedValue({ data: {} }),
+}));
 
 describe('web/components/Pages/Private/Private', () => {
   const message = 'test-message';
@@ -13,19 +19,11 @@ describe('web/components/Pages/Private/Private', () => {
     getAccessToken: jest.fn(),
   };
 
-  beforeEach(() => {
-    global.fetch = jest.fn();
-  });
-  afterEach(() => {
-    global.fetch.mockRestore();
-  });
-
-  it('should render fetched message', async () => {
+  it('should render request', async () => {
     // Arrange
-    global.fetch.mockImplementation(() => Promise.resolve({
-      ok: true,
-      json: () => Promise.resolve({ message }),
-    }));
+    axios.get.mockResolvedValueOnce({
+      data: { message },
+    });
 
     // Arrange
     const { getByText } = render(
@@ -41,10 +39,7 @@ describe('web/components/Pages/Private/Private', () => {
   });
   it('should throw exception with bad response', () => {
     // Arrange
-    global.fetch.mockImplementation(() => Promise.resolve({
-      ok: false,
-      json: () => Promise.resolve({ message }),
-    }));
+    axios.get.mockRejectedValueOnce(new Error('Request failed with status code 500'));
 
     // Arrange
     const { getByText } = render(
@@ -56,6 +51,6 @@ describe('web/components/Pages/Private/Private', () => {
     );
 
     // Assert
-    waitForElement(() => getByText(/Network response was not good/));
+    waitForElement(() => getByText(/Request failed with status code 500/));
   });
 });
