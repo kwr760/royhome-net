@@ -6,7 +6,7 @@ const env = (host) => ({
   mode: 'development',
   host,
   auth0: {
-    callbackUrl: `${host}/callback`,
+    callbackUrl: `${host}`,
   },
   server: {
     https: false,

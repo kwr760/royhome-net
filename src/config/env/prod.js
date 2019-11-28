@@ -6,7 +6,7 @@ const env = (host) => ({
   mode: 'production',
   host,
   auth0: {
-    callbackUrl: `${host}/callback`,
+    callbackUrl: `${host}`,
   },
   server: {
     https: true,
