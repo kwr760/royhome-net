@@ -11,7 +11,7 @@ const Courses = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const url = `${env.host}/api/course2s`;
+    const url = `${env.host}/api/courses`;
     const options = {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`,
