@@ -29,6 +29,7 @@ describe('config/index', () => {
           mode: 'production',
           root: expect.stringContaining('/royhome-net'),
           server: {
+            rendering: true,
             https: true,
             cert: '/etc/letsencrypt/live/royk.us/cert.pem',
             key: '/etc/letsencrypt/live/royk.us/privkey.pem',
@@ -76,6 +77,7 @@ describe('config/index', () => {
           mode: 'development',
           root: expect.stringContaining('/royhome-net'),
           server: {
+            rendering: true,
             https: false,
           },
           log: {

@@ -58,7 +58,7 @@ export default class Auth {
   };
 
   setSession = (authResult) => {
-    this.expiresAt = authResult.expiresIn + new Date().getTime();
+    this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
     this.accessToken = authResult.accessToken;
     this.data = authResult.idTokenPayload[TOKEN_URL];
     this.scheduleTokenRenewal();
@@ -89,7 +89,7 @@ export default class Auth {
 
   userHasRole = (role) => hasNeededRole(role, this.data);
 
-  renewToken(cb) {
+  renewToken = (cb) => {
     this.auth0.checkSession({}, (err, result) => {
       if (err) {
         Logger.error(`Error: ${err.error} - ${err.error_description}.`);
@@ -102,7 +102,7 @@ export default class Auth {
     });
   }
 
-  scheduleTokenRenewal() {
+  scheduleTokenRenewal = () => {
     const delay = this.expiresAt - Date.now();
     if (delay > 0) {
       setTimeout(this.renewToken, delay);

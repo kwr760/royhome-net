@@ -9,6 +9,7 @@ const env = (host) => ({
     callbackUrl: `${host}`,
   },
   server: {
+    rendering: true,
     https: true,
     key: '/etc/letsencrypt/live/royk.us/privkey.pem',
     cert: '/etc/letsencrypt/live/royk.us/cert.pem',
