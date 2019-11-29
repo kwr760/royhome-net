@@ -9,6 +9,7 @@ const env = (host) => ({
     callbackUrl: `${host}`,
   },
   server: {
+    rendering: true,
     https: false,
   },
   log: {
