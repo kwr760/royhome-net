@@ -98,7 +98,7 @@ export default class Auth {
         cb(err, result);
       }
     });
-  }
+  };
 
   scheduleTokenRenewal = () => {
     const delay = this.expiresAt - Date.now();

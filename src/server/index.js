@@ -19,6 +19,7 @@ import notFound from './middleware/not-found';
 
 import routes from './routes';
 import generate from './routes/generate';
+import renderReact from './render-react';
 
 const publicDir = path.resolve(env.root, './dist/public');
 
@@ -42,8 +43,14 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(httpContext.middleware);
 
-app.use('/', express.static(publicDir));
+if (env.server.rendering) {
+  app.get('/', renderReact);
+}
+app.use(express.static(publicDir));
 app.use('/api', generate(routes));
+if (env.server.rendering) {
+  app.get('/*', renderReact);
+}
 
 app.use(handleError);
 app.use(notFound);

@@ -1,16 +1,12 @@
-import React from 'react';
-import { render } from 'react-dom';
-import './index.css';
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import env from '../config';
+import renderServerSide from './render-server-side';
+import renderClientSide from './render-client-side';
 
+import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import App from './components/App';
-
-render(
-  <Router>
-    <Route component={App} />
-  </Router>,
-  document.getElementById('root'),
-);
+if (env.server.rendering) {
+  renderServerSide();
+} else {
+  renderClientSide();
+}
