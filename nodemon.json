@@ -1,0 +1,6 @@
+{
+  "ignore": ["src/web", "dist"],
+  "execMap": {
+    "js": "babel-node"
+  }
+}

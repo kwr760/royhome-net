@@ -13,7 +13,7 @@ jest.mock('axios', () => ({
   get: jest.fn().mockResolvedValue({ data: {} }),
 }));
 
-describe('web/components/Pages/Private/Courses', () => {
+describe('client/components/Pages/Private/Courses', () => {
   const courses = {
     courses: [
       { id: 1, title: 'Course #1' },

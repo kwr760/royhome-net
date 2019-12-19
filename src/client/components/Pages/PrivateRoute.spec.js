@@ -6,7 +6,7 @@ import AuthContext from '../Auth/AuthContext';
 
 jest.mock('../Auth/Auth');
 
-describe('web/components/Pages/PrivateRoute', () => {
+describe('client/components/Pages/PrivateRoute', () => {
   it('should render with authentication and role', () => {
     // Arrange
     const auth = {

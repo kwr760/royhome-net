@@ -10,23 +10,23 @@ module.exports = {
         '\\.(css)$': 'identity-obj-proxy',
       },
       testMatch: [
-        '**/src/web/**/?(*.)(spec|test).js',
+        '**/src/client/**/?(*.)(spec|test).js',
       ],
       modulePathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
       ],
       testPathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
       ],
       coveragePathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
-        'webpack.config.js',
+        'webpack.config.babel.js',
         '.eslintrc.js',
       ],
       transform: {
@@ -49,19 +49,19 @@ module.exports = {
       ],
       modulePathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
       ],
       testPathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
       ],
       coveragePathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
-        'webpack.config.js',
+        'webpack.config.babel.js',
         '.eslintrc.js',
       ],
       transform: {
@@ -70,7 +70,7 @@ module.exports = {
     },
   ],
   collectCoverage: true,
-  coverageDirectory: './coverage',
+  coverageDirectory: './build/coverage',
   coverageThreshold: {
     global: {
       statements: 100,
@@ -84,7 +84,7 @@ module.exports = {
       './node_modules/jest-html-reporter',
       {
         pageTitle: 'Test Results',
-        outputPath: './unit/test-results.html',
+        outputPath: './build/unit/test-results.html',
       },
     ],
   ],

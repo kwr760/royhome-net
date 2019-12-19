@@ -10,6 +10,7 @@ import Resume from './Pages/Public/Resume';
 import Private from './Pages/Private/Private';
 import Courses from './Pages/Private/Courses';
 import PrivateRoute from './Pages/PrivateRoute';
+
 import AuthContext from './Auth/AuthContext';
 
 /**
