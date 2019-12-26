@@ -225,6 +225,27 @@ describe('client/components/Pages/Nav', () => {
     // Assert
     expect(result).toBe(true);
   });
+  it('renewToken - resulting in known error', () => {
+    // Arrange
+    const test = new Auth(history);
+    test.setSession = jest.fn();
+
+    const callback = jest.fn();
+    const err = { error: 'login_required', error_description: 'There was an error' };
+    const result = {};
+    test.auth0.checkSession = jest.fn((obj, cb) => {
+      cb(err, result);
+    });
+
+    // Act
+    test.renewToken(callback);
+
+    // Assert
+    expect(test.auth0.checkSession).toBeCalled();
+    expect(Logger.error).not.toBeCalledWith(`Error: ${err.error} - ${err.error_description}.`);
+    expect(callback).toBeCalledWith(err, result);
+    expect(test.setSession).not.toBeCalled();
+  });
   it('renewToken - resulting in error', () => {
     // Arrange
     const test = new Auth(history);

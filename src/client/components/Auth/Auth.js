@@ -41,13 +41,9 @@ export default class Auth {
     if (authResult && authResult.accessToken && authResult.idToken) {
       this.setSession(authResult);
       const redirectLocation = localStorage.getItem(REDIRECT_ON_LOGIN) === 'undefined' ? '/' : JSON.parse(localStorage.getItem(REDIRECT_ON_LOGIN));
-      if (!this.history.includes(redirectLocation)) {
-        this.history.push(redirectLocation);
-      }
+      this.history.push(redirectLocation);
     } else if (err) {
-      if (!this.history.includes('/')) {
-        this.history.push('/');
-      }
+      this.history.push('/');
       Logger.error(err.message);
     }
     localStorage.removeItem(REDIRECT_ON_LOGIN);
@@ -92,7 +88,9 @@ export default class Auth {
   renewToken = (cb) => {
     this.auth0.checkSession({}, (err, result) => {
       if (err) {
-        Logger.error(`Error: ${err.error} - ${err.error_description}.`);
+        if (err.error !== 'login_required') {
+          Logger.error(`Error: ${err.error} - ${err.error_description}.`);
+        }
       } else {
         this.setSession(result);
       }
@@ -100,12 +98,12 @@ export default class Auth {
         cb(err, result);
       }
     });
-  }
+  };
 
   scheduleTokenRenewal = () => {
     const delay = this.expiresAt - Date.now();
     if (delay > 0) {
       setTimeout(this.renewToken, delay);
     }
-  }
+  };
 }

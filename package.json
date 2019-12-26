@@ -20,7 +20,7 @@
     "start": "nodemon --watch dist --exec \"node --inspect dist/server.bundle.js\"",
     "eslint": "eslint src",
     "test": "eslint src && jest --colors",
-    "clean": "rimraf dist coverage log/*.log unit",
+    "clean": "rimraf dist build log/*.log",
     "start:prod": "RELEASE_ENV=prod node dist/server.bundle.js",
     "build:prod": "webpack --env prod",
     "pm2:start": "RELEASE_ENV=prod pm2 start dist/server.bundle.js",
