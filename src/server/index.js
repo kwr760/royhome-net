@@ -12,8 +12,6 @@ import env from '../config';
 import redirectInsecure from './middleware/redirect-insecure';
 import handleError from './middleware/handle-error';
 import notFound from './middleware/not-found';
-import startHttpServer from './middleware/start-http';
-import startHttpsServer from './middleware/start-https';
 
 import renderReact from './middleware/render-react';
 import startHttpServer from './middleware/start-http';
