@@ -1,6 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`client/components/Pages/Public/Resume should render resume html 1`] = `
+<<<<<<< HEAD:src/client/components/Pages/Public/__snapshots__/Resume.spec.js.snap
 <div>
   <div>
     
@@ -1205,6 +1206,8 @@ exports[`client/components/Pages/Public/Resume should render resume html 1`] = `
 `;
 
 exports[`web/components/Pages/Public/Resume should render resume html 1`] = `
+=======
+>>>>>>> 1d1069575f74039d3ece7b112118037913eef7f1:src/web/components/Pages/Public/__snapshots__/Resume.spec.js.snap
 <div>
   <div>
     
