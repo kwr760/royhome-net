@@ -7,7 +7,7 @@ jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({ data: {} }),
 }));
 
-describe('web/logger/write-to-server', () => {
+describe('client/logger/write-to-server', () => {
   const msg = {
     level: LOG_LEVELS.ERROR,
     msg: 'message',

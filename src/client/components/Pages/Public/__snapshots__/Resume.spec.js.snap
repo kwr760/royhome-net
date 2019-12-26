@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`web/components/Pages/Public/Resume should render resume html 1`] = `
+exports[`client/components/Pages/Public/Resume should render resume html 1`] = `
 <div>
   <div>
     

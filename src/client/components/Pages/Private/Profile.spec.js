@@ -7,7 +7,7 @@ import '@testing-library/jest-dom/extend-expect';
 import Profile from './Profile';
 import AuthContext from '../../Auth/AuthContext';
 
-describe('web/components/Pages/Private/Profile', () => {
+describe('client/components/Pages/Private/Profile', () => {
   it('should render request', async () => {
     // Arrange
     const error = undefined;

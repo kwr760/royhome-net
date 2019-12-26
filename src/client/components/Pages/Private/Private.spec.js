@@ -13,7 +13,7 @@ jest.mock('axios', () => ({
   get: jest.fn().mockResolvedValue({ data: {} }),
 }));
 
-describe('web/components/Pages/Private/Private', () => {
+describe('client/components/Pages/Private/Private', () => {
   const message = 'test-message';
   const auth = {
     getAccessToken: jest.fn(),
