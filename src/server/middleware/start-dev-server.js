@@ -11,7 +11,7 @@ const startDevServer = () => {
     logLevel: 'silent',
     publicPath: '/dist/web',
     writeToDisk(filePath) {
-      return /dist\/node\//.test(filePath) || /loadable-stats/.test(filePath)
+      return /dist\/node\//.test(filePath) || /loadable-stats/.test(filePath);
     },
   });
 };
