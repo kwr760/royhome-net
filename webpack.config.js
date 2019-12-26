@@ -36,7 +36,7 @@ module.exports = (env) => {
   const webConfig = {
     target: 'web',
     entry: {
-      app: path.resolve(__dirname, './src/web/index.js'),
+      app: path.resolve(__dirname, './src/client/index.js'),
     },
     output: {
       path: path.resolve(__dirname, 'dist/public'),
@@ -45,8 +45,8 @@ module.exports = (env) => {
     context: path.resolve(__dirname),
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'src/web', 'index.html'),
-        favicon: path.resolve(__dirname, 'src/web', 'favicon.ico'),
+        template: path.resolve(__dirname, 'src/client', 'index.html'),
+        favicon: path.resolve(__dirname, 'src/client', 'favicon.ico'),
         filename: 'index.html',
       }),
     ],

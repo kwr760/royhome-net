@@ -10,7 +10,7 @@ module.exports = {
         '\\.(css)$': 'identity-obj-proxy',
       },
       testMatch: [
-        '**/src/web/**/?(*.)(spec|test).js',
+        '**/src/client/**/?(*.)(spec|test).js',
       ],
       modulePathIgnorePatterns: [
         '/node_modules/',
