@@ -14,17 +14,17 @@ module.exports = {
       ],
       modulePathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
       ],
       testPathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
       ],
       coveragePathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
         'webpack.config.js',
         '.eslintrc.js',
@@ -49,17 +49,17 @@ module.exports = {
       ],
       modulePathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
       ],
       testPathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
       ],
       coveragePathIgnorePatterns: [
         '/node_modules/',
-        '/coverage/',
+        '/build/',
         '/dist/',
         'webpack.config.js',
         '.eslintrc.js',
@@ -70,7 +70,7 @@ module.exports = {
     },
   ],
   collectCoverage: true,
-  coverageDirectory: './coverage',
+  coverageDirectory: './build/coverage',
   coverageThreshold: {
     global: {
       statements: 100,
@@ -84,7 +84,7 @@ module.exports = {
       './node_modules/jest-html-reporter',
       {
         pageTitle: 'Test Results',
-        outputPath: './unit/test-results.html',
+        outputPath: './build/unit/test-results.html',
       },
     ],
   ],
