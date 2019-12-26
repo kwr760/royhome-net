@@ -105,5 +105,5 @@ export default class Auth {
     if (delay > 0) {
       setTimeout(this.renewToken, delay);
     }
-  }
+  };
 }

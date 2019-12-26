@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "ignore": ["src/web", "dist"],
+=======
+  "ignore": ["src/client", "dist"],
+>>>>>>> 73f56fd7a23017333e4111d7da0ba7827de3b4e9
   "execMap": {
     "js": "babel-node"
   }
