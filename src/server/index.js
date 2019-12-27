@@ -18,6 +18,9 @@ import startHttpServer from './middleware/start-http';
 import startHttpsServer from './middleware/start-https';
 import startDevServer from './middleware/start-dev-server';
 
+import generate from './routes/generate';
+import routes from './routes';
+
 const publicDir = path.resolve(env.root, '.');
 
 const app = express();
@@ -42,7 +45,7 @@ app.use(httpContext.middleware);
 
 // app.get('/', renderReact);
 app.use(express.static(publicDir));
-// app.use('/api', generate(routes));
+app.use('/api', generate(routes));
 app.get('/*', renderReact);
 
 app.use(handleError);

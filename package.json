@@ -15,24 +15,22 @@
     "url": "https://github.com/kwr760/royhome-net/issues"
   },
   "scripts": {
-    "dev": "nodemon src/server/index.js",
-    "build": "NODE_ENV=production yarn build:webpack && yarn build:server",
-    "build:webpack": "webpack",
-    "build:server": "babel -d dist/server src/server --ignore '**/*.spec.js'",
-    "start": "NODE_ENV=production node dist/server/index.js",
-
+    "start:dev": "nodemon src/server/index.js",
     "build:dev": "yarn clean && webpack --env dev --watch",
-    "start-original": "nodemon --watch dist --exec \"node --inspect dist/server.bundle.js\"",
-    "eslint": "eslint src",
+
     "test": "eslint src && jest --colors",
     "clean": "rimraf dist build log/*.log",
-    "start:prod": "RELEASE_ENV=prod node dist/server.bundle.js",
-    "build:prod": "webpack --env prod",
-    "pm2:start": "RELEASE_ENV=prod pm2 start dist/server.bundle.js",
-    "pm2:stop": "pm2 stop dist/server.bundle.js",
+
+    "start:prod": "NODE_ENV=production node dist/server/index.js",
+    "build:prod": "NODE_ENV=production yarn build:webpack && yarn build:server",
+
+    "release": "yarn install --production && yarn run build:prod && yarn run pm2:start",
+    "build:webpack": "webpack",
+    "build:server": "babel -d dist/server src/server --ignore '**/*.spec.js'",
+    "pm2:start": "NODE_ENV=production pm2 start dist/server/index.js",
+    "pm2:stop": "pm2 stop dist/server/index.js",
     "pm2:kill": "pm2 kill",
-    "pm2:status": "pm2 status",
-    "release": "yarn install --production && yarn run build:prod && yarn run pm2:start"
+    "pm2:status": "pm2 status"
   },
   "dependencies": {
     "auth0-js": "^9.11.3",
