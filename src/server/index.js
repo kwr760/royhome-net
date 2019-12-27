@@ -43,7 +43,6 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(httpContext.middleware);
 
-// app.get('/', renderReact);
 app.use(express.static(publicDir));
 app.use('/api', generate(routes));
 app.get('/*', renderReact);

@@ -33,9 +33,9 @@ const getConfig = (target) => ({
       {
         test: /\.css$/,
         use: [
-          // {
-          //   loader: MiniCssExtractPlugin.loader,
-          // },
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           'css-loader',
         ],
       },
@@ -46,7 +46,12 @@ const getConfig = (target) => ({
     ],
   },
   externals:
-    target === 'node' ? ['@loadable/component', nodeExternals()] : undefined,
+    target === 'node' ? [
+      '@loadable/component',
+      nodeExternals({
+        whitelist: [/\.(?!(?:jsx?|json)$).{1,5}$/i],
+      }),
+    ] : undefined,
   output: {
     path: path.join(DIST_PATH, target),
     filename: production ? '[name]-bundle-[chunkhash:8].js' : '[name].js',
