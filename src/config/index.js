@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import base from './env/base';
 
-let envType = 'dev';
+let envType = 'prod';
 if (process.env.RELEASE_ENV) {
   envType = process.env.RELEASE_ENV;
 }
