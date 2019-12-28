@@ -22,9 +22,8 @@
     "start:prod": "RELEASE_ENV=prod babel-node src/server/index.js",
     "build:prod": "yarn clean && RELEASE_ENV=prod webpack",
     "release": "yarn install --production && yarn run build:prod && yarn run pm2:start",
-    "pm2:start": "RELEASE_ENV=prod pm2 start src/server/index.js",
-    "pm2:stop": "pm2 stop src/server/index.js",
-    "pm2:kill": "pm2 kill",
+    "pm2:start": "RELEASE_ENV=prod pm2 start \"babel-node src/server/index.js\"",
+    "pm2:stop": "pm2 kill",
     "pm2:status": "pm2 status"
   },
   "dependencies": {
