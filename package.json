@@ -17,13 +17,10 @@
   "scripts": {
     "start:dev": "nodemon src/server/index.js",
     "build:dev": "yarn clean && webpack --env dev --watch",
-
     "test": "eslint src && jest --colors",
     "clean": "rimraf dist build log/*.log",
-
     "start:prod": "NODE_ENV=production node dist/server/index.js",
     "build:prod": "NODE_ENV=production yarn build:webpack && yarn build:server",
-
     "release": "yarn install --production && yarn run build:prod && yarn run pm2:start",
     "build:webpack": "webpack",
     "build:server": "babel -d dist/server src/server --ignore '**/*.spec.js'",
