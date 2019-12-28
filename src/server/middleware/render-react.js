@@ -10,7 +10,6 @@ import { renderToString } from 'react-dom/server';
 // import { StaticRouter, Route } from 'react-router-dom';
 
 // import App from '../../client/components/App';
-// import Logger from '../logger';
 import env from '../../config';
 
 // const renderStaticRouter = (req, res) => {
@@ -20,9 +19,6 @@ import env from '../../config';
 //       <Route component={App} />
 //     </StaticRouter>,
 //   );
-//   Logger.log(req.url);
-//   Logger.log(appRenderer);
-//   Logger.log(context);
 //
 //   const indexFile = path.resolve('./dist/public/index.html');
 //   fs.readFile(indexFile, 'utf8', (err, data) => {
