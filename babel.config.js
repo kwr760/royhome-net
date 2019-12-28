@@ -1,36 +1,47 @@
-// babel.config.js
-module.exports = {
-  presets: [
-    [
-      '@babel/env',
-      {
-        modules: false,
-        useBuiltIns: 'entry',
-        corejs: { version: '3' },
-        targets: { browsers: 'last 2 versions' },
-      },
-    ],
-    '@babel/react',
-  ],
-  retainLines: true,
-  plugins: [
-    'lodash',
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
-    '@babel/plugin-transform-runtime',
-    '@loadable/babel-plugin',
-    '@babel/plugin-syntax-dynamic-import',
-  ],
-  env: {
-    test: {
-      presets: ['@babel/env', '@babel/react'],
-      retainLines: true,
-      plugins: [
-        'lodash',
-        '@babel/plugin-transform-runtime',
-        'dynamic-import-node-babel-7',
-        '@loadable/babel-plugin',
-        '@babel/plugin-syntax-dynamic-import',
+function isWebTarget(caller) {
+  return Boolean(caller && caller.target === 'web');
+}
+
+function isWebpack(caller) {
+  return Boolean(caller && caller.name === 'babel-loader');
+}
+
+module.exports = (api) => {
+  const web = api.caller(isWebTarget);
+  const webpack = api.caller(isWebpack);
+
+  return {
+    presets: [
+      '@babel/preset-react',
+      [
+        '@babel/preset-env',
+        {
+          useBuiltIns: web ? 'entry' : undefined,
+          corejs: web ? 'core-js@3' : false,
+          targets: web ? { browsers: 'last 2 versions' } : { node: 'current' },
+          modules: webpack ? false : 'commonjs',
+        },
       ],
+    ],
+    retainLines: true,
+    plugins: [
+      '@babel/plugin-syntax-dynamic-import',
+      '@babel/plugin-transform-runtime',
+      [
+        '@babel/plugin-proposal-class-properties',
+        {
+          loose: true,
+        },
+      ],
+      '@loadable/babel-plugin',
+      'lodash',
+    ],
+    env: {
+      'build:server': {
+        ignore: [
+          '**/*.spec.js',
+        ],
+      },
     },
-  },
+  };
 };

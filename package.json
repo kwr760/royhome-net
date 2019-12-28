@@ -15,19 +15,19 @@
     "url": "https://github.com/kwr760/royhome-net/issues"
   },
   "scripts": {
-    "build": "yarn clean && yarn build:dev",
-    "build:dev": "webpack --env dev --watch",
-    "start": "nodemon --watch dist --exec \"node --inspect dist/server.bundle.js\"",
-    "eslint": "eslint src",
+    "start:dev": "nodemon src/server/index.js",
+    "build:dev": "yarn clean && webpack --env dev --watch",
     "test": "eslint src && jest --colors",
     "clean": "rimraf dist build log/*.log",
-    "start:prod": "RELEASE_ENV=prod node dist/server.bundle.js",
-    "build:prod": "webpack --env prod",
-    "pm2:start": "RELEASE_ENV=prod pm2 start dist/server.bundle.js",
-    "pm2:stop": "pm2 stop dist/server.bundle.js",
+    "start:prod": "NODE_ENV=production node dist/server/index.js",
+    "build:prod": "NODE_ENV=production yarn build:webpack && yarn build:server",
+    "release": "yarn install --production && yarn run build:prod && yarn run pm2:start",
+    "build:webpack": "webpack",
+    "build:server": "babel -d dist/server src/server --ignore '**/*.spec.js'",
+    "pm2:start": "NODE_ENV=production pm2 start dist/server/index.js",
+    "pm2:stop": "pm2 stop dist/server/index.js",
     "pm2:kill": "pm2 kill",
-    "pm2:status": "pm2 status",
-    "release": "yarn install --production && yarn run build:prod && yarn run pm2:start"
+    "pm2:status": "pm2 status"
   },
   "dependencies": {
     "auth0-js": "^9.11.3",
@@ -36,6 +36,7 @@
     "bootstrap": "^4.3.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",
+    "core-js": "^3.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -55,13 +56,18 @@
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
     "@babel/core": "^7.6.4",
+    "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "@babel/register": "^7.6.2",
     "@loadable/babel-plugin": "^5.10.3",
+    "@loadable/component": "^5.10.3",
+    "@loadable/server": "^5.10.3",
+    "@loadable/webpack-plugin": "^5.7.1",
     "@testing-library/jest-dom": "^4.2.3",
     "@testing-library/react": "^9.3.2",
     "babel-eslint": "^10.0.2",
@@ -90,6 +96,7 @@
     "jest": "^24.9.0",
     "jest-dom": "^4.0.0",
     "jest-html-reporter": "^2.6.2",
+    "mini-css-extract-plugin": "^0.8.0",
     "nodemon": "^1.19.4",
     "npm-run-all": "^4.1.5",
     "pm2": "^4.1.2",
@@ -98,8 +105,10 @@
     "style-loader": "^1.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
+    "webpack-dev-middleware": "^3.6.2",
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2",
+    "webpack-node-externals": "^1.7.2",
     "webpack-stats-graph": "^1.0.8"
   }
 }

@@ -1,88 +1,72 @@
-/* eslint-disable import/no-extraneous-dependencies */
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
+import path from 'path';
+import nodeExternals from 'webpack-node-externals';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = (env) => {
-  const mode = env === 'dev' ? 'development' : 'production';
-  console.log(`This is a ${mode} build`);
+const LoadablePlugin = require('@loadable/webpack-plugin');
 
-  const baseConfig = {
-    mode,
-    devtool: 'source-map',
-    node: {
-      __dirname: true,
-    },
-    resolve: {
-      extensions: ['.js', '.jsx'],
-    },
-    plugins: [
-      new webpack.EnvironmentPlugin({
-        RELEASE_ENV: env,
-      }),
+const DIST_PATH = path.resolve(__dirname, 'dist');
+const production = process.env.NODE_ENV === 'production';
+const development = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+
+const getConfig = (target) => ({
+  name: target,
+  mode: development ? 'development' : 'production',
+  target,
+  devtool: 'source-map',
+  entry: `./src/client/index-${target}.js`,
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              caller: { target },
+            },
+          },
+          'eslint-loader',
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.html$/,
+        use: ['html-loader'],
+      },
     ],
-    module: {
-      rules: [
-        {
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
-          use: ['babel-loader', 'eslint-loader'],
-        },
-      ],
-    },
-  };
-
-  const webConfig = {
-    target: 'web',
-    entry: {
-      app: path.resolve(__dirname, './src/client/index.js'),
-    },
-    output: {
-      path: path.resolve(__dirname, 'dist/public'),
-      filename: '[name].bundle.js',
-    },
-    context: path.resolve(__dirname),
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'src/client', 'index.html'),
-        favicon: path.resolve(__dirname, 'src/client', 'favicon.ico'),
-        filename: 'index.html',
+  },
+  externals:
+    target === 'node' ? [
+      '@loadable/component',
+      nodeExternals({
+        whitelist: [/\.(?!(?:jsx?|json)$).{1,5}$/i],
       }),
-    ],
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
-        },
-        {
-          test: /\.html$/,
-          use: ['html-loader'],
-        },
-      ],
-    },
-  };
-  const nodeConfig = {
-    target: 'node',
-    entry: {
-      server: path.resolve(__dirname, './src/server/index.js'),
-    },
-    output: {
-      path: path.resolve(__dirname, 'dist'),
-      filename: '[name].bundle.js',
-    },
-    context: path.resolve(__dirname),
-  };
+    ] : undefined,
+  output: {
+    path: path.join(DIST_PATH, target),
+    filename: production ? '[name]-bundle-[chunkhash:8].js' : '[name].js',
+    publicPath: `/dist/${target}/`,
+    libraryTarget: target === 'node' ? 'commonjs2' : undefined,
+  },
+  plugins: [
+    new LoadablePlugin(),
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src/client', 'index.html'),
+      favicon: path.resolve(__dirname, 'src/client', 'favicon.ico'),
+      filename: 'index.html',
+    }),
+  ],
+});
 
-  const frontPack = merge(
-    webConfig,
-    baseConfig,
-  );
-  const backPack = merge(
-    nodeConfig,
-    baseConfig,
-  );
-
-  return [frontPack, backPack];
-};
+export default [getConfig('web'), getConfig('node')];

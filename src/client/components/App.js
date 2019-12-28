@@ -12,6 +12,9 @@ import Courses from './Pages/Private/Courses';
 import PrivateRoute from './Pages/PrivateRoute';
 import AuthContext from './Auth/AuthContext';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
+
 /**
  * @return {string}
  */
