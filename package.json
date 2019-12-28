@@ -19,12 +19,10 @@
     "build:dev": "yarn clean && webpack --env dev --watch",
     "test": "eslint src && jest --colors",
     "clean": "rimraf dist build log/*.log",
-    "start:prod": "NODE_ENV=production node dist/server/index.js",
-    "build:prod": "NODE_ENV=production yarn build:webpack && yarn build:server",
+    "start:prod": "RELEASE_ENV=prod babel-node src/server/index.js",
+    "build:prod": "yarn clean && RELEASE_ENV=prod webpack",
     "release": "yarn install --production && yarn run build:prod && yarn run pm2:start",
-    "build:webpack": "webpack",
-    "build:server": "babel -d dist/server src/server --ignore '**/*.spec.js'",
-    "pm2:start": "NODE_ENV=production pm2 start dist/server/index.js",
+    "pm2:start": "RELEASE_ENV=prod pm2 start dist/server/index.js",
     "pm2:stop": "pm2 stop dist/server/index.js",
     "pm2:kill": "pm2 kill",
     "pm2:status": "pm2 status"
@@ -106,7 +104,6 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-middleware": "^3.6.2",
-    "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^1.7.2",
     "webpack-stats-graph": "^1.0.8"
