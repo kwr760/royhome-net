@@ -7,7 +7,7 @@ ssh-add .travis/private-key
 rm .travis/private-key
 
 ssh $RELEASE_HOST  mv /var/app/royhome-net.last /var/app/royhome-net.$(date +%F_%T)
-ssh $RELEASE_HOST  'cd /var/app/royhome-net ; sudo yarn run pm2:kill'
+ssh $RELEASE_HOST  'cd /var/app/royhome-net ; sudo yarn run pm2:stop'
 ssh $RELEASE_HOST  mv /var/app/royhome-net /var/app/royhome-net.last
 ssh $RELEASE_HOST  git clone https://github.com/kwr760/royhome-net.git /var/app/royhome-net
 ssh $RELEASE_HOST  'cd /var/app/royhome-net ; yarn install'
