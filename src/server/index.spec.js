@@ -97,6 +97,7 @@ describe('server/index', () => {
     jest.isolateModules(() => {
       const { default: env } = require('../config');
       const { default: dev } = require('../config/env/dev');
+      env.mode = dev.mode;
       env.server = dev.server;
 
       // Act
