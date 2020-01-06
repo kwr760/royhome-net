@@ -1,6 +1,7 @@
 import LOG_LEVELS from '../../util/logger/levels';
 
-const currentHost = global.origin || 'https://royk.us';
+// const currentHost = global.origin || 'https://royk.us';
+const currentHost = 'https://royk.us';
 
 const env = (host) => ({
   mode: 'production',

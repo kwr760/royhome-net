@@ -69,11 +69,11 @@ describe('config/index', () => {
           appName: 'roy-home',
           auth0: {
             audience: 'http://royk.us',
-            callbackUrl: 'http://localhost:3000',
+            callbackUrl: 'http://localhost:3001',
             clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
             domain: 'royk.auth0.com',
           },
-          host: 'http://localhost:3000',
+          host: 'http://localhost:3001',
           mode: 'development',
           root: expect.stringContaining('/royhome-net'),
           server: {
