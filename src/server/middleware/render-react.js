@@ -53,6 +53,7 @@ const renderReact = (req, res) => {
     <!DOCTYPE html>
     <html>
       <head>
+      <link rel="shortcut icon" href="/dist/web/favicon.ico">
       ${webExtractor.getLinkTags()}
       ${webExtractor.getStyleTags()}
       <base href="/" >
