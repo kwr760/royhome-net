@@ -20,7 +20,7 @@ import startDevServer from './middleware/start-dev-server';
 import generate from './routes/generate';
 import routes from './routes';
 
-const publicDir = path.resolve(env.root, '.');
+const publicDir = path.resolve(env.root);
 
 const app = express();
 
