@@ -90,12 +90,6 @@ module.exports = {
       functions: 0,
       lines: 10,
     },
-    './src/server/middleware/start-dev-server.js': {
-      statements: 25,
-      branches: 0,
-      functions: 0,
-      lines: 25,
-    },
   },
   reporters: [
     'default', [

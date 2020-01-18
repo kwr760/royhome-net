@@ -15,7 +15,6 @@ import notFound from './middleware/not-found';
 import renderReact from './middleware/render-react';
 import startHttpServer from './middleware/start-http';
 import startHttpsServer from './middleware/start-https';
-import startDevServer from './middleware/start-dev-server';
 
 import generate from './routes/generate';
 import routes from './routes';
@@ -48,10 +47,6 @@ app.get('/*', renderReact);
 
 app.use(handleError);
 app.use(notFound);
-
-if (env.mode !== 'production') {
-  app.use(startDevServer);
-}
 
 if (env.server.https) {
   startHttpsServer(app, 443);
