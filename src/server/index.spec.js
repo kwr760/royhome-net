@@ -13,7 +13,6 @@ import redirectInsecure from './middleware/redirect-insecure';
 import renderReact from './middleware/render-react';
 import startHttpServer from './middleware/start-http';
 import startHttpsServer from './middleware/start-https';
-import startDevServer from './middleware/start-dev-server';
 
 jest.mock('express');
 jest.mock('cors');
@@ -105,7 +104,6 @@ describe('server/index', () => {
 
       // Assert
       expect(startHttpServer).toHaveBeenCalledWith(app, 3000);
-      expect(mockExpress.use).toHaveBeenCalledWith(startDevServer);
     });
   });
 
