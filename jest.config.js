@@ -84,12 +84,6 @@ module.exports = {
       functions: 100,
       lines: 100,
     },
-    './src/server/middleware/render-react.js': {
-      statements: 10,
-      branches: 100,
-      functions: 0,
-      lines: 10,
-    },
   },
   reporters: [
     'default', [
