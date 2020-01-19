@@ -1,4 +1,5 @@
 import auth0 from 'auth0-js';
+import Cookies from 'universal-cookie';
 
 import env from '../../../config';
 import hasNeededRole from '../../../util/auth0/has-needed-role';
@@ -39,6 +40,8 @@ export default class Auth {
 
   useHashToSetSession = (err, authResult) => {
     if (authResult && authResult.accessToken && authResult.idToken) {
+      const cookies = new Cookies();
+      cookies.set('jwtPayload', authResult.idTokenPayload, { maxAge: 60 * 60 * 24 });
       this.setSession(authResult);
       const redirectLocation = localStorage.getItem(REDIRECT_ON_LOGIN) === 'undefined' ? '/' : JSON.parse(localStorage.getItem(REDIRECT_ON_LOGIN));
       this.history.push(redirectLocation);

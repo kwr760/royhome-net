@@ -15,7 +15,7 @@
     "url": "https://github.com/kwr760/royhome-net/issues"
   },
   "scripts": {
-    "start:dev": "nodemon src/server/index.js",
+    "start:dev": "RELEASE_ENV=dev nodemon src/server/index.js",
     "build:dev": "yarn clean && webpack --env dev --watch",
     "test": "eslint src && jest --colors",
     "clean": "rimraf dist build log/*.log",
@@ -50,6 +50,7 @@
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
+    "universal-cookie": "^4.0.3",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2"
   },
