@@ -11,6 +11,8 @@ import { renderToString } from 'react-dom/server';
 
 // import App from '../../client/components/App';
 import env from '../../config';
+import fs from "fs";
+import { INTERNAL_SERVER_ERROR } from 'http-status-codes';
 
 // const renderStaticRouter = (req, res) => {
 //   const context = {};
@@ -46,24 +48,22 @@ const renderReact = (req, res) => {
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
   const jsx = webExtractor.collectChunks(<App />);
 
-  const html = renderToString(jsx);
+  const markup = renderToString(jsx);
 
-  // res.set('content-type', 'text/html');
-  return res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-      <link rel="shortcut icon" href="/dist/web/favicon.ico">
-      ${webExtractor.getLinkTags()}
-      ${webExtractor.getStyleTags()}
-      <base href="/" >
-      </head>
-      <body>
-        <div id="main">${html}</div>
-        ${webExtractor.getScriptTags()}
-      </body>
-    </html>
-  `);
+  const indexFile = path.resolve('./src/client/index.html');
+  fs.readFile(indexFile, 'utf8', (err, data) => {
+    if (err) {
+      console.error(`The following error: ${err}`);
+      return res.sendStatus(INTERNAL_SERVER_ERROR);
+    }
+
+    const responseHtml = data
+      .replace('{markup}', markup)
+      .replace('{linkTags}', webExtractor.getLinkTags())
+      .replace('{styleTags}', webExtractor.getStyleTags())
+      .replace('{scriptTags}', webExtractor.getScriptTags());
+    return res.send(responseHtml);
+  });
 };
 
 export default renderReact;
