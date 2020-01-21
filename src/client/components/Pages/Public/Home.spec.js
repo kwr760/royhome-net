@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import Home from './Home';
-import AuthContext from '../../Auth/AuthContext';
+import Context from '../../Context';
 
 jest.mock('../../Auth/Auth');
 
@@ -20,9 +20,9 @@ describe('client/components/Pages/Public/Home', () => {
 
     // Act
     const { getByText } = render(
-      <AuthContext.Provider value={auth}>
+      <Context.Provider value={auth}>
         <Home location={location} />
-      </AuthContext.Provider>,
+      </Context.Provider>,
     );
 
     // Assert
@@ -44,9 +44,9 @@ describe('client/components/Pages/Public/Home', () => {
     // Act
     const { getByText } = render(
       <Router>
-        <AuthContext.Provider value={auth}>
+        <Context.Provider value={auth}>
           <Home location={location} />
-        </AuthContext.Provider>
+        </Context.Provider>
       </Router>,
     );
 
@@ -68,9 +68,9 @@ describe('client/components/Pages/Public/Home', () => {
     // Act
     const { getByText } = render(
       <Router>
-        <AuthContext.Provider value={auth}>
+        <Context.Provider value={auth}>
           <Home location={location} />
-        </AuthContext.Provider>
+        </Context.Provider>
       </Router>,
     );
 

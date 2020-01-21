@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Auth from './Auth/Auth';
-import AuthContext from './Auth/AuthContext';
+import Context from './Context';
 import Nav from './Pages/Nav';
 import Home from './Pages/Public/Home';
 import Resume from './Pages/Public/Resume';
@@ -31,7 +31,7 @@ function App({ history }) {
   }
 
   return (
-    <AuthContext.Provider value={auth}>
+    <Context.Provider value={auth}>
       <Nav />
       <div className="body">
         <Route
@@ -48,7 +48,7 @@ function App({ history }) {
           userRole="engineer"
         />
       </div>
-    </AuthContext.Provider>
+    </Context.Provider>
   );
 }
 

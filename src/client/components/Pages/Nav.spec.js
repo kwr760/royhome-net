@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import Nav from './Nav';
-import AuthContext from '../Auth/AuthContext';
+import Context from '../Context';
 
 jest.mock('../Auth/Auth');
 
@@ -19,9 +19,9 @@ describe('client/components/Pages/Nav', () => {
     // Act
     const { getByText } = render(
       <Router>
-        <AuthContext.Provider value={auth}>
+        <Context.Provider value={auth}>
           <Nav />
-        </AuthContext.Provider>
+        </Context.Provider>
       </Router>,
     );
 
