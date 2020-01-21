@@ -2,10 +2,10 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import AuthContext from '../../Auth/AuthContext';
+import Context from '../../Context';
 
 const Home = ({ location }) => {
-  const { isAuthenticated, login, handleAuthentication } = useContext(AuthContext);
+  const { isAuthenticated, login, handleAuthentication } = useContext(Context);
 
   useEffect(() => {
     if (/access_token|id_token|error/.test(location.hash)) {

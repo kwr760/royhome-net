@@ -7,7 +7,7 @@ import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Private from './Private';
-import AuthContext from '../../Auth/AuthContext';
+import Context from '../../Context';
 
 jest.mock('axios', () => ({
   get: jest.fn().mockResolvedValue({ data: {} }),
@@ -28,9 +28,9 @@ describe('client/components/Pages/Private/Private', () => {
     // Arrange
     const { getByText } = render(
       <Router>
-        <AuthContext.Provider value={auth}>
+        <Context.Provider value={auth}>
           <Private />
-        </AuthContext.Provider>
+        </Context.Provider>
       </Router>,
     );
 
@@ -44,9 +44,9 @@ describe('client/components/Pages/Private/Private', () => {
     // Arrange
     const { getByText } = render(
       <Router>
-        <AuthContext.Provider value={auth}>
+        <Context.Provider value={auth}>
           <Private />
-        </AuthContext.Provider>
+        </Context.Provider>
       </Router>,
     );
 

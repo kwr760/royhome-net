@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import PrivateRoute from './PrivateRoute';
-import AuthContext from '../Auth/AuthContext';
+import Context from '../Context';
 
 jest.mock('../Auth/Auth');
 
@@ -19,9 +19,9 @@ describe('client/components/Pages/PrivateRoute', () => {
     // Act
     const { getByText } = render(
       <Router>
-        <AuthContext.Provider value={auth}>
+        <Context.Provider value={auth}>
           <PrivateRoute component={mockComponent} userRole="admin" />
-        </AuthContext.Provider>
+        </Context.Provider>
       </Router>,
     );
 
@@ -40,9 +40,9 @@ describe('client/components/Pages/PrivateRoute', () => {
     // Act
     const { getByText } = render(
       <Router>
-        <AuthContext.Provider value={auth}>
+        <Context.Provider value={auth}>
           <PrivateRoute component={mockComponent} userRole="admin" />
-        </AuthContext.Provider>
+        </Context.Provider>
       </Router>,
     );
 
@@ -62,9 +62,9 @@ describe('client/components/Pages/PrivateRoute', () => {
     // Act
     render(
       <Router>
-        <AuthContext.Provider value={auth}>
+        <Context.Provider value={auth}>
           <PrivateRoute component={mockComponent} userRole="admin" />
-        </AuthContext.Provider>
+        </Context.Provider>
       </Router>,
     );
 

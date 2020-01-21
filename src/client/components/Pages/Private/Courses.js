@@ -3,10 +3,10 @@ import axios from 'axios';
 
 import env from '../../../../config';
 import Logger from '../../../logger';
-import AuthContext from '../../Auth/AuthContext';
+import Context from '../../Context';
 
 const Courses = () => {
-  const { getAccessToken } = useContext(AuthContext);
+  const { getAccessToken } = useContext(Context);
   const [courses, setCourses] = useState([]);
   const [message, setMessage] = useState('');
 

@@ -7,7 +7,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 import Courses from './Courses';
 import Logger from '../../../logger';
-import AuthContext from '../../Auth/AuthContext';
+import Context from '../../Context';
 
 jest.mock('axios', () => ({
   get: jest.fn().mockResolvedValue({ data: {} }),
@@ -49,9 +49,9 @@ describe('client/components/Pages/Private/Courses', () => {
     // Arrange
     const { getByText } = render(
       <Router>
-        <AuthContext.Provider value={auth}>
+        <Context.Provider value={auth}>
           <Courses />
-        </AuthContext.Provider>
+        </Context.Provider>
       </Router>,
     );
 
@@ -67,9 +67,9 @@ describe('client/components/Pages/Private/Courses', () => {
     // Arrange
     const { getByText } = render(
       <Router>
-        <AuthContext.Provider value={auth}>
+        <Context.Provider value={auth}>
           <Courses />
-        </AuthContext.Provider>
+        </Context.Provider>
       </Router>,
     );
 

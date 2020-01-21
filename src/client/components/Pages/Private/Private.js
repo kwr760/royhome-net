@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
 import env from '../../../../config';
-import AuthContext from '../../Auth/AuthContext';
+import Context from '../../Context';
 
 const Private = () => {
-  const { getAccessToken } = useContext(AuthContext);
+  const { getAccessToken } = useContext(Context);
   const [message, setMessage] = useState('');
 
   useEffect(() => {

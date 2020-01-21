@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import AuthContext from '../Auth/AuthContext';
+import Context from '../Context';
 
 const PrivateRoute = ({ component: Component, userRole, ...rest }) => {
-  const { isAuthenticated, userHasRole, login } = useContext(AuthContext);
+  const { isAuthenticated, userHasRole, login } = useContext(Context);
 
   return (
     <Route
