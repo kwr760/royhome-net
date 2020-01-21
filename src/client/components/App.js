@@ -3,14 +3,14 @@ import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Auth from './Auth/Auth';
-import Home from './Pages/Public/Home';
-import Profile from './Pages/Private/Profile';
+import AuthContext from './Auth/AuthContext';
 import Nav from './Pages/Nav';
+import Home from './Pages/Public/Home';
 import Resume from './Pages/Public/Resume';
+import PrivateRoute from './Pages/PrivateRoute';
+import Profile from './Pages/Private/Profile';
 import Private from './Pages/Private/Private';
 import Courses from './Pages/Private/Courses';
-import PrivateRoute from './Pages/PrivateRoute';
-import AuthContext from './Auth/AuthContext';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
