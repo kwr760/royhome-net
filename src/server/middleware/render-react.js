@@ -12,10 +12,11 @@ const renderReact = (req, res) => {
   const webStats = path.resolve(env.root, './dist/web/loadable-stats.json');
 
   const nodeExtractor = new ChunkExtractor({ statsFile: nodeStats });
-  const { default: App } = nodeExtractor.requireEntrypoint();
+  const { default: Main } = nodeExtractor.requireEntrypoint();
+  const context = {};
 
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
-  const jsx = webExtractor.collectChunks(<App />);
+  const jsx = webExtractor.collectChunks(<Main url={req.url} context={context} />);
 
   const markup = renderToString(jsx);
 
@@ -27,7 +28,7 @@ const renderReact = (req, res) => {
     .replace('{linkTags}', webExtractor.getLinkTags())
     .replace('{styleTags}', webExtractor.getStyleTags())
     .replace('{scriptTags}', webExtractor.getScriptTags());
-  return res.send(responseHtml);
+  res.send(responseHtml);
 };
 
 export default renderReact;
