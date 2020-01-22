@@ -1,8 +1,6 @@
-import path from 'path';
 import { ChunkExtractor } from '@loadable/server';
 import renderReact from './render-react';
 
-jest.mock('path');
 jest.mock('@loadable/server');
 
 describe('server/middleware/render-react', () => {
@@ -11,8 +9,8 @@ describe('server/middleware/render-react', () => {
     const req = {};
     const res = {
       send: jest.fn(),
+      sendStatus: jest.fn(),
     };
-    path.resolve.mockImplementation(() => './__fixtures__/stats.json');
     ChunkExtractor.mockImplementation(() => ({
       requireEntrypoint: jest.fn(() => ({ default: {} })),
       collectChunks: jest.fn(() => '<div>Chunks</div>'),
@@ -25,20 +23,21 @@ describe('server/middleware/render-react', () => {
     renderReact(req, res);
 
     // Assert
-    expect(res.send).toHaveBeenCalledWith(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-      <link rel="shortcut icon" href="/dist/web/favicon.ico">
-      <div>Links</div>
-      <div>Styles</div>
-      <base href="/" >
-      </head>
-      <body>
-        <div id="main">&lt;div&gt;Chunks&lt;/div&gt;</div>
-        <div>Scripts</div>
-      </body>
-    </html>
-  `);
+    expect(res.send).toHaveBeenCalledWith(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Roy Home</title>
+  <base href="/" >
+  <link rel="shortcut icon" href="/dist/web/favicon.ico">
+  <div>Links</div>
+  <div>Styles</div>
+</head>
+<body>
+<div id="main">&lt;div&gt;Chunks&lt;/div&gt;</div>
+<div>Scripts</div>
+</body>
+</html>
+`);
   });
 });
