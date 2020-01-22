@@ -31,8 +31,10 @@ export default class Auth {
   }
 
   loadFromJwt = (jwt) => {
-    if (jwt) {
+    if (jwt.expiresAt) {
       this.expiresAt = jwt.expiresAt;
+    }
+    if (jwt.data) {
       this.data = jwt.data;
     }
   };

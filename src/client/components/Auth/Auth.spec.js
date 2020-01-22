@@ -27,6 +27,34 @@ describe('client/components/Pages/Nav', () => {
     expect(test.auth0).not.toBeNull();
     expect(test.history).toEqual(history);
   });
+  it('loadFromJwt', () => {
+    // Arrange
+    const test = new Auth(history);
+    const jwt = {
+      expiresAt: 100,
+      data: {
+        field: 'data',
+      },
+    };
+    const expected = { ...test, ...jwt };
+
+    // Act
+    test.loadFromJwt(jwt);
+
+    // Assert
+    expect(test).toEqual(expected);
+  });
+  it('loadFromJwt - empty jwt', () => {
+    // Arrange
+    const test = new Auth(history);
+    const expected = { ...test };
+
+    // Act
+    test.loadFromJwt({});
+
+    // Assert
+    expect(test).toEqual(expected);
+  });
   it('login', () => {
     // Arrange
     const test = new Auth(history);
