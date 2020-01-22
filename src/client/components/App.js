@@ -24,7 +24,7 @@ function App({ history }) {
 
   useEffect(() => {
     auth.renewToken(() => setTokenRenewalComplete(true));
-  }, []);
+  }, [auth]);
 
   if (!tokenRenewalComplete) {
     return <div className="container-fluid">Loading...</div>;

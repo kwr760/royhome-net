@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Roy Home</title>
-    </head>
-    <body>
-        <div id="root"></div>
-    </body>
+<head>
+  <meta charset="utf-8" />
+  <title>Roy Home</title>
+  <base href="/" >
+  <link rel="shortcut icon" href="/dist/web/favicon.ico">
+  {linkTags}
+  {styleTags}
+</head>
+<body>
+<div id="main">{markup}</div>
+{scriptTags}
+</body>
 </html>
