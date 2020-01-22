@@ -34,8 +34,8 @@ describe('server/middleware/render-react', () => {
   <div>Styles</div>
 </head>
 <body>
-<div id="main">&lt;div&gt;Chunks&lt;/div&gt;</div>
-<div>Scripts</div>
+  <div id="main">&lt;div&gt;Chunks&lt;/div&gt;</div>
+  <div>Scripts</div>
 </body>
 </html>
 `);
