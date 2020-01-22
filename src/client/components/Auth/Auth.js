@@ -30,6 +30,13 @@ export default class Auth {
     this.auth0 = new auth0.WebAuth(webConfig);
   }
 
+  loadFromJwt = (jwt) => {
+    if (jwt) {
+      this.expiresAt = jwt.expiresAt;
+      this.data = jwt.data;
+    }
+  };
+
   login = () => {
     this.auth0.authorize();
     localStorage.setItem(
