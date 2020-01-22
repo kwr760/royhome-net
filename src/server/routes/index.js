@@ -15,6 +15,7 @@ const routes = [
     path: '/private',
     handler: getPrivateHandler,
     authenticate: true,
+    fetchData: { field: 'test value' },
   },
   {
     method: 'get',
