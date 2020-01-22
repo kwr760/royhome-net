@@ -12,7 +12,7 @@ describe('server/middleware/render-react', () => {
       sendStatus: jest.fn(),
     };
     ChunkExtractor.mockImplementation(() => ({
-      requireEntrypoint: jest.fn(() => ({ default: {} })),
+      requireEntrypoint: jest.fn(() => ({ default: jest.fn() })),
       collectChunks: jest.fn(() => '<div>Chunks</div>'),
       getLinkTags: jest.fn(() => '<div>Links</div>'),
       getStyleTags: jest.fn(() => '<div>Styles</div>'),
@@ -34,8 +34,8 @@ describe('server/middleware/render-react', () => {
   <div>Styles</div>
 </head>
 <body>
-<div id="main">&lt;div&gt;Chunks&lt;/div&gt;</div>
-<div>Scripts</div>
+  <div id="main">&lt;div&gt;Chunks&lt;/div&gt;</div>
+  <div>Scripts</div>
 </body>
 </html>
 `);

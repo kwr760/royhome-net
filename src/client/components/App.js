@@ -53,8 +53,12 @@ function App({ history }) {
 }
 
 App.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  history: PropTypes.object.isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.shape.isRequired,
+  }).isRequired,
+};
+
+App.defaultProps = {
 };
 
 export default App;
