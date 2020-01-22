@@ -1,12 +1,18 @@
 import React from 'react';
-import { StaticRouter, Route } from 'react-router-dom';
+import { StaticRouter as Router, Route } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
 import App from './components/App';
 
-const Main = (req, context) => (
-  <StaticRouter location={req.url} context={context}>
+const Main = ({ url, context }) => (
+  <Router location={url} context={context}>
     <Route component={App} />
-  </StaticRouter>
+  </Router>
 );
+
+Main.propTypes = {
+  url: PropTypes.string.isRequired,
+  context: PropTypes.shape.isRequired,
+};
 
 export default Main;
