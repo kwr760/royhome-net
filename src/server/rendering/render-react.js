@@ -4,8 +4,10 @@ import fs from 'fs';
 import { ChunkExtractor } from '@loadable/server';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import serialize from 'serialize-javascript';
 
 import env from '../../config';
+import populateContext from './populate-context';
 
 const renderReact = (req, res) => {
   const nodeStats = path.resolve(env.root, './dist/node/loadable-stats.json');
@@ -13,9 +15,8 @@ const renderReact = (req, res) => {
 
   const nodeExtractor = new ChunkExtractor({ statsFile: nodeStats });
   const { default: Main } = nodeExtractor.requireEntrypoint();
-  const context = {};
-
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
+  const context = populateContext(req);
   const jsx = webExtractor.collectChunks(<Main url={req.url} context={context} />);
 
   const markup = renderToString(jsx);
@@ -27,7 +28,8 @@ const renderReact = (req, res) => {
     .replace('{markup}', markup)
     .replace('{linkTags}', webExtractor.getLinkTags())
     .replace('{styleTags}', webExtractor.getStyleTags())
-    .replace('{scriptTags}', webExtractor.getScriptTags());
+    .replace('{scriptTags}', webExtractor.getScriptTags())
+    .replace('{initialData}', serialize(context));
   res.send(responseHtml);
 };
 

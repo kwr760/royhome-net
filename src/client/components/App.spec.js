@@ -22,9 +22,12 @@ describe('src/client/components/App', () => {
   it('renders without crashing', () => {
     // Arrange/Act
     const history = createMemoryHistory();
+    const context = {
+      jwt: {},
+    };
     const { container } = render(
       <Router>
-        <App history={history} />
+        <App history={history} context={context} />
       </Router>,
     );
 

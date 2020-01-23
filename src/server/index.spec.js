@@ -10,7 +10,7 @@ import httpContext from 'express-http-context';
 import handleError from './middleware/handle-error';
 import notFound from './middleware/not-found';
 import redirectInsecure from './middleware/redirect-insecure';
-import renderReact from './middleware/render-react';
+import renderReact from './rendering/render-react';
 import startHttpServer from './middleware/start-http';
 import startHttpsServer from './middleware/start-https';
 

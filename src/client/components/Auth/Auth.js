@@ -3,10 +3,8 @@ import Cookies from 'universal-cookie';
 
 import env from '../../../config';
 import hasNeededRole from '../../../util/auth0/has-needed-role';
-import { TOKEN_URL } from '../../../util/auth0/constants';
+import { TOKEN_URL, REDIRECT_ON_LOGIN, COOKIE_JWT_PAYLOAD } from '../../../util/auth0/constants';
 import Logger from '../../logger';
-
-const REDIRECT_ON_LOGIN = 'redirect_on_login';
 
 export default class Auth {
   accessToken = null;
@@ -15,9 +13,7 @@ export default class Auth {
 
   expiresAt = null;
 
-  constructor(history) {
-    this.history = history;
-
+  constructor() {
     const webConfig = {
       domain: env.auth0.domain,
       clientID: env.auth0.clientId,
@@ -30,12 +26,15 @@ export default class Auth {
     this.auth0 = new auth0.WebAuth(webConfig);
   }
 
-  loadFromJwt = (jwt) => {
-    if (jwt.expiresAt) {
-      this.expiresAt = jwt.expiresAt;
+  set = ({ history, expiresAt, data }) => {
+    if (history) {
+      this.history = history;
     }
-    if (jwt.data) {
-      this.data = jwt.data;
+    if (expiresAt) {
+      this.expiresAt = expiresAt;
+    }
+    if (data) {
+      this.data = data;
     }
   };
 
@@ -49,8 +48,6 @@ export default class Auth {
 
   useHashToSetSession = (err, authResult) => {
     if (authResult && authResult.accessToken && authResult.idToken) {
-      const cookies = new Cookies();
-      cookies.set('jwtPayload', authResult.idTokenPayload, { maxAge: 60 * 60 * 24 });
       this.setSession(authResult);
       const redirectLocation = localStorage.getItem(REDIRECT_ON_LOGIN) === 'undefined' ? '/' : JSON.parse(localStorage.getItem(REDIRECT_ON_LOGIN));
       this.history.push(redirectLocation);
@@ -66,6 +63,8 @@ export default class Auth {
   };
 
   setSession = (authResult) => {
+    const cookies = new Cookies();
+    cookies.set(COOKIE_JWT_PAYLOAD, authResult.idTokenPayload, { maxAge: 60 * 60 * 24 * 7 });
     this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
     this.accessToken = authResult.accessToken;
     this.data = authResult.idTokenPayload[TOKEN_URL];
@@ -82,6 +81,8 @@ export default class Auth {
       clientID: env.auth0.clientId,
       returnTo: env.host,
     });
+    const cookies = new Cookies();
+    cookies.remove(COOKIE_JWT_PAYLOAD);
   };
 
   getAccessToken = () => {

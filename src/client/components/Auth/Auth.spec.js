@@ -21,43 +21,46 @@ describe('client/components/Pages/Nav', () => {
 
   it('constructor', () => {
     // Arrange/Act
-    const test = new Auth(history);
+    const test = new Auth();
 
     // Assert
     expect(test.auth0).not.toBeNull();
-    expect(test.history).toEqual(history);
   });
   it('loadFromJwt', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
     const jwt = {
       expiresAt: 100,
       data: {
         field: 'data',
       },
+      history: {
+        route: 'test/me',
+      },
     };
     const expected = { ...test, ...jwt };
 
     // Act
-    test.loadFromJwt(jwt);
+    test.set(jwt);
 
     // Assert
     expect(test).toEqual(expected);
   });
-  it('loadFromJwt - empty jwt', () => {
+  it('set - empty jwt', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
     const expected = { ...test };
 
     // Act
-    test.loadFromJwt({});
+    test.set({});
 
     // Assert
     expect(test).toEqual(expected);
   });
   it('login', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
+    test.set({ history });
 
     // Act
     test.login();
@@ -67,7 +70,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('handleAuthentication', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
 
     // Act
     test.handleAuthentication();
@@ -77,7 +80,8 @@ describe('client/components/Pages/Nav', () => {
   });
   it('useHashToSetSession - authResult', () => {
     // Arrange
-    const test = new Auth(['/']);
+    const test = new Auth();
+    test.set({ history: ['/'] });
 
     // Act
     test.useHashToSetSession('', {
@@ -93,7 +97,8 @@ describe('client/components/Pages/Nav', () => {
   });
   it('useHashToSetSession - authResult - localstorage', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
+    test.set({ history });
     localStorage.setItem('redirect_on_login', JSON.stringify('/redirect'));
 
     // Act
@@ -111,7 +116,8 @@ describe('client/components/Pages/Nav', () => {
   it('useHashToSetSession - error', () => {
     // Arrange
     const err = { message: 'There was an error' };
-    const test = new Auth(history);
+    const test = new Auth();
+    test.set({ history });
 
     // Act
     test.useHashToSetSession(err);
@@ -123,7 +129,8 @@ describe('client/components/Pages/Nav', () => {
   it('useHashToSetSession - error - do not push', () => {
     // Arrange
     const err = { message: 'There was an error' };
-    const test = new Auth(['/']);
+    const test = new Auth();
+    test.set({ history: ['/'] });
 
     // Act
     test.useHashToSetSession(err);
@@ -134,7 +141,8 @@ describe('client/components/Pages/Nav', () => {
   });
   it('useHashToSetSession - no arguments', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
+    test.set({ history });
 
     // Act
     test.useHashToSetSession();
@@ -145,7 +153,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('setSession', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
     test.scheduleTokenRenewal = jest.fn();
 
     // Act
@@ -162,7 +170,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('isAuthenticated', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
 
     // Act
     const result = test.isAuthenticated();
@@ -172,7 +180,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('logout', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
 
     // Act
     test.logout();
@@ -186,7 +194,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('getAccessToken', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
     test.accessToken = 'AccessToken';
 
     // Act
@@ -197,7 +205,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('getAccessToken - throws Error', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
 
     // Act/Assert
     try {
@@ -209,7 +217,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('getProfile', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
     test.accessToken = 'AccessToken';
     const callback = jest.fn(() => {});
     const err = 'Error message';
@@ -232,7 +240,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('userHasRole - returns false', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
 
     // Act
     const result = test.userHasRole('engineer');
@@ -242,7 +250,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('userHasRole - is owner returns true', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
     test.data = {
       role: 'owner',
     };
@@ -255,7 +263,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('renewToken - resulting in known error', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
     test.setSession = jest.fn();
 
     const callback = jest.fn();
@@ -276,7 +284,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('renewToken - resulting in error', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
     test.setSession = jest.fn();
 
     const callback = jest.fn();
@@ -297,7 +305,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('renewToken - success', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
     test.setSession = jest.fn();
     const callback = undefined;
     const err = undefined;
@@ -318,7 +326,7 @@ describe('client/components/Pages/Nav', () => {
   });
   it('scheduleTokenRenewal', () => {
     // Arrange
-    const test = new Auth(history);
+    const test = new Auth();
 
     // Act
     test.scheduleTokenRenewal();

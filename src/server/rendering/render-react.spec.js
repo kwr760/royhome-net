@@ -3,10 +3,12 @@ import renderReact from './render-react';
 
 jest.mock('@loadable/server');
 
-describe('server/middleware/render-react', () => {
+describe('server/rendering/render-react', () => {
   it('should return a html page', () => {
     // Arrange
-    const req = {};
+    const req = {
+      cookies: {},
+    };
     const res = {
       send: jest.fn(),
       sendStatus: jest.fn(),
@@ -32,6 +34,7 @@ describe('server/middleware/render-react', () => {
   <link rel="shortcut icon" href="/dist/web/favicon.ico">
   <div>Links</div>
   <div>Styles</div>
+  <script>window.__INITIAL_DATA__ = {"jwt":{"expiresAt":null,"data":undefined},"data":{}}</script>
 </head>
 <body>
   <div id="main">&lt;div&gt;Chunks&lt;/div&gt;</div>
