@@ -35,22 +35,25 @@ describe('client/components/Pages/Nav', () => {
       data: {
         field: 'data',
       },
+      history: {
+        route: 'test/me',
+      },
     };
     const expected = { ...test, ...jwt };
 
     // Act
-    test.loadFromJwt(jwt);
+    test.set(jwt);
 
     // Assert
     expect(test).toEqual(expected);
   });
-  it('loadFromJwt - empty jwt', () => {
+  it('set - empty jwt', () => {
     // Arrange
     const test = new Auth(history);
     const expected = { ...test };
 
     // Act
-    test.loadFromJwt({});
+    test.set({});
 
     // Assert
     expect(test).toEqual(expected);

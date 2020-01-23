@@ -18,9 +18,12 @@ import './App.css';
 /**
  * @return {string}
  */
-function App({ history }) {
-  const [tokenRenewalComplete, setTokenRenewalComplete] = useState(false);
-  const [auth] = useState(new Auth(history));
+function App({ history, context }) {
+  const [auth] = useState(new Auth());
+  const { jwt } = context;
+  const { expiresAt, data } = jwt;
+  auth.set({ history, expiresAt, data });
+  const [tokenRenewalComplete, setTokenRenewalComplete] = useState(auth.isAuthenticated());
 
   useEffect(() => {
     auth.renewToken(() => setTokenRenewalComplete(true));
@@ -56,9 +59,16 @@ App.propTypes = {
   history: PropTypes.shape({
     location: PropTypes.shape.isRequired,
   }).isRequired,
+  context: PropTypes.shape({
+    jwt: PropTypes.shape({
+      expiresAt: PropTypes.number,
+      data: PropTypes.shape(),
+    }),
+  }),
 };
 
 App.defaultProps = {
+  context: {},
 };
 
 export default App;
