@@ -4,39 +4,19 @@ import fs from 'fs';
 import { ChunkExtractor } from '@loadable/server';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { matchPath } from 'react-router-dom';
 import serialize from 'serialize-javascript';
 
 import env from '../../config';
-import routes from '../routes';
-import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from '../../util/auth0/constants';
+import populateContext from './populate-context';
 
-function populateContext(req, res, context) {
-  const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
-  const data = activeRoute.fetchData ? activeRoute.fetchData : { };
-  const jwt = req.cookies[COOKIE_JWT_PAYLOAD] ? JSON.parse(req.cookies[COOKIE_JWT_PAYLOAD]) : {};
-  Object.assign(context, {
-    jwt: {
-      expiresAt: jwt.exp * 1000,
-      data: jwt[TOKEN_URL],
-    },
-    data,
-  });
-}
-
-const renderReact = (req, res, next) => {
+const renderReact = (req, res) => {
   const nodeStats = path.resolve(env.root, './dist/node/loadable-stats.json');
   const webStats = path.resolve(env.root, './dist/web/loadable-stats.json');
 
   const nodeExtractor = new ChunkExtractor({ statsFile: nodeStats });
   const { default: Main } = nodeExtractor.requireEntrypoint();
-  const context = {};
-  if (populateContext(req, res, context)) {
-    next();
-    return;
-  }
-
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
+  const context = populateContext(req);
   const jsx = webExtractor.collectChunks(<Main url={req.url} context={context} />);
 
   const markup = renderToString(jsx);

@@ -3,7 +3,7 @@ import renderReact from './render-react';
 
 jest.mock('@loadable/server');
 
-describe('server/middleware/render-react', () => {
+describe('server/rendering/render-react', () => {
   it('should return a html page', () => {
     // Arrange
     const req = {
