@@ -3,11 +3,8 @@ import Cookies from 'universal-cookie';
 
 import env from '../../../config';
 import hasNeededRole from '../../../util/auth0/has-needed-role';
-import { TOKEN_URL } from '../../../util/auth0/constants';
+import { TOKEN_URL, REDIRECT_ON_LOGIN, COOKIE_JWT_PAYLOAD } from '../../../util/auth0/constants';
 import Logger from '../../logger';
-
-const REDIRECT_ON_LOGIN = 'redirect_on_login';
-const COOKIE_JWT_PAYLOAD = 'jwtPayload';
 
 export default class Auth {
   accessToken = null;
