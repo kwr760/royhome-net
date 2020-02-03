@@ -3,7 +3,7 @@ import Logger from '../../logger';
 
 jest.mock('auth0-js');
 
-describe('client/components/Pages/Nav', () => {
+describe('client/components/Auth/Auth', () => {
   let history;
 
   beforeEach(() => {

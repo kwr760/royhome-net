@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Roy Home</title>
-  <base href="/" >
-  <link rel="shortcut icon" href="/dist/web/favicon.ico">
-  {linkTags}
-  {styleTags}
-  <script>window.__INITIAL_DATA__ = {initialData}</script>
-</head>
-<body>
-  <div id="main">{markup}</div>
-  {scriptTags}
-</body>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8" />
+    <title>Roy Home</title>
+    <base href="/" >
+    <link rel="shortcut icon" href="/dist/web/favicon.ico">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    {linkTags}
+    {styleTags}
+    <script>window.__INITIAL_DATA__ = {initialData}</script>
+  </head>
+  <body class="h-100">
+    <div id="main" class="h-100">{markup}</div>
+    {scriptTags}
+  </body>
 </html>

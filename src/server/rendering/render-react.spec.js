@@ -26,20 +26,26 @@ describe('server/rendering/render-react', () => {
 
     // Assert
     expect(res.send).toHaveBeenCalledWith(`<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Roy Home</title>
-  <base href="/" >
-  <link rel="shortcut icon" href="/dist/web/favicon.ico">
-  <div>Links</div>
-  <div>Styles</div>
-  <script>window.__INITIAL_DATA__ = {"jwt":{"expiresAt":null,"data":undefined},"data":{}}</script>
-</head>
-<body>
-  <div id="main">&lt;div&gt;Chunks&lt;/div&gt;</div>
-  <div>Scripts</div>
-</body>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8" />
+    <title>Roy Home</title>
+    <base href="/" >
+    <link rel="shortcut icon" href="/dist/web/favicon.ico">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <div>Links</div>
+    <div>Styles</div>
+    <script>window.__INITIAL_DATA__ = {"jwt":{"expiresAt":null,"data":undefined},"data":{}}</script>
+  </head>
+  <body class="h-100">
+    <div id="main" class="h-100">&lt;div&gt;Chunks&lt;/div&gt;</div>
+    <div>Scripts</div>
+  </body>
 </html>
 `);
   });
