@@ -54,10 +54,11 @@
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
-    "universal-cookie": "^4.0.3",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
-    "serialize-javascript": "latest"
+    "reactstrap": "^8.4.1",
+    "serialize-javascript": "latest",
+    "universal-cookie": "^4.0.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

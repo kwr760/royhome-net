@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Context from '../Context';
 
-const Nav = () => {
+const NavBar = () => {
   const {
     isAuthenticated, login, logout, userHasRole,
   } = useContext(Context);
@@ -40,4 +40,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default NavBar;

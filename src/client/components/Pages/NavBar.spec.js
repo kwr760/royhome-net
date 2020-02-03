@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import Nav from './Nav';
+import NavBar from './NavBar';
 import Context from '../Context';
 
 jest.mock('../Auth/Auth');
 
-describe('client/components/Pages/Nav', () => {
+describe('client/components/Pages/NavBar', () => {
   it('should render with authentication and role', () => {
     // Arrange
     const auth = {
@@ -20,7 +20,7 @@ describe('client/components/Pages/Nav', () => {
     const { getByText } = render(
       <Router>
         <Context.Provider value={auth}>
-          <Nav />
+          <NavBar />
         </Context.Provider>
       </Router>,
     );
