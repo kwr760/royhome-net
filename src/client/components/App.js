@@ -16,6 +16,10 @@ import Courses from './Pages/Private/Courses';
 
 import './App.css';
 
+import initFontAwesome from './initFontAwesome';
+
+initFontAwesome();
+
 /**
  * @return {string}
  */
@@ -36,8 +40,8 @@ function App({ history, context }) {
 
   return (
     <Context.Provider value={auth}>
+      <NavBar />
       <div id="app" className="d-flex flex-column h-100">
-        <NavBar />
         <Container className="flex-grow-1 mt-5">
           <Route
             path="/"

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Context from '../Context';
 
 const NavBar = () => {
@@ -13,11 +14,17 @@ const NavBar = () => {
           <Link to="/">Kevin</Link>
         </li>
         <li>
-          <Link to="/resume">Resume</Link>
+          <Link to="/resume">
+            <FontAwesomeIcon icon="link" className="mr-3" />
+            Resume
+          </Link>
         </li>
         { isAuthenticated() && (
           <li>
-            <Link to="/profile">Profile</Link>
+            <Link to="/profile">
+              <FontAwesomeIcon icon="user" className="mr-3" />
+              Profile
+            </Link>
           </li>
         )}
         { isAuthenticated() && (
@@ -32,6 +39,7 @@ const NavBar = () => {
         )}
         <li>
           <button type="submit" onClick={isAuthenticated() ? logout : login}>
+            <FontAwesomeIcon icon="power-off" className="mr-3" />
             {isAuthenticated() ? 'Log Out' : 'Log In'}
           </button>
         </li>
