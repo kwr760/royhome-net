@@ -16,6 +16,10 @@ import Courses from './Pages/Private/Courses';
 
 import './App.css';
 
+import initFontAwesome from './initFontAwesome';
+
+initFontAwesome();
+
 /**
  * @return {string}
  */
