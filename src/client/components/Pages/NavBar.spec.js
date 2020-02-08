@@ -29,7 +29,7 @@ describe('client/components/Pages/NavBar', () => {
     );
 
     // Assert
-    getByText(/Kevin/);
+    getByText(/Home/);
     getByText(/Resume/);
     getByText(/Profile/);
     getByText(/Private/);

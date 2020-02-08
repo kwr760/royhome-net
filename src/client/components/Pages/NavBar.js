@@ -5,34 +5,35 @@ import {
   Collapse,
   Container,
   Navbar,
-  NavbarToggler,
+  // NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
   NavLink,
   Button,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
 } from 'reactstrap';
 
 import Context from '../Context';
 
 
 const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  const [isOpen] = useState(false);
   const {
     isAuthenticated, login, logout, userHasRole,
   } = useContext(Context);
-  const toggle = () => setIsOpen(!isOpen);
+  // const toggle = () => setIsOpen(!isOpen);
 
+  // <NavbarToggler onClick={toggle} />
   return (
     <div className="nav-container">
       <Navbar style={{ backgroundImage: 'linear-gradient(to bottom right, #1d3057, #828894)' }} expand="md">
         <Container>
           <NavbarBrand className="logo" />
-          <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
