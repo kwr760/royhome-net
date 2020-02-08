@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = () => (
-  <footer className="bg-light p-3 text-center" />
+  <footer style={{ backgroundImage: 'linear-gradient(to bottom right, #1d3057, #828894)' }} className="p-4" />
 );
 
 export default Footer;
