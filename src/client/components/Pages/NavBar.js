@@ -5,35 +5,28 @@ import {
   Collapse,
   Container,
   Navbar,
-  // NavbarToggler,
-  NavbarBrand,
+  NavbarToggler,
   Nav,
   NavItem,
   NavLink,
   Button,
-  // UncontrolledDropdown,
-  // DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem,
 } from 'reactstrap';
 
 import Context from '../Context';
 
 
 const NavBar = () => {
-  // const [isOpen, setIsOpen] = useState(false);
-  const [isOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const {
     isAuthenticated, login, logout, userHasRole,
   } = useContext(Context);
-  // const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => setIsOpen(!isOpen);
 
-  // <NavbarToggler onClick={toggle} />
   return (
     <div className="nav-container">
-      <Navbar style={{ backgroundImage: 'linear-gradient(to bottom right, #1d3057, #828894)' }} expand="md">
+      <Navbar style={{ backgroundImage: 'linear-gradient(to bottom right, #1d3057, #828894)' }} expand="sm">
         <Container>
-          <NavbarBrand className="logo" />
+          <NavbarToggler data-testid="navbar-toggler" onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
@@ -66,7 +59,7 @@ const NavBar = () => {
                   activeClassName="router-link-exact-active"
                 >
                   <FontAwesomeIcon icon="user" className="mr-3" />
-                      Profile
+                  Profile
                 </NavLink>
               </NavItem>
               )}
@@ -78,7 +71,7 @@ const NavBar = () => {
                   exact
                   activeClassName="router-link-exact-active"
                 >
-                      Private
+                  Private
                 </NavLink>
               </NavItem>
               )}
@@ -90,14 +83,18 @@ const NavBar = () => {
                   exact
                   activeClassName="router-link-exact-active"
                 >
-                      Courses
+                  Courses
                 </NavLink>
               </NavItem>
               )}
-              <Button type="submit" onClick={isAuthenticated() ? logout : login}>
-                <FontAwesomeIcon icon="power-off" className="mr-3" />
-                {isAuthenticated() ? 'Log Out' : 'Log In'}
-              </Button>
+            </Nav>
+            <Nav navbar>
+              <NavItem>
+                <Button type="submit" onClick={isAuthenticated() ? () => logout() : () => login()}>
+                  <FontAwesomeIcon icon="power-off" className="mr-3" />
+                  {isAuthenticated() ? 'Log out' : 'Log in'}
+                </Button>
+              </NavItem>
             </Nav>
           </Collapse>
         </Container>

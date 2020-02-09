@@ -1,5 +1,26 @@
+html {
+  font-size: 16px
+}
+
 body {
-  font-family: sans-serif;
+  font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0
+}
+
+a {
+  color: white
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 nav li a {
@@ -7,5 +28,42 @@ nav li a {
 }
 
 nav li a:hover {
-  background-color: #0c121f;
+  background-color: #6c757d;
+}
+
+.navbar .router-link-exact-active {
+  border-bottom: 2px solid white
+}
+.navbar-nav .nav-link:hover {
+  color: #000104
+}
+@media (min-width:576px) {
+  .container {
+    max-width: inherit
+  }
+}
+@media (min-width:992px) {
+  .container {
+    max-width: 960px
+  }
+}
+@media (min-width:1200px) {
+  .container {
+    max-width: 1140px
+  }
+}
+@media (max-width:767px) {
+  .nav-item .nav-link {
+    padding: 0 0 0 16px
+  }
+  .nav-item .nav-link.router-link-exact-active {
+    border-bottom: 0;
+    border-left: 2px solid white;
+    padding-left: 13px!important;
+    vertical-align: middle
+  }
+}
+
+pre {
+  width: 100%
 }
