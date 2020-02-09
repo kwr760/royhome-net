@@ -64,7 +64,12 @@ export default class Auth {
 
   setSession = (authResult) => {
     const cookies = new Cookies();
-    cookies.set(COOKIE_JWT_PAYLOAD, authResult.idTokenPayload, { maxAge: 60 * 60 * 24 * 7 });
+    const cookieAttributes = {
+      // httpOnly: true,
+      // sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 7,
+    };
+    cookies.set(COOKIE_JWT_PAYLOAD, authResult.idTokenPayload, cookieAttributes);
     this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
     this.accessToken = authResult.accessToken;
     this.data = authResult.idTokenPayload[TOKEN_URL];
