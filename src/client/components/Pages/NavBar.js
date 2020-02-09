@@ -90,14 +90,11 @@ const NavBar = () => {
             </Nav>
             <Nav navbar>
               <NavItem>
-                <Button type="submit" onClick={isAuthenticated() ? () => logout() : () => login() }>
+                <Button type="submit" onClick={isAuthenticated() ? () => logout() : () => login()}>
                   <FontAwesomeIcon icon="power-off" className="mr-3" />
-                  {isAuthenticated() ? 'Log Out' : 'Log In'}
+                  {isAuthenticated() ? 'Log out' : 'Log in'}
                 </Button>
               </NavItem>
-              {isAuthenticated() && (
-                  <Button onClick={() => logout({})}>
-              )}
             </Nav>
           </Collapse>
         </Container>
