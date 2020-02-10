@@ -60,6 +60,7 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
+    "react-svg-loader": "^3.0.3",
     "reactstrap": "^8.4.1",
     "serialize-javascript": "latest",
     "universal-cookie": "^4.0.3"
