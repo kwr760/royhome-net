@@ -7,6 +7,7 @@ import Auth from './Auth/Auth';
 import Context from './Context';
 import NavBar from './Pages/NavBar';
 import Footer from './Pages/Footer';
+import Loading from './Loading';
 import Home from './Pages/Public/Home';
 import Resume from './Pages/Public/Resume';
 import PrivateRoute from './Pages/PrivateRoute';
@@ -35,7 +36,7 @@ function App({ history, context }) {
   }, [auth]);
 
   if (!tokenRenewalComplete) {
-    return <div className="container-fluid">Loading...</div>;
+    return <Loading />;
   }
 
   return (
