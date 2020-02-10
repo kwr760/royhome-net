@@ -1,6 +1,7 @@
 import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const LoadablePlugin = require('@loadable/webpack-plugin');
 
@@ -59,6 +60,9 @@ const getConfig = (target) => ({
   plugins: [
     new LoadablePlugin(),
     new MiniCssExtractPlugin(),
+    new CopyWebpackPlugin([
+      { from: './images/favicon.ico' },
+    ]),
   ],
 });
 
