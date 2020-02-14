@@ -6,10 +6,12 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import serialize from 'serialize-javascript';
 
-import env from '../../config';
 import populateContext from './populate-context';
+import displayMessage from '../middleware/display-message';
+import env from '../../config';
 
 const renderReact = (req, res) => {
+  displayMessage(`Server render:  ${req.url}`);
   const nodeStats = path.resolve(env.root, './dist/node/loadable-stats.json');
   const webStats = path.resolve(env.root, './dist/web/loadable-stats.json');
 

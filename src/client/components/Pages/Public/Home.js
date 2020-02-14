@@ -1,25 +1,19 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Context from '../../Context';
+import { useAuth0 } from '../../../../util/auth0/context';
 
-const Home = ({ location }) => {
-  const { isAuthenticated, login, handleAuthentication } = useContext(Context);
-
-  useEffect(() => {
-    if (/access_token|id_token|error/.test(location.hash)) {
-      handleAuthentication();
-    }
-  }, [handleAuthentication, location.hash]);
+const Home = () => {
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   return (
     <div>
       <h1>This is the home page of Kevin Roy</h1>
-      {isAuthenticated() ? (
+      {isAuthenticated ? (
         <Link to="/profile">View profile</Link>
       ) : (
-        <button type="submit" onClick={login}>Login</button>
+        <button type="submit" onClick={() => loginWithRedirect()}>Log in</button>
       )}
     </div>
   );

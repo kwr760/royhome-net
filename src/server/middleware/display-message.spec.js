@@ -8,7 +8,7 @@ describe('server/middleware/display-message', () => {
     const msg = 'This is a test message';
 
     // Ar
-    displayMessage(msg)();
+    displayMessage(msg);
 
     // Assert
     expect(Logger.log).toHaveBeenCalledWith(msg);

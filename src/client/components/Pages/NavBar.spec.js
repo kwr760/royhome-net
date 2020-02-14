@@ -2,30 +2,27 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
 import NavBar from './NavBar';
-import Context from '../Context';
+import { Auth0Context } from '../../../util/auth0/context';
 import initFontAwesome from '../initFontAwesome';
 
 initFontAwesome();
-
-jest.mock('../Auth/Auth');
 
 describe('client/components/Pages/NavBar', () => {
   it('should render with authentication and role', () => {
     // Arrange
     const auth = {
-      isAuthenticated: jest.fn(() => true),
-      login: jest.fn(),
+      isAuthenticated: true,
       logout: jest.fn(),
       userHasRole: jest.fn(() => true),
     };
 
     // Act
     const { getByText, getByTestId } = render(
-      <Router>
-        <Context.Provider value={auth}>
+      <Auth0Context.Provider value={auth}>
+        <Router>
           <NavBar />
-        </Context.Provider>
-      </Router>,
+        </Router>
+      </Auth0Context.Provider>,
     );
 
     // Assert
@@ -44,19 +41,19 @@ describe('client/components/Pages/NavBar', () => {
   it('should render without authentication and role', () => {
     // Arrange
     const auth = {
-      isAuthenticated: jest.fn(() => false),
-      login: jest.fn(),
+      isAuthenticated: false,
+      loginWithRedirect: jest.fn(),
       logout: jest.fn(),
       userHasRole: jest.fn(() => true),
     };
 
     // Act
     const { getByText } = render(
-      <Router>
-        <Context.Provider value={auth}>
+      <Auth0Context.Provider value={auth}>
+        <Router>
           <NavBar />
-        </Context.Provider>
-      </Router>,
+        </Router>
+      </Auth0Context.Provider>,
     );
 
     // Assert
@@ -65,6 +62,6 @@ describe('client/components/Pages/NavBar', () => {
     getByText(/Log in/);
 
     fireEvent.click(getByText('Log in'));
-    expect(auth.login).toHaveBeenCalled();
+    expect(auth.loginWithRedirect).toHaveBeenCalled();
   });
 });

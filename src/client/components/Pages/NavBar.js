@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,14 +12,13 @@ import {
   Button,
 } from 'reactstrap';
 
-import Context from '../Context';
-
+import { useAuth0 } from '../../../util/auth0/context';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {
-    isAuthenticated, login, logout, userHasRole,
-  } = useContext(Context);
+    isAuthenticated, loginWithRedirect, logout, userHasRole,
+  } = useAuth0();
   const toggle = () => setIsOpen(!isOpen);
 
   return (
@@ -50,7 +49,7 @@ const NavBar = () => {
                   Resume
                 </NavLink>
               </NavItem>
-              { isAuthenticated() && (
+              { isAuthenticated && (
               <NavItem>
                 <NavLink
                   tag={RouterNavLink}
@@ -63,7 +62,7 @@ const NavBar = () => {
                 </NavLink>
               </NavItem>
               )}
-              { isAuthenticated() && (
+              { isAuthenticated && (
               <NavItem>
                 <NavLink
                   tag={RouterNavLink}
@@ -75,7 +74,7 @@ const NavBar = () => {
                 </NavLink>
               </NavItem>
               )}
-              { isAuthenticated() && userHasRole('engineer') && (
+              { isAuthenticated && userHasRole('engineer') && (
               <NavItem>
                 <NavLink
                   tag={RouterNavLink}
@@ -90,9 +89,9 @@ const NavBar = () => {
             </Nav>
             <Nav navbar>
               <NavItem>
-                <Button type="submit" onClick={isAuthenticated() ? () => logout() : () => login()}>
+                <Button type="submit" onClick={isAuthenticated ? () => logout() : () => loginWithRedirect()}>
                   <FontAwesomeIcon icon="power-off" className="mr-3" />
-                  {isAuthenticated() ? 'Log out' : 'Log in'}
+                  {isAuthenticated ? 'Log out' : 'Log in'}
                 </Button>
               </NavItem>
             </Nav>

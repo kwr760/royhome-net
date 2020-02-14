@@ -5,56 +5,51 @@ import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Profile from './Profile';
-import Context from '../../Context';
+import { Auth0Context } from '../../../../util/auth0/context';
 
 describe('client/components/Pages/Private/Profile', () => {
-  it('should render request', async () => {
+  it('should render profile', async () => {
     // Arrange
-    const error = undefined;
-    const profile = {
+    const user = {
       nickname: 'Nickname',
       picture: 'picture',
       arg: 'Loaded Arg',
     };
 
     const auth = {
-      getAccessToken: jest.fn(),
-      getProfile: jest.fn((cb) => cb(profile, error)),
+      loading: false,
+      user,
     };
 
     // Arrange
-    const { getByText } = render(
-      <Router>
-        <Context.Provider value={auth}>
+    const { getByText, getByAltText } = render(
+      <Auth0Context.Provider value={auth}>
+        <Router>
           <Profile />
-        </Context.Provider>
-      </Router>,
+        </Router>
+      </Auth0Context.Provider>,
     );
 
-    await waitForElement(() => getByText('Profile'));
-    getByText('Nickname');
+    await waitForElement(() => getByAltText('Profile'));
+    getByText(/Nickname/);
     getByText(/picture/);
     getByText(/Loaded Arg/);
   });
-  it('should render error', async () => {
+  it('should render Loading', async () => {
     // Arrange
-    const error = 'This is an error message';
-    const profile = {};
-
     const auth = {
-      getAccessToken: jest.fn(),
-      getProfile: jest.fn((cb) => cb(profile, error)),
+      loading: true,
     };
 
     // Arrange
-    const { getByText } = render(
-      <Router>
-        <Context.Provider value={auth}>
+    const { getByAltText } = render(
+      <Auth0Context.Provider value={auth}>
+        <Router>
           <Profile />
-        </Context.Provider>
-      </Router>,
+        </Router>
+      </Auth0Context.Provider>,
     );
 
-    await waitForElement(() => getByText('This is an error message'));
+    getByAltText(/Loading/);
   });
 });
