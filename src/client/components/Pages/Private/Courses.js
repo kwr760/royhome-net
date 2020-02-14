@@ -1,47 +1,72 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { get, isEmpty } from 'lodash';
+import PropTypes from 'prop-types';
+import { OK } from 'http-status-codes';
 
 import env from '../../../../config';
 import Logger from '../../../logger';
-import Context from '../../Context';
+import { useAuth0 } from '../../../../util/auth0/context';
 
-const Courses = () => {
-  const { getAccessToken } = useContext(Context);
-  const [courses, setCourses] = useState([]);
+const getInitialData = (context) => {
+  const status = get(context, 'data.courses.status', undefined);
+  if (status === OK) {
+    const courses = get(context, ['data', 'courses', 'body'], { courses: [] });
+    return courses;
+  }
+  return { courses: [] };
+};
+
+const Courses = ({ context }) => {
+  const { getTokenSilently } = useAuth0();
+  const initialData = getInitialData(context);
+  const [courses, setCourses] = useState(initialData.courses);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const url = `${env.host}/api/courses`;
-    const options = {
-      headers: {
-        Authorization: `Bearer ${getAccessToken()}`,
-      },
+    const callCoursesApi = async (cbCourses, cbMessage) => {
+      const token = await getTokenSilently();
+      const url = `${env.host}/api/courses`;
+      const options = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      axios.get(url, options)
+        .then((res) => {
+          cbCourses(res.data.courses);
+        })
+        .catch((error) => {
+          cbMessage(error.message);
+        });
     };
-    axios.get(url, options)
-      .then((res) => {
-        setCourses(res.data.courses);
-      })
-      .catch((error) => {
-        setMessage(error.message);
-      });
-  }, [getAccessToken]);
+    if (isEmpty(courses)) {
+      callCoursesApi(setCourses, setMessage);
+    }
+  }, [courses, getTokenSilently]);
 
   useEffect(() => {
-    const url = `${env.host}/api/admin`;
-    const options = {
-      headers: {
-        Authorization: `Bearer ${getAccessToken()}`,
-      },
+    const callAdminApi = async (cbMessage) => {
+      const token = await getTokenSilently();
+      const url = `${env.host}/api/admin`;
+      const options = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      axios.get(url, options)
+        .then((res) => {
+          Logger.log(res.data);
+        })
+        .catch((error) => {
+          Logger.error(error.message);
+          cbMessage(error.message);
+        });
     };
-    axios.get(url, options)
-      .then((res) => {
-        Logger.log(res.data);
-      })
-      .catch((error) => {
-        Logger.error(error.message);
-        setMessage(error.message);
-      });
-  }, [getAccessToken]);
+    if (isEmpty(courses)) {
+      callAdminApi(setMessage);
+    }
+  }, [courses, getTokenSilently]);
 
   if (message) {
     return (
@@ -57,6 +82,13 @@ const Courses = () => {
 };
 
 Courses.propTypes = {
+  context: PropTypes.shape({
+    data: PropTypes.shape(),
+  }),
+};
+
+Courses.defaultProps = {
+  context: {},
 };
 
 export default Courses;

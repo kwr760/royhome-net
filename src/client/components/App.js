@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Route } from 'react-router-dom';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container } from 'reactstrap';
 
-import Auth from './Auth/Auth';
-import Context from './Context';
 import NavBar from './Pages/NavBar';
 import Footer from './Pages/Footer';
 import Loading from './Loading';
@@ -15,8 +13,10 @@ import Profile from './Pages/Private/Profile';
 import Private from './Pages/Private/Private';
 import Courses from './Pages/Private/Courses';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
+import { useAuth0 } from '../../util/auth0/context';
 import initFontAwesome from './initFontAwesome';
 
 initFontAwesome();
@@ -24,55 +24,46 @@ initFontAwesome();
 /**
  * @return {string}
  */
-function App({ history, context }) {
-  const [auth] = useState(new Auth());
-  const { jwt } = context;
-  const { expiresAt, data } = jwt;
-  auth.set({ history, expiresAt, data });
-  const [tokenRenewalComplete, setTokenRenewalComplete] = useState(auth.isAuthenticated());
+function App({ context }) {
+  const { loading } = useAuth0();
 
-  useEffect(() => {
-    auth.renewToken(() => setTokenRenewalComplete(true));
-  }, [auth]);
-
-  if (!tokenRenewalComplete) {
+  if (loading) {
     return <Loading />;
   }
 
   return (
-    <Context.Provider value={auth}>
-      <div id="app" className="d-flex flex-column h-100">
-        <NavBar />
-        <Container className="flex-grow-1 mt-3">
+    <div id="app" className="d-flex flex-column h-100">
+      <NavBar />
+      <Container className="flex-grow-1 mt-3">
+        <Switch>
           <Route
             path="/"
             exact
-            render={(props) => <Home {...props} />}
+            component={Home}
           />
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/resume" component={Resume} />
-          <PrivateRoute path="/private" component={Private} />
+          <PrivateRoute path="/private" component={Private} context={context} />
           <PrivateRoute
             path="/courses"
             component={Courses}
             userRole="engineer"
+            context={context}
           />
-        </Container>
-        <Footer />
-      </div>
-    </Context.Provider>
+        </Switch>
+      </Container>
+      <Footer />
+    </div>
   );
 }
 
 App.propTypes = {
-  history: PropTypes.shape({
-    location: PropTypes.shape.isRequired,
-  }).isRequired,
   context: PropTypes.shape({
     jwt: PropTypes.shape({
       expiresAt: PropTypes.number,
       data: PropTypes.shape(),
     }),
+    data: PropTypes.shape(),
   }),
 };
 

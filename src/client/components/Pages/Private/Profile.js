@@ -1,39 +1,35 @@
-import React, { useState, useEffect, useContext } from 'react';
-import Context from '../../Context';
+import React from 'react';
+import { Container, Row, Col } from 'reactstrap';
+
+import Loading from '../../Loading';
+import { useAuth0 } from '../../../../util/auth0/context';
 
 const Profile = () => {
-  const { getProfile } = useContext(Context);
-  const [profile, setProfile] = useState(null);
-  const [error, setError] = useState('');
+  const { loading, user } = useAuth0();
 
-  useEffect(() => {
-    getProfile((newProfile, newError) => {
-      setProfile(newProfile);
-      setError(newError);
-    });
-  }, [getProfile]);
-
-  if (!profile) {
-    return null;
-  }
-
-  if (error) {
-    return (
-      <div>{ error }</div>
-    );
+  if (loading || !user) {
+    return <Loading />;
   }
 
   return (
-    <>
-      <h1>Profile</h1>
-      <p>{profile.nickname}</p>
-      <img
-        style={{ maxWidth: 50, maxHeight: 50 }}
-        src={profile.picture}
-        alt="profile pic"
-      />
-      <pre>{JSON.stringify(profile, null, 2)}</pre>
-    </>
+    <Container className="mb-5">
+      <Row className="align-items-center profile-header mb-5 text-center text-md-left">
+        <Col md={2}>
+          <img
+            src={user.picture}
+            alt="Profile"
+            className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
+          />
+        </Col>
+        <Col md>
+          <h2>{user.name}</h2>
+          <p className="lead text-muted">{user.email}</p>
+        </Col>
+      </Row>
+      <Row>
+        <pre>{JSON.stringify(user, null, 2)}</pre>
+      </Row>
+    </Container>
   );
 };
 

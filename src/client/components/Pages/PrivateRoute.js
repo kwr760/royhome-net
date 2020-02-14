@@ -1,43 +1,58 @@
-import React, { useContext } from 'react';
+// import React, { useEffect } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Context from '../Context';
 
-const PrivateRoute = ({ component: Component, userRole, ...rest }) => {
-  const { isAuthenticated, userHasRole, login } = useContext(Context);
+import { useAuth0 } from '../../../util/auth0/context';
 
-  return (
-    <Route
-      {...rest}
-      render={(props) => {
-        if (!isAuthenticated()) {
-          return login();
-        }
+const PrivateRoute = ({
+  component: Component, path, userRole, context, ...rest
+}) => {
+  // const { isAuthenticated, loginWithRedirect, userHasRole } = useAuth0();
+  const { isAuthenticated, userHasRole } = useAuth0();
 
-        if (userRole.length > 0 && !userHasRole(userRole)) {
-          return (
-            <h1>
-              Unauthorized - You need the following role to view this page:
-              {' '}
-              {userRole}
-            </h1>
-          );
-        }
+  // useEffect(() => {
+  //   const needToLogin = async () => {
+  // if (!isAuthenticated) {
+  // await loginWithRedirect({
+  //   appState: { targetUrl: path },
+  // });
+  // }
+  // };
+  // needToLogin();
+  // }, [isAuthenticated, loginWithRedirect, path]);
 
-        return <Component {...props} />;
-      }}
-    />
-  );
+  const render = (props) => {
+    if (isAuthenticated === true && userRole.length > 0 && !userHasRole(userRole)) {
+      return (
+        <h1>
+          Unauthorized - You need the following role to view this page:
+          {' '}
+          {userRole}
+        </h1>
+      );
+    }
+
+    return <Component {...props} context={context} />;
+  };
+
+  return <Route path={path} render={render} {...rest} />;
 };
 
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
+  path: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
   userRole: PropTypes.string,
+  context: PropTypes.shape(),
 };
 
 PrivateRoute.defaultProps = {
   userRole: '',
+  context: {},
 };
 
 export default PrivateRoute;

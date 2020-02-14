@@ -2,16 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import PrivateRoute from './PrivateRoute';
-import Context from '../Context';
-
-jest.mock('../Auth/Auth');
+import { Auth0Context } from '../../../util/auth0/context';
 
 describe('client/components/Pages/PrivateRoute', () => {
   it('should render with authentication and role', () => {
     // Arrange
     const auth = {
-      isAuthenticated: jest.fn(() => true),
-      login: jest.fn(),
+      isAuthenticated: true,
       userHasRole: jest.fn(() => true),
     };
     const mockComponent = () => <div>Mocked</div>;
@@ -19,9 +16,9 @@ describe('client/components/Pages/PrivateRoute', () => {
     // Act
     const { getByText } = render(
       <Router>
-        <Context.Provider value={auth}>
+        <Auth0Context.Provider value={auth}>
           <PrivateRoute component={mockComponent} userRole="admin" />
-        </Context.Provider>
+        </Auth0Context.Provider>
       </Router>,
     );
 
@@ -31,8 +28,7 @@ describe('client/components/Pages/PrivateRoute', () => {
   it('should render something without role', () => {
     // Arrange
     const auth = {
-      isAuthenticated: jest.fn(() => true),
-      login: jest.fn(),
+      isAuthenticated: true,
       userHasRole: jest.fn(() => false),
     };
     const mockComponent = () => <div>Mocked</div>;
@@ -40,35 +36,14 @@ describe('client/components/Pages/PrivateRoute', () => {
     // Act
     const { getByText } = render(
       <Router>
-        <Context.Provider value={auth}>
+        <Auth0Context.Provider value={auth}>
           <PrivateRoute component={mockComponent} userRole="admin" />
-        </Context.Provider>
+        </Auth0Context.Provider>
       </Router>,
     );
 
     // Assert
     getByText(/admin/);
     getByText(/Unauthorized - You need the following role to view this page:/);
-  });
-  it('should render something without authenticated', () => {
-    // Arrange
-    const auth = {
-      isAuthenticated: jest.fn(() => false),
-      login: jest.fn(),
-      userHasRole: jest.fn(() => false),
-    };
-    const mockComponent = () => <div>Mocked</div>;
-
-    // Act
-    render(
-      <Router>
-        <Context.Provider value={auth}>
-          <PrivateRoute component={mockComponent} userRole="admin" />
-        </Context.Provider>
-      </Router>,
-    );
-
-    // Assert
-    expect(auth.login).toBeCalled();
   });
 });

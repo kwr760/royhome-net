@@ -7,7 +7,7 @@ import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Private from './Private';
-import Context from '../../Context';
+import { Auth0Context } from '../../../../util/auth0/context';
 
 jest.mock('axios', () => ({
   get: jest.fn().mockResolvedValue({ data: {} }),
@@ -16,7 +16,7 @@ jest.mock('axios', () => ({
 describe('client/components/Pages/Private/Private', () => {
   const message = 'test-message';
   const auth = {
-    getAccessToken: jest.fn(),
+    getTokenSilently: jest.fn(),
   };
 
   it('should render request', async () => {
@@ -27,15 +27,15 @@ describe('client/components/Pages/Private/Private', () => {
 
     // Arrange
     const { getByText } = render(
-      <Router>
-        <Context.Provider value={auth}>
+      <Auth0Context.Provider value={auth}>
+        <Router>
           <Private />
-        </Context.Provider>
-      </Router>,
+        </Router>
+      </Auth0Context.Provider>,
     );
 
     await waitForElement(() => getByText(message));
-    expect(auth.getAccessToken).toBeCalled();
+    expect(auth.getTokenSilently).toBeCalled();
   });
   it('should throw exception with bad response', () => {
     // Arrange
@@ -43,14 +43,30 @@ describe('client/components/Pages/Private/Private', () => {
 
     // Arrange
     const { getByText } = render(
-      <Router>
-        <Context.Provider value={auth}>
+      <Auth0Context.Provider value={auth}>
+        <Router>
           <Private />
-        </Context.Provider>
-      </Router>,
+        </Router>
+      </Auth0Context.Provider>,
     );
 
     // Assert
     waitForElement(() => getByText(/Request failed with status code 500/));
+  });
+  it('should throw exception with unknown exception', () => {
+    // Arrange
+    axios.get.mockRejectedValueOnce(new Error());
+
+    // Arrange
+    const { getByText } = render(
+      <Auth0Context.Provider value={auth}>
+        <Router>
+          <Private />
+        </Router>
+      </Auth0Context.Provider>,
+    );
+
+    // Assert
+    waitForElement(() => getByText(/An unknown error included/));
   });
 });

@@ -32,15 +32,10 @@ describe('server/rendering/render-react', () => {
     <title>Roy Home</title>
     <base href="/" >
     <link rel="shortcut icon" href="/dist/web/favicon.ico">
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
+    <link href="https://use.fontawesome.com/releases/v5.12.1/css/svg-with-js.css" rel="stylesheet">
     <div>Links</div>
     <div>Styles</div>
-    <script>window.__INITIAL_DATA__ = {"jwt":{"expiresAt":null,"data":undefined},"data":{}}</script>
+    <script>window.__INITIAL_DATA__ = {"jwt":{"expiresAt":null,"data":undefined,"user":undefined},"data":{}}</script>
   </head>
   <body class="h-100">
     <div id="main" class="h-100">&lt;div&gt;Chunks&lt;/div&gt;</div>

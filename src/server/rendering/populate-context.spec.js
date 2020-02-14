@@ -16,11 +16,17 @@ describe('server/rendering/populate-context', () => {
     };
     const expected = {
       data: {
-        field: 'test value',
+        private: {
+          body: {
+            message: 'Hello from a private API!',
+          },
+          status: 200,
+        },
       },
       jwt: {
+        data: undefined,
         expiresAt: 10000,
-        data: 'test data',
+        user: undefined,
       },
     };
 

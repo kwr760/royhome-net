@@ -15,7 +15,9 @@ const routes = [
     path: '/private',
     handler: getPrivateHandler,
     authenticate: true,
-    fetchData: { field: 'test value' },
+    fetchData: {
+      private: getPrivateHandler,
+    },
   },
   {
     method: 'get',
@@ -23,6 +25,10 @@ const routes = [
     handler: getCoursesHandler,
     authenticate: true,
     role: 'engineer',
+    fetchData: {
+      courses: getCoursesHandler,
+      admin: getAdminHandler,
+    },
   },
   {
     method: 'get',

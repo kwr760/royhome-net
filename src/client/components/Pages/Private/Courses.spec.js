@@ -7,7 +7,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 import Courses from './Courses';
 import Logger from '../../../logger';
-import Context from '../../Context';
+import { Auth0Context } from '../../../../util/auth0/context';
 
 jest.mock('axios', () => ({
   get: jest.fn().mockResolvedValue({ data: {} }),
@@ -24,7 +24,7 @@ describe('client/components/Pages/Private/Courses', () => {
     message: 'Hello to an admin!',
   };
   const auth = {
-    getAccessToken: jest.fn(),
+    getTokenSilently: jest.fn(),
   };
 
   beforeEach(() => {
@@ -48,11 +48,11 @@ describe('client/components/Pages/Private/Courses', () => {
 
     // Arrange
     const { getByText } = render(
-      <Router>
-        <Context.Provider value={auth}>
+      <Auth0Context.Provider value={auth}>
+        <Router>
           <Courses />
-        </Context.Provider>
-      </Router>,
+        </Router>
+      </Auth0Context.Provider>,
     );
 
     await waitForElement(() => getByText(/Course #1/));
@@ -66,14 +66,41 @@ describe('client/components/Pages/Private/Courses', () => {
 
     // Arrange
     const { getByText } = render(
-      <Router>
-        <Context.Provider value={auth}>
+      <Auth0Context.Provider value={auth}>
+        <Router>
           <Courses />
-        </Context.Provider>
-      </Router>,
+        </Router>
+      </Auth0Context.Provider>,
     );
 
     // Assert
     await waitForElement(() => getByText(/Request failed with status code 500/));
+  });
+  it('should load courses from context', async () => {
+    // Arrange
+    const context = {
+      data: {
+        courses: {
+          status: 200,
+          body: {
+            courses: [
+              { id: 3, title: 'Course #3' },
+            ],
+          },
+        },
+      },
+    };
+
+    // Arrange
+    const { getByText } = render(
+      <Auth0Context.Provider value={auth}>
+        <Router>
+          <Courses context={context} />
+        </Router>
+      </Auth0Context.Provider>,
+    );
+
+    await waitForElement(() => getByText(/Course #3/));
+    getByText(/Course #3/);
   });
 });
