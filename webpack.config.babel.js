@@ -42,6 +42,13 @@ const getConfig = (target) => ({
         test: /\.html$/,
         use: ['html-loader'],
       },
+      {
+        test: /\.(svg|png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'images',
+        },
+      },
     ],
   },
   externals:
@@ -61,7 +68,7 @@ const getConfig = (target) => ({
     new LoadablePlugin(),
     new MiniCssExtractPlugin(),
     new CopyWebpackPlugin([
-      { from: './src/assets/favicon.ico' },
+      { from: './src/client/assets/favicon.ico' },
     ]),
   ],
 });

@@ -3,20 +3,20 @@ import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container } from 'reactstrap';
 
-import NavBar from './NavBar/NavBar';
-import Footer from './Footer/Footer';
-import Loading from './Loading/Loading';
-import Home from '../Pages/Home/Home';
-import Resume from '../Pages/Resume/Resume';
-import PrivateRoute from './PrivateRoute/PrivateRoute';
-import Profile from '../Pages/Profile/Profile';
-import Courses from '../Pages/Courses/Courses';
+import NavBar from './Components/NavBar/NavBar';
+import Footer from './Components/Footer/Footer';
+import Loading from './Components/Loading/Loading';
+import Home from './Pages/Home/Home';
+import Resume from './Pages/Resume/Resume';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+import Profile from './Pages/Profile/Profile';
+import Courses from './Pages/Courses/Courses';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import './App.css';
+// import 'bootstrap/dist/css/bootstrap.css';
+import './styles/App.css';
 
-import { useAuth0 } from '../../util/auth0/context';
-import initFontAwesome from '../util/initFontAwesome';
+import { useAuth0 } from '../util/auth0/context';
+import initFontAwesome from './util/initFontAwesome';
 
 initFontAwesome();
 

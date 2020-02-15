@@ -23,7 +23,7 @@ const renderReact = (req, res) => {
 
   const markup = renderToString(jsx);
 
-  const indexFile = path.resolve('./src/client/index.html');
+  const indexFile = path.resolve('./src/client/assets/index.html');
   const contents = fs.readFileSync(indexFile, 'utf8');
 
   const responseHtml = contents
