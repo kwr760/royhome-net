@@ -4,9 +4,8 @@ import { get, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import { OK } from 'http-status-codes';
 
-import env from '../../../../config';
-import Logger from '../../../logger';
-import { useAuth0 } from '../../../../util/auth0/context';
+import env from '../../../config';
+import { useAuth0 } from '../../../util/auth0/context';
 
 const getInitialData = (context) => {
   const status = get(context, 'data.courses.status', undefined);
@@ -42,29 +41,6 @@ const Courses = ({ context }) => {
     };
     if (isEmpty(courses)) {
       callCoursesApi(setCourses, setMessage);
-    }
-  }, [courses, getTokenSilently]);
-
-  useEffect(() => {
-    const callAdminApi = async (cbMessage) => {
-      const token = await getTokenSilently();
-      const url = `${env.host}/api/admin`;
-      const options = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      axios.get(url, options)
-        .then((res) => {
-          Logger.log(res.data);
-        })
-        .catch((error) => {
-          Logger.error(error.message);
-          cbMessage(error.message);
-        });
-    };
-    if (isEmpty(courses)) {
-      callAdminApi(setMessage);
     }
   }, [courses, getTokenSilently]);
 

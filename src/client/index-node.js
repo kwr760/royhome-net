@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import Auth0Provider from '../util/auth0/react-auth0-node';
 import config from '../util/auth0/auth_config.json';
-import App from './components/App';
+import App from './Components/App';
 
 const onRedirectCallback = () => {};
 

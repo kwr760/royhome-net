@@ -3,11 +3,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
 import NavBar from './NavBar';
 import { Auth0Context } from '../../../util/auth0/context';
-import initFontAwesome from '../initFontAwesome';
+import initFontAwesome from '../../util/initFontAwesome';
 
 initFontAwesome();
 
-describe('client/components/Pages/NavBar', () => {
+describe('client/Components/Pages/NavBar', () => {
   it('should render with authentication and role', () => {
     // Arrange
     const auth = {
@@ -29,7 +29,6 @@ describe('client/components/Pages/NavBar', () => {
     getByText(/Home/);
     getByText(/Resume/);
     getByText(/Profile/);
-    getByText(/Private/);
     getByText(/Courses/);
     getByText(/Log out/);
 

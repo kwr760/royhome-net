@@ -3,21 +3,20 @@ import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container } from 'reactstrap';
 
-import NavBar from './Pages/NavBar';
-import Footer from './Pages/Footer';
-import Loading from './Loading';
-import Home from './Pages/Public/Home';
-import Resume from './Pages/Public/Resume';
-import PrivateRoute from './Pages/PrivateRoute';
-import Profile from './Pages/Private/Profile';
-import Private from './Pages/Private/Private';
-import Courses from './Pages/Private/Courses';
+import NavBar from './NavBar/NavBar';
+import Footer from './Footer/Footer';
+import Loading from './Loading/Loading';
+import Home from '../Pages/Home/Home';
+import Resume from '../Pages/Resume/Resume';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Profile from '../Pages/Profile/Profile';
+import Courses from '../Pages/Courses/Courses';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
 import { useAuth0 } from '../../util/auth0/context';
-import initFontAwesome from './initFontAwesome';
+import initFontAwesome from '../util/initFontAwesome';
 
 initFontAwesome();
 
@@ -43,7 +42,6 @@ function App({ context }) {
           />
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/resume" component={Resume} />
-          <PrivateRoute path="/private" component={Private} context={context} />
           <PrivateRoute
             path="/courses"
             component={Courses}

@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import PrivateRoute from './PrivateRoute';
 import { Auth0Context } from '../../../util/auth0/context';
 
-describe('client/components/Pages/PrivateRoute', () => {
+describe('client/Components/Pages/PrivateRoute', () => {
   it('should render with authentication and role', () => {
     // Arrange
     const auth = {

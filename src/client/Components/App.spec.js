@@ -11,7 +11,7 @@ jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({}),
 }));
 
-describe('src/client/components/App', () => {
+describe('src/client/Components/App', () => {
   beforeEach(() => {
     global.console.error = jest.fn();
     global.console.log = jest.fn();
