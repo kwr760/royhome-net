@@ -17,7 +17,7 @@ describe('client/Components/Pages/NavBar', () => {
     };
 
     // Act
-    const { getByText, getByTestId } = render(
+    const { getByText, getAllByText, getByTestId } = render(
       <Auth0Context.Provider value={auth}>
         <Router>
           <NavBar />
@@ -28,14 +28,46 @@ describe('client/Components/Pages/NavBar', () => {
     // Assert
     getByText(/Home/);
     getByText(/Resume/);
-    getByText(/Profile/);
     getByText(/Courses/);
-    getByText(/Log out/);
-
-    fireEvent.click(getByText('Log out'));
-    expect(auth.logout).toHaveBeenCalled();
+    getAllByText(/Log out/);
 
     fireEvent.click(getByTestId('navbar-toggler'));
+  });
+  it('should render with authentication and user', () => {
+    // Arrange
+    const auth = {
+      isAuthenticated: true,
+      logout: jest.fn(),
+      userHasRole: jest.fn(() => false),
+      user: {
+        name: 'Tester',
+        picture: 'pic',
+      },
+    };
+
+    // Act
+    const {
+      getByText, getAllByText, getAllByAltText, getByTestId,
+    } = render(
+      <Auth0Context.Provider value={auth}>
+        <Router>
+          <NavBar />
+        </Router>
+      </Auth0Context.Provider>,
+    );
+
+    // Assert
+    getByText(/Home/);
+    getByText(/Resume/);
+    getAllByText(/Tester/);
+    getAllByAltText(/Profile/);
+    getAllByText(/Log out/);
+
+    fireEvent.click(getByTestId('navbar-toggler'));
+
+    fireEvent.click(getAllByText(/Log out/)[0]);
+    fireEvent.click(getAllByText(/Log out/)[1]);
+    expect(auth.logout).toHaveBeenCalledTimes(2);
   });
   it('should render without authentication and role', () => {
     // Arrange
@@ -47,7 +79,7 @@ describe('client/Components/Pages/NavBar', () => {
     };
 
     // Act
-    const { getByText } = render(
+    const { getByText, getAllByText } = render(
       <Auth0Context.Provider value={auth}>
         <Router>
           <NavBar />
@@ -58,9 +90,10 @@ describe('client/Components/Pages/NavBar', () => {
     // Assert
     getByText(/Home/);
     getByText(/Resume/);
-    getByText(/Log in/);
+    getAllByText(/Log in/);
 
-    fireEvent.click(getByText('Log in'));
-    expect(auth.loginWithRedirect).toHaveBeenCalled();
+    fireEvent.click(getAllByText(/Log in/)[0]);
+    fireEvent.click(getAllByText(/Log in/)[1]);
+    expect(auth.loginWithRedirect).toHaveBeenCalledTimes(2);
   });
 });

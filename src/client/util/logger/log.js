@@ -1,6 +1,6 @@
-import env from '../../config';
+import env from '../../../config';
 
-import getConsole from '../../util/logger/get-console';
+import getConsole from '../../../util/logger/get-console';
 import writeToServer from './write-to-server';
 
 const log = ({ level, msg }) => {

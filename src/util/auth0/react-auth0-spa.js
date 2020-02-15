@@ -89,6 +89,14 @@ const Auth0Provider = ({
     }
     const auth0User = await auth0Client.getUser();
     setUser(auth0User);
+    const tokenClaims = await auth0Client.getIdTokenClaims();
+    const token = {
+      exp: tokenClaims.exp,
+      user: auth0User,
+      data: tokenClaims[TOKEN_URL],
+    };
+    setData(token.data);
+    setCookies(token);
     setIsAuthenticated(true);
   };
 
@@ -102,9 +110,9 @@ const Auth0Provider = ({
   };
 
   const logout = (...props) => {
-    auth0Client.logout(...props);
     setData({});
     setCookies();
+    auth0Client.logout(...props);
   };
 
   return (

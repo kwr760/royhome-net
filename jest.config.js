@@ -6,7 +6,7 @@ module.exports = {
       testEnvironment: 'jsdom',
       verbose: true,
       moduleNameMapper: {
-        '\\.(jpg|jpeg|png|gif|eot|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$': '<rootDir>/test/mocks/file.js',
+        '\\.(jpg|jpeg|png|gif|eot|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$': '<rootDir>/src/mocks/file.js',
         '\\.(css)$': 'identity-obj-proxy',
       },
       testMatch: [
@@ -43,7 +43,7 @@ module.exports = {
       testEnvironment: 'node',
       verbose: true,
       moduleNameMapper: {
-        '\\.(jpg|jpeg|png|gif|eot|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$': '<rootDir>/test/mocks/file.js',
+        '\\.(jpg|jpeg|png|gif|eot|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$': '<rootDir>/src/mocks/file.js',
       },
       testMatch: [
         '**/src/server/**/?(*.)(spec|test).js',

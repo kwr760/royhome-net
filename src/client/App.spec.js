@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history';
 
 import { render } from '@testing-library/react';
 
-import { Auth0Context } from '../../util/auth0/context';
+import { Auth0Context } from '../util/auth0/context';
 import App from './App';
 
 jest.mock('axios', () => ({

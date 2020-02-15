@@ -3,9 +3,12 @@ import { StaticRouter as Router, Route } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
+import './styles/index.css';
+import './styles/royhome-theme.css';
+
 import Auth0Provider from '../util/auth0/react-auth0-node';
 import config from '../util/auth0/auth_config.json';
-import App from './Components/App';
+import App from './App';
 
 const onRedirectCallback = () => {};
 

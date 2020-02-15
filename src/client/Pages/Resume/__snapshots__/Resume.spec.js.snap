@@ -37,8 +37,6 @@ exports[`client/Components/Pages/Public/Resume should render resume html 1`] = `
             class="col-sm-4 pull-left"
             id="address"
           >
-            760 Highwood Drive SW
-            <br />
             Issaquah, WA 98027
           </div>
           
@@ -60,7 +58,7 @@ exports[`client/Components/Pages/Public/Resume should render resume html 1`] = `
             <div
               id="phone"
             >
-              (425) 208-1223
+              Upon request
             </div>
             
         
