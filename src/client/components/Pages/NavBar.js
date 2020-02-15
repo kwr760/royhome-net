@@ -62,18 +62,6 @@ const NavBar = () => {
                 </NavLink>
               </NavItem>
               )}
-              { isAuthenticated && (
-              <NavItem>
-                <NavLink
-                  tag={RouterNavLink}
-                  to="/private"
-                  exact
-                  activeClassName="router-link-exact-active"
-                >
-                  Private
-                </NavLink>
-              </NavItem>
-              )}
               { isAuthenticated && userHasRole('engineer') && (
               <NavItem>
                 <NavLink

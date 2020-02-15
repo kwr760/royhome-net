@@ -45,12 +45,13 @@ PrivateRoute.propTypes = {
   path: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
-  ]).isRequired,
+  ]),
   userRole: PropTypes.string,
   context: PropTypes.shape(),
 };
 
 PrivateRoute.defaultProps = {
+  path: '',
   userRole: '',
   context: {},
 };

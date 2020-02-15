@@ -29,7 +29,6 @@ describe('client/components/Pages/NavBar', () => {
     getByText(/Home/);
     getByText(/Resume/);
     getByText(/Profile/);
-    getByText(/Private/);
     getByText(/Courses/);
     getByText(/Log out/);
 

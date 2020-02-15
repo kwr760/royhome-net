@@ -9,16 +9,25 @@ describe('server/rendering/populate-context', () => {
       [TOKEN_URL]: 'test data',
     };
     const req = {
-      url: '/private',
+      url: '/courses',
       cookies: {
         [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
       },
     };
     const expected = {
       data: {
-        private: {
+        courses: {
           body: {
-            message: 'Hello from a private API!',
+            courses: [
+              {
+                id: 1,
+                title: 'Building Apps with React and Redux',
+              },
+              {
+                id: 2,
+                title: 'Creating Reusable React Components',
+              },
+            ],
           },
           status: 200,
         },
@@ -40,7 +49,7 @@ describe('server/rendering/populate-context', () => {
   it('should not find route', () => {
     // Arrange
     const req = {
-      url: '/privte',
+      url: '/ourses',
       cookies: {},
     };
     const expected = {

@@ -10,7 +10,6 @@ import Home from './Pages/Public/Home';
 import Resume from './Pages/Public/Resume';
 import PrivateRoute from './Pages/PrivateRoute';
 import Profile from './Pages/Private/Profile';
-import Private from './Pages/Private/Private';
 import Courses from './Pages/Private/Courses';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -43,7 +42,6 @@ function App({ context }) {
           />
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/resume" component={Resume} />
-          <PrivateRoute path="/private" component={Private} context={context} />
           <PrivateRoute
             path="/courses"
             component={Courses}

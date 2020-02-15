@@ -20,9 +20,6 @@ describe('client/components/Pages/Private/Courses', () => {
       { id: 2, title: 'Course #2' },
     ],
   };
-  const adminMessage = {
-    message: 'Hello to an admin!',
-  };
   const auth = {
     getTokenSilently: jest.fn(),
   };
@@ -41,9 +38,6 @@ describe('client/components/Pages/Private/Courses', () => {
     axios.get
       .mockResolvedValueOnce({
         data: courses,
-      })
-      .mockResolvedValueOnce({
-        data: adminMessage,
       });
 
     // Arrange
@@ -57,7 +51,6 @@ describe('client/components/Pages/Private/Courses', () => {
 
     await waitForElement(() => getByText(/Course #1/));
     getByText(/Course #2/);
-    expect(Logger.log).toBeCalledWith(adminMessage);
   });
   it('should throw exception with bad response', async () => {
     // Arrange
