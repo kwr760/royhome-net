@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import env from '../../config';
+import env from '../../../config';
 
 /**
  * Assumes that the location being written to has been created.

@@ -61,7 +61,7 @@ const getConfig = (target) => ({
     new LoadablePlugin(),
     new MiniCssExtractPlugin(),
     new CopyWebpackPlugin([
-      { from: './images/favicon.ico' },
+      { from: './src/assets/favicon.ico' },
     ]),
   ],
 });

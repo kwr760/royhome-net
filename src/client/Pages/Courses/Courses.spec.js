@@ -6,7 +6,7 @@ import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Courses from './Courses';
-import Logger from '../../logger';
+import Logger from '../../util/logger';
 import { Auth0Context } from '../../../util/auth0/context';
 
 jest.mock('axios', () => ({

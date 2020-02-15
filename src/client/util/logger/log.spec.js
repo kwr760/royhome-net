@@ -1,15 +1,15 @@
-import env from '../../config';
+import env from '../../../config';
 
-import LOG_LEVELS from '../../util/logger/levels';
+import LOG_LEVELS from '../../../util/logger/levels';
 import log from './log';
 
-import getConsole from '../../util/logger/get-console';
+import getConsole from '../../../util/logger/get-console';
 import writeToServer from './write-to-server';
-import formatMessage from '../../util/logger/format-message';
+import formatMessage from '../../../util/logger/format-message';
 
-jest.mock('../../util/logger/format-message');
+jest.mock('../../../util/logger/format-message');
 jest.mock('./write-to-server');
-jest.mock('../../util/logger/get-console');
+jest.mock('../../../util/logger/get-console');
 
 describe('server/logger/log', () => {
   beforeEach(() => {
