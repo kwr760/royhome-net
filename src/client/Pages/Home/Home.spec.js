@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
 import Home from './Home';
-import { Auth0Context } from '../../../../util/auth0/context';
+import { Auth0Context } from '../../../util/auth0/context';
 
-describe('client/components/Pages/Public/Home', () => {
+describe('client/Components/Pages/Public/Home', () => {
   it('should render an unauthenticated page', () => {
     // Arrange
     const auth = {

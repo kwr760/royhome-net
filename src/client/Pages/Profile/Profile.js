@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
-import Loading from '../../Loading';
-import { useAuth0 } from '../../../../util/auth0/context';
+import Loading from '../../Components/Loading/Loading';
+import { useAuth0 } from '../../../util/auth0/context';
 
 const Profile = () => {
   const { loading, user } = useAuth0();

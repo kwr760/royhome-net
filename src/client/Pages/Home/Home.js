@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { useAuth0 } from '../../../../util/auth0/context';
+import { useAuth0 } from '../../../util/auth0/context';
 
 const Home = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();

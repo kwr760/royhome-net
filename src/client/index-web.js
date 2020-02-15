@@ -7,7 +7,7 @@ import { loadableReady } from '@loadable/component';
 
 import Auth0Provider from '../util/auth0/react-auth0-spa';
 import config from '../util/auth0/auth_config.json';
-import App from './components/App';
+import App from './Components/App';
 import history from '../util/history';
 
 const onRedirectCallback = async (appState) => {

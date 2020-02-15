@@ -4,8 +4,8 @@ import { get, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import { OK } from 'http-status-codes';
 
-import env from '../../../../config';
-import { useAuth0 } from '../../../../util/auth0/context';
+import env from '../../../config';
+import { useAuth0 } from '../../../util/auth0/context';
 
 const getInitialData = (context) => {
   const status = get(context, 'data.courses.status', undefined);

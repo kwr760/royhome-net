@@ -5,9 +5,9 @@ import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Profile from './Profile';
-import { Auth0Context } from '../../../../util/auth0/context';
+import { Auth0Context } from '../../../util/auth0/context';
 
-describe('client/components/Pages/Private/Profile', () => {
+describe('client/Components/Pages/Private/Profile', () => {
   it('should render profile', async () => {
     // Arrange
     const user = {
