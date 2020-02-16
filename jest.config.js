@@ -29,8 +29,8 @@ module.exports = {
         '/build/coverage',
         '/build/unit',
         '/dist/',
-        'webpack.config.babel.cjs',
-        '.eslintrc.cjs',
+        'webpack.config.babel.js',
+        '.eslintrc.js',
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',
@@ -67,8 +67,8 @@ module.exports = {
         '/build/coverage',
         '/build/unit',
         '/dist/',
-        'webpack.config.babel.cjs',
-        '.eslintrc.cjs',
+        'webpack.config.babel.js',
+        '.eslintrc.js',
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',
