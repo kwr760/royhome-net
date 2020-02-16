@@ -29,7 +29,7 @@ module.exports = {
         '/build/coverage',
         '/build/unit',
         '/dist/',
-        'webpack.config.babel.js',
+        'webpack.config.babel.cjs',
         '.eslintrc.cjs',
       ],
       transform: {
@@ -67,7 +67,7 @@ module.exports = {
         '/build/coverage',
         '/build/unit',
         '/dist/',
-        'webpack.config.babel.js',
+        'webpack.config.babel.cjs',
         '.eslintrc.cjs',
       ],
       transform: {
