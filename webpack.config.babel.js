@@ -2,8 +2,7 @@ import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-
-const LoadablePlugin = require('@loadable/webpack-plugin');
+import LoadablePlugin from '@loadable/webpack-plugin';
 
 const DIST_PATH = path.resolve(__dirname, 'dist');
 const dev = !process.env.RELEASE_ENV || process.env.RELEASE_ENV === 'dev';
