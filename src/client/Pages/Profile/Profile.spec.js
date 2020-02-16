@@ -12,7 +12,7 @@ describe('client/Components/Pages/Private/Profile', () => {
     // Arrange
     const user = {
       nickname: 'Nickname',
-      picture: 'picture',
+      picture: 'Picture',
       arg: 'Loaded Arg',
     };
 
@@ -32,7 +32,7 @@ describe('client/Components/Pages/Private/Profile', () => {
 
     await waitForElement(() => getByAltText('Profile'));
     getByText(/Nickname/);
-    getByText(/picture/);
+    getByText(/Picture/);
     getByText(/Loaded Arg/);
   });
   it('should render Loading', async () => {

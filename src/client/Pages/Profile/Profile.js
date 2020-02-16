@@ -27,7 +27,11 @@ const Profile = () => {
         </Col>
       </Row>
       <Row>
-        <pre>{JSON.stringify(user, null, 2)}</pre>
+        <pre className="rounded">
+          <code>
+            {JSON.stringify(user, null, 2)}
+          </code>
+        </pre>
       </Row>
     </Container>
   );
