@@ -1,6 +1,8 @@
 # Overview
 This is my home page
 
+Hello there
+
 ## Intent
 I want to create a robust and website, even if it is over engineered.  Using good practices.
 
