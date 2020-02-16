@@ -43,10 +43,14 @@ const getConfig = (target) => ({
       },
       {
         test: /\.(svg|png|jpe?g|gif)$/i,
-        loader: 'file-loader',
-        options: {
-          outputPath: 'images',
-        },
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'images',
+            },
+          },
+        ],
       },
     ],
   },
