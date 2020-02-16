@@ -5,7 +5,6 @@
   "description": "Base page for home web site",
   "license": "Apache-2.0",
   "private": true,
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/kwr760/royhome-net.git"

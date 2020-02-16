@@ -30,7 +30,7 @@ module.exports = {
         '/build/unit',
         '/dist/',
         'webpack.config.babel.js',
-        '.eslintrc.cjs',
+        '.eslintrc.js',
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',
@@ -68,7 +68,7 @@ module.exports = {
         '/build/unit',
         '/dist/',
         'webpack.config.babel.js',
-        '.eslintrc.cjs',
+        '.eslintrc.js',
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',
