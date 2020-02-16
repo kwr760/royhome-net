@@ -15,6 +15,7 @@ ssh $RELEASE_HOST 'git clone https://github.com/kwr760/royhome-net.git /var/app/
 echo -e "\nRemote:  yarn install"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net ; yarn install'
 echo -e "\nRemote:  build webpack"
+ssh $RELEASE_HOST 'cd /var/app/royhome-net ; node --version'
 ssh $RELEASE_HOST 'cd /var/app/royhome-net ; yarn run build:prod'
 echo -e "\nRemote:  certbot renew"
 ssh $RELEASE_HOST 'sudo -H certbot renew --standalone'
