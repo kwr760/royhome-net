@@ -3,7 +3,7 @@ import express from 'express';
 import checkJwt from '../middleware/check-jwt';
 import checkRole from '../middleware/check-role';
 import Logger from '../logger';
-import handleRoute from '../handler/handle-route';
+import routeHandler from '../handler/route-handler';
 
 const generate = (routes) => {
   const router = express.Router();
@@ -27,7 +27,7 @@ const generate = (routes) => {
         router.get(
           path,
           middleware,
-          (req, res) => handleRoute(route, req, res),
+          (req, res) => routeHandler(route, req, res),
         );
         break;
       case 'put':
@@ -35,7 +35,7 @@ const generate = (routes) => {
         router.put(
           path,
           middleware,
-          (req, res) => handleRoute(route, req, res),
+          (req, res) => routeHandler(route, req, res),
         );
         break;
       case 'post':
@@ -43,7 +43,7 @@ const generate = (routes) => {
         router.post(
           path,
           middleware,
-          (req, res) => handleRoute(route, req, res),
+          (req, res) => routeHandler(route, req, res),
         );
         break;
       default:

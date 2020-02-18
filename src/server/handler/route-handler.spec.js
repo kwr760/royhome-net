@@ -1,10 +1,10 @@
 import express from 'express';
 import { INTERNAL_SERVER_ERROR, OK, UNAUTHORIZED } from 'http-status-codes';
 
-import handleRoute from './handle-route';
+import routeHandler from './route-handler';
 import Logger from '../logger';
 
-describe('server/routes/handler/handle-route', () => {
+describe('server/routes/handler/route-handler', () => {
   beforeEach(() => {
     Logger.error = jest.fn();
   });
@@ -26,7 +26,7 @@ describe('server/routes/handler/handle-route', () => {
     };
 
     // Act
-    await handleRoute(route, req, res);
+    await routeHandler(route, req, res);
 
     // Assert
     expect(route.handler).toHaveBeenCalledWith(req, res);
@@ -45,7 +45,7 @@ describe('server/routes/handler/handle-route', () => {
     const route = { handler: jest.fn(() => body) };
 
     // Act
-    await handleRoute(route, req, res);
+    await routeHandler(route, req, res);
 
     // Assert
     expect(route.handler).toHaveBeenCalledWith(req, res);
@@ -73,7 +73,7 @@ describe('server/routes/handler/handle-route', () => {
     Logger.error = jest.fn();
 
     // Act
-    await handleRoute(route, req, res);
+    await routeHandler(route, req, res);
 
     // Assert
     expect(Logger.error).toBeCalledWith('Unauthorized: Error message');
@@ -94,7 +94,7 @@ describe('server/routes/handler/handle-route', () => {
     Logger.error = jest.fn();
 
     // Act
-    await handleRoute(route, req, res);
+    await routeHandler(route, req, res);
 
     // Assert
     expect(Logger.error).toBeCalledWith('Server Error: ');
