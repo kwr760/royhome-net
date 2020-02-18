@@ -5,6 +5,7 @@ import { hydrate } from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { loadableReady } from '@loadable/component';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.css';
 import './styles/royhome-theme.css';
 
