@@ -3,6 +3,7 @@ import { StaticRouter as Router, Route } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.css';
 import './styles/royhome-theme.css';
 
