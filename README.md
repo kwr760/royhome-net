@@ -1,5 +1,5 @@
 # Overview
-This is my home page
+This is my home page.
 
 ## Intent
 I want to create a robust and website, even if it is over engineered.  Using good practices.
