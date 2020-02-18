@@ -1,6 +1,6 @@
 import LOG_LEVELS from '../../util/logger/levels';
 
-const currentHost = 'http://localhost:3000';
+const currentHost = global.origin || 'http://localhost:3000';
 
 const env = (host) => ({
   mode: 'development',

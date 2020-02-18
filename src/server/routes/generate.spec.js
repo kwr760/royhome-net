@@ -2,9 +2,10 @@ import express from 'express';
 
 import generate from './generate';
 import Logger from '../logger';
-import handleRoute from '../handler/handle-route';
+import routeHandler from '../handler/route-handler';
 
-jest.mock('../handler/handle-route');
+jest.mock('../handler/route-handler');
+
 describe('server/routes/generate', () => {
   beforeEach(() => {
     Logger.log = jest.fn();
@@ -28,7 +29,7 @@ describe('server/routes/generate', () => {
         put: jest.fn((path, middleware, handler) => { handler({}, res); }),
       };
       const mockHandler = jest.fn();
-      handleRoute.mockImplementation((route) => { route.handler(); });
+      routeHandler.mockImplementation((route) => { route.handler(); });
       express.Router = jest.fn(() => mockRouter);
       const getRoute = {
         method: 'get',
@@ -64,9 +65,9 @@ describe('server/routes/generate', () => {
       expect(generatedRoutes.post).toHaveBeenCalledWith('/resume', [], expect.any(Function));
       expect(generatedRoutes.put).toHaveBeenCalledWith('/private', [], expect.any(Function));
       expect(Logger.error).toHaveBeenCalledWith('Unknown route: {"method":"bad"}');
-      expect(handleRoute).toHaveBeenCalledWith(getRoute, {}, res);
-      expect(handleRoute).toHaveBeenCalledWith(postRoute, {}, res);
-      expect(handleRoute).toHaveBeenCalledWith(putRoute, {}, res);
+      expect(routeHandler).toHaveBeenCalledWith(getRoute, {}, res);
+      expect(routeHandler).toHaveBeenCalledWith(postRoute, {}, res);
+      expect(routeHandler).toHaveBeenCalledWith(putRoute, {}, res);
       expect(mockHandler).toHaveBeenCalledTimes(3);
     });
   });
