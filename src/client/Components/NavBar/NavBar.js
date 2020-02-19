@@ -54,7 +54,6 @@ const NavBar = () => {
                   exact
                   activeClassName="router-link-exact-active"
                 >
-                  <FontAwesomeIcon icon="link" className="mr-3" />
                   Resume
                 </NavLink>
               </NavItem>
@@ -80,7 +79,7 @@ const NavBar = () => {
                     className="btn-margin"
                     onClick={() => loginWithRedirect({})}
                   >
-                    <FontAwesomeIcon icon="power-off" className="mr-3" />
+                    <FontAwesomeIcon icon="sign-in-alt" className="mr-3" />
                     Log in
                   </Button>
                 </NavItem>
@@ -103,14 +102,14 @@ const NavBar = () => {
                       className="dropdown-profile"
                       activeClassName="router-link-exact-active"
                     >
-                      <FontAwesomeIcon icon="user" className="mr-3" />
+                      <FontAwesomeIcon icon="user-alt" className="mr-3" />
                       Profile
                     </DropdownItem>
                     <DropdownItem
                       id="qsLogoutBtn"
                       onClick={() => logout()}
                     >
-                      <FontAwesomeIcon icon="power-off" className="mr-3" />
+                      <FontAwesomeIcon icon="sign-out-alt" className="mr-3" />
                       Log out
                     </DropdownItem>
                   </DropdownMenu>
@@ -125,6 +124,7 @@ const NavBar = () => {
                     color="secondary"
                     onClick={() => loginWithRedirect({})}
                   >
+                    <FontAwesomeIcon icon="sign-in-alt" className="mr-3" />
                     Log in
                   </Button>
                 </NavItem>
@@ -157,7 +157,7 @@ const NavBar = () => {
                   </RouterNavLink>
                 </NavItem>
                 <NavItem>
-                  <FontAwesomeIcon icon="power-off" className="mr-3" />
+                  <FontAwesomeIcon icon="sign-out-alt" className="mr-3" />
                   <RouterNavLink
                     to="#"
                     id="qsLogoutBtn"
