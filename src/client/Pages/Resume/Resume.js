@@ -12,4 +12,7 @@ const Resume = () => {
   );
 };
 
+Resume.propTypes = {
+};
+
 export default Resume;

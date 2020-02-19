@@ -13,6 +13,8 @@ const generate = (routes) => {
     const {
       method, path, authenticate, role,
     } = route;
+
+    // Extract the contruction of the middleware
     middleware = [];
     if (authenticate) {
       middleware.push(checkJwt);
@@ -21,6 +23,7 @@ const generate = (routes) => {
       middleware.push(checkRole(role));
     }
 
+    // Extract each of the cases
     switch (method) {
       case 'get':
         Logger.log(`GET: ${JSON.stringify(route)}`);

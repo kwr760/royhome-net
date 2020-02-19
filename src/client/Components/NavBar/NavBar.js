@@ -175,4 +175,7 @@ const NavBar = () => {
   );
 };
 
+NavBar.propTypes = {
+};
+
 export default NavBar;
