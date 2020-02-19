@@ -43,7 +43,8 @@
   border: 0
 }
 .nav-item.dropdown .dropdown-menu {
-  box-shadow: 0 0 4px 0 #b3bac7
+  box-shadow: 0 0 4px 0 #b3bac7;
+  margin-left: -4em;
 }
 .nav-item.dropdown .dropdown-header {
   border-bottom: 1px solid #b3bac7;
