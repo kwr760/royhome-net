@@ -152,7 +152,9 @@ footer {
   padding: 32px
 }
 footer .logo {
-  margin: 0 auto 0px auto
+  margin: 0 auto 0 auto;
+  width: 2rem;
+  height: 2rem;
 }
 
 pre {
