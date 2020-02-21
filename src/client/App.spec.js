@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-
 import { render } from '@testing-library/react';
 
 import { Auth0Context } from '../util/auth0/context';
@@ -10,8 +9,23 @@ import App from './App';
 jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({}),
 }));
+jest.mock('./Components/Loading/Loading', () => () => (<div>Loading</div>));
+jest.mock('./Components/NavBar/NavBar', () => () => (<div>NavBar</div>));
+jest.mock('./Components/Footer/Footer', () => () => (<div>Footer</div>));
+jest.mock('./Pages/Home/Home', () => () => (<div>Home</div>));
 
-describe('src/client/Components/App', () => {
+describe('src/client/App', () => {
+  const history = createMemoryHistory();
+  const context = {
+    jwt: {},
+  };
+  const getApp = (auth) => (
+    <Auth0Context.Provider value={auth}>
+      <Router>
+        <App history={history} context={context} />
+      </Router>
+    </Auth0Context.Provider>
+  );
   beforeEach(() => {
     global.console.error = jest.fn();
     global.console.log = jest.fn();
@@ -21,46 +35,31 @@ describe('src/client/Components/App', () => {
   });
 
   it('renders home page', () => {
-    // Arrange/Act
-    const history = createMemoryHistory();
-    const context = {
-      jwt: {},
-    };
+    // Arrange
     const auth = {
       loading: false,
     };
 
-    const { container } = render(
-      <Auth0Context.Provider value={auth}>
-        <Router>
-          <App history={history} context={context} />
-        </Router>
-      </Auth0Context.Provider>,
-    );
+    // Act
+    const { getByText, queryByText } = render(getApp(auth));
 
     // Assert
-    expect(container.innerHTML).toContain('This is the home page of Kevin Roy');
+    getByText(/NavBar/);
+    queryByText(/Home/);
+    getByText(/Footer/);
+    expect(queryByText('Loading')).toBeNull();
   });
-
   it('renders Loading', () => {
-    // Arrange/Act
-    const history = createMemoryHistory();
-    const context = {
-      jwt: {},
-    };
+    // Arrange
     const auth = {
       loading: true,
     };
 
-    const { getByAltText } = render(
-      <Auth0Context.Provider value={auth}>
-        <Router>
-          <App history={history} context={context} />
-        </Router>
-      </Auth0Context.Provider>,
-    );
+    // Act
+    const { getByText, queryByText } = render(getApp(auth));
 
     // Assert
-    getByAltText(/Loading/);
+    getByText(/Loading/);
+    expect(queryByText('Home')).toBeNull();
   });
 });
