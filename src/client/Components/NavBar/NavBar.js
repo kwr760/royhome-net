@@ -148,7 +148,7 @@ const NavBar = () => {
                   </span>
                 </NavItem>
                 <NavItem>
-                  <FontAwesomeIcon icon="user" className="mr-3" />
+                  <FontAwesomeIcon icon="user-alt" className="mr-3" />
                   <RouterNavLink
                     to="/profile"
                     activeClassName="router-link-exact-active"

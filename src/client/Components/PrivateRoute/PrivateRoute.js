@@ -47,7 +47,7 @@ PrivateRoute.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
   ]),
   userRole: PropTypes.string,
-  context: PropTypes.shape(),
+  context: PropTypes.shape(undefined),
 };
 
 PrivateRoute.defaultProps = {

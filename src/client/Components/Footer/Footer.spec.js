@@ -6,7 +6,7 @@ import Footer from './Footer';
 describe('src/client/Components/Footer', () => {
   it('renders', () => {
     // Arrange/Act
-    const { getByTestId} = render(
+    const { getByTestId } = render(
       <Footer />,
     );
 
