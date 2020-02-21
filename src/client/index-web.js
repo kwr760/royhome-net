@@ -14,7 +14,7 @@ import config from '../util/auth0/auth_config.json';
 import App from './App';
 import history from '../util/history';
 
-const onRedirectCallback = async (appState) => {
+const onRedirectCallback = (appState) => {
   history.push(
     appState && appState.targetUrl
       ? appState.targetUrl
@@ -35,7 +35,7 @@ loadableReady(() => {
       onRedirectCallback={onRedirectCallback}
       context={context}
     >
-      <Router history={history}>
+      <Router>
         <Route component={(props) => <App {...props} context={context} />} />
       </Router>
     </Auth0Provider>,
