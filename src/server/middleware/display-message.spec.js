@@ -7,7 +7,7 @@ describe('server/middleware/display-message', () => {
     Logger.log = jest.fn();
     const msg = 'This is a test message';
 
-    // Ar
+    // Act
     displayMessage(msg);
 
     // Assert
