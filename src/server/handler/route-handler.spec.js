@@ -20,7 +20,9 @@ describe('server/routes/handler/route-handler', () => {
       send: jest.fn(),
     };
     const expectedBody = { test: 'TEST' };
-    const body = { body: expectedBody };
+    const body = {
+      body: expectedBody,
+    };
     const route = {
       handler: jest.fn(() => body),
     };
@@ -41,8 +43,13 @@ describe('server/routes/handler/route-handler', () => {
       send: jest.fn(),
     };
     const expectedBody = { test: 'TEST' };
-    const body = { status: INTERNAL_SERVER_ERROR, body: expectedBody };
-    const route = { handler: jest.fn(() => body) };
+    const body = {
+      status: INTERNAL_SERVER_ERROR,
+      body: expectedBody,
+    };
+    const route = {
+      handler: jest.fn(() => body),
+    };
 
     // Act
     await routeHandler(route, req, res);
@@ -69,7 +76,9 @@ describe('server/routes/handler/route-handler', () => {
       msg: errMsg,
       status: UNAUTHORIZED,
     };
-    const route = { handler: () => { throw error; } };
+    const route = {
+      handler: () => { throw error; },
+    };
     Logger.error = jest.fn();
 
     // Act
@@ -90,7 +99,9 @@ describe('server/routes/handler/route-handler', () => {
       json: jest.fn(),
     };
     const error = {};
-    const route = { handler: () => { throw error; } };
+    const route = {
+      handler: () => { throw error; },
+    };
     Logger.error = jest.fn();
 
     // Act
