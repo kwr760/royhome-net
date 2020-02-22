@@ -44,35 +44,35 @@ const Auth0Provider = ({
 
   useEffect(() => {
     const initAuth0 = async () => {
-      const auth0FromHook = await createAuth0Client(initOptions);
-      setAuth0(auth0FromHook);
+      // const auth0FromHook = await createAuth0Client(initOptions);
+      // setAuth0(auth0FromHook);
+      //
+      // if (window.location.search.includes('code=')) {
+      //   const { appState } = await auth0FromHook.handleRedirectCallback();
+      //   onRedirectCallback(appState);
+      // }
+      //
+      // const authenticated = await auth0FromHook.isAuthenticated();
+      // setIsAuthenticated(authenticated);
+      //
+      // if (authenticated) {
+      //   const auth0User = await auth0FromHook.getUser();
+      //   setUser(auth0User);
+      //   const tokenClaims = await auth0FromHook.getIdTokenClaims();
+      //   const token = {
+      //     exp: tokenClaims.exp,
+      //     user: auth0User,
+      //     data: tokenClaims[TOKEN_URL],
+      //   };
+      //   setData(token.data);
+      //   setCookies(token);
+      // } else {
+      //   setUser({});
+      //   setData({});
+      //   setCookies();
+      // }
 
-      if (window.location.search.includes('code=')) {
-        const { appState } = await auth0FromHook.handleRedirectCallback();
-        onRedirectCallback(appState);
-      }
-
-      const authenticated = await auth0FromHook.isAuthenticated();
-      setIsAuthenticated(authenticated);
-
-      if (authenticated) {
-        const auth0User = await auth0FromHook.getUser();
-        setUser(auth0User);
-        const tokenClaims = await auth0FromHook.getIdTokenClaims();
-        const token = {
-          exp: tokenClaims.exp,
-          user: auth0User,
-          data: tokenClaims[TOKEN_URL],
-        };
-        setData(token.data);
-        setCookies(token);
-      } else {
-        setUser({});
-        setData({});
-        setCookies();
-      }
-
-      setLoading(false);
+      // setLoading(false);
     };
     initAuth0();
     // eslint-disable-next-line
@@ -119,17 +119,17 @@ const Auth0Provider = ({
     <Auth0Context.Provider
       value={{
         isAuthenticated,
-        user,
-        loading,
-        popupOpen,
-        loginWithPopup,
-        handleRedirectCallback,
-        logout,
-        getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
-        loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
-        getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
-        getTokenWithPopup: (...p) => auth0Client.getTokenWithPopup(...p),
-        userHasRole: (role) => hasNeededRole(role, data),
+        // user,
+        // loading,
+        // popupOpen,
+        // loginWithPopup,
+        // handleRedirectCallback,
+        // logout,
+        // getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
+        // loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
+        // getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
+        // getTokenWithPopup: (...p) => auth0Client.getTokenWithPopup(...p),
+        // userHasRole: (role) => hasNeededRole(role, data),
       }}
     >
       {children}
