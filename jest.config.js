@@ -11,6 +11,7 @@ module.exports = {
       },
       testMatch: [
         '**/src/client/**/?(*.)(spec|test).js',
+        '**/src/util/**/?(*.)(spec|test).js',
       ],
       modulePathIgnorePatterns: [
         '<rootDir>/node_modules/',
@@ -45,7 +46,6 @@ module.exports = {
       testMatch: [
         '**/src/server/**/?(*.)(spec|test).js',
         '**/src/config/**/?(*.)(spec|test).js',
-        '**/src/util/**/?(*.)(spec|test).js',
       ],
       modulePathIgnorePatterns: [
         '<rootDir>/node_modules/',
