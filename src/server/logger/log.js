@@ -6,7 +6,11 @@ import getLogFilename from './get-filename';
 import writeToLog from './write-to-log';
 
 const log = ({ level, msg }) => {
-  const { dir: logLocation, level: logLevel, stdout: displayToScreen } = env.log;
+  const {
+    dir: logLocation,
+    level: logLevel,
+    stdout: displayToScreen,
+  } = env.log;
 
   if (level >= logLevel) {
     const logMessage = formatMessage(level, msg);
