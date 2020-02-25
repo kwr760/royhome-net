@@ -115,6 +115,7 @@ const Auth0Provider = ({
     setUser({});
     setData({});
     setCookies();
+    console.log(...props);
     auth0Client.logout(...props);
   };
 
