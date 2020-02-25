@@ -18,7 +18,6 @@ const Auth0Provider = ({
   const [loading] = useState(false);
   const [popupOpen] = useState(false);
 
-
   return (
     <Auth0Context.Provider
       value={{

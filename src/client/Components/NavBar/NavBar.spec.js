@@ -3,11 +3,18 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
 import NavBar from './NavBar';
 import { Auth0Context } from '../../../util/auth0/context';
-import initFontAwesome from '../../util/initFontAwesome';
+import initFontAwesome from '../../util/init-font-awesome';
 
 initFontAwesome();
 
 describe('client/Components/Pages/NavBar', () => {
+  const getNavBar = (auth) => (
+    <Auth0Context.Provider value={auth}>
+      <Router>
+        <NavBar />
+      </Router>
+    </Auth0Context.Provider>
+  );
   it('should render with authentication and role', () => {
     // Arrange
     const auth = {
@@ -17,13 +24,7 @@ describe('client/Components/Pages/NavBar', () => {
     };
 
     // Act
-    const { getByText, getAllByText, getByTestId } = render(
-      <Auth0Context.Provider value={auth}>
-        <Router>
-          <NavBar />
-        </Router>
-      </Auth0Context.Provider>,
-    );
+    const { getByText, getAllByText, getByTestId } = render(getNavBar(auth));
 
     // Assert
     getByText(/Home/);
@@ -48,13 +49,7 @@ describe('client/Components/Pages/NavBar', () => {
     // Act
     const {
       getByText, getAllByText, getAllByAltText, getByTestId,
-    } = render(
-      <Auth0Context.Provider value={auth}>
-        <Router>
-          <NavBar />
-        </Router>
-      </Auth0Context.Provider>,
-    );
+    } = render(getNavBar(auth));
 
     // Assert
     getByText(/Home/);
@@ -75,17 +70,11 @@ describe('client/Components/Pages/NavBar', () => {
       isAuthenticated: false,
       loginWithRedirect: jest.fn(),
       logout: jest.fn(),
-      userHasRole: jest.fn(() => true),
+      userHasRole: jest.fn(() => false),
     };
 
     // Act
-    const { getByText, getAllByText } = render(
-      <Auth0Context.Provider value={auth}>
-        <Router>
-          <NavBar />
-        </Router>
-      </Auth0Context.Provider>,
-    );
+    const { getByText, getAllByText } = render(getNavBar(auth));
 
     // Assert
     getByText(/Home/);

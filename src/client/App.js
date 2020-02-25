@@ -15,7 +15,7 @@ import Courses from './Pages/Courses/Courses';
 import './styles/App.css';
 
 import { useAuth0 } from '../util/auth0/context';
-import initFontAwesome from './util/initFontAwesome';
+import initFontAwesome from './util/init-font-awesome';
 
 initFontAwesome();
 

@@ -14,7 +14,7 @@ const generate = (routes) => {
       method, path, authenticate, role,
     } = route;
 
-    // Extract the contruction of the middleware
+    // Extract the construction of the middleware
     middleware = [];
     if (authenticate) {
       middleware.push(checkJwt);

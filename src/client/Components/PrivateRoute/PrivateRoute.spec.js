@@ -5,22 +5,25 @@ import PrivateRoute from './PrivateRoute';
 import { Auth0Context } from '../../../util/auth0/context';
 
 describe('client/Components/Pages/PrivateRoute', () => {
+  const userRole = 'admin';
+  const mockComponent = () => <div>Mocked</div>;
+  const getPrivateRoute = (auth, role) => (
+    <Router>
+      <Auth0Context.Provider value={auth}>
+        <PrivateRoute component={mockComponent} userRole={role} />
+      </Auth0Context.Provider>
+    </Router>
+  );
+
   it('should render with authentication and role', () => {
     // Arrange
     const auth = {
       isAuthenticated: true,
       userHasRole: jest.fn(() => true),
     };
-    const mockComponent = () => <div>Mocked</div>;
 
     // Act
-    const { getByText } = render(
-      <Router>
-        <Auth0Context.Provider value={auth}>
-          <PrivateRoute component={mockComponent} userRole="admin" />
-        </Auth0Context.Provider>
-      </Router>,
-    );
+    const { getByText } = render(getPrivateRoute(auth, userRole));
 
     // Assert
     getByText(/Mocked/);
@@ -31,16 +34,9 @@ describe('client/Components/Pages/PrivateRoute', () => {
       isAuthenticated: true,
       userHasRole: jest.fn(() => false),
     };
-    const mockComponent = () => <div>Mocked</div>;
 
     // Act
-    const { getByText } = render(
-      <Router>
-        <Auth0Context.Provider value={auth}>
-          <PrivateRoute component={mockComponent} userRole="admin" />
-        </Auth0Context.Provider>
-      </Router>,
-    );
+    const { getByText } = render(getPrivateRoute(auth, userRole));
 
     // Assert
     getByText(/admin/);

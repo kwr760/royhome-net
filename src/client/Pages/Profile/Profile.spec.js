@@ -8,6 +8,13 @@ import Profile from './Profile';
 import { Auth0Context } from '../../../util/auth0/context';
 
 describe('client/Components/Pages/Private/Profile', () => {
+  const getProfile = (auth) => (
+    <Auth0Context.Provider value={auth}>
+      <Router>
+        <Profile />
+      </Router>
+    </Auth0Context.Provider>
+  );
   it('should render profile', async () => {
     // Arrange
     const user = {
@@ -21,15 +28,10 @@ describe('client/Components/Pages/Private/Profile', () => {
       user,
     };
 
-    // Arrange
-    const { getByText, getByAltText } = render(
-      <Auth0Context.Provider value={auth}>
-        <Router>
-          <Profile />
-        </Router>
-      </Auth0Context.Provider>,
-    );
+    // Act
+    const { getByText, getByAltText } = render(getProfile(auth));
 
+    // Assert
     await waitForElement(() => getByAltText('Profile'));
     getByText(/Nickname/);
     getByText(/Picture/);
@@ -41,15 +43,10 @@ describe('client/Components/Pages/Private/Profile', () => {
       loading: true,
     };
 
-    // Arrange
-    const { getByAltText } = render(
-      <Auth0Context.Provider value={auth}>
-        <Router>
-          <Profile />
-        </Router>
-      </Auth0Context.Provider>,
-    );
+    // Act
+    const { getByAltText } = render(getProfile(auth));
 
+    // Assert
     getByAltText(/Loading/);
   });
 });

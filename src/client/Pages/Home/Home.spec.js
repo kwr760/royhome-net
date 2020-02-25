@@ -1,24 +1,16 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+
 import Home from './Home';
-import { Auth0Context } from '../../../util/auth0/context';
+import initFontAwesome from '../../util/init-font-awesome';
+
+initFontAwesome();
 
 describe('client/Components/Pages/Public/Home', () => {
   it('should render', () => {
-    // Arrange
-    const auth = {
-      isAuthenticated: false,
-      loginWithRedirect: jest.fn(),
-    };
-    const location = {
-      hash: 'http://url/',
-    };
-
-    // Act
+    // Arrange/Act
     const { getByText } = render(
-      <Auth0Context.Provider value={auth}>
-        <Home location={location} />
-      </Auth0Context.Provider>,
+      <Home />,
     );
 
     // Assert
