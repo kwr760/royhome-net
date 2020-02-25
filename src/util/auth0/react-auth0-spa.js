@@ -9,7 +9,8 @@ import hasNeededRole from './has-needed-role';
 
 const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState(
   {},
-  document.title, window.location.pathname,
+  document.title,
+  window.location.pathname,
 );
 
 const setCookies = (newCookies) => {
@@ -75,6 +76,7 @@ const Auth0Provider = ({
       setLoading(false);
     };
     initAuth0();
+    // eslint-disable-next-line
   }, []);
 
   const loginWithPopup = async (params = {}) => {
@@ -109,9 +111,39 @@ const Auth0Provider = ({
   };
 
   const logout = (...props) => {
+    setIsAuthenticated(false);
+    setUser({});
     setData({});
     setCookies();
     auth0Client.logout(...props);
+  };
+
+  const getIdTokenClaims = (...p) => {
+    if (auth0Client) {
+      return auth0Client.getIdTokenClaims(...p);
+    }
+    return undefined;
+  };
+
+  const loginWithRedirect = (...p) => {
+    if (auth0Client) {
+      return auth0Client.loginWithRedirect(...p);
+    }
+    return undefined;
+  };
+
+  const getTokenSilently = (...p) => {
+    if (auth0Client) {
+      return auth0Client.getTokenSilently(...p);
+    }
+    return undefined;
+  };
+
+  const getTokenWithPopup = (...p) => {
+    if (auth0Client) {
+      return auth0Client.getTokenWithPopup(...p);
+    }
+    return undefined;
   };
 
   return (
@@ -124,10 +156,10 @@ const Auth0Provider = ({
         loginWithPopup,
         handleRedirectCallback,
         logout,
-        getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
-        loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
-        getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
-        getTokenWithPopup: (...p) => auth0Client.getTokenWithPopup(...p),
+        getIdTokenClaims,
+        loginWithRedirect,
+        getTokenSilently,
+        getTokenWithPopup,
         userHasRole: (role) => hasNeededRole(role, data),
       }}
     >
