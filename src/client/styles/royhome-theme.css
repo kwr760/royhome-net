@@ -2,7 +2,6 @@
   color: white;
 }
 .navbar-light .navbar-nav .nav-link:hover {
-  /*color: #b3bac7;*/
   color: white;
   text-decoration: underline;
 }
@@ -24,6 +23,17 @@
   margin: 0 40px 0 0;
   font-weight: 400
 }
+
+
+footer .nav-link {
+  color: #b3bac7;
+  padding: 0;
+}
+footer .nav-link:hover {
+  color: #b3bac7;
+  text-decoration: underline;
+}
+
 .navbar-nav .btn {
   min-width: 145px
 }
