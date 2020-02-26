@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie';
 import { Auth0Context } from './context';
 import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from './constants';
 import hasNeededRole from './has-needed-role';
+import env from '../../config';
 
 const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState(
   {},
@@ -115,9 +116,11 @@ const Auth0Provider = ({
     setUser({});
     setData({});
     setCookies();
-    console.log(JSON.stringify(props));
-    console.log(...props);
-    auth0Client.logout(...props);
+    const logoutProps = {
+      ...props,
+      returnTo: env.host,
+    };
+    auth0Client.logout(logoutProps);
   };
 
   const getIdTokenClaims = (...p) => {
