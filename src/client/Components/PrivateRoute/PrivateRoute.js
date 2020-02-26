@@ -1,5 +1,4 @@
-// import React, { useEffect } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -8,28 +7,25 @@ import { useAuth0 } from '../../../util/auth0/context';
 const PrivateRoute = ({
   component: Component, path, userRole, context, ...rest
 }) => {
-  // const { isAuthenticated, loginWithRedirect, userHasRole } = useAuth0();
-  const { isAuthenticated, userHasRole } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, userHasRole } = useAuth0();
 
-  // useEffect(() => {
-  //   const needToLogin = async () => {
-  // if (!isAuthenticated) {
-  // await loginWithRedirect({
-  //   appState: { targetUrl: path },
-  // });
-  // }
-  // };
-  // needToLogin();
-  // }, [isAuthenticated, loginWithRedirect, path]);
+  useEffect(() => {
+    const needToLogin = async (url) => {
+      if (!isAuthenticated) {
+        await loginWithRedirect({
+          appState: { targetUrl: url },
+        });
+      }
+    };
+    needToLogin(path);
+  }, [isAuthenticated, loginWithRedirect, path]);
 
   const render = (props) => {
     if (isAuthenticated === true && userRole.length > 0 && !userHasRole(userRole)) {
       return (
-        <h1>
-          Unauthorized - You need the following role to view this page:
-          {' '}
-          {userRole}
-        </h1>
+        <h3>
+          {`Unauthorized - You need the following role to view this page: ${userRole}`}
+        </h3>
       );
     }
 
