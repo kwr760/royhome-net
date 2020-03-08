@@ -56,6 +56,19 @@ const getConfig = (target) => ({
           },
         ],
       },
+      {
+        test: /\.scss$/,
+        use: [
+          'isomorphic-style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: dev,
+            },
+          },
+        ],
+      },
     ],
   },
   externals:
@@ -94,6 +107,9 @@ const getConfig = (target) => ({
       syntax: 'scss',
     }),
   ],
+  resolve: {
+    extensions: ['.js', '.scss'],
+  },
 });
 
 export default [getConfig('web'), getConfig('node')];

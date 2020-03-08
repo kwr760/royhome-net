@@ -32,7 +32,7 @@ dt {
   font-weight: normal;
 }
 dl {
-  margin-top: .5em;
+  margin-top: 0.5em;
   margin-bottom: 0;
 }
 ul {
@@ -43,8 +43,8 @@ ul {
   font-style: italic;
 }
 .position-info {
-  margin-top: .5em;
-  margin-bottom: .5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 @media print {
   .no-print, .no-print * {
