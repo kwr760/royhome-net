@@ -25,33 +25,33 @@ const generate = (routes) => {
 
     // Extract each of the cases
     switch (method) {
-      case 'get':
-        Logger.log(`GET: ${JSON.stringify(route)}`);
-        router.get(
-          path,
-          middleware,
-          (req, res) => routeHandler(route, req, res),
-        );
-        break;
-      case 'put':
-        Logger.log(`PUT: ${JSON.stringify(route)}`);
-        router.put(
-          path,
-          middleware,
-          (req, res) => routeHandler(route, req, res),
-        );
-        break;
-      case 'post':
-        Logger.log(`POST: ${JSON.stringify(route)}`);
-        router.post(
-          path,
-          middleware,
-          (req, res) => routeHandler(route, req, res),
-        );
-        break;
-      default:
-        Logger.error(`Unknown route: ${JSON.stringify(route)}`);
-        break;
+    case 'get':
+      Logger.log(`GET: ${JSON.stringify(route)}`);
+      router.get(
+        path,
+        middleware,
+        (req, res) => routeHandler(route, req, res),
+      );
+      break;
+    case 'put':
+      Logger.log(`PUT: ${JSON.stringify(route)}`);
+      router.put(
+        path,
+        middleware,
+        (req, res) => routeHandler(route, req, res),
+      );
+      break;
+    case 'post':
+      Logger.log(`POST: ${JSON.stringify(route)}`);
+      router.post(
+        path,
+        middleware,
+        (req, res) => routeHandler(route, req, res),
+      );
+      break;
+    default:
+      Logger.error(`Unknown route: ${JSON.stringify(route)}`);
+      break;
     }
   });
   return router;

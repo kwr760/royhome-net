@@ -10,7 +10,6 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    // commonjs: true,
     es6: true,
     node: true,
     jest: true,
@@ -36,6 +35,13 @@ module.exports = {
     'react-hooks/exhaustive-deps': "warn",
     'no-console': 'off',
     'comma-dangle': ["error", "always-multiline"],
-    'import/no-dynamic-require': 0
+    'import/no-dynamic-require': 0,
+    indent: ['error', 2],
+    'linebreak-style': ['error', 'unix'],
+    quotes: ['warn', 'single'],
+    'no-unused-vars': [
+      'warn',
+      { vars: 'all', args: 'none', ignoreRestSiblings: false }
+    ],
   },
 };
