@@ -58,16 +58,16 @@ const NavBar = () => {
                 </NavLink>
               </NavItem>
               { isAuthenticated && userHasRole('engineer') && (
-              <NavItem>
-                <NavLink
-                  tag={RouterNavLink}
-                  to="/courses"
-                  exact
-                  activeClassName="router-link-exact-active"
-                >
+                <NavItem>
+                  <NavLink
+                    tag={RouterNavLink}
+                    to="/courses"
+                    exact
+                    activeClassName="router-link-exact-active"
+                  >
                   Courses
-                </NavLink>
-              </NavItem>
+                  </NavLink>
+                </NavItem>
               )}
             </Nav>
             <Nav className="d-none d-md-block" navbar>
