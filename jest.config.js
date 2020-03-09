@@ -7,7 +7,7 @@ module.exports = {
       verbose: true,
       moduleNameMapper: {
         '\\.(jpg|jpeg|png|gif|eot|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$': '<rootDir>/src/mocks/file.js',
-        '\\.(css)$': 'identity-obj-proxy',
+        '\\.(css|scss)$': 'identity-obj-proxy',
       },
       testMatch: [
         '**/src/client/**/?(*.)(spec|test).js',
