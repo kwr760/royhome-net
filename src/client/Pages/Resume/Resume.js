@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ResumeHtml from './Resume.html';
-import './Resume.css';
+import './Resume.scss';
 
 const Resume = () => {
   const template = { __html: ResumeHtml };

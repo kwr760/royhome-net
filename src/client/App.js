@@ -12,7 +12,7 @@ import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Profile from './Pages/Profile/Profile';
 import Courses from './Pages/Courses/Courses';
 
-import './styles/App.css';
+import './styles/App.scss';
 
 import { useAuth0 } from '../util/auth0/context';
 import initFontAwesome from './util/init-font-awesome';
