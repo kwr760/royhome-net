@@ -7,6 +7,7 @@ import { loadableReady } from '@loadable/component';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.css';
+import './styles/base.scss';
 import './styles/royhome-theme.css';
 
 import Auth0Provider from '../util/auth0/react-auth0-spa';

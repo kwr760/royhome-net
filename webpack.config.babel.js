@@ -56,6 +56,22 @@ const getConfig = (target) => ({
           },
         ],
       },
+      {
+        test: /\.scss$/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: dev,
+            },
+          },
+        ],
+      },
     ],
   },
   externals:
@@ -67,7 +83,7 @@ const getConfig = (target) => ({
     ] : undefined,
   output: {
     path: path.join(DIST_PATH, target),
-    filename: dev ? '[name].js' : '[name]-bundle-[chunkhash:8].js',
+    filename: dev ? '[name].js' : '[name].[chunkhash:8].js',
     publicPath: `/dist/${target}/`,
     libraryTarget: target === 'node' ? 'commonjs2' : undefined,
   },
@@ -75,18 +91,12 @@ const getConfig = (target) => ({
     new CleanWebpackPlugin(),
     new LoadablePlugin(),
     new MiniCssExtractPlugin({
-      filename: dev ? '[name].css' : '[name].[chuckhash:8].css',
+      filename: dev ? '[name].css' : '[name].[chunkhash:8].css',
       chunkFilename: dev ? '[id].css' : '[id].[chunkhash:8].css',
     }),
     new CopyWebpackPlugin([
       { from: './src/client/assets/favicon.ico' },
     ]),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: './src/client/assets/index.html',
-      filename: 'index.html',
-    }),
     new WebpackMd5Hash(),
     new StylelintPlugin({
       configFile: './stylelint.config.js',
@@ -94,6 +104,9 @@ const getConfig = (target) => ({
       syntax: 'scss',
     }),
   ],
+  resolve: {
+    extensions: ['.js', '.scss'],
+  },
 });
 
 export default [getConfig('web'), getConfig('node')];
