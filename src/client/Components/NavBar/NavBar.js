@@ -31,7 +31,7 @@ const NavBar = () => {
 
   return (
     <div className="nav-container">
-      <Navbar style={{ backgroundImage: 'linear-gradient(to bottom right, #1d3057, #828894)' }} light expand="md">
+      <Navbar light expand="md">
         <Container>
           <NavbarBrand className="logo" />
           <NavbarToggler data-testid="navbar-toggler" onClick={toggle} />
@@ -134,7 +134,6 @@ const NavBar = () => {
               <Nav
                 className="d-md-none justify-content-between"
                 navbar
-                style={{ minHeight: 170 }}
               >
                 <NavItem>
                   <span className="user-info">
