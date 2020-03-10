@@ -6,9 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { loadableReady } from '@loadable/component';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import './styles/index.css';
-import './styles/base.scss';
-import './styles/royhome-theme.css';
+import './styles/index.scss';
 
 import Auth0Provider from '../util/auth0/react-auth0-spa';
 import config from '../util/auth0/auth_config.json';
