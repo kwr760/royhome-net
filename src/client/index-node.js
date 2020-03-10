@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.scss';
-import './styles/base.scss';
-import './styles/theme.scss';
 
 import Auth0Provider from '../util/auth0/react-auth0-node';
 import config from '../util/auth0/auth_config.json';
