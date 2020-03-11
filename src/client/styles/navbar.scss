@@ -12,7 +12,6 @@
   margin-right: 60px;
 }
 .navbar-nav .nav-link {
-  color: $color-banner-text;
   padding: 0 0 0.5rem 0;
   box-sizing: border-box;
   margin: 0 40px 0 0;
@@ -22,8 +21,13 @@
   color: $color-banner-text;
 }
 .navbar-light .navbar-nav .nav-link:hover {
+  color: lighten($color-banner-text, 15%);
+}
+.navbar-light .navbar-nav .nav-link:focus {
   color: $color-banner-text;
-  text-decoration: underline;
+}
+.navbar-light .navbar-nav .nav-item .router-link-exact-active {
+  color: $color-banner-text;
 }
 .navbar-nav .btn {
   min-width: 145px;
@@ -39,9 +43,6 @@
 }
 .nav-item.dropdown .dropdown-name {
   font-weight: 600;
-}
-.nav-item.dropdown .router-link-exact-active {
-  border: 0;
 }
 .nav-item.dropdown .dropdown-menu {
   box-shadow: 0 0 4px 0 $color-banner-text;
@@ -83,18 +84,24 @@
     max-width: 1140px;
   }
 }
-
 @media (max-width: 767px) {
   .nav-item .nav-link {
-    color: $color-banner-text;
     padding: 0.25em 0 0.25em 16px;
   }
   .nav-item .nav-link.router-link-exact-active {
-    color: $color-banner-text;
     border-bottom: 0;
     border-left: 2px solid $color-banner-text;
     padding-left: 13px;
     vertical-align: middle;
+  }
+  .nav-item .router-link-exact-active {
+    border-bottom: 0;
+    border-left: 2px solid $color-banner-text;
+    padding-left: 13px;
+  }
+  .navbar-light .navbar-nav .nav-item a:hover {
+    color: lighten($color-banner-text, 15%);
+    text-decoration: none;
   }
   .navbar-brand {
     margin-left: 2.5rem;
@@ -120,12 +127,17 @@
     vertical-align: middle;
     color: $color-banner-text;
   }
+  .navbar-nav .nav-item svg {
+    color: $color-banner-text;
+  }
   .navbar-nav .user-info img {
     margin-right: 1em;
   }
+  .navbar-nav .user-info {
+    color: $color-banner-text;
+  }
   .navbar-nav .btn-link {
     padding: 0;
-    color: $color-banner-text;
     min-width: 0;
   }
 }
