@@ -58,7 +58,7 @@ exports[`client/Components/Pages/Public/Resume should render resume html 1`] = `
             <div
               id="phone"
             >
-              Upon request
+              Cell opon request
             </div>
             
         
