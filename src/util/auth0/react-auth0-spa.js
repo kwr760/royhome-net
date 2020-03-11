@@ -41,7 +41,7 @@ const Auth0Provider = ({
   const [user, setUser] = useState(cxtUser);
   const [data, setData] = useState(cxtData);
   const [auth0Client, setAuth0] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [popupOpen, setPopupOpen] = useState(false);
 
   useEffect(() => {

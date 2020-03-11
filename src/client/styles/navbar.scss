@@ -99,6 +99,10 @@
     border-left: 2px solid $color-banner-text;
     padding-left: 13px;
   }
+  .navbar-nav:last-child li a {
+    vertical-align: middle;
+    color: $color-banner-text;
+  }
   .navbar-light .navbar-nav .nav-item a:hover {
     color: lighten($color-banner-text, 15%);
     text-decoration: none;
@@ -122,10 +126,6 @@
   .navbar-nav:last-child li .icon {
     margin-right: 1em;
     vertical-align: middle;
-  }
-  .navbar-nav:last-child li a {
-    vertical-align: middle;
-    color: $color-banner-text;
   }
   .navbar-nav .nav-item svg {
     color: $color-banner-text;

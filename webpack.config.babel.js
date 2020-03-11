@@ -3,7 +3,6 @@ import nodeExternals from 'webpack-node-externals';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import StylelintPlugin from 'stylelint-webpack-plugin';
@@ -46,17 +45,6 @@ const getConfig = (target) => ({
         use: ['html-loader'],
       },
       {
-        test: /\.(svg|png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'images',
-            },
-          },
-        ],
-      },
-      {
         test: /\.scss$/,
         use: [
           'isomorphic-style-loader',
@@ -68,6 +56,17 @@ const getConfig = (target) => ({
             loader: 'sass-loader',
             options: {
               sourceMap: dev,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(svg|png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'images',
             },
           },
         ],
