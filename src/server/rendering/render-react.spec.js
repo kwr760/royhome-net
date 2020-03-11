@@ -29,6 +29,7 @@ describe('server/rendering/render-react', () => {
 <html lang="en" class="h-100">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roy Home</title>
     <base href="/" >
     <link rel="shortcut icon" href="/dist/web/favicon.ico">
