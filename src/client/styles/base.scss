@@ -39,6 +39,8 @@ pre {
   width: 100%;
   background-color: $color-secondary-1-2;
   padding: 0.5em;
+  box-shadow: 0 0 4px 1px $color-banner-text;
+  margin: 0 2em;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
