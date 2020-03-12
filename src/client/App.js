@@ -28,9 +28,9 @@ function App({ context }) {
   }
 
   return (
-    <div id="app" className="d-flex flex-column h-100">
+    <div id="app" className="d-flex flex-column h-100 backdrop">
       <NavBar />
-      <Container className="flex-grow-1 mt-3">
+      <Container className="flex-grow-1 pt-3 main-container">
         <Switch>
           <Route
             path="/"
