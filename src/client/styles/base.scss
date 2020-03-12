@@ -44,3 +44,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
+.backdrop {
+  background-color: $color-backdrop;
+}
+.main-container {
+  background-color: $color-background;
+  box-shadow: 0 0 4px 1px $color-banner-text;
+}
