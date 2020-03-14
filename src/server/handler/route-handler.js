@@ -1,9 +1,12 @@
+// @flow
+
 import { getStatusText, INTERNAL_SERVER_ERROR, OK } from 'http-status-codes';
 
 import Logger from '../logger';
 import displayMessage from '../middleware/display-message';
+import type { Route } from './types';
 
-const routeHandler = async (route, req, res) => {
+const routeHandler = async (route: Route, req: Request, res: Response) => {
   try {
     displayMessage(`routeHandler: ${req.method} - ${req.url}`);
     const response = await route.handler(req, res);

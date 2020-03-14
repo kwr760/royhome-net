@@ -1,3 +1,5 @@
+// @flow
+
 import util from 'util';
 
 const getCurrentDate = () => {

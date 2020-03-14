@@ -1,9 +1,11 @@
+// @flow
+
 import fs from 'fs';
 import https from 'https';
 import displayMessage from './display-message';
 import env from '../../config';
 
-const startHttpsServer = (app, port) => {
+const startHttpsServer = (app: Object, port: number) => {
   const privateKey = fs.readFileSync(env.server.key, 'utf8');
   const certificate = fs.readFileSync(env.server.cert, 'utf8');
   const ca = fs.readFileSync(env.server.ca, 'utf8');

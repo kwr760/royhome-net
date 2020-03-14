@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import writeToServer from './write-to-server';
-import LOG_LEVELS from '../../../util/logger/levels';
+import LOG_TYPE from '../../../util/logger/levels';
 
 jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({ data: {} }),
@@ -9,7 +9,7 @@ jest.mock('axios', () => ({
 
 describe('client/logger/write-to-server', () => {
   const msg = {
-    level: LOG_LEVELS.ERROR,
+    logType: LOG_TYPE.ERROR,
     msg: 'message',
   };
 

@@ -1,7 +1,6 @@
+// @flow
 import React from 'react';
 import { StaticRouter as Router, Route } from 'react-router-dom';
-
-import PropTypes from 'prop-types';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.scss';
@@ -9,25 +8,21 @@ import './styles/index.scss';
 import Auth0Provider from '../util/auth0/react-auth0-node';
 import config from '../util/auth0/auth_config.json';
 import App from './App';
+import { Props } from './types';
 
 const onRedirectCallback = () => {};
 
-const Main = ({ url, context }) => (
+const Main = ({ url, context }: Props) => (
   <Auth0Provider
     domain={config.domain}
     client_id={config.clientId}
     onRedirectCallback={onRedirectCallback}
     context={context}
   >
-    <Router location={url}>
+    <Router location={url} context={{}}>
       <Route component={(props) => <App {...props} context={context} />} />
     </Router>
   </Auth0Provider>
 );
-
-Main.propTypes = {
-  url: PropTypes.string.isRequired,
-  context: PropTypes.shape().isRequired,
-};
 
 export default Main;

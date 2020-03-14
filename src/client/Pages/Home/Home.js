@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -10,8 +12,5 @@ const Home = () => (
     </p>
   </div>
 );
-
-Home.propTypes = {
-};
 
 export default Home;

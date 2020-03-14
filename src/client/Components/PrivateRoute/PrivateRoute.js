@@ -1,12 +1,14 @@
+// @flow
+
 import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import { useAuth0 } from '../../../util/auth0/context';
+import { Props } from '../../types';
 
 const PrivateRoute = ({
   component: Component, path, userRole, context, ...rest
-}) => {
+}: Props) => {
   const { isAuthenticated, loginWithRedirect, userHasRole } = useAuth0();
 
   useEffect(() => {
@@ -33,23 +35,6 @@ const PrivateRoute = ({
   };
 
   return <Route path={path} render={render} {...rest} />;
-};
-
-
-PrivateRoute.propTypes = {
-  component: PropTypes.func.isRequired,
-  path: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
-  userRole: PropTypes.string,
-  context: PropTypes.shape(undefined),
-};
-
-PrivateRoute.defaultProps = {
-  path: '',
-  userRole: '',
-  context: {},
 };
 
 export default PrivateRoute;

@@ -1,19 +1,36 @@
-import LOG_LEVELS, { LEVEL_NAMES } from './levels';
+import LOG_TYPE from './levels';
 
 describe('util/logger/levels', () => {
   it('should load the expected levels', () => {
     // Arrange/Act
-    const loadedLevels = LOG_LEVELS;
+    const loadedLevels = LOG_TYPE;
 
     // Assert
     expect(loadedLevels).toEqual({
-      DEBUG: 1,
-      INFO: 2,
-      WARN: 3,
-      ERROR: 4,
-      FATAL: 5,
-      OFF: 9,
+      DEBUG: {
+        level: 1,
+        name: 'DEBUG',
+      },
+      INFO: {
+        level: 2,
+        name: 'INFO',
+      },
+      WARN: {
+        level: 3,
+        name: 'WARN',
+      },
+      ERROR: {
+        level: 4,
+        name: 'ERROR',
+      },
+      FATAL: {
+        level: 5,
+        name: 'FATAL',
+      },
+      OFF: {
+        level: 0,
+        name: 'OFF',
+      },
     });
-    expect(Object.keys(LOG_LEVELS).length).toEqual(Object.keys(LEVEL_NAMES).length);
   });
 });

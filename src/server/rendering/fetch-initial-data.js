@@ -1,4 +1,6 @@
-const fetchInitialData = (endpoints) => {
+// @flow
+
+const fetchInitialData = (endpoints: Object) => {
   const data = {};
   Object.keys(endpoints)
     .map((name) => {

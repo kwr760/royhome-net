@@ -1,3 +1,5 @@
+// @flow
+
 export const OWNER = 'owner';
 export const TOKEN_URL = 'http://royhome.net';
 export const COOKIE_JWT_PAYLOAD = 'jwtPayload';

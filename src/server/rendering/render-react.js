@@ -1,3 +1,5 @@
+// @flow
+
 import path from 'path';
 import fs from 'fs';
 
@@ -10,7 +12,7 @@ import populateContext from './populate-context';
 import displayMessage from '../middleware/display-message';
 import env from '../../config';
 
-const renderReact = (req, res) => {
+const renderReact = (req: Request, res: Response) => {
   displayMessage(`Server render:  ${req.url}`);
 
   // Extract the creation of the markup to a separate file

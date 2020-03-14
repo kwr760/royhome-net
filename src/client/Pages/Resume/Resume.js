@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 
 import ResumeHtml from './Resume.html';
@@ -10,9 +12,6 @@ const Resume = () => {
     // eslint-disable-next-line react/no-danger
     <div dangerouslySetInnerHTML={template} />
   );
-};
-
-Resume.propTypes = {
 };
 
 export default Resume;

@@ -25,6 +25,7 @@ describe('src/client/index-web', () => {
     document.body.appendChild(mainContainer);
   });
   afterEach(() => {
+    jest.clearAllMocks();
     // cleanup on exiting
     unmountComponentAtNode(mainContainer);
     mainContainer.remove();
@@ -45,7 +46,7 @@ describe('src/client/index-web', () => {
       require('./index-web');
 
       // Assert
-      expect(MockProvider).toBeCalled();
+      expect(MockProvider).toBeCalledTimes(1);
       expect(MockApp).toBeCalled();
       expect(mockApp).toBeCalled();
     });
@@ -62,9 +63,21 @@ describe('src/client/index-web', () => {
       require('./index-web');
 
       // Assert
-      expect(MockProvider).toBeCalled();
+      expect(MockProvider).toBeCalledTimes(1);
       expect(MockApp).toBeCalled();
       expect(mockApp).toBeCalled();
+    });
+  });
+  it('launches the App with empty root', () => {
+    jest.isolateModules(() => {
+      // Arrange
+      jest.spyOn(document, 'getElementById').mockImplementation((element) => (null));
+
+      // Act
+      require('./index-web');
+
+      // Assert
+      expect(MockProvider).not.toBeCalled();
     });
   });
 });

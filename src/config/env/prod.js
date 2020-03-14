@@ -1,4 +1,4 @@
-import LOG_LEVELS from '../../util/logger/levels';
+import LOG_TYPE from '../../util/logger/levels';
 
 const currentHost = global.origin || 'https://royk.us';
 
@@ -17,7 +17,7 @@ const env = (host) => ({
   },
   log: {
     dir: '/var/log/royhome.net',
-    level: LOG_LEVELS.WARN,
+    level: LOG_TYPE.WARN,
     stdout: false,
     includePidFilename: true,
   },

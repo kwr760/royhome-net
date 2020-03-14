@@ -1,3 +1,5 @@
+// @flow
+
 /* eslint-disable no-underscore-dangle */
 import 'core-js';
 import React from 'react';
@@ -25,19 +27,21 @@ loadableReady(() => {
   const context = window.__INITIAL_DATA__;
   delete window.__INITIAL_DATA__;
   const root = document.getElementById('main');
-  hydrate(
-    <Auth0Provider
-      domain={config.domain}
-      client_id={config.clientId}
-      audience={config.audience}
-      redirect_uri={window.location.origin}
-      onRedirectCallback={onRedirectCallback}
-      context={context}
-    >
-      <Router>
-        <Route component={(props) => <App {...props} context={context} />} />
-      </Router>
-    </Auth0Provider>,
-    root,
-  );
+  if (root !== null) {
+    hydrate(
+      <Auth0Provider
+        domain={config.domain}
+        client_id={config.clientId}
+        audience={config.audience}
+        redirect_uri={window.location.origin}
+        onRedirectCallback={onRedirectCallback}
+        context={context}
+      >
+        <Router>
+          <Route component={(props) => <App {...props} context={context} />} />
+        </Router>
+      </Auth0Provider>,
+      root,
+    );
+  }
 });

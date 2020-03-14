@@ -1,19 +1,30 @@
-const LOG_LEVELS = {
-  DEBUG: 1,
-  INFO: 2,
-  WARN: 3,
-  ERROR: 4,
-  FATAL: 5,
-  OFF: 9,
+// @flow
+
+const LOG_TYPE = {
+  DEBUG: {
+    level: 1,
+    name: 'DEBUG',
+  },
+  INFO: {
+    level: 2,
+    name: 'INFO',
+  },
+  WARN: {
+    level: 3,
+    name: 'WARN',
+  },
+  ERROR: {
+    level: 4,
+    name: 'ERROR',
+  },
+  FATAL: {
+    level: 5,
+    name: 'FATAL',
+  },
+  OFF: {
+    level: 0,
+    name: 'OFF',
+  },
 };
 
-export const LEVEL_NAMES = {
-  1: 'DEBUG',
-  2: 'INFO',
-  3: 'WARN',
-  4: 'ERROR',
-  5: 'FATAL',
-  9: 'OFF',
-};
-
-export default LOG_LEVELS;
+export default LOG_TYPE;

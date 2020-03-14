@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+// @flow
+
 import React, { useState, useEffect } from 'react';
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Cookies from 'universal-cookie';
@@ -7,6 +9,7 @@ import { Auth0Context } from './context';
 import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from './constants';
 import hasNeededRole from './has-needed-role';
 import env from '../../config';
+import type { Auth0ProviderProps, Auth0Client } from './types';
 
 const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState(
   {},
@@ -32,7 +35,7 @@ const Auth0Provider = ({
   onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
   context,
   ...initOptions
-}) => {
+}: Auth0ProviderProps) => {
   const { jwt } = context;
   const { expiresAt, user: cxtUser, data: cxtData } = jwt;
 
@@ -40,7 +43,7 @@ const Auth0Provider = ({
   const [isAuthenticated, setIsAuthenticated] = useState(currTime < expiresAt);
   const [user, setUser] = useState(cxtUser);
   const [data, setData] = useState(cxtData);
-  const [auth0Client, setAuth0] = useState();
+  const [auth0Client, setAuth0]: [Auth0Client, Function] = useState();
   const [loading, setLoading] = useState(true);
   const [popupOpen, setPopupOpen] = useState(false);
 

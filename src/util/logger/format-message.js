@@ -1,11 +1,13 @@
-import { LEVEL_NAMES } from './levels';
-import getCurrentDatetime from '../datetime/get-current-datetime';
+// @flow
 
-const formatMessage = (level, msg) => {
+import getCurrentDatetime from '../datetime/get-current-datetime';
+import { LogType } from './types';
+
+const formatMessage = (logType: LogType, msg: string) => {
   const datetime = getCurrentDatetime();
   const { pid } = process;
   const logMsg = JSON.stringify(msg);
-  return `${datetime}:${pid}:${LEVEL_NAMES[level]}:${logMsg}`;
+  return `${datetime}:${pid}:${logType.name}:${logMsg}`;
 };
 
 export default formatMessage;
