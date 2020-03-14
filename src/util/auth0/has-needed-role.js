@@ -1,7 +1,7 @@
 // @flow
 
 import { OWNER, ROLES } from './constants';
-import { TokenData } from './types';
+import { type TokenData } from './types';
 
 const hasNeededRole = (neededRole: string, data: TokenData = {}) => {
   const { role: rolesString = '' } = data;

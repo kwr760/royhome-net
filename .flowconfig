@@ -7,6 +7,9 @@
 ./flow-typed/.*
 
 [lints]
+all=warn
+untyped-type-import=error
+sketchy-null-bool=off
 
 [options]
 module.file_ext=.js
@@ -20,3 +23,8 @@ module.name_mapper.extension='scss' -> 'empty/object'
 module.name_mapper.extension='html' -> 'empty/string'
 
 [strict]
+nonstrict-import
+unclear-type
+unsafe-getters-setters
+untyped-import
+untyped-type-import

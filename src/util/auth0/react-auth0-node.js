@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { Auth0Context } from './context';
-import { Auth0ProviderProps } from './types';
+import { type Auth0ProviderProps } from './types';
 
 import hasNeededRole from './has-needed-role';
 

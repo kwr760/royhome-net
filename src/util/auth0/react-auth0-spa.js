@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // @flow
-
+import _ from 'lodash';
 import React, { useState, useEffect } from 'react';
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Cookies from 'universal-cookie';
@@ -43,7 +43,7 @@ const Auth0Provider = ({
   const [isAuthenticated, setIsAuthenticated] = useState(currTime < expiresAt);
   const [user, setUser] = useState(cxtUser);
   const [data, setData] = useState(cxtData);
-  const [auth0Client, setAuth0]: [Auth0Client, Function] = useState();
+  const [auth0Client, setAuth0]: [Auth0Client, Function] = useState({});
   const [loading, setLoading] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
 
@@ -128,28 +128,28 @@ const Auth0Provider = ({
   };
 
   const getIdTokenClaims = (...p) => {
-    if (auth0Client) {
+    if (!_.isEmpty(auth0Client)) {
       return auth0Client.getIdTokenClaims(...p);
     }
     return undefined;
   };
 
   const loginWithRedirect = (...p) => {
-    if (auth0Client) {
+    if (!_.isEmpty(auth0Client)) {
       return auth0Client.loginWithRedirect(...p);
     }
     return undefined;
   };
 
   const getTokenSilently = (...p) => {
-    if (auth0Client) {
+    if (!_.isEmpty(auth0Client)) {
       return auth0Client.getTokenSilently(...p);
     }
     return undefined;
   };
 
   const getTokenWithPopup = (...p) => {
-    if (auth0Client) {
+    if (!_.isEmpty(auth0Client)) {
       return auth0Client.getTokenWithPopup(...p);
     }
     return undefined;
