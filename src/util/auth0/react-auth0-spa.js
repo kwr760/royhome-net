@@ -44,11 +44,12 @@ const Auth0Provider = ({
   const [user, setUser] = useState(cxtUser);
   const [data, setData] = useState(cxtData);
   const [auth0Client, setAuth0]: [Auth0Client, Function] = useState();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
 
   useEffect(() => {
     const initAuth0 = async () => {
+      setLoading(true);
       const auth0FromHook = await createAuth0Client(initOptions);
       setAuth0(auth0FromHook);
 

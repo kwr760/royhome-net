@@ -7,7 +7,7 @@ import { useAuth0 } from '../../../util/auth0/context';
 import { Props } from '../../types';
 
 const PrivateRoute = ({
-  component: Component, path, userRole, context, ...rest
+  component: Component, path, userRole = '', context, ...rest
 }: Props) => {
   const { isAuthenticated, loginWithRedirect, userHasRole } = useAuth0();
 
