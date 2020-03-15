@@ -4,18 +4,18 @@ import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 
 import { useAuth0 } from '../../../util/auth0/context';
-import { Props } from '../../types';
+import { type Props } from '../../types';
 
 const PrivateRoute = ({
-  component: Component, path, userRole = '', context, ...rest
+  component: Component, path, userRole = '', context, url, ...rest
 }: Props) => {
   const { isAuthenticated, loginWithRedirect, userHasRole } = useAuth0();
 
   useEffect(() => {
-    const needToLogin = async (url) => {
+    const needToLogin = async (target) => {
       if (!isAuthenticated) {
         await loginWithRedirect({
-          appState: { targetUrl: url },
+          appState: { targetUrl: target },
         });
       }
     };

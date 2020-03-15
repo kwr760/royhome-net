@@ -11,3 +11,9 @@ export const ROLES = {
   COMPANY: 'company',
   ADMIN: 'admin',
 };
+
+export const config = {
+  domain: 'royk.auth0.com',
+  clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
+  audience: 'http://royk.us',
+};

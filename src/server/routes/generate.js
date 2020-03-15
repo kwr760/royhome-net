@@ -6,7 +6,7 @@ import checkJwt from '../middleware/check-jwt';
 import checkRole from '../middleware/check-role';
 import Logger from '../logger';
 import routeHandler from '../handler/route-handler';
-import { Route } from './types';
+import { type Route } from './types';
 
 const generate = (routes: Array< Route >) => {
   const router: Object = express.Router< Request, Response>();
@@ -14,7 +14,7 @@ const generate = (routes: Array< Route >) => {
 
   routes.forEach((route) => {
     const {
-      method, path, authenticate, role,
+      method, path, authenticate = false, role = '',
     } = route;
 
     // Extract the construction of the middleware
@@ -22,7 +22,7 @@ const generate = (routes: Array< Route >) => {
     if (authenticate) {
       middleware.push(checkJwt);
     }
-    if (role) {
+    if (role.length > 0) {
       middleware.push(checkRole(role));
     }
 

@@ -6,9 +6,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.scss';
 
 import Auth0Provider from '../util/auth0/react-auth0-node';
-import config from '../util/auth0/auth_config.json';
+import { config } from '../util/auth0/constants';
 import App from './App';
-import { Props } from './types';
+import { type Props } from './types';
 
 const onRedirectCallback = () => {};
 

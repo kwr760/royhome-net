@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+// flowlint-next-line untyped-import:off
 import ResumeHtml from './Resume.html';
 import './Resume.scss';
 

@@ -8,6 +8,7 @@ import NavBar from './Components/NavBar/NavBar';
 import Footer from './Components/Footer/Footer';
 import Loading from './Components/Loading/Loading';
 import Home from './Pages/Home/Home';
+// flowlint-next-line untyped-import:off
 import Resume from './Pages/Resume/Resume';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Profile from './Pages/Profile/Profile';
@@ -15,7 +16,7 @@ import Courses from './Pages/Courses/Courses';
 
 import { useAuth0 } from '../util/auth0/context';
 import initFontAwesome from './util/init-font-awesome';
-import { Props } from './types';
+import { type Props } from './types';
 
 initFontAwesome();
 

@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.scss';
 
 import Auth0Provider from '../util/auth0/react-auth0-spa';
-import config from '../util/auth0/auth_config.json';
+import { config } from '../util/auth0/constants';
 import App from './App';
 import history from '../util/history';
 

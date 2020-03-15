@@ -8,8 +8,17 @@
 
 [lints]
 all=warn
+ambiguous-object-type=error
+deprecated-type=error
+deprecated-utility=error
+nonstrict-import=error
+sketchy-null=error
+sketchy-number=error
+unnecessary-invariant=error
+unnecessary-optional-chain=error
+unsafe-getters-setters=error
+untyped-import=error
 untyped-type-import=error
-sketchy-null-bool=off
 
 [options]
 module.file_ext=.js

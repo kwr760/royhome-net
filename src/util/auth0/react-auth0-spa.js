@@ -149,7 +149,7 @@ const Auth0Provider = ({
   };
 
   const getTokenWithPopup = (...p) => {
-    if (!_.isEmpty(auth0Client)) {
+    if (!_.isEmpty(auth0Client.getTokenWithPopup)) {
       return auth0Client.getTokenWithPopup(...p);
     }
     return undefined;

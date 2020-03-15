@@ -1,3 +1,5 @@
+// @flow
+
 import LOG_TYPE from '../../util/logger/levels';
 
 const currentHost = global.origin || 'https://royk.us';

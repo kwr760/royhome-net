@@ -1,8 +1,10 @@
-export type Route = {
+// @flow
+
+export type Route = {|
   method: string,
   path: string,
   handler: Function,
-  authenticiate: boolean,
-  role: string,
-  fetchData: Object,
-};
+  authenticate?: boolean,
+  role?: string,
+  fetchData?: Object,
+|};

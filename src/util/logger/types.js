@@ -1,6 +1,6 @@
 // @flow
 
-export type LogType = {
+export type LogType = {|
   level: number,
   name: string,
-};
+|};
