@@ -1,13 +1,15 @@
+// @flow
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { get, isEmpty } from 'lodash';
-import PropTypes from 'prop-types';
 import { OK } from 'http-status-codes';
 
 import env from '../../../config';
 import { useAuth0 } from '../../../util/auth0/context';
+import { type Context, type Props } from '../../types';
 
-const getInitialData = (context) => {
+const getInitialData = (context: Context) => {
   const status = get(context, 'data.courses.status', undefined);
   if (status === OK) {
     const courses = get(context, ['data', 'courses', 'body'], { courses: [] });
@@ -16,7 +18,7 @@ const getInitialData = (context) => {
   return { courses: [] };
 };
 
-const Courses = ({ context }) => {
+const Courses = ({ context = {} }: Props) => {
   const { getTokenSilently } = useAuth0();
   const initialData = getInitialData(context);
   const [courses, setCourses] = useState(initialData.courses);
@@ -55,16 +57,6 @@ const Courses = ({ context }) => {
       { courses.map((course) => <li key={course.id}>{course.title}</li>) }
     </ul>
   );
-};
-
-Courses.propTypes = {
-  context: PropTypes.shape({
-    data: PropTypes.shape(),
-  }),
-};
-
-Courses.defaultProps = {
-  context: {},
 };
 
 export default Courses;

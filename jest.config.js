@@ -29,6 +29,7 @@ module.exports = {
         '<rootDir>/dist/',
         'webpack.config.babel.js',
         '.eslintrc.js',
+        'types.js',
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',
@@ -63,6 +64,7 @@ module.exports = {
         '<rootDir>/dist/',
         'webpack.config.babel.js',
         '.eslintrc.js',
+        'types.js',
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',

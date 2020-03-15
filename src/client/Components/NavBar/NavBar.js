@@ -1,3 +1,5 @@
+// @flow
+
 import React, { useState } from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -172,9 +174,6 @@ const NavBar = () => {
       </Navbar>
     </div>
   );
-};
-
-NavBar.propTypes = {
 };
 
 export default NavBar;

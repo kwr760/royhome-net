@@ -1,3 +1,5 @@
+// @flow
+
 import path from 'path';
 import express from 'express';
 import cors from 'cors';
@@ -21,7 +23,7 @@ import routes from './routes';
 
 const publicDir = path.resolve(env.root);
 
-const app = express();
+const app = express<Request, Response>();
 
 app.set('json spaces', 2);
 app.enable('etag');

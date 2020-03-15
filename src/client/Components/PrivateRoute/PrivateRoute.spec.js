@@ -57,4 +57,17 @@ describe('client/Components/Pages/PrivateRoute', () => {
     // Assert
     expect(auth.loginWithRedirect).toHaveBeenCalledWith({ appState: { targetUrl: 'http://url/path' } });
   });
+  it('should render with authentication and without role', () => {
+    // Arrange
+    const auth = {
+      isAuthenticated: true,
+      userHasRole: jest.fn(() => true),
+    };
+
+    // Act
+    const { getByText } = render(getPrivateRoute(auth));
+
+    // Assert
+    getByText(/Mocked/);
+  });
 });

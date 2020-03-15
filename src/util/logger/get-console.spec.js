@@ -1,8 +1,8 @@
-import LOG_LEVELS from './levels';
+import LOG_TYPE from './levels';
 import getConsole from './get-console';
 
 describe('util/logger/get-console', () => {
-  test.each([LOG_LEVELS.DEBUG, LOG_LEVELS.INFO])(
+  test.each([LOG_TYPE.DEBUG, LOG_TYPE.INFO])(
     'should return the console.log', (level) => {
       // Arrange/Act
       const result = getConsole(level);
@@ -11,7 +11,7 @@ describe('util/logger/get-console', () => {
       expect(result).toBe(console.log);
     },
   );
-  test.each([LOG_LEVELS.WARN])(
+  test.each([LOG_TYPE.WARN])(
     'should return the console.warn', (level) => {
       // Arrange/Act
       const result = getConsole(level);
@@ -20,7 +20,7 @@ describe('util/logger/get-console', () => {
       expect(result).toBe(console.warn);
     },
   );
-  test.each([LOG_LEVELS.ERROR, LOG_LEVELS.FATAL])(
+  test.each([LOG_TYPE.ERROR, LOG_TYPE.FATAL])(
     'should return the console.error', (level) => {
       // Arrange/Act
       const result = getConsole(level);
@@ -29,7 +29,7 @@ describe('util/logger/get-console', () => {
       expect(result).toBe(console.error);
     },
   );
-  test.each([LOG_LEVELS.OFF])(
+  test.each([LOG_TYPE.OFF])(
     'should return the console.log', (level) => {
       // Arrange/Act
       const result = getConsole(level);

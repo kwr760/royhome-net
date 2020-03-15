@@ -1,3 +1,5 @@
+// @flow
+
 import jwt from 'express-jwt';
 import jwtRsa from 'jwks-rsa';
 

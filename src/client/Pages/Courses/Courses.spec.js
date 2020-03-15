@@ -39,7 +39,7 @@ describe('client/Components/Pages/Private/Courses', () => {
       });
 
     // Act
-    const { getByText } = render(getCourses(emptyContext));
+    const { getByText } = render(getCourses());
 
     // Assert
     await waitForElement(() => getByText(/Course #1/));

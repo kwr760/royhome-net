@@ -13,6 +13,7 @@ module.exports = (api) => {
   return {
     presets: [
       '@babel/preset-react',
+      '@babel/preset-flow',
       [
         '@babel/preset-env',
         {

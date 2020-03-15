@@ -1,3 +1,5 @@
+// @flow
+
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faPowerOff, faUserAlt, faSignInAlt, faSignOutAlt,

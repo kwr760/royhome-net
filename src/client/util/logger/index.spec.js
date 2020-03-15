@@ -1,24 +1,24 @@
 import Logger from './index';
-import LOG_LEVELS from '../../../util/logger/levels';
+import LOG_TYPE from '../../../util/logger/levels';
 import log from './log';
 
 jest.mock('./log');
 
 describe('server/logger/index', () => {
   test.each([
-    [Logger.debug, LOG_LEVELS.DEBUG],
-    [Logger.log, LOG_LEVELS.INFO],
-    [Logger.warning, LOG_LEVELS.WARN],
-    [Logger.error, LOG_LEVELS.ERROR],
-    [Logger.fatal, LOG_LEVELS.FATAL],
+    [Logger.debug, LOG_TYPE.DEBUG],
+    [Logger.log, LOG_TYPE.INFO],
+    [Logger.warning, LOG_TYPE.WARN],
+    [Logger.error, LOG_TYPE.ERROR],
+    [Logger.fatal, LOG_TYPE.FATAL],
   ])(
-    'Each method should call the log with the right level', (logger, level) => {
+    'Each method should call the log with the right logType', (logger, logType) => {
       // Arrange/Act
       logger('Test Message');
 
       // Assert
       expect(log).toBeCalledWith({
-        level,
+        logType,
         msg: 'Test Message',
       });
     },

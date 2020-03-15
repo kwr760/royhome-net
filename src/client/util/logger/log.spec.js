@@ -1,6 +1,6 @@
 import env from '../../../config';
 
-import LOG_LEVELS from '../../../util/logger/levels';
+import LOG_TYPE from '../../../util/logger/levels';
 import log from './log';
 
 import getConsole from '../../../util/logger/get-console';
@@ -19,12 +19,12 @@ describe('server/logger/log', () => {
     // Arrange
     env.log = {
       dir: 'dir_name',
-      level: LOG_LEVELS.WARN,
+      level: LOG_TYPE.WARN.level,
       stdout: true,
     };
     const msg = 'Log message';
     const logMsg = {
-      level: LOG_LEVELS.INFO,
+      logType: LOG_TYPE.INFO,
       msg,
     };
 
@@ -38,7 +38,7 @@ describe('server/logger/log', () => {
     // Arrange
     env.log = {
       dir: 'dir_name',
-      level: LOG_LEVELS.WARN,
+      level: LOG_TYPE.WARN.level,
       stdout: true,
     };
     const consoleMock = jest.fn();
@@ -47,7 +47,7 @@ describe('server/logger/log', () => {
     formatMessage.mockReturnValue(formattedMessage);
     const msg = 'Log message';
     const logMsg = {
-      level: LOG_LEVELS.WARN,
+      logType: LOG_TYPE.WARN,
       msg,
     };
 
@@ -56,14 +56,14 @@ describe('server/logger/log', () => {
 
     // Assert
     expect(writeToServer).toBeCalledWith(logMsg);
-    expect(getConsole).toBeCalledWith(LOG_LEVELS.WARN);
+    expect(getConsole).toBeCalledWith(LOG_TYPE.WARN);
     expect(consoleMock).toBeCalledWith(msg);
   });
   it('should log and not display', () => {
     // Arrange
     env.log = {
       dir: 'dir_name',
-      level: LOG_LEVELS.WARN,
+      level: LOG_TYPE.WARN.level,
       stdout: false,
     };
     const consoleMock = jest.fn();
@@ -72,7 +72,7 @@ describe('server/logger/log', () => {
     formatMessage.mockReturnValue(formattedMessage);
     const msg = 'Log message';
     const logMsg = {
-      level: LOG_LEVELS.ERROR,
+      logType: LOG_TYPE.ERROR,
       msg,
     };
 

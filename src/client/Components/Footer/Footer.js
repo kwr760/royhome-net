@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { NavLink } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,8 +11,5 @@ const Footer = () => (
     </NavLink>
   </footer>
 );
-
-Footer.propTypes = {
-};
 
 export default Footer;
