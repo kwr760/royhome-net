@@ -10,6 +10,7 @@ module.exports = {
       name: 'browser',
       displayName: 'browser',
       testEnvironment: 'jsdom',
+      verbose: true,
       testMatch: [
         '**/src/client/**/?(*.)(spec|test).js',
         '**/src/util/**/?(*.)(spec|test).js',
@@ -30,6 +31,7 @@ module.exports = {
       name: 'server',
       displayName: 'server',
       testEnvironment: 'node',
+      verbose: true,
       testMatch: [
         '**/src/server/**/?(*.)(spec|test).js',
         '**/src/config/**/?(*.)(spec|test).js',
@@ -45,7 +47,6 @@ module.exports = {
       coveragePathIgnorePatterns: commonIgnoreDirs,
     },
   ],
-  verbose: true,
   collectCoverage: true,
   coverageDirectory: './build/coverage',
   coverageThreshold: {
