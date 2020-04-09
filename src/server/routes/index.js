@@ -1,3 +1,5 @@
+// @flow
+
 import getResumeHandler from '../handler/resume/get';
 import getCoursesHandler from '../handler/courses/get';
 import putLogHandler from '../handler/log/put';

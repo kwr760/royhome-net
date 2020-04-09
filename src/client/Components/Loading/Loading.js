@@ -1,12 +1,12 @@
+// @flow
+
 import React from 'react';
+import spinner from '../../assets/loading.svg';
 
 const Loading = () => (
   <div className="spinner">
-    <img src="../../assets/loading.svg" alt="Loading" />
+    <img className="loading" src={spinner} alt="Loading" />
   </div>
 );
-
-Loading.propTypes = {
-};
 
 export default Loading;

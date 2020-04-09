@@ -3,6 +3,9 @@ import nodeExternals from 'webpack-node-externals';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
+import WebpackMd5Hash from 'webpack-md5-hash';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import StylelintPlugin from 'stylelint-webpack-plugin';
 
 const DIST_PATH = path.resolve(__dirname, 'dist');
 const dev = !process.env.RELEASE_ENV || process.env.RELEASE_ENV === 'dev';
@@ -42,6 +45,22 @@ const getConfig = (target) => ({
         use: ['html-loader'],
       },
       {
+        test: /\.scss$/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: dev,
+            },
+          },
+        ],
+      },
+      {
         test: /\.(svg|png|jpe?g|gif)$/i,
         use: [
           {
@@ -63,17 +82,30 @@ const getConfig = (target) => ({
     ] : undefined,
   output: {
     path: path.join(DIST_PATH, target),
-    filename: dev ? '[name].js' : '[name]-bundle-[chunkhash:8].js',
+    filename: dev ? '[name].js' : '[name].[chunkhash:8].js',
     publicPath: `/dist/${target}/`,
     libraryTarget: target === 'node' ? 'commonjs2' : undefined,
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new LoadablePlugin(),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: dev ? '[name].css' : '[name].[chunkhash:8].css',
+      chunkFilename: dev ? '[id].css' : '[id].[chunkhash:8].css',
+    }),
     new CopyWebpackPlugin([
       { from: './src/client/assets/favicon.ico' },
     ]),
+    new WebpackMd5Hash(),
+    new StylelintPlugin({
+      configFile: './stylelint.config.js',
+      files: './src/**/*.scss',
+      syntax: 'scss',
+    }),
   ],
+  resolve: {
+    extensions: ['.js', '.scss'],
+  },
 });
 
 export default [getConfig('web'), getConfig('node')];

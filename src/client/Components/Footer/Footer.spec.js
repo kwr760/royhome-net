@@ -2,6 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import Footer from './Footer';
+import initFontAwesome from '../../util/init-font-awesome';
+
+initFontAwesome();
 
 describe('src/client/Components/Footer', () => {
   it('renders', () => {

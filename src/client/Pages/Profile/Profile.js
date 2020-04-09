@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
@@ -35,9 +37,6 @@ const Profile = () => {
       </Row>
     </Container>
   );
-};
-
-Profile.propTypes = {
 };
 
 export default Profile;

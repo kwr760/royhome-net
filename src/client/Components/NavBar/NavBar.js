@@ -1,3 +1,5 @@
+// @flow
+
 import React, { useState } from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,7 +33,7 @@ const NavBar = () => {
 
   return (
     <div className="nav-container">
-      <Navbar style={{ backgroundImage: 'linear-gradient(to bottom right, #1d3057, #828894)' }} light expand="md">
+      <Navbar light expand="md">
         <Container>
           <NavbarBrand className="logo" />
           <NavbarToggler data-testid="navbar-toggler" onClick={toggle} />
@@ -58,16 +60,16 @@ const NavBar = () => {
                 </NavLink>
               </NavItem>
               { isAuthenticated && userHasRole('engineer') && (
-              <NavItem>
-                <NavLink
-                  tag={RouterNavLink}
-                  to="/courses"
-                  exact
-                  activeClassName="router-link-exact-active"
-                >
-                  Courses
-                </NavLink>
-              </NavItem>
+                <NavItem>
+                  <NavLink
+                    tag={RouterNavLink}
+                    to="/courses"
+                    exact
+                    activeClassName="router-link-exact-active"
+                  >
+                    Courses
+                  </NavLink>
+                </NavItem>
               )}
             </Nav>
             <Nav className="d-none d-md-block" navbar>
@@ -134,7 +136,6 @@ const NavBar = () => {
               <Nav
                 className="d-md-none justify-content-between"
                 navbar
-                style={{ minHeight: 170 }}
               >
                 <NavItem>
                   <span className="user-info">
@@ -173,9 +174,6 @@ const NavBar = () => {
       </Navbar>
     </div>
   );
-};
-
-NavBar.propTypes = {
 };
 
 export default NavBar;

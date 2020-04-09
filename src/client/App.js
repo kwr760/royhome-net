@@ -1,28 +1,29 @@
+// @flow
+
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { Container } from 'reactstrap';
 
 import NavBar from './Components/NavBar/NavBar';
 import Footer from './Components/Footer/Footer';
 import Loading from './Components/Loading/Loading';
 import Home from './Pages/Home/Home';
+// flowlint-next-line untyped-import:off
 import Resume from './Pages/Resume/Resume';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Profile from './Pages/Profile/Profile';
 import Courses from './Pages/Courses/Courses';
 
-import './styles/App.css';
-
 import { useAuth0 } from '../util/auth0/context';
 import initFontAwesome from './util/init-font-awesome';
+import { type Props } from './types';
 
 initFontAwesome();
 
 /**
  * @return {string}
  */
-function App({ context }) {
+function App({ context }: Props) {
   const { loading } = useAuth0();
 
   if (loading) {
@@ -30,9 +31,9 @@ function App({ context }) {
   }
 
   return (
-    <div id="app" className="d-flex flex-column h-100">
+    <div id="app" className="d-flex flex-column h-100 backdrop">
       <NavBar />
-      <Container className="flex-grow-1 mt-3">
+      <Container className="flex-grow-1 pt-3 main-container">
         <Switch>
           <Route
             path="/"
@@ -53,19 +54,5 @@ function App({ context }) {
     </div>
   );
 }
-
-App.propTypes = {
-  context: PropTypes.shape({
-    jwt: PropTypes.shape({
-      expiresAt: PropTypes.number,
-      data: PropTypes.shape(),
-    }),
-    data: PropTypes.shape(),
-  }),
-};
-
-App.defaultProps = {
-  context: {},
-};
 
 export default App;
