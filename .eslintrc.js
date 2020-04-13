@@ -44,5 +44,6 @@ module.exports = {
       'warn',
       { vars: 'all', args: 'none', ignoreRestSiblings: false }
     ],
+    'max-len': ['warn', { 'code': 120, 'tabWidth': 2 }]
   },
 };
