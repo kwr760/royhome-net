@@ -1,30 +1,39 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import NavBar from './NavBar';
 import { Auth0Context } from '../../../util/auth0/context';
 import initFontAwesome from '../../util/init-font-awesome';
+import configureStore from '../../store/configure-store';
 
 initFontAwesome();
 
 describe('client/Components/Pages/NavBar', () => {
-  const getNavBar = (auth) => (
-    <Auth0Context.Provider value={auth}>
-      <Router>
-        <NavBar />
-      </Router>
-    </Auth0Context.Provider>
+  const getNavBar = (store, auth) => (
+    <Provider store={store}>
+      <Auth0Context.Provider value={auth}>
+        <Router>
+          <NavBar />
+        </Router>
+      </Auth0Context.Provider>
+    </Provider>
   );
   it('should render with authentication and role', () => {
     // Arrange
     const auth = {
-      isAuthenticated: true,
       logout: jest.fn(),
       userHasRole: jest.fn(() => true),
     };
+    const state = {
+      session: {
+        authenticated: true,
+      },
+    };
+    const store = configureStore(state);
 
     // Act
-    const { getByText, getAllByText, getByTestId } = render(getNavBar(auth));
+    const { getByText, getAllByText, getByTestId } = render(getNavBar(store, auth));
 
     // Assert
     getByText(/Home/);
@@ -37,7 +46,6 @@ describe('client/Components/Pages/NavBar', () => {
   it('should render with authentication and user', () => {
     // Arrange
     const auth = {
-      isAuthenticated: true,
       logout: jest.fn(),
       userHasRole: jest.fn(() => false),
       user: {
@@ -45,11 +53,17 @@ describe('client/Components/Pages/NavBar', () => {
         picture: 'pic',
       },
     };
+    const state = {
+      session: {
+        authenticated: true,
+      },
+    };
+    const store = configureStore(state);
 
     // Act
     const {
       getByText, getAllByText, getAllByAltText, getByTestId,
-    } = render(getNavBar(auth));
+    } = render(getNavBar(store, auth));
 
     // Assert
     getByText(/Home/);
@@ -67,14 +81,19 @@ describe('client/Components/Pages/NavBar', () => {
   it('should render without authentication and role', () => {
     // Arrange
     const auth = {
-      isAuthenticated: false,
       loginWithRedirect: jest.fn(),
       logout: jest.fn(),
       userHasRole: jest.fn(() => false),
     };
+    const state = {
+      session: {
+        authenticated: false,
+      },
+    };
+    const store = configureStore(state);
 
     // Act
-    const { getByText, getAllByText } = render(getNavBar(auth));
+    const { getByText, getAllByText } = render(getNavBar(store, auth));
 
     // Assert
     getByText(/Home/);
