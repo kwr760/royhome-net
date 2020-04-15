@@ -1,29 +1,38 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import PrivateRoute from './PrivateRoute';
 import { Auth0Context } from '../../../util/auth0/context';
+import configureStore from '../../store/configure-store';
 
 describe('client/Components/Pages/PrivateRoute', () => {
   const userRole = 'admin';
   const mockComponent = () => <div>Mocked</div>;
-  const getPrivateRoute = (auth, role, path) => (
+  const getPrivateRoute = (store, auth, role, path) => (
     <Router>
-      <Auth0Context.Provider value={auth}>
-        <PrivateRoute component={mockComponent} userRole={role} path={path} />
-      </Auth0Context.Provider>
+      <Provider store={store}>
+        <Auth0Context.Provider value={auth}>
+          <PrivateRoute component={mockComponent} userRole={role} path={path} />
+        </Auth0Context.Provider>
+      </Provider>
     </Router>
   );
 
   it('should render with authentication and role', () => {
     // Arrange
     const auth = {
-      isAuthenticated: true,
       userHasRole: jest.fn(() => true),
     };
+    const state = {
+      session: {
+        authenticated: true,
+      },
+    };
+    const store = configureStore(state);
 
     // Act
-    const { getByText } = render(getPrivateRoute(auth, userRole));
+    const { getByText } = render(getPrivateRoute(store, auth, userRole));
 
     // Assert
     getByText(/Mocked/);
@@ -34,9 +43,15 @@ describe('client/Components/Pages/PrivateRoute', () => {
       isAuthenticated: true,
       userHasRole: jest.fn(() => false),
     };
+    const state = {
+      session: {
+        authenticated: true,
+      },
+    };
+    const store = configureStore(state);
 
     // Act
-    const { getByText } = render(getPrivateRoute(auth, userRole));
+    const { getByText } = render(getPrivateRoute(store, auth, userRole));
 
     // Assert
     getByText(/admin/);
@@ -46,13 +61,18 @@ describe('client/Components/Pages/PrivateRoute', () => {
     // Arrange
     const path = 'http://url/path';
     const auth = {
-      isAuthenticated: false,
       userHasRole: jest.fn(() => true),
       loginWithRedirect: jest.fn(),
     };
+    const state = {
+      session: {
+        authenticated: false,
+      },
+    };
+    const store = configureStore(state);
 
     // Act
-    render(getPrivateRoute(auth, userRole, path));
+    render(getPrivateRoute(store, auth, userRole, path));
 
     // Assert
     expect(auth.loginWithRedirect).toHaveBeenCalledWith({ appState: { targetUrl: 'http://url/path' } });
@@ -60,12 +80,17 @@ describe('client/Components/Pages/PrivateRoute', () => {
   it('should render with authentication and without role', () => {
     // Arrange
     const auth = {
-      isAuthenticated: true,
       userHasRole: jest.fn(() => true),
     };
+    const state = {
+      session: {
+        authenticated: true,
+      },
+    };
+    const store = configureStore(state);
 
     // Act
-    const { getByText } = render(getPrivateRoute(auth));
+    const { getByText } = render(getPrivateRoute(store, auth));
 
     // Assert
     getByText(/Mocked/);

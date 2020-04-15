@@ -16,7 +16,7 @@ const PrivateRoute = ({
 
   useEffect(() => {
     const needToLogin = async (target) => {
-      if (!isAuthenticated) {
+      if (!authenticated) {
         await loginWithRedirect({
           appState: { targetUrl: target },
         });

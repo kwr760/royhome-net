@@ -14,12 +14,8 @@ export type Auth0ProviderProps = {|
   redirect_uri?: string,
 |};
 export type Auth0Client = {
-  loginWithPopup: Function,
-  getIdTokenClaims: Function,
-  handleRedirectCallback: Function,
   getUser: Function,
   logout: Function,
-  getTokenWithPopup: Function,
   getTokenSilently: Function,
   loginWithRedirect: Function,
   ...

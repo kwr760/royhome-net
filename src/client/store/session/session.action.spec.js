@@ -8,7 +8,7 @@ describe('client/store/session/update-authentication.action', () => {
     const expectedExpiration = -1;
     const expectedAction = {
       type: SESSION.UPDATE_AUTHENTICATION,
-      session: {
+      meta: {
         authenticated: expectedAuthentication,
         expiration: expectedExpiration,
       },
