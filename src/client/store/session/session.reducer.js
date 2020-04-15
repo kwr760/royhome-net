@@ -8,7 +8,10 @@ const defaultSessionState = {
   expiration: 0,
 };
 
-const sessionReducer = (state: SessionState = defaultSessionState, action: UpdateAuthenticationAction): SessionState => {
+const sessionReducer = (
+  state: SessionState = defaultSessionState,
+  action: UpdateAuthenticationAction,
+): SessionState => {
   switch (action.type) {
   case SESSION.UPDATE_AUTHENTICATION:
     return {

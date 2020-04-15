@@ -40,15 +40,12 @@ const Auth0Provider = ({
   ...initOptions
 }: Auth0ProviderProps) => {
   const { jwt } = context;
-  const { expiresAt, user: cxtUser, data: cxtData } = jwt;
+  const { user: cxtUser, data: cxtData } = jwt;
 
-  const currTime = new Date().getTime();
-  const [isAuthenticated, setIsAuthenticated] = useState(currTime < expiresAt);
   const [user, setUser] = useState(cxtUser);
   const [data, setData] = useState(cxtData);
   const [auth0Client, setAuth0]: [Auth0Client, Function] = useState({});
   const [loading, setLoading] = useState(false);
-  const [popupOpen, setPopupOpen] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -63,8 +60,6 @@ const Auth0Provider = ({
       }
 
       const authenticated = await auth0FromHook.isAuthenticated();
-      setIsAuthenticated(authenticated);
-
       if (authenticated) {
         const auth0User = await auth0FromHook.getUser();
         setUser(auth0User);
@@ -91,7 +86,6 @@ const Auth0Provider = ({
   }, []);
 
   const logout = (...props) => {
-    setIsAuthenticated(false);
     dispatch(updateAuthentication(false, 0));
     setUser({});
     setData({});
@@ -120,10 +114,8 @@ const Auth0Provider = ({
   return (
     <Auth0Context.Provider
       value={{
-        isAuthenticated,
         user,
         loading,
-        popupOpen,
         logout,
         loginWithRedirect,
         getTokenSilently,
