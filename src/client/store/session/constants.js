@@ -1,0 +1,7 @@
+// @flow
+
+const SESSION = {
+  UPDATE_AUTHENTICATION: 'UPDATE_AUTHENTICATION',
+};
+
+export default SESSION;

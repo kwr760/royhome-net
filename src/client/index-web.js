@@ -15,7 +15,7 @@ import Auth0Provider from '../util/auth0/react-auth0-spa';
 import { config } from '../util/auth0/constants';
 import App from './App';
 import history from '../util/history';
-import configureStore from './store/configure';
+import configureStore from './store/configure-store';
 
 const onRedirectCallback = (appState) => {
   history.push(

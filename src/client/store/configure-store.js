@@ -10,9 +10,16 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { type State } from './types';
-import rootReducer from './reducers/root';
+import rootReducer from './root.reducer';
 
-const configureStore = (initialState: State = { session: {} }) => {
+const defaultState = {
+  session: {
+    authenticated: false,
+    expiration: 0,
+  },
+};
+
+const configureStore = (initialState: State = defaultState) => {
   const combinedReducers = combineReducers<Object, Action<string>>(rootReducer);
   const middlewares = applyMiddleware(thunk);
 

@@ -1,4 +1,4 @@
-import configureStore from './configure';
+import configureStore from './configure-store';
 
 describe('client/store/configure', () => {
   it('should configure the store without initialState', () => {

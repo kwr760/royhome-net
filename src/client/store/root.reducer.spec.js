@@ -1,7 +1,7 @@
 // @flow
 
-import rootReducer from './root';
-import sessionReducer from './session';
+import rootReducer from './root.reducer';
+import sessionReducer from './session/session.reducer';
 
 describe('client/store/reducers/root', () => {
   it('should call rootReducer', () => {

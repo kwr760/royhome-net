@@ -1,6 +1,7 @@
 // @flow
 
-export type State = {
-  session: Object,
-  ...
-};
+import type { SessionState } from './session/types';
+
+export type State = {|
+  session: SessionState,
+|};
