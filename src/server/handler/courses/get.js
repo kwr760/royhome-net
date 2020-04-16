@@ -1,9 +1,9 @@
 // @flow
 
 import { OK } from 'http-status-codes';
-import type { ApiResponse } from '../types';
+import type { ApiResponseType } from '../types';
 
-const getCoursesHandler = (): ApiResponse => ({
+const getCoursesHandler = (): ApiResponseType => ({
   status: OK,
   body: {
     courses: [

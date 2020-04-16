@@ -1,10 +1,10 @@
 // @flow
 
-export type TokenData = {
+export type TokenDataType = {
   role?: string,
   ...
 };
-export type Auth0ProviderProps = {|
+export type Auth0ProviderPropsType = {|
   children: Object,
   context: Object,
   onRedirectCallback: Function,
@@ -13,7 +13,7 @@ export type Auth0ProviderProps = {|
   domain: string,
   redirect_uri?: string,
 |};
-export type Auth0Client = {
+export type Auth0ClientType = {
   getUser: Function,
   logout: Function,
   getTokenSilently: Function,

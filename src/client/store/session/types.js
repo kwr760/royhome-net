@@ -1,11 +1,11 @@
 // @flow
 
-export type SessionState = {|
+export type SessionStateType = {|
   authenticated: boolean,
   expiration: number,
 |};
 
-export type UpdateAuthenticationAction = {|
+export type UpdateAuthenticationActionType = {|
   type: string,
   meta: {|
     authenticated: boolean,

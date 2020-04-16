@@ -1,7 +1,7 @@
 // @flow
 
 import getCurrentDatetime from '../datetime/get-current-datetime';
-import { type LogType } from './types';
+import type { LogType } from './types';
 
 const formatMessage = (logType: LogType, msg: string) => {
   const datetime = getCurrentDatetime();

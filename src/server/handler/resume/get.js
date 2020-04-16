@@ -1,9 +1,9 @@
 // @flow
 
 import { OK } from 'http-status-codes';
-import type { ApiResponse } from '../types';
+import type { ApiResponseType } from '../types';
 
-const getResumeHandler = (): ApiResponse => ({
+const getResumeHandler = (): ApiResponseType => ({
   status: OK,
   body: {
     message: 'Return to my resume!',

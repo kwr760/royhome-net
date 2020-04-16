@@ -1,6 +1,6 @@
 // @flow
 
-import type { SessionState, UpdateAuthenticationAction } from './types';
+import type { SessionStateType, UpdateAuthenticationActionType } from './types';
 import SESSION from './constants';
 
 const defaultSessionState = {
@@ -9,9 +9,9 @@ const defaultSessionState = {
 };
 
 const sessionReducer = (
-  state: SessionState = defaultSessionState,
-  action: UpdateAuthenticationAction,
-): SessionState => {
+  state: SessionStateType = defaultSessionState,
+  action: UpdateAuthenticationActionType,
+): SessionStateType => {
   switch (action.type) {
   case SESSION.UPDATE_AUTHENTICATION:
     return {

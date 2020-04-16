@@ -11,7 +11,7 @@ import { Auth0Context } from './context';
 import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from './constants';
 import hasNeededRole from './has-needed-role';
 import env from '../../config';
-import type { Auth0ProviderProps, Auth0Client } from './types';
+import type { Auth0ProviderPropsType, Auth0ClientType } from './types';
 import updateAuthentication from '../../client/store/session/session.action';
 
 const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState(
@@ -38,13 +38,13 @@ const Auth0Provider = ({
   onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
   context,
   ...initOptions
-}: Auth0ProviderProps) => {
+}: Auth0ProviderPropsType) => {
   const { jwt } = context;
   const { user: cxtUser, data: cxtData } = jwt;
 
   const [user, setUser] = useState(cxtUser);
   const [data, setData] = useState(cxtData);
-  const [auth0Client, setAuth0]: [Auth0Client, Function] = useState({});
+  const [auth0Client, setAuth0]: [Auth0ClientType, Function] = useState({});
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 

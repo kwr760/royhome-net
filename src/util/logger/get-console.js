@@ -1,7 +1,7 @@
 // @flow
 
 import LOG_TYPE from './levels';
-import { type LogType } from './types';
+import type { LogType } from './types';
 
 const getConsole = (logType: LogType) => {
   switch (logType) {

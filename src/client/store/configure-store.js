@@ -9,7 +9,7 @@ import type {
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { type State } from './types';
+import type { StateType } from './types';
 import rootReducer from './root.reducer';
 
 const defaultState = {
@@ -19,11 +19,11 @@ const defaultState = {
   },
 };
 
-const configureStore = (initialState: State = defaultState) => {
+const configureStore = (initialState: StateType = defaultState) => {
   const combinedReducers = combineReducers<Object, Action<string>>(rootReducer);
   const middlewares = applyMiddleware(thunk);
 
-  return createStore<State, Action<string>, Dispatch<Action<string>>>(
+  return createStore<StateType, Action<string>, Dispatch<Action<string>>>(
     combinedReducers,
     initialState,
     composeWithDevTools(middlewares),

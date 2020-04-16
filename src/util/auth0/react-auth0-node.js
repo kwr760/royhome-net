@@ -3,14 +3,14 @@
 
 import React, { useState } from 'react';
 import { Auth0Context } from './context';
-import { type Auth0ProviderProps } from './types';
+import type { Auth0ProviderPropsType } from './types';
 
 import hasNeededRole from './has-needed-role';
 
 const Auth0Provider = ({
   children,
   context,
-}: Auth0ProviderProps) => {
+}: Auth0ProviderPropsType) => {
   const { jwt } = context;
   const { user: cxtUser, data: cxtData } = jwt;
 

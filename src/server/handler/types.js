@@ -1,6 +1,6 @@
 // @flow
 
-export type ApiResponse = {|
+export type ApiResponseType = {|
   status: number,
   body?: Object,
 |};

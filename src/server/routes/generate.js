@@ -6,9 +6,9 @@ import checkJwt from '../middleware/check-jwt';
 import checkRole from '../middleware/check-role';
 import Logger from '../logger';
 import routeHandler from '../handler/route-handler';
-import { type Route } from './types';
+import type { RouteType } from './types';
 
-const generate = (routes: Array< Route >) => {
+const generate = (routes: Array< RouteType >) => {
   const router: Object = express.Router< Request, Response>();
   let middleware;
 

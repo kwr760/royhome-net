@@ -7,9 +7,9 @@ import { OK } from 'http-status-codes';
 
 import env from '../../../config';
 import { useAuth0 } from '../../../util/auth0/context';
-import { type Context, type Props } from '../../types';
+import type { ContextType, AppPropsType } from '../../types';
 
-const getInitialData = (context: Context) => {
+const getInitialData = (context: ContextType) => {
   const status = get(context, 'data.courses.status', undefined);
   if (status === OK) {
     const courses = get(context, ['data', 'courses', 'body'], { courses: [] });
@@ -18,7 +18,7 @@ const getInitialData = (context: Context) => {
   return { courses: [] };
 };
 
-const Courses = ({ context = {} }: Props) => {
+const Courses = ({ context = {} }: AppPropsType) => {
   const { getTokenSilently } = useAuth0();
   const initialData = getInitialData(context);
   const [courses, setCourses] = useState(initialData.courses);
