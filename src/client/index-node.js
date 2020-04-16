@@ -13,21 +13,19 @@ import type { AppPropsType } from './types';
 
 const onRedirectCallback = () => {};
 
-const Main = ({ url, context, store }: AppPropsType) => {
-  return (
-    <Provider store={store}>
-      <Auth0Provider
-        domain={config.domain}
-        client_id={config.clientId}
-        onRedirectCallback={onRedirectCallback}
-        context={context}
-      >
-        <Router location={url} context={{}}>
-          <Route component={(props) => <App {...props} context={context} />} />
-        </Router>
-      </Auth0Provider>
-    </Provider>
-  );
-};
+const Main = ({ url, context, store }: AppPropsType) => (
+  <Provider store={store}>
+    <Auth0Provider
+      domain={config.domain}
+      client_id={config.clientId}
+      onRedirectCallback={onRedirectCallback}
+      context={context}
+    >
+      <Router location={url} context={{}}>
+        <Route component={(props) => <App {...props} context={context} />} />
+      </Router>
+    </Auth0Provider>
+  </Provider>
+);
 
 export default Main;
