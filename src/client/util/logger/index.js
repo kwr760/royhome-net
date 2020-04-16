@@ -2,10 +2,10 @@
 
 import LOG_TYPE from '../../../util/logger/levels';
 import log from './log';
-import type { LogMsg } from '../../../server/logger/types';
+import type { LogMsgType } from '../../../server/logger/types';
 
 class Logger {
-  writeLog = (msg: LogMsg) => {
+  writeLog = (msg: LogMsgType) => {
     log(msg);
   };
 

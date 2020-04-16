@@ -1,6 +1,8 @@
 // @flow
 
-const fetchInitialData = (endpoints: Object) => {
+import type { DataType } from './types';
+
+const fetchInitialData = (endpoints: Object): DataType => {
   const data = {};
   Object.keys(endpoints)
     .map((name) => {

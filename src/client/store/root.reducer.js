@@ -1,6 +1,6 @@
 // @flow
 
-import sessionReducer from './session/index';
+import sessionReducer from './session/session.reducer';
 
 const rootReducer = {
   session: sessionReducer,

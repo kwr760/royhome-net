@@ -2,6 +2,8 @@
 // @flow
 import _ from 'lodash';
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Cookies from 'universal-cookie';
 
@@ -9,7 +11,8 @@ import { Auth0Context } from './context';
 import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from './constants';
 import hasNeededRole from './has-needed-role';
 import env from '../../config';
-import type { Auth0ProviderProps, Auth0Client } from './types';
+import type { Auth0ProviderPropsType, Auth0ClientType } from './types';
+import updateAuthentication from '../../client/store/session/session.action';
 
 const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState(
   {},
@@ -35,17 +38,15 @@ const Auth0Provider = ({
   onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
   context,
   ...initOptions
-}: Auth0ProviderProps) => {
+}: Auth0ProviderPropsType) => {
   const { jwt } = context;
-  const { expiresAt, user: cxtUser, data: cxtData } = jwt;
+  const { user: cxtUser, data: cxtData } = jwt;
 
-  const currTime = new Date().getTime();
-  const [isAuthenticated, setIsAuthenticated] = useState(currTime < expiresAt);
   const [user, setUser] = useState(cxtUser);
   const [data, setData] = useState(cxtData);
-  const [auth0Client, setAuth0]: [Auth0Client, Function] = useState({});
+  const [auth0Client, setAuth0]: [Auth0ClientType, Function] = useState({});
   const [loading, setLoading] = useState(false);
-  const [popupOpen, setPopupOpen] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const initAuth0 = async () => {
@@ -59,8 +60,6 @@ const Auth0Provider = ({
       }
 
       const authenticated = await auth0FromHook.isAuthenticated();
-      setIsAuthenticated(authenticated);
-
       if (authenticated) {
         const auth0User = await auth0FromHook.getUser();
         setUser(auth0User);
@@ -72,10 +71,12 @@ const Auth0Provider = ({
         };
         setData(token.data);
         setCookies(token);
+        dispatch(updateAuthentication(true, token.exp));
       } else {
         setUser({});
         setData({});
         setCookies();
+        dispatch(updateAuthentication(false, 0));
       }
 
       setLoading(false);
@@ -84,39 +85,8 @@ const Auth0Provider = ({
     // eslint-disable-next-line
   }, []);
 
-  const loginWithPopup = async (params = {}) => {
-    setPopupOpen(true);
-    try {
-      await auth0Client.loginWithPopup(params);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setPopupOpen(false);
-    }
-    const auth0User = await auth0Client.getUser();
-    setUser(auth0User);
-    const tokenClaims = await auth0Client.getIdTokenClaims();
-    const token = {
-      exp: tokenClaims.exp,
-      user: auth0User,
-      data: tokenClaims[TOKEN_URL],
-    };
-    setData(token.data);
-    setCookies(token);
-    setIsAuthenticated(true);
-  };
-
-  const handleRedirectCallback = async () => {
-    setLoading(true);
-    await auth0Client.handleRedirectCallback();
-    const auth0User = await auth0Client.getUser();
-    setLoading(false);
-    setIsAuthenticated(true);
-    setUser(auth0User);
-  };
-
   const logout = (...props) => {
-    setIsAuthenticated(false);
+    dispatch(updateAuthentication(false, 0));
     setUser({});
     setData({});
     setCookies();
@@ -125,13 +95,6 @@ const Auth0Provider = ({
       returnTo: env.host,
     };
     auth0Client.logout(logoutProps);
-  };
-
-  const getIdTokenClaims = (...p) => {
-    if (!_.isEmpty(auth0Client)) {
-      return auth0Client.getIdTokenClaims(...p);
-    }
-    return undefined;
   };
 
   const loginWithRedirect = (...p) => {
@@ -148,27 +111,14 @@ const Auth0Provider = ({
     return undefined;
   };
 
-  const getTokenWithPopup = (...p) => {
-    if (!_.isEmpty(auth0Client.getTokenWithPopup)) {
-      return auth0Client.getTokenWithPopup(...p);
-    }
-    return undefined;
-  };
-
   return (
     <Auth0Context.Provider
       value={{
-        isAuthenticated,
         user,
         loading,
-        popupOpen,
-        loginWithPopup,
-        handleRedirectCallback,
         logout,
-        getIdTokenClaims,
         loginWithRedirect,
         getTokenSilently,
-        getTokenWithPopup,
         userHasRole: (role) => hasNeededRole(role, data),
       }}
     >

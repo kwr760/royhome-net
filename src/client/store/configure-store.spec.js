@@ -1,10 +1,13 @@
-import configureStore from './configure';
+import configureStore from './configure-store';
 
 describe('client/store/configure', () => {
   it('should configure the store without initialState', () => {
     // Arrange
     const expectedState = {
-      session: {},
+      session: {
+        authenticated: false,
+        expiration: 0,
+      },
     };
 
     // Act
@@ -16,9 +19,11 @@ describe('client/store/configure', () => {
   });
   it('should configure the store', () => {
     // Arrange
-    const state = {};
-    const expectedState = {
-      session: {},
+    const state = {
+      session: {
+        authenticated: true,
+        expiration: -1,
+      },
     };
 
     // Act
@@ -26,6 +31,6 @@ describe('client/store/configure', () => {
 
     // Assert
     expect(store.dispatch).toEqual(expect.any(Function));
-    expect(store.getState()).toEqual(expectedState);
+    expect(store.getState()).toEqual(state);
   });
 });

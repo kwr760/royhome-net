@@ -16,14 +16,14 @@ import Courses from './Pages/Courses/Courses';
 
 import { useAuth0 } from '../util/auth0/context';
 import initFontAwesome from './util/init-font-awesome';
-import { type Props } from './types';
+import type { AppPropsType } from './types';
 
 initFontAwesome();
 
 /**
  * @return {string}
  */
-function App({ context }: Props) {
+function App({ context }: AppPropsType) {
   const { loading } = useAuth0();
 
   if (loading) {

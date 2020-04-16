@@ -1,6 +1,6 @@
 // @flow
 
-export type Route = {|
+export type RouteType = {|
   method: string,
   path: string,
   handler: Function,

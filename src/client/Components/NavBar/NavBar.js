@@ -1,6 +1,7 @@
 // @flow
 
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -20,13 +21,15 @@ import {
 } from 'reactstrap';
 
 import { useAuth0 } from '../../../util/auth0/context';
+import isAuthenticated from '../../store/session/session.selector';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {
-    user, isAuthenticated, loginWithRedirect, logout, userHasRole,
+    user, loginWithRedirect, logout, userHasRole,
   } = useAuth0();
   const toggle = () => setIsOpen(!isOpen);
+  const authenticated = useSelector((state) => isAuthenticated(state, null));
 
   const name = (user && user.name) || '';
   const picture = (user && user.picture) || '';
@@ -59,7 +62,7 @@ const NavBar = () => {
                   Resume
                 </NavLink>
               </NavItem>
-              { isAuthenticated && userHasRole('engineer') && (
+              { authenticated && userHasRole('engineer') && (
                 <NavItem>
                   <NavLink
                     tag={RouterNavLink}
@@ -73,7 +76,7 @@ const NavBar = () => {
               )}
             </Nav>
             <Nav className="d-none d-md-block" navbar>
-              {!isAuthenticated && (
+              {!authenticated && (
                 <NavItem>
                   <Button
                     id="qsLoginBtn"
@@ -86,7 +89,7 @@ const NavBar = () => {
                   </Button>
                 </NavItem>
               )}
-              {isAuthenticated && (
+              {authenticated && (
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret id="profileDropDown">
                     <img
@@ -118,7 +121,7 @@ const NavBar = () => {
                 </UncontrolledDropdown>
               )}
             </Nav>
-            {!isAuthenticated && (
+            {!authenticated && (
               <Nav className="d-md-none" navbar>
                 <NavItem>
                   <Button
@@ -132,7 +135,7 @@ const NavBar = () => {
                 </NavItem>
               </Nav>
             )}
-            {isAuthenticated && (
+            {authenticated && (
               <Nav
                 className="d-md-none justify-content-between"
                 navbar

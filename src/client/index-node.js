@@ -9,14 +9,11 @@ import './styles/index.scss';
 import Auth0Provider from '../util/auth0/react-auth0-node';
 import { config } from '../util/auth0/constants';
 import App from './App';
-import { type Props } from './types';
-import configureStore from './store/configure';
+import type { AppPropsType } from './types';
 
 const onRedirectCallback = () => {};
 
-const store = configureStore();
-
-const Main = ({ url, context }: Props) => (
+const Main = ({ url, context, store }: AppPropsType) => (
   <Provider store={store}>
     <Auth0Provider
       domain={config.domain}

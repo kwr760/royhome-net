@@ -2,9 +2,9 @@
 
 import { OK } from 'http-status-codes';
 import Logger from '../../logger';
-import type { ApiResponse } from '../types';
+import type { ApiResponseType } from '../types';
 
-const putLogHandler = (req: Request): ApiResponse => {
+const putLogHandler = (req: Request): ApiResponseType => {
   const { logType, msg } = req.body;
   Logger.writeLog({ logType, msg });
   return { status: OK };

@@ -1,9 +1,9 @@
 // @flow
 
 import { OWNER, ROLES } from './constants';
-import { type TokenData } from './types';
+import type { TokenDataType } from './types';
 
-const hasNeededRole = (neededRole: string, data: TokenData = {}) => {
+const hasNeededRole = (neededRole: string, data: TokenDataType = {}) => {
   const { role: rolesString = '' } = data;
 
   let grantedRoles = rolesString.split(' ');

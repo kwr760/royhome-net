@@ -2,7 +2,7 @@
 
 import type { LogType } from '../../util/logger/types';
 
-export type LogMsg = {|
+export type LogMsgType = {|
   logType: LogType,
   msg: string,
 |};

@@ -3,38 +3,29 @@
 
 import React, { useState } from 'react';
 import { Auth0Context } from './context';
-import { type Auth0ProviderProps } from './types';
+import type { Auth0ProviderPropsType } from './types';
 
 import hasNeededRole from './has-needed-role';
 
 const Auth0Provider = ({
   children,
   context,
-}: Auth0ProviderProps) => {
+}: Auth0ProviderPropsType) => {
   const { jwt } = context;
-  const { expiresAt, user: cxtUser, data: cxtData } = jwt;
+  const { user: cxtUser, data: cxtData } = jwt;
 
-  const currTime = new Date().getTime();
-  const [isAuthenticated] = useState(currTime < expiresAt);
   const [user] = useState(cxtUser);
   const [data] = useState(cxtData);
   const [loading] = useState(false);
-  const [popupOpen] = useState(false);
 
   return (
     <Auth0Context.Provider
       value={{
-        isAuthenticated,
         user,
         loading,
-        popupOpen,
-        loginWithPopup: () => {},
-        handleRedirectCallback: () => {},
-        getIdTokenClaims: () => {},
+        logout: () => {},
         loginWithRedirect: () => {},
         getTokenSilently: () => {},
-        getTokenWithPopup: () => {},
-        logout: () => {},
         userHasRole: (role) => hasNeededRole(role, data),
       }}
     >

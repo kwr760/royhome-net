@@ -15,7 +15,7 @@ import Auth0Provider from '../util/auth0/react-auth0-spa';
 import { config } from '../util/auth0/constants';
 import App from './App';
 import history from '../util/history';
-import configureStore from './store/configure';
+import configureStore from './store/configure-store';
 
 const onRedirectCallback = (appState) => {
   history.push(
@@ -30,7 +30,9 @@ loadableReady(() => {
   if (root !== null) {
     const context = window.__INITIAL_DATA__;
     delete window.__INITIAL_DATA__;
-    const store = configureStore();
+    const preloadedState = window.__PRELOADED_STATE__;
+    delete window.__PRELOADED_STATE__;
+    const store = configureStore(preloadedState);
     hydrate(
       <Provider store={store}>
         <Auth0Provider

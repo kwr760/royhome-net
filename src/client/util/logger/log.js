@@ -4,9 +4,9 @@ import env from '../../../config';
 
 import getConsole from '../../../util/logger/get-console';
 import writeToServer from './write-to-server';
-import type { LogMsg } from '../../../server/logger/types';
+import type { LogMsgType } from '../../../server/logger/types';
 
-const log = ({ logType, msg }: LogMsg) => {
+const log = ({ logType, msg }: LogMsgType) => {
   const {
     level: logLevel,
     stdout: displayToScreen,
