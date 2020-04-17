@@ -7,6 +7,7 @@ describe('client/store/configure', () => {
       session: {
         authenticated: false,
         expiration: 0,
+        isLoading: false,
       },
     };
 

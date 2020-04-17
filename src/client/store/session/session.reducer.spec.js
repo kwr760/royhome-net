@@ -7,29 +7,14 @@ describe('client/store/reducers/session/index', () => {
   const state = {
     authenticated: false,
     expiration: 10000,
+    isLoading: false,
   };
 
-  it('should return the default state', () => {
-    // Arrange
-    const action = {
-      type: 'default',
-      meta: {
-        authenticated: true,
-        expiration: -1,
-      },
-    };
-
-    // Act
-    const result = sessionReducer(state, action);
-
-    // Assert
-    expect(result).toEqual(state);
-  });
-  it('should return the state for EMPTY action', () => {
+  it('should return the state for UPDATE_AUTHENTICATION action', () => {
     // Arrange
     const action = {
       type: SESSION.UPDATE_AUTHENTICATION,
-      meta: {
+      payload: {
         authenticated: true,
         expiration: -1,
       },
@@ -37,6 +22,27 @@ describe('client/store/reducers/session/index', () => {
     const expectedState = {
       authenticated: true,
       expiration: -1,
+      isLoading: false,
+    };
+
+    // Act
+    const result = sessionReducer(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+  it('should return the state for UPDATE_LOADING action', () => {
+    // Arrange
+    const action = {
+      type: SESSION.UPDATE_LOADING,
+      payload: {
+        isLoading: true,
+      },
+    };
+    const expectedState = {
+      authenticated: false,
+      expiration: 10000,
+      isLoading: true,
     };
 
     // Act

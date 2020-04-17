@@ -4,12 +4,17 @@ import type { Action } from 'redux';
 
 import SESSION from './constants';
 
-const updateAuthentication = (authenticated: boolean, expiration: number): Action<string> => ({
+export const updateAuthentication = (authenticated: boolean, expiration: number): Action<string> => ({
   type: SESSION.UPDATE_AUTHENTICATION,
-  meta: {
+  payload: {
     authenticated,
     expiration,
   },
 });
 
-export default updateAuthentication;
+export const updateLoading = (isLoading: boolean): Action<string> => ({
+  type: SESSION.UPDATE_LOADING,
+  payload: {
+    isLoading,
+  },
+});

@@ -9,6 +9,7 @@ describe('server/rendering/populate-state', () => {
       session: {
         authenticated: false,
         expiration: -1,
+        isLoading: false,
       },
     };
 

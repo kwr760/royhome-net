@@ -12,7 +12,7 @@ import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from './constants';
 import hasNeededRole from './has-needed-role';
 import env from '../../config';
 import type { Auth0ProviderPropsType, Auth0ClientType } from './types';
-import updateAuthentication from '../../client/store/session/session.action';
+import { updateAuthentication } from '../../client/store/session/session.action';
 
 const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState(
   {},

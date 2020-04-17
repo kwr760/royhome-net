@@ -16,6 +16,7 @@ const defaultState = {
   session: {
     authenticated: false,
     expiration: 0,
+    isLoading: false,
   },
 };
 
