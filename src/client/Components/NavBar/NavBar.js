@@ -21,7 +21,7 @@ import {
 } from 'reactstrap';
 
 import { useAuth0 } from '../../../util/auth0/context';
-import isAuthenticated from '../../store/session/session.selector';
+import { isAuthenticated } from '../../store/session/session.selector';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);

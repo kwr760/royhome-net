@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom';
 
 import { useAuth0 } from '../../../util/auth0/context';
 import type { PrivateRoutePropsType } from './types';
-import isAuthenticated from '../../store/session/session.selector';
+import { isAuthenticated } from '../../store/session/session.selector';
 
 const PrivateRoute = ({
   component: Component, path, userRole = '', context, url, ...rest

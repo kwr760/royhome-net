@@ -50,7 +50,6 @@ describe('util/auth0/react-auth0-node', () => {
 
     // Assert
     getByText(/user: {"name":"Test"}/);
-    getByText(/loading: false/);
     getByText(/logout: undefined/);
     getByText(/loginWithRedirect: undefined/);
     getByText(/getTokenSilently: undefined/);

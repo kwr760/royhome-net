@@ -3,11 +3,14 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
+import { useSelector } from 'react-redux';
 import Loading from '../../Components/Loading/Loading';
 import { useAuth0 } from '../../../util/auth0/context';
+import { isLoading } from '../../store/session/session.selector';
 
 const Profile = () => {
-  const { loading, user } = useAuth0();
+  const { user } = useAuth0();
+  const loading = useSelector((state) => isLoading(state, null));
 
   if (loading || !user) {
     return <Loading />;

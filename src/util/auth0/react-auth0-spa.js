@@ -12,7 +12,7 @@ import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from './constants';
 import hasNeededRole from './has-needed-role';
 import env from '../../config';
 import type { Auth0ProviderPropsType, Auth0ClientType } from './types';
-import updateAuthentication from '../../client/store/session/session.action';
+import { updateAuthentication, updateLoading } from '../../client/store/session/session.action';
 
 const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState(
   {},
@@ -45,12 +45,11 @@ const Auth0Provider = ({
   const [user, setUser] = useState(cxtUser);
   const [data, setData] = useState(cxtData);
   const [auth0Client, setAuth0]: [Auth0ClientType, Function] = useState({});
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const initAuth0 = async () => {
-      setLoading(true);
+      dispatch(updateLoading(true));
       const auth0FromHook = await createAuth0Client(initOptions);
       setAuth0(auth0FromHook);
 
@@ -79,7 +78,7 @@ const Auth0Provider = ({
         dispatch(updateAuthentication(false, 0));
       }
 
-      setLoading(false);
+      dispatch(updateLoading(false));
     };
     initAuth0();
     // eslint-disable-next-line
@@ -115,7 +114,6 @@ const Auth0Provider = ({
     <Auth0Context.Provider
       value={{
         user,
-        loading,
         logout,
         loginWithRedirect,
         getTokenSilently,

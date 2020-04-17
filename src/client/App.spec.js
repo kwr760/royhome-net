@@ -3,8 +3,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
 
-import { Auth0Context } from '../util/auth0/context';
+import { Provider } from 'react-redux';
 import App from './App';
+import configureStore from './store/configure-store';
 
 jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({}),
@@ -19,12 +20,12 @@ describe('src/client/App', () => {
   const context = {
     jwt: {},
   };
-  const getApp = (auth) => (
-    <Auth0Context.Provider value={auth}>
+  const getApp = (store) => (
+    <Provider store={store}>
       <Router>
         <App history={history} context={context} />
       </Router>
-    </Auth0Context.Provider>
+    </Provider>
   );
   beforeEach(() => {
     global.console.error = jest.fn();
@@ -36,12 +37,15 @@ describe('src/client/App', () => {
 
   it('renders home page', () => {
     // Arrange
-    const auth = {
-      loading: false,
+    const state = {
+      session: {
+        isLoading: false,
+      },
     };
+    const store = configureStore(state);
 
     // Act
-    const { getByText, queryByText } = render(getApp(auth));
+    const { getByText, queryByText } = render(getApp(store));
 
     // Assert
     getByText(/NavBar/);
@@ -51,12 +55,15 @@ describe('src/client/App', () => {
   });
   it('renders Loading', () => {
     // Arrange
-    const auth = {
-      loading: true,
+    const state = {
+      session: {
+        isLoading: true,
+      },
     };
+    const store = configureStore(state);
 
     // Act
-    const { getByText, queryByText } = render(getApp(auth));
+    const { getByText, queryByText } = render(getApp(store));
 
     // Assert
     getByText(/Loading/);
