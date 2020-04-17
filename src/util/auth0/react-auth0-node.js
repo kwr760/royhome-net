@@ -16,13 +16,11 @@ const Auth0Provider = ({
 
   const [user] = useState(cxtUser);
   const [data] = useState(cxtData);
-  const [loading] = useState(false);
 
   return (
     <Auth0Context.Provider
       value={{
         user,
-        loading,
         logout: () => {},
         loginWithRedirect: () => {},
         getTokenSilently: () => {},

@@ -2,9 +2,6 @@ import { useSelector } from 'react-redux';
 
 import { isAuthenticated, isLoading } from './session.selector';
 
-// jest.mock('react-redux', () => ({
-//   useSelector: jest.fn(),
-// }));
 jest.mock('react-redux');
 
 describe('client/store/session/session.selector', () => {

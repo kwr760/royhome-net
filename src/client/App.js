@@ -4,6 +4,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
+import { useSelector } from 'react-redux';
 import NavBar from './Components/NavBar/NavBar';
 import Footer from './Components/Footer/Footer';
 import Loading from './Components/Loading/Loading';
@@ -14,9 +15,9 @@ import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Profile from './Pages/Profile/Profile';
 import Courses from './Pages/Courses/Courses';
 
-import { useAuth0 } from '../util/auth0/context';
 import initFontAwesome from './util/init-font-awesome';
 import type { AppPropsType } from './types';
+import { isLoading } from './store/session/session.selector';
 
 initFontAwesome();
 
@@ -24,7 +25,7 @@ initFontAwesome();
  * @return {string}
  */
 function App({ context }: AppPropsType) {
-  const { loading } = useAuth0();
+  const loading = useSelector((state) => isLoading(state, null));
 
   if (loading) {
     return <Loading />;

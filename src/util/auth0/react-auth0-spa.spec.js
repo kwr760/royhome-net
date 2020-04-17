@@ -72,6 +72,10 @@ describe('util/auth0/react-auth0-spa', () => {
     });
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
+    const expectedLoadingOn = { payload: { isLoading: true }, type: 'UPDATE_LOADING' };
+    const expectedLoadingOff = { payload: { isLoading: false }, type: 'UPDATE_LOADING' };
+    const expectedAuthOn = { payload: { authenticated: true, expiration: 999999999 }, type: 'UPDATE_AUTHENTICATION' };
+    const expectedAuthOff = { payload: { authenticated: false, expiration: 0 }, type: 'UPDATE_AUTHENTICATION' };
 
     // Act
     const { getByText } = render(testProvider(testContext));
@@ -81,7 +85,11 @@ describe('util/auth0/react-auth0-spa', () => {
 
     // Assert
     getByText(/user: {}/);
-    expect(dispatch).toBeCalledTimes(2);
+    expect(dispatch).toBeCalledTimes(4);
+    expect(dispatch).toHaveBeenNthCalledWith(1, expectedLoadingOn);
+    expect(dispatch).toHaveBeenNthCalledWith(2, expectedAuthOn);
+    expect(dispatch).toHaveBeenNthCalledWith(3, expectedLoadingOff);
+    expect(dispatch).toHaveBeenNthCalledWith(4, expectedAuthOff);
   });
   it('should handle redirect callback', async () => {
     // Arrange
@@ -104,6 +112,9 @@ describe('util/auth0/react-auth0-spa', () => {
     });
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
+    const expectedLoadingOn = { payload: { isLoading: true }, type: 'UPDATE_LOADING' };
+    const expectedLoadingOff = { payload: { isLoading: false }, type: 'UPDATE_LOADING' };
+    const expectedAuthOff = { payload: { authenticated: false, expiration: 0 }, type: 'UPDATE_AUTHENTICATION' };
 
     // Act
     const { getByText } = render(testProvider(testContext, { coverage: true }));
@@ -111,7 +122,10 @@ describe('util/auth0/react-auth0-spa', () => {
 
     // Assert
     getByText(/user: {}/);
-    expect(dispatch).toBeCalledTimes(1);
+    expect(dispatch).toBeCalledTimes(3);
+    expect(dispatch).toHaveBeenNthCalledWith(1, expectedLoadingOn);
+    expect(dispatch).toHaveBeenNthCalledWith(2, expectedAuthOff);
+    expect(dispatch).toHaveBeenNthCalledWith(3, expectedLoadingOff);
     global.window = savedWindow;
   });
 });
