@@ -11,6 +11,7 @@ describe('server/rendering/populate-state', () => {
         expiration: -1,
         isLoading: false,
       },
+      user: {},
     };
 
     // Act

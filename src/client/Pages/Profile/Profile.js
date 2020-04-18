@@ -1,18 +1,19 @@
 // @flow
 
+import _ from 'lodash';
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
 import { useSelector } from 'react-redux';
 import Loading from '../../Components/Loading/Loading';
-import { useAuth0 } from '../../../util/auth0/context';
 import { isLoading } from '../../store/session/session.selector';
+import { getUser } from '../../store/user/user.selector';
 
 const Profile = () => {
-  const { user } = useAuth0();
+  const user = useSelector((state) => getUser(state, null));
   const loading = useSelector((state) => isLoading(state, null));
 
-  if (loading || !user) {
+  if (loading || _.isEmpty(user)) {
     return <Loading />;
   }
 

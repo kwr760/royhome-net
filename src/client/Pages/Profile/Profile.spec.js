@@ -10,9 +10,9 @@ import { Auth0Context } from '../../../util/auth0/context';
 import configureStore from '../../store/configure-store';
 
 describe('client/Components/Pages/Private/Profile', () => {
-  const getProfile = (store, auth) => (
+  const getProfile = (store) => (
     <Provider store={store}>
-      <Auth0Context.Provider value={auth}>
+      <Auth0Context.Provider value={{}}>
         <Router>
           <Profile />
         </Router>
@@ -21,23 +21,20 @@ describe('client/Components/Pages/Private/Profile', () => {
   );
   it('should render profile', async () => {
     // Arrange
-    const user = {
-      nickname: 'Nickname',
-      picture: 'Picture',
-      arg: 'Loaded Arg',
-    };
-    const auth = {
-      user,
-    };
     const state = {
       session: {
         isLoading: false,
+      },
+      user: {
+        nickname: 'Nickname',
+        picture: 'Picture',
+        arg: 'Loaded Arg',
       },
     };
     const store = configureStore(state);
 
     // Act
-    const { getByText, getByAltText } = render(getProfile(store, auth));
+    const { getByText, getByAltText } = render(getProfile(store));
 
     // Assert
     await waitForElement(() => getByAltText('Profile'));
@@ -47,8 +44,6 @@ describe('client/Components/Pages/Private/Profile', () => {
   });
   it('should render Loading', async () => {
     // Arrange
-    const auth = {
-    };
     const state = {
       session: {
         isLoading: false,
@@ -57,7 +52,7 @@ describe('client/Components/Pages/Private/Profile', () => {
     const store = configureStore(state);
 
     // Act
-    const { getByAltText } = render(getProfile(store, auth));
+    const { getByAltText } = render(getProfile(store));
 
     // Assert
     getByAltText(/Loading/);

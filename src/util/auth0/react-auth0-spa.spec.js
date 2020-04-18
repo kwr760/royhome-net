@@ -35,8 +35,6 @@ describe('util/auth0/react-auth0-spa', () => {
     const performCoverage = (config.coverage) ? config.coverage : false;
 
     const {
-      user,
-      loading,
       loginWithRedirect,
       getTokenSilently,
       userHasRole,
@@ -50,8 +48,6 @@ describe('util/auth0/react-auth0-spa', () => {
 
     return (
       <div>
-        { `user: ${JSON.stringify(user)}` }
-        { `loading: ${loading}` }
         { `userHasRole: ${userHasRole('friend')}` }
         <button type="button" onClick={logout}>
           Logout
@@ -76,6 +72,8 @@ describe('util/auth0/react-auth0-spa', () => {
     const expectedLoadingOff = { payload: { isLoading: false }, type: 'UPDATE_LOADING' };
     const expectedAuthOn = { payload: { authenticated: true, expiration: 999999999 }, type: 'UPDATE_AUTHENTICATION' };
     const expectedAuthOff = { payload: { authenticated: false, expiration: 0 }, type: 'UPDATE_AUTHENTICATION' };
+    const expectedUserOn = { payload: { user: { name: 'Tester' } }, type: 'UPDATE_USER' };
+    const expectedUserOff = { payload: { user: { } }, type: 'UPDATE_USER' };
 
     // Act
     const { getByText } = render(testProvider(testContext));
@@ -84,12 +82,13 @@ describe('util/auth0/react-auth0-spa', () => {
     await wait();
 
     // Assert
-    getByText(/user: {}/);
-    expect(dispatch).toBeCalledTimes(4);
+    expect(dispatch).toBeCalledTimes(6);
     expect(dispatch).toHaveBeenNthCalledWith(1, expectedLoadingOn);
     expect(dispatch).toHaveBeenNthCalledWith(2, expectedAuthOn);
-    expect(dispatch).toHaveBeenNthCalledWith(3, expectedLoadingOff);
-    expect(dispatch).toHaveBeenNthCalledWith(4, expectedAuthOff);
+    expect(dispatch).toHaveBeenNthCalledWith(3, expectedUserOn);
+    expect(dispatch).toHaveBeenNthCalledWith(4, expectedLoadingOff);
+    expect(dispatch).toHaveBeenNthCalledWith(5, expectedAuthOff);
+    expect(dispatch).toHaveBeenNthCalledWith(6, expectedUserOff);
   });
   it('should handle redirect callback', async () => {
     // Arrange
@@ -115,17 +114,18 @@ describe('util/auth0/react-auth0-spa', () => {
     const expectedLoadingOn = { payload: { isLoading: true }, type: 'UPDATE_LOADING' };
     const expectedLoadingOff = { payload: { isLoading: false }, type: 'UPDATE_LOADING' };
     const expectedAuthOff = { payload: { authenticated: false, expiration: 0 }, type: 'UPDATE_AUTHENTICATION' };
+    const expectedUserOff = { payload: { user: { } }, type: 'UPDATE_USER' };
 
     // Act
-    const { getByText } = render(testProvider(testContext, { coverage: true }));
+    render(testProvider(testContext, { coverage: true }));
     await wait();
 
     // Assert
-    getByText(/user: {}/);
-    expect(dispatch).toBeCalledTimes(3);
+    expect(dispatch).toBeCalledTimes(4);
     expect(dispatch).toHaveBeenNthCalledWith(1, expectedLoadingOn);
     expect(dispatch).toHaveBeenNthCalledWith(2, expectedAuthOff);
-    expect(dispatch).toHaveBeenNthCalledWith(3, expectedLoadingOff);
+    expect(dispatch).toHaveBeenNthCalledWith(3, expectedUserOff);
+    expect(dispatch).toHaveBeenNthCalledWith(4, expectedLoadingOff);
     global.window = savedWindow;
   });
 });

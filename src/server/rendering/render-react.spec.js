@@ -20,6 +20,14 @@ describe('server/rendering/render-react', () => {
       getStyleTags: jest.fn(() => '<div>Styles</div>'),
       getScriptTags: jest.fn(() => '<div>Scripts</div>'),
     }));
+    const preloaededState = {
+      session: {
+        authenticated: false,
+        expiration: -1,
+        isLoading: false,
+      },
+      user: {},
+    };
 
     // Act
     renderReact(req, res);
@@ -37,7 +45,7 @@ describe('server/rendering/render-react', () => {
     <div>Links</div>
     <div>Styles</div>
     <script>window.__INITIAL_DATA__ = {"jwt":{"expiresAt":null,"data":undefined,"user":undefined},"data":{}}</script>
-    <script>window.__PRELOADED_STATE__ = {"session":{"authenticated":false,"expiration":-1,"isLoading":false}}</script>
+    <script>window.__PRELOADED_STATE__ = ${JSON.stringify(preloaededState)}</script>
   </head>
   <body class="h-100">
     <div id="main" class="h-100">&lt;div&gt;Chunks&lt;/div&gt;</div>

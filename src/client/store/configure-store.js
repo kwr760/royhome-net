@@ -18,6 +18,7 @@ const defaultState = {
     expiration: 0,
     isLoading: false,
   },
+  user: {},
 };
 
 const configureStore = (initialState: StateType = defaultState) => {

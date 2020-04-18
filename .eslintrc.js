@@ -37,6 +37,7 @@ module.exports = {
     'no-console': 'off',
     'comma-dangle': ["error", "always-multiline"],
     'import/no-dynamic-require': 0,
+    'import/prefer-default-export': 'off',
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
     quotes: ['warn', 'single'],

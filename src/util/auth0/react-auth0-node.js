@@ -12,15 +12,13 @@ const Auth0Provider = ({
   context,
 }: Auth0ProviderPropsType) => {
   const { jwt } = context;
-  const { user: cxtUser, data: cxtData } = jwt;
+  const { data: cxtData } = jwt;
 
-  const [user] = useState(cxtUser);
   const [data] = useState(cxtData);
 
   return (
     <Auth0Context.Provider
       value={{
-        user,
         logout: () => {},
         loginWithRedirect: () => {},
         getTokenSilently: () => {},
