@@ -6,7 +6,6 @@ export type TokenDataType = {
 };
 export type Auth0ProviderPropsType = {|
   children: Object,
-  context: Object,
   onRedirectCallback: Function,
   audience?: string,
   client_id: string,

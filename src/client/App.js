@@ -16,7 +16,6 @@ import Profile from './Pages/Profile/Profile';
 import Courses from './Pages/Courses/Courses';
 
 import initFontAwesome from './util/init-font-awesome';
-import type { AppPropsType } from './types';
 import { isLoading } from './store/session/session.selector';
 
 initFontAwesome();
@@ -24,7 +23,7 @@ initFontAwesome();
 /**
  * @return {string}
  */
-function App({ context }: AppPropsType) {
+const App = () => {
   const loading = useSelector((state) => isLoading(state, null));
 
   if (loading) {
@@ -47,13 +46,12 @@ function App({ context }: AppPropsType) {
             path="/courses"
             component={Courses}
             userRole="engineer"
-            context={context}
           />
         </Switch>
       </Container>
       <Footer />
     </div>
   );
-}
+};
 
 export default App;

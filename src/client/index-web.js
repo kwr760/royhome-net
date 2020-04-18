@@ -28,8 +28,6 @@ const onRedirectCallback = (appState) => {
 loadableReady(() => {
   const root = document.getElementById('main');
   if (root !== null) {
-    const context = window.__INITIAL_DATA__;
-    delete window.__INITIAL_DATA__;
     const preloadedState = window.__PRELOADED_STATE__;
     delete window.__PRELOADED_STATE__;
     const store = configureStore(preloadedState);
@@ -41,10 +39,9 @@ loadableReady(() => {
           audience={config.audience}
           redirect_uri={window.location.origin}
           onRedirectCallback={onRedirectCallback}
-          context={context}
         >
           <Router>
-            <Route component={(props) => <App {...props} context={context} />} />
+            <Route component={(props) => <App {...props} />} />
           </Router>
         </Auth0Provider>
       </Provider>,

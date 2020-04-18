@@ -16,7 +16,6 @@ export type ContextType = {|
 
 export type AppPropsType = {|
   component: Object,
-  context?: ContextType,
   store?: Store<StateType>,
   path: string,
   userRole?: string,

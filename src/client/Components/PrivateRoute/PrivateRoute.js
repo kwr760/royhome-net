@@ -11,7 +11,7 @@ import { getUser } from '../../store/user/user.selector';
 import hasNeededRole from '../../../util/auth0/has-needed-role';
 
 const PrivateRoute = ({
-  component: Component, path, userRole = '', context, url, ...rest
+  component: Component, path, userRole = '', url, ...rest
 }: PrivateRoutePropsType) => {
   const { login } = useAuth0();
   const authenticated = useSelector((state) => isAuthenticated(state, null));
@@ -37,7 +37,7 @@ const PrivateRoute = ({
       );
     }
 
-    return <Component {...props} context={context} />;
+    return <Component {...props} />;
   };
 
   return <Route path={path} render={render} {...rest} />;

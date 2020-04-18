@@ -44,7 +44,6 @@ describe('server/rendering/render-react', () => {
     <link href="https://use.fontawesome.com/releases/v5.12.1/css/svg-with-js.css" rel="stylesheet">
     <div>Links</div>
     <div>Styles</div>
-    <script>window.__INITIAL_DATA__ = {"jwt":{"expiresAt":null,"data":undefined,"user":undefined},"data":{}}</script>
     <script>window.__PRELOADED_STATE__ = ${JSON.stringify(preloaededState)}</script>
   </head>
   <body class="h-100">

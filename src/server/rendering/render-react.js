@@ -6,9 +6,7 @@ import fs from 'fs';
 import { ChunkExtractor } from '@loadable/server';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import serialize from 'serialize-javascript';
 
-import populateContext from './populate-context';
 import populateState from './populate-state';
 import displayMessage from '../middleware/display-message';
 import env from '../../config';
@@ -23,13 +21,11 @@ const renderReact = (req: Request, res: Response) => {
   const { default: Main } = nodeExtractor.requireEntrypoint();
   const webStats = path.resolve(env.root, './dist/web/loadable-stats.json');
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
-  const context = populateContext(req);
-  const state = populateState(context);
+  const state = populateState(req);
   const store = configureStore(state);
   const jsx = webExtractor.collectChunks(
     <Main
       url={req.url}
-      context={context}
       store={store}
     />,
   );
@@ -44,7 +40,6 @@ const renderReact = (req: Request, res: Response) => {
     .replace('{linkTags}', webExtractor.getLinkTags())
     .replace('{styleTags}', webExtractor.getStyleTags())
     .replace('{scriptTags}', webExtractor.getScriptTags())
-    .replace('{initialData}', serialize(context))
     .replace('{preloadedState}', preloadedState);
   res.send(responseHtml);
 };
