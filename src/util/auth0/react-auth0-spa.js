@@ -13,6 +13,7 @@ import hasNeededRole from './has-needed-role';
 import env from '../../config';
 import type { Auth0ProviderPropsType, Auth0ClientType } from './types';
 import { updateAuthentication, updateLoading } from '../../client/store/session/session.action';
+import { updateUser } from '../../client/store/user/user.action';
 
 const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState(
   {},
@@ -40,9 +41,8 @@ const Auth0Provider = ({
   ...initOptions
 }: Auth0ProviderPropsType) => {
   const { jwt } = context;
-  const { user: cxtUser, data: cxtData } = jwt;
+  const { data: cxtData } = jwt;
 
-  const [user, setUser] = useState(cxtUser);
   const [data, setData] = useState(cxtData);
   const [auth0Client, setAuth0]: [Auth0ClientType, Function] = useState({});
   const dispatch = useDispatch();
@@ -61,7 +61,6 @@ const Auth0Provider = ({
       const authenticated = await auth0FromHook.isAuthenticated();
       if (authenticated) {
         const auth0User = await auth0FromHook.getUser();
-        setUser(auth0User);
         const tokenClaims = await auth0FromHook.getIdTokenClaims();
         const token = {
           exp: tokenClaims.exp,
@@ -71,11 +70,12 @@ const Auth0Provider = ({
         setData(token.data);
         setCookies(token);
         dispatch(updateAuthentication(true, token.exp));
+        dispatch(updateUser(auth0User));
       } else {
-        setUser({});
         setData({});
         setCookies();
         dispatch(updateAuthentication(false, 0));
+        dispatch(updateUser({}));
       }
 
       dispatch(updateLoading(false));
@@ -86,7 +86,7 @@ const Auth0Provider = ({
 
   const logout = (...props) => {
     dispatch(updateAuthentication(false, 0));
-    setUser({});
+    dispatch(updateUser({}));
     setData({});
     setCookies();
     const logoutProps = {
@@ -113,7 +113,6 @@ const Auth0Provider = ({
   return (
     <Auth0Context.Provider
       value={{
-        user,
         logout,
         loginWithRedirect,
         getTokenSilently,

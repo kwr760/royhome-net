@@ -22,14 +22,16 @@ import {
 
 import { useAuth0 } from '../../../util/auth0/context';
 import { isAuthenticated } from '../../store/session/session.selector';
+import { getUser } from '../../store/user/user.selector';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {
-    user, loginWithRedirect, logout, userHasRole,
+    loginWithRedirect, logout, userHasRole,
   } = useAuth0();
   const toggle = () => setIsOpen(!isOpen);
   const authenticated = useSelector((state) => isAuthenticated(state, null));
+  const user = useSelector((state) => getUser(state, null));
 
   const name = (user && user.name) || '';
   const picture = (user && user.picture) || '';

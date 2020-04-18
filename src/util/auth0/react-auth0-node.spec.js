@@ -7,8 +7,6 @@ import { useAuth0 } from './context';
 describe('util/auth0/react-auth0-node', () => {
   const TestConsumer = () => {
     const {
-      user,
-      loading,
       logout,
       loginWithRedirect,
       getTokenSilently,
@@ -17,8 +15,6 @@ describe('util/auth0/react-auth0-node', () => {
 
     return (
       <div>
-        { `user: ${JSON.stringify(user)}` }
-        { `loading: ${loading}` }
         { `loginWithRedirect: ${loginWithRedirect()}` }
         { `getTokenSilently: ${getTokenSilently()}` }
         { `logout: ${logout()}` }
@@ -49,7 +45,6 @@ describe('util/auth0/react-auth0-node', () => {
     const { getByText } = render(provider);
 
     // Assert
-    getByText(/user: {"name":"Test"}/);
     getByText(/logout: undefined/);
     getByText(/loginWithRedirect: undefined/);
     getByText(/getTokenSilently: undefined/);

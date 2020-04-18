@@ -2,6 +2,7 @@
 
 import rootReducer from './root.reducer';
 import sessionReducer from './session/session.reducer';
+import userReducer from './user/user.reducer';
 
 describe('client/store/reducers/root', () => {
   it('should call rootReducer', () => {
@@ -12,7 +13,8 @@ describe('client/store/reducers/root', () => {
     // Assert
     expect(rootReducer).toEqual({
       session: sessionReducer,
+      user: userReducer,
     });
-    expect(reducerCount).toBe(1);
+    expect(reducerCount).toBe(2);
   });
 });

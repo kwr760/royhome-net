@@ -48,14 +48,14 @@ describe('client/Components/Pages/NavBar', () => {
     const auth = {
       logout: jest.fn(),
       userHasRole: jest.fn(() => false),
-      user: {
-        name: 'Tester',
-        picture: 'pic',
-      },
     };
     const state = {
       session: {
         authenticated: true,
+      },
+      user: {
+        name: 'Tester',
+        picture: 'pic',
       },
     };
     const store = configureStore(state);

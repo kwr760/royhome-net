@@ -3,7 +3,7 @@
 import sessionReducer from './session.reducer';
 import SESSION from './constants';
 
-describe('client/store/reducers/session/index', () => {
+describe('client/store/reducers/session/session.reducer', () => {
   const state = {
     authenticated: false,
     expiration: 10000,

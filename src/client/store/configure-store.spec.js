@@ -9,6 +9,7 @@ describe('client/store/configure', () => {
         expiration: 0,
         isLoading: false,
       },
+      user: {},
     };
 
     // Act
@@ -25,6 +26,7 @@ describe('client/store/configure', () => {
         authenticated: true,
         expiration: -1,
       },
+      user: {},
     };
 
     // Act

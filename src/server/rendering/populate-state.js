@@ -12,6 +12,7 @@ const populateState = (context: ContextType): StateType => {
       expiration: -1,
       isLoading: false,
     },
+    user: {},
   };
 };
 
