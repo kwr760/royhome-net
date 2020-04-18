@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 // @flow
-import _ from 'lodash';
+import { isEmpty } from 'lodash';
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -9,7 +10,6 @@ import Cookies from 'universal-cookie';
 
 import { Auth0Context } from './context';
 import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from './constants';
-import hasNeededRole from './has-needed-role';
 import env from '../../config';
 import type { Auth0ProviderPropsType, Auth0ClientType } from './types';
 import { updateAuthentication, updateLoading } from '../../client/store/session/session.action';
@@ -37,13 +37,8 @@ const setCookies = (newCookies) => {
 const Auth0Provider = ({
   children,
   onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
-  context,
   ...initOptions
 }: Auth0ProviderPropsType) => {
-  const { jwt } = context;
-  const { data: cxtData } = jwt;
-
-  const [data, setData] = useState(cxtData);
   const [auth0Client, setAuth0]: [Auth0ClientType, Function] = useState({});
   const dispatch = useDispatch();
 
@@ -62,17 +57,18 @@ const Auth0Provider = ({
       if (authenticated) {
         const auth0User = await auth0FromHook.getUser();
         const tokenClaims = await auth0FromHook.getIdTokenClaims();
+        const context = tokenClaims[TOKEN_URL];
         const token = {
           exp: tokenClaims.exp,
-          user: auth0User,
-          data: tokenClaims[TOKEN_URL],
+          user: {
+            ...auth0User,
+            context,
+          },
         };
-        setData(token.data);
         setCookies(token);
         dispatch(updateAuthentication(true, token.exp));
-        dispatch(updateUser(auth0User));
+        dispatch(updateUser(token.user));
       } else {
-        setData({});
         setCookies();
         dispatch(updateAuthentication(false, 0));
         dispatch(updateUser({}));
@@ -84,39 +80,27 @@ const Auth0Provider = ({
     // eslint-disable-next-line
   }, []);
 
-  const logout = (...props) => {
-    dispatch(updateAuthentication(false, 0));
-    dispatch(updateUser({}));
-    setData({});
-    setCookies();
+  const logout = async (...props) => {
     const logoutProps = {
       ...props,
       returnTo: env.host,
     };
-    auth0Client.logout(logoutProps);
+    await auth0Client.logout(logoutProps);
+    dispatch(updateAuthentication(false, 0));
+    dispatch(updateUser({}));
+    setCookies();
   };
 
-  const loginWithRedirect = (...p) => {
-    if (!_.isEmpty(auth0Client)) {
-      return auth0Client.loginWithRedirect(...p);
-    }
-    return undefined;
-  };
+  const login = (...p) => ((isEmpty(auth0Client)) ? undefined : auth0Client.loginWithRedirect(...p));
 
-  const getTokenSilently = (...p) => {
-    if (!_.isEmpty(auth0Client)) {
-      return auth0Client.getTokenSilently(...p);
-    }
-    return undefined;
-  };
+  const getToken = (...p) => ((isEmpty(auth0Client)) ? undefined : auth0Client.getTokenSilently(...p));
 
   return (
     <Auth0Context.Provider
       value={{
         logout,
-        loginWithRedirect,
-        getTokenSilently,
-        userHasRole: (role) => hasNeededRole(role, data),
+        login,
+        getToken,
       }}
     >
       {children}

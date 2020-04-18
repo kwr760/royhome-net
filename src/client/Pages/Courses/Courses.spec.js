@@ -20,7 +20,7 @@ describe('client/Components/Pages/Private/Courses', () => {
     ],
   };
   const auth = {
-    getTokenSilently: jest.fn(),
+    getToken: jest.fn(),
   };
   const emptyContext = {};
   const getCourses = (context) => (

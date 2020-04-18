@@ -3,12 +3,13 @@
 import type { Store } from 'redux';
 import type { StateType } from './store/types';
 import type { DataType } from '../server/rendering/types';
+import type { UserStateType } from './store/user/types';
 
 export type ContextType = {|
   jwt?: {|
     expiresAt: number,
     data: string,
-    user: string,
+    user: UserStateType,
   |},
   data?: DataType,
 |};

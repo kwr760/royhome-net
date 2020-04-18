@@ -4,7 +4,10 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import PrivateRoute from './PrivateRoute';
 import { Auth0Context } from '../../../util/auth0/context';
+import hasNeededRole from '../../../util/auth0/has-needed-role';
 import configureStore from '../../store/configure-store';
+
+jest.mock('../../../util/auth0/has-needed-role');
 
 describe('client/Components/Pages/PrivateRoute', () => {
   const userRole = 'admin';
@@ -21,15 +24,14 @@ describe('client/Components/Pages/PrivateRoute', () => {
 
   it('should render with authentication and role', () => {
     // Arrange
-    const auth = {
-      userHasRole: jest.fn(() => true),
-    };
+    const auth = {};
     const state = {
       session: {
         authenticated: true,
       },
     };
     const store = configureStore(state);
+    hasNeededRole.mockReturnValue(true);
 
     // Act
     const { getByText } = render(getPrivateRoute(store, auth, userRole));
@@ -41,7 +43,6 @@ describe('client/Components/Pages/PrivateRoute', () => {
     // Arrange
     const auth = {
       isAuthenticated: true,
-      userHasRole: jest.fn(() => false),
     };
     const state = {
       session: {
@@ -49,6 +50,7 @@ describe('client/Components/Pages/PrivateRoute', () => {
       },
     };
     const store = configureStore(state);
+    hasNeededRole.mockReturnValue(false);
 
     // Act
     const { getByText } = render(getPrivateRoute(store, auth, userRole));
@@ -61,8 +63,7 @@ describe('client/Components/Pages/PrivateRoute', () => {
     // Arrange
     const path = 'http://url/path';
     const auth = {
-      userHasRole: jest.fn(() => true),
-      loginWithRedirect: jest.fn(),
+      login: jest.fn(),
     };
     const state = {
       session: {
@@ -70,24 +71,24 @@ describe('client/Components/Pages/PrivateRoute', () => {
       },
     };
     const store = configureStore(state);
+    hasNeededRole.mockReturnValue(true);
 
     // Act
     render(getPrivateRoute(store, auth, userRole, path));
 
     // Assert
-    expect(auth.loginWithRedirect).toHaveBeenCalledWith({ appState: { targetUrl: 'http://url/path' } });
+    expect(auth.login).toHaveBeenCalledWith({ appState: { targetUrl: 'http://url/path' } });
   });
   it('should render with authentication and without role', () => {
     // Arrange
-    const auth = {
-      userHasRole: jest.fn(() => true),
-    };
+    const auth = {};
     const state = {
       session: {
         authenticated: true,
       },
     };
     const store = configureStore(state);
+    hasNeededRole.mockReturnValue(true);
 
     // Act
     const { getByText } = render(getPrivateRoute(store, auth));

@@ -1,6 +1,12 @@
 // @flow
 
+export type UserContextType = {
+  role?: string,
+  ...
+};
+
 export type UserStateType = {
+  context?: UserContextType,
   name?: string,
   email?: string,
   picture?: string,
@@ -9,6 +15,7 @@ export type UserStateType = {
 
 type UpdateUserPayload = {|
   user: {
+    context?: UserContextType,
     name?: string,
     email?: string,
     picture?: string,

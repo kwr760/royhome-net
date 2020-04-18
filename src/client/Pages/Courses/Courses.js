@@ -19,14 +19,14 @@ const getInitialData = (context: ContextType) => {
 };
 
 const Courses = ({ context = {} }: AppPropsType) => {
-  const { getTokenSilently } = useAuth0();
+  const { getToken } = useAuth0();
   const initialData = getInitialData(context);
   const [courses, setCourses] = useState(initialData.courses);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
     const callCoursesApi = async (cbCourses, cbMessage) => {
-      const token = await getTokenSilently();
+      const token = await getToken();
       const url = `${env.host}/api/courses`;
       const options = {
         headers: {
@@ -44,7 +44,7 @@ const Courses = ({ context = {} }: AppPropsType) => {
     if (isEmpty(courses)) {
       callCoursesApi(setCourses, setMessage);
     }
-  }, [courses, getTokenSilently]);
+  }, [courses, getToken]);
 
   if (message) {
     return (

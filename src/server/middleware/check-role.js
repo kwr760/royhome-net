@@ -7,9 +7,9 @@ import { TOKEN_URL } from '../../util/auth0/constants';
 
 const checkRole = (neededRole: string) => (req: Request, res: Response, next: Function) => {
   const { user: token = {} } = req;
-  const { [TOKEN_URL]: data } = token;
+  const { [TOKEN_URL]: context } = token;
 
-  if (hasNeededRole(neededRole, data)) {
+  if (hasNeededRole(neededRole, context)) {
     return next();
   }
 
