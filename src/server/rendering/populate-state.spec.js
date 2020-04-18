@@ -3,8 +3,7 @@ import populateState from './populate-state';
 describe('server/rendering/populate-state', () => {
   it('should return an state from empty context', () => {
     // Arrange
-    const context = {
-    };
+    const context = {};
     const expected = {
       session: {
         authenticated: false,

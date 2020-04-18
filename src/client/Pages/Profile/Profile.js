@@ -1,6 +1,6 @@
 // @flow
 
-import _ from 'lodash';
+import { isEmpty } from 'lodash';
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
@@ -13,7 +13,7 @@ const Profile = () => {
   const user = useSelector((state) => getUser(state, null));
   const loading = useSelector((state) => isLoading(state, null));
 
-  if (loading || _.isEmpty(user)) {
+  if (loading || isEmpty(user)) {
     return <Loading />;
   }
 

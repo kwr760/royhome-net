@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 // @flow
-import _ from 'lodash';
+import { isEmpty } from 'lodash';
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -56,16 +57,17 @@ const Auth0Provider = ({
       if (authenticated) {
         const auth0User = await auth0FromHook.getUser();
         const tokenClaims = await auth0FromHook.getIdTokenClaims();
+        const context = tokenClaims[TOKEN_URL];
         const token = {
           exp: tokenClaims.exp,
           user: {
             ...auth0User,
-            context: tokenClaims[TOKEN_URL],
+            context,
           },
         };
         setCookies(token);
         dispatch(updateAuthentication(true, token.exp));
-        dispatch(updateUser(auth0User));
+        dispatch(updateUser(token.user));
       } else {
         setCookies();
         dispatch(updateAuthentication(false, 0));
@@ -89,9 +91,9 @@ const Auth0Provider = ({
     setCookies();
   };
 
-  const login = (...p) => ((_.isEmpty(auth0Client)) ? undefined : auth0Client.loginWithRedirect(...p));
+  const login = (...p) => ((isEmpty(auth0Client)) ? undefined : auth0Client.loginWithRedirect(...p));
 
-  const getToken = (...p) => ((_.isEmpty(auth0Client)) ? undefined : auth0Client.getTokenSilently(...p));
+  const getToken = (...p) => ((isEmpty(auth0Client)) ? undefined : auth0Client.getTokenSilently(...p));
 
   return (
     <Auth0Context.Provider

@@ -5,14 +5,14 @@ import type { StateType } from '../../client/store/types';
 
 const populateState = (context: ContextType): StateType => {
   const { jwt = {} } = context;
-  const { expiresAt = 0 } = jwt;
+  const { expiresAt = 0, user = {} } = jwt;
   return {
     session: {
       authenticated: (expiresAt > 0),
       expiration: -1,
       isLoading: false,
     },
-    user: {},
+    user,
   };
 };
 
