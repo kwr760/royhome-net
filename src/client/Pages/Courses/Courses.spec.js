@@ -56,26 +56,4 @@ describe('client/Components/Pages/Private/Courses', () => {
     // Assert
     await waitForElement(() => getByText(/Request failed with status code 500/));
   });
-  it('should load courses from context', async () => {
-    // Arrange
-    const context = {
-      data: {
-        courses: {
-          status: 200,
-          body: {
-            courses: [
-              { id: 3, title: 'Course #3' },
-            ],
-          },
-        },
-      },
-    };
-
-    // Act
-    const { getByText } = render(getCourses(context));
-
-    // Assert
-    await waitForElement(() => getByText(/Course #3/));
-    getByText(/Course #3/);
-  });
 });

@@ -2,26 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { get, isEmpty } from 'lodash';
-import { OK } from 'http-status-codes';
+import { isEmpty } from 'lodash';
 
 import env from '../../../config';
 import { useAuth0 } from '../../../util/auth0/context';
-import type { ContextType, AppPropsType } from '../../types';
 
-const getInitialData = (context: ContextType) => {
-  const status = get(context, 'data.courses.status', undefined);
-  if (status === OK) {
-    const courses = get(context, ['data', 'courses', 'body'], { courses: [] });
-    return courses;
-  }
-  return { courses: [] };
-};
-
-const Courses = ({ context = {} }: AppPropsType) => {
+const Courses = () => {
   const { getToken } = useAuth0();
-  const initialData = getInitialData(context);
-  const [courses, setCourses] = useState(initialData.courses);
+  const [courses, setCourses] = useState([]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
