@@ -7,26 +7,29 @@ import { Route } from 'react-router-dom';
 import { useAuth0 } from '../../../util/auth0/context';
 import type { PrivateRoutePropsType } from './types';
 import { isAuthenticated } from '../../store/session/session.selector';
+import { getUser } from '../../store/user/user.selector';
+import hasNeededRole from '../../../util/auth0/has-needed-role';
 
 const PrivateRoute = ({
   component: Component, path, userRole = '', context, url, ...rest
 }: PrivateRoutePropsType) => {
-  const { loginWithRedirect, userHasRole } = useAuth0();
+  const { login } = useAuth0();
   const authenticated = useSelector((state) => isAuthenticated(state, null));
+  const user = useSelector((state) => getUser(state, null));
 
   useEffect(() => {
     const needToLogin = async (target) => {
       if (!authenticated) {
-        await loginWithRedirect({
+        await login({
           appState: { targetUrl: target },
         });
       }
     };
     needToLogin(path);
-  }, [authenticated, loginWithRedirect, path]);
+  }, [authenticated, login, path]);
 
   const render = (props) => {
-    if (authenticated === true && userRole.length > 0 && !userHasRole(userRole)) {
+    if (authenticated === true && userRole.length > 0 && !hasNeededRole(userRole, user.context)) {
       return (
         <h3>
           {`Unauthorized - You need the following role to view this page: ${userRole}`}

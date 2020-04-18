@@ -35,20 +35,18 @@ describe('util/auth0/react-auth0-spa', () => {
     const performCoverage = (config.coverage) ? config.coverage : false;
 
     const {
-      loginWithRedirect,
-      getTokenSilently,
-      userHasRole,
+      login,
+      getToken,
       logout,
     } = useAuth0();
 
     if (performCoverage) {
-      loginWithRedirect();
-      getTokenSilently();
+      login();
+      getToken();
     }
 
     return (
       <div>
-        { `userHasRole: ${userHasRole('friend')}` }
         <button type="button" onClick={logout}>
           Logout
         </button>

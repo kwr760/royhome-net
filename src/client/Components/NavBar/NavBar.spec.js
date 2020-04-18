@@ -4,10 +4,13 @@ import { render, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import NavBar from './NavBar';
 import { Auth0Context } from '../../../util/auth0/context';
+import hasNeededRole from '../../../util/auth0/has-needed-role';
 import initFontAwesome from '../../util/init-font-awesome';
 import configureStore from '../../store/configure-store';
 
 initFontAwesome();
+
+jest.mock('../../../util/auth0/has-needed-role');
 
 describe('client/Components/Pages/NavBar', () => {
   const getNavBar = (store, auth) => (
@@ -23,7 +26,6 @@ describe('client/Components/Pages/NavBar', () => {
     // Arrange
     const auth = {
       logout: jest.fn(),
-      userHasRole: jest.fn(() => true),
     };
     const state = {
       session: {
@@ -31,6 +33,7 @@ describe('client/Components/Pages/NavBar', () => {
       },
     };
     const store = configureStore(state);
+    hasNeededRole.mockReturnValue(true);
 
     // Act
     const { getByText, getAllByText, getByTestId } = render(getNavBar(store, auth));
@@ -47,7 +50,6 @@ describe('client/Components/Pages/NavBar', () => {
     // Arrange
     const auth = {
       logout: jest.fn(),
-      userHasRole: jest.fn(() => false),
     };
     const state = {
       session: {
@@ -59,6 +61,7 @@ describe('client/Components/Pages/NavBar', () => {
       },
     };
     const store = configureStore(state);
+    hasNeededRole.mockReturnValue(false);
 
     // Act
     const {
@@ -81,9 +84,8 @@ describe('client/Components/Pages/NavBar', () => {
   it('should render without authentication and role', () => {
     // Arrange
     const auth = {
-      loginWithRedirect: jest.fn(),
+      login: jest.fn(),
       logout: jest.fn(),
-      userHasRole: jest.fn(() => false),
     };
     const state = {
       session: {
@@ -91,6 +93,7 @@ describe('client/Components/Pages/NavBar', () => {
       },
     };
     const store = configureStore(state);
+    hasNeededRole.mockReturnValue(false);
 
     // Act
     const { getByText, getAllByText } = render(getNavBar(store, auth));
@@ -102,6 +105,6 @@ describe('client/Components/Pages/NavBar', () => {
 
     fireEvent.click(getAllByText(/Log in/)[0]);
     fireEvent.click(getAllByText(/Log in/)[1]);
-    expect(auth.loginWithRedirect).toHaveBeenCalledTimes(2);
+    expect(auth.login).toHaveBeenCalledTimes(2);
   });
 });

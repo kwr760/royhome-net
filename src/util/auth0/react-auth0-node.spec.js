@@ -8,17 +8,15 @@ describe('util/auth0/react-auth0-node', () => {
   const TestConsumer = () => {
     const {
       logout,
-      loginWithRedirect,
-      getTokenSilently,
-      userHasRole,
+      login,
+      getToken,
     } = useAuth0();
 
     return (
       <div>
-        { `loginWithRedirect: ${loginWithRedirect()}` }
-        { `getTokenSilently: ${getTokenSilently()}` }
+        { `login: ${login()}` }
+        { `getToken: ${getToken()}` }
         { `logout: ${logout()}` }
-        { `userHasRole: ${userHasRole('friend')}` }
       </div>
     );
   };
@@ -46,8 +44,7 @@ describe('util/auth0/react-auth0-node', () => {
 
     // Assert
     getByText(/logout: undefined/);
-    getByText(/loginWithRedirect: undefined/);
-    getByText(/getTokenSilently: undefined/);
-    getByText(/userHasRole: false/);
+    getByText(/login: undefined/);
+    getByText(/getToken: undefined/);
   });
 });

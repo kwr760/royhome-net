@@ -13,10 +13,10 @@ export type Auth0ProviderPropsType = {|
   domain: string,
   redirect_uri?: string,
 |};
+
 export type Auth0ClientType = {
-  getUser: Function,
+  loginWithRedirect: Function,
   logout: Function,
   getTokenSilently: Function,
-  loginWithRedirect: Function,
   ...
 };

@@ -1,10 +1,10 @@
 // @flow
 
 import { OWNER, ROLES } from './constants';
-import type { TokenDataType } from './types';
+import type { UserContextType } from '../../client/store/user/types';
 
-const hasNeededRole = (neededRole: string, data: TokenDataType = {}) => {
-  const { role: rolesString = '' } = data;
+const hasNeededRole = (neededRole: string, context: UserContextType = {}) => {
+  const { role: rolesString = '' } = context;
 
   let grantedRoles = rolesString.split(' ');
   if (grantedRoles.includes(OWNER)) {

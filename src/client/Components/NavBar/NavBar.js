@@ -23,12 +23,11 @@ import {
 import { useAuth0 } from '../../../util/auth0/context';
 import { isAuthenticated } from '../../store/session/session.selector';
 import { getUser } from '../../store/user/user.selector';
+import hasNeededRole from '../../../util/auth0/has-needed-role';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const {
-    loginWithRedirect, logout, userHasRole,
-  } = useAuth0();
+  const { login, logout } = useAuth0();
   const toggle = () => setIsOpen(!isOpen);
   const authenticated = useSelector((state) => isAuthenticated(state, null));
   const user = useSelector((state) => getUser(state, null));
@@ -64,7 +63,7 @@ const NavBar = () => {
                   Resume
                 </NavLink>
               </NavItem>
-              { authenticated && userHasRole('engineer') && (
+              { authenticated && hasNeededRole('engineer', user.context) && (
                 <NavItem>
                   <NavLink
                     tag={RouterNavLink}
@@ -84,7 +83,7 @@ const NavBar = () => {
                     id="qsLoginBtn"
                     color="secondary"
                     className="btn-margin"
-                    onClick={() => loginWithRedirect({})}
+                    onClick={() => login()}
                   >
                     <FontAwesomeIcon icon="sign-in-alt" className="mr-3" />
                     Log in
@@ -129,7 +128,7 @@ const NavBar = () => {
                   <Button
                     id="qsLoginBtn"
                     color="secondary"
-                    onClick={() => loginWithRedirect({})}
+                    onClick={() => login()}
                   >
                     <FontAwesomeIcon icon="sign-in-alt" className="mr-3" />
                     Log in
