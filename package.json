@@ -15,16 +15,17 @@
   "scripts": {
     "start:dev": "RELEASE_ENV=dev nodemon src/server/index.js",
     "build:dev": "yarn clean && webpack --env dev --watch",
-    "test": "flow && eslint src && jest --colors",
-    "flow": "flow",
-    "clean": "rimraf build log/*.log",
+    "test": "yarn flow && yarn lint && yarn test",
+    "test:flow": "flow",
+    "test:lint": "eslint src",
+    "test:only": "jest --colors",
     "start:prod": "RELEASE_ENV=prod babel-node src/server/index.js",
-    "build:prod": "yarn clean && RELEASE_ENV=prod yarn build:webpack",
-    "build:webpack": "webpack",
+    "build:prod": "yarn clean && RELEASE_ENV=prod webpack",
     "release": "yarn install --production && yarn run build:prod && yarn run pm2:start",
     "pm2:start": "pm2 start \"RELEASE_ENV=prod babel-node src/server/index.js\"",
     "pm2:stop": "pm2 kill",
-    "pm2:status": "pm2 status"
+    "pm2:status": "pm2 status",
+    "clean": "rimraf build log/*.log"
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.6.3",

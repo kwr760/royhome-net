@@ -1,7 +1,7 @@
 import { OK } from 'http-status-codes';
 import getResumeHandler from './get';
 
-describe('server/routes/resume/get', () => {
+describe('server/routes/staticresume/get', () => {
   it('should return default response', () => {
     // Arrange
     const req = {};
@@ -9,7 +9,7 @@ describe('server/routes/resume/get', () => {
     const expected = {
       status: OK,
       body: {
-        message: 'Return to my resume!',
+        message: 'Return to my staticresume!',
       },
     };
 

@@ -10,7 +10,7 @@ import Footer from './Components/Footer/Footer';
 import Loading from './Components/Loading/Loading';
 import Home from './Pages/Home/Home';
 // flowlint-next-line untyped-import:off
-import Resume from './Pages/Resume/Resume';
+import HtmlResume from './Pages/HtmlResume/HtmlResume';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Profile from './Pages/Profile/Profile';
 import Courses from './Pages/Courses/Courses';
@@ -41,7 +41,7 @@ const App = () => {
             component={Home}
           />
           <PrivateRoute path="/profile" component={Profile} />
-          <Route path="/resume" component={Resume} />
+          <Route path="/staticresume" component={HtmlResume} />
           <PrivateRoute
             path="/courses"
             component={Courses}

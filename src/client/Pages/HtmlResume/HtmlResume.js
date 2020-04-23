@@ -6,7 +6,7 @@ import React from 'react';
 import ResumeHtml from './Resume.html';
 import './Resume.scss';
 
-const Resume = () => {
+const HtmlResume = () => {
   const template = { __html: ResumeHtml };
 
   return (
@@ -15,4 +15,4 @@ const Resume = () => {
   );
 };
 
-export default Resume;
+export default HtmlResume;

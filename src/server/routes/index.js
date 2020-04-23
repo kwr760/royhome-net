@@ -1,13 +1,13 @@
 // @flow
 
-import getResumeHandler from '../handler/resume/get';
+import getResumeHandler from '../handler/staticresume/get';
 import getCoursesHandler from '../handler/courses/get';
 import putLogHandler from '../handler/log/put';
 
 const routes = [
   {
     method: 'get',
-    path: '/resume',
+    path: '/staticresume',
     handler: getResumeHandler,
   },
   {
