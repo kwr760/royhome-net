@@ -45,7 +45,7 @@ describe('server/routes/generate', () => {
       };
       const postRoute = {
         method: 'post',
-        path: '/resume',
+        path: '/staticresume',
         handler: () => mockHandler(),
       };
       const routes = [
@@ -66,7 +66,7 @@ describe('server/routes/generate', () => {
         [expect.any(Function), expect.any(Function)],
         expect.any(Function),
       );
-      expect(generatedRoutes.post).toHaveBeenCalledWith('/resume', [], expect.any(Function));
+      expect(generatedRoutes.post).toHaveBeenCalledWith('/staticresume', [], expect.any(Function));
       expect(generatedRoutes.put).toHaveBeenCalledWith('/private', [], expect.any(Function));
       expect(Logger.error).toHaveBeenCalledWith('Unknown route: {"method":"bad"}');
       expect(routeHandler).toHaveBeenCalledWith(getRoute, {}, res);

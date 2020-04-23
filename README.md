@@ -35,3 +35,35 @@ help with docker or AWS instance.  When I want to pay for these things, I'll fig
 - sudo yarn pm2:stop
 - suod -H certbot renew --standalone
 - sudo yarn pm2:start
+
+## Database
+### Setup
+#### install postgres
+```
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+```
+#### create user
+```
+sudo -u postgres createuser --interactive
+> Enter name of role to add: server
+> Shall the new role be a superuser? (y/n) y
+
+sudo -u postgres psql
+=# ALTER USER postgres WITH PASSWORD '<password>';
+=# ALTER USER server WITH PASSWORD '<password>';
+```
+#### create database
+```
+sudo -u postgres createdb royhome
+sudo -u postgres psql
+=# grant all privileges on database royhome to server;
+```
+#### scripts
+An important thing to note, is that these scripts will not retain changes made to the database.  This includes the 
+the incrementing of the sequences.  This will become a problem when adding user added data.  
+```
+clean.sql - drop the sequences and tables
+create.sql - create tables and sequences
+populate.sql - add the data to the tables
+```

@@ -6,7 +6,10 @@ import type { ApiResponseType } from '../types';
 const getResumeHandler = (): ApiResponseType => ({
   status: OK,
   body: {
-    message: 'Return to my resume!',
+    resume: [
+      { id: 1, title: 'Building Apps with React and Redux' },
+      { id: 2, title: 'Creating Reusable React Components' },
+    ],
   },
 });
 

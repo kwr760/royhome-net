@@ -11,7 +11,7 @@ describe('server/rendering/populate-state', () => {
       user: {},
     };
     const req = {
-      url: '/courses',
+      url: '/resume',
       cookies: {
         [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
       },

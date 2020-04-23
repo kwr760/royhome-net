@@ -1,23 +1,23 @@
 // @flow
 
+import getStaticResumeHandler from '../handler/staticresume/get';
 import getResumeHandler from '../handler/resume/get';
-import getCoursesHandler from '../handler/courses/get';
 import putLogHandler from '../handler/log/put';
 
 const routes = [
   {
     method: 'get',
-    path: '/resume',
-    handler: getResumeHandler,
+    path: '/staticresume',
+    handler: getStaticResumeHandler,
   },
   {
     method: 'get',
-    path: '/courses',
-    handler: getCoursesHandler,
+    path: '/resume',
+    handler: getResumeHandler,
     authenticate: true,
     role: 'engineer',
     fetchData: {
-      courses: getCoursesHandler,
+      resume: getResumeHandler,
     },
   },
   {

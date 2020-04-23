@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`client/Components/Pages/Public/Resume should render resume html 1`] = `
+exports[`client/Components/Pages/Public/HtmlResume should render staticresume html 1`] = `
 <div>
   <div>
     
