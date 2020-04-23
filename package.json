@@ -15,7 +15,7 @@
   "scripts": {
     "start:dev": "RELEASE_ENV=dev nodemon src/server/index.js",
     "build:dev": "yarn clean && webpack --env dev --watch",
-    "test": "yarn flow && yarn lint && yarn test",
+    "test": "yarn test:flow && yarn test:lint && yarn test:only",
     "test:flow": "flow",
     "test:lint": "eslint src",
     "test:only": "jest --colors",
