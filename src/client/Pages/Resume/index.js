@@ -6,8 +6,9 @@ import { isEmpty } from 'lodash';
 
 import env from '../../../config';
 import { useAuth0 } from '../../../util/auth0/context';
+import Resume from './Resume';
 
-const Resume = () => {
+const ResumePage = () => {
   const { getToken } = useAuth0();
   const [resume, setResume] = useState([]);
   const [message, setMessage] = useState('');
@@ -34,17 +35,14 @@ const Resume = () => {
     }
   }, [resume, getToken]);
 
-  if (message) {
-    return (
-      <div>{ message }</div>
-    );
-  }
-
   return (
-    <ul>
-      { resume.map((res) => <li key={res.id}>{res.title}</li>) }
-    </ul>
+    <>
+      ( messaage &&
+      <div>{ message }</div>
+      )
+      <Resume />
+    </>
   );
 };
 
-export default Resume;
+export default ResumePage;
