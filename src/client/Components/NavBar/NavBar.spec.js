@@ -40,8 +40,8 @@ describe('client/Components/Pages/NavBar', () => {
 
     // Assert
     getByText(/Home/);
-    getByText(/Resume/);
-    getByText(/Courses/);
+    getAllByText(/Resume/);
+    getByText(/The New Resume/);
     getAllByText(/Log out/);
 
     fireEvent.click(getByTestId('navbar-toggler'));

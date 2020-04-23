@@ -5,28 +5,28 @@ import axios from 'axios';
 import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import Courses from './Courses';
+import Resume from './Resume';
 import { Auth0Context } from '../../../util/auth0/context';
 
 jest.mock('axios', () => ({
   get: jest.fn().mockResolvedValue({ data: {} }),
 }));
 
-describe('client/Components/Pages/Private/Courses', () => {
-  const courses = {
-    courses: [
-      { id: 1, title: 'Course #1' },
-      { id: 2, title: 'Course #2' },
+describe('client/Components/Pages/Private/Resume', () => {
+  const resume = {
+    resume: [
+      { id: 1, title: 'Resume #1' },
+      { id: 2, title: 'Resume #2' },
     ],
   };
   const auth = {
     getToken: jest.fn(),
   };
   const emptyContext = {};
-  const getCourses = (context) => (
+  const getResume = (context) => (
     <Auth0Context.Provider value={auth}>
       <Router>
-        <Courses context={context} />
+        <Resume context={context} />
       </Router>
     </Auth0Context.Provider>
   );
@@ -35,15 +35,15 @@ describe('client/Components/Pages/Private/Courses', () => {
     // Arrange
     axios.get
       .mockResolvedValueOnce({
-        data: courses,
+        data: resume,
       });
 
     // Act
-    const { getByText } = render(getCourses());
+    const { getByText } = render(getResume());
 
     // Assert
-    await waitForElement(() => getByText(/Course #1/));
-    getByText(/Course #2/);
+    await waitForElement(() => getByText(/Resume #1/));
+    getByText(/Resume #2/);
   });
   it('should throw exception with bad response', async () => {
     // Arrange
@@ -51,7 +51,7 @@ describe('client/Components/Pages/Private/Courses', () => {
       .mockRejectedValue(new Error('Request failed with status code 500'));
 
     // Act
-    const { getByText } = render(getCourses(emptyContext));
+    const { getByText } = render(getResume(emptyContext));
 
     // Assert
     await waitForElement(() => getByText(/Request failed with status code 500/));

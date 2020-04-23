@@ -7,15 +7,15 @@ import { isEmpty } from 'lodash';
 import env from '../../../config';
 import { useAuth0 } from '../../../util/auth0/context';
 
-const Courses = () => {
+const Resume = () => {
   const { getToken } = useAuth0();
-  const [courses, setCourses] = useState([]);
+  const [resume, setResume] = useState([]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const callCoursesApi = async (cbCourses, cbMessage) => {
+    const callResumeApi = async (cbResume, cbMessage) => {
       const token = await getToken();
-      const url = `${env.host}/api/courses`;
+      const url = `${env.host}/api/resume`;
       const options = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -23,16 +23,16 @@ const Courses = () => {
       };
       axios.get(url, options)
         .then((res) => {
-          cbCourses(res.data.courses);
+          cbResume(res.data.resume);
         })
         .catch((error) => {
           cbMessage(error.message);
         });
     };
-    if (isEmpty(courses)) {
-      callCoursesApi(setCourses, setMessage);
+    if (isEmpty(resume)) {
+      callResumeApi(setResume, setMessage);
     }
-  }, [courses, getToken]);
+  }, [resume, getToken]);
 
   if (message) {
     return (
@@ -42,9 +42,9 @@ const Courses = () => {
 
   return (
     <ul>
-      { courses.map((course) => <li key={course.id}>{course.title}</li>) }
+      { resume.map((res) => <li key={res.id}>{res.title}</li>) }
     </ul>
   );
 };
 
-export default Courses;
+export default Resume;

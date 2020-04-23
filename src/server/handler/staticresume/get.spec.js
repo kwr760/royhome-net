@@ -1,5 +1,5 @@
 import { OK } from 'http-status-codes';
-import getResumeHandler from './get';
+import getStaticResumeHandler from './get';
 
 describe('server/routes/staticresume/get', () => {
   it('should return default response', () => {
@@ -14,7 +14,7 @@ describe('server/routes/staticresume/get', () => {
     };
 
     // Act
-    const response = getResumeHandler(req, res);
+    const response = getStaticResumeHandler(req, res);
 
     // Assert
     expect(response).toEqual(expected);

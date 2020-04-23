@@ -13,7 +13,7 @@ import Home from './Pages/Home/Home';
 import HtmlResume from './Pages/HtmlResume/HtmlResume';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Profile from './Pages/Profile/Profile';
-import Courses from './Pages/Courses/Courses';
+import Resume from './Pages/Resume/Resume';
 
 import initFontAwesome from './util/init-font-awesome';
 import { isLoading } from './store/session/session.selector';
@@ -43,8 +43,8 @@ const App = () => {
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/staticresume" component={HtmlResume} />
           <PrivateRoute
-            path="/courses"
-            component={Courses}
+            path="/resume"
+            component={Resume}
             userRole="engineer"
           />
         </Switch>

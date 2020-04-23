@@ -3,14 +3,14 @@
 import { OK } from 'http-status-codes';
 import type { ApiResponseType } from '../types';
 
-const getCoursesHandler = (): ApiResponseType => ({
+const getResumeHandler = (): ApiResponseType => ({
   status: OK,
   body: {
-    courses: [
+    resume: [
       { id: 1, title: 'Building Apps with React and Redux' },
       { id: 2, title: 'Creating Reusable React Components' },
     ],
   },
 });
 
-export default getCoursesHandler;
+export default getResumeHandler;
