@@ -5,7 +5,7 @@ import axios from 'axios';
 import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import Resume from './Resume';
+import Resume from './index';
 import { Auth0Context } from '../../../util/auth0/context';
 
 jest.mock('axios', () => ({
@@ -42,8 +42,11 @@ describe('client/Components/Pages/Private/Resume', () => {
     const { getByText } = render(getResume());
 
     // Assert
-    await waitForElement(() => getByText(/Resume #1/));
-    getByText(/Resume #2/);
+    await waitForElement(() => getByText(/Resume Header/));
+    getByText(/Resume Summary/);
+    getByText(/Resume Skills/);
+    getByText(/Resume Experience/);
+    getByText(/Resume Education/);
   });
   it('should throw exception with bad response', async () => {
     // Arrange
@@ -55,5 +58,6 @@ describe('client/Components/Pages/Private/Resume', () => {
 
     // Assert
     await waitForElement(() => getByText(/Request failed with status code 500/));
+    getByText(/Resume Summary/);
   });
 });
