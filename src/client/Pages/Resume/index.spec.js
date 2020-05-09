@@ -19,17 +19,19 @@ describe('client/Components/Pages/Private/Resume', () => {
       { id: 2, title: 'Resume #2' },
     ],
   };
-  const auth = {
-    getToken: jest.fn(),
+  const defaultAuth = {
+    getToken: jest.fn(() => 'token'),
   };
-  const emptyContext = {};
-  const getResume = (context) => (
+  const getResume = (auth) => (
     <Auth0Context.Provider value={auth}>
       <Router>
-        <Resume context={context} />
+        <Resume />
       </Router>
     </Auth0Context.Provider>
   );
+
+  afterEach(() => {
+  });
 
   it('should render request', async () => {
     // Arrange
@@ -39,7 +41,7 @@ describe('client/Components/Pages/Private/Resume', () => {
       });
 
     // Act
-    const { getByText } = render(getResume());
+    const { getByText } = render(getResume(defaultAuth));
 
     // Assert
     await waitForElement(() => getByText(/Resume Header/));
@@ -48,13 +50,30 @@ describe('client/Components/Pages/Private/Resume', () => {
     getByText(/Resume Experience/);
     getByText(/Resume Education/);
   });
+  it('should render default request if there is no token', async () => {
+    // Arrange
+    const overrideAuth = {
+      getToken: jest.fn(),
+    };
+
+    // Act
+    const { getByText } = render(getResume(overrideAuth));
+
+    // Assert
+    await waitForElement(() => getByText(/Resume Header/));
+    getByText(/Resume Summary/);
+    getByText(/Resume Skills/);
+    getByText(/Resume Experience/);
+    getByText(/Resume Education/);
+    getByText(/Not authorized to view this page/);
+  });
   it('should throw exception with bad response', async () => {
     // Arrange
     axios.get
       .mockRejectedValue(new Error('Request failed with status code 500'));
 
     // Act
-    const { getByText } = render(getResume(emptyContext));
+    const { getByText } = render(getResume(defaultAuth));
 
     // Assert
     await waitForElement(() => getByText(/Request failed with status code 500/));

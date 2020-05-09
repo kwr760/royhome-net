@@ -17,6 +17,7 @@ const ResumePage = () => {
     const callResumeApi = async (cbResume, cbMessage) => {
       const token = await getToken();
       if (isEmpty(token)) {
+        cbMessage('Not authorized to view this page');
         return;
       }
       const url = `${env.host}/api/resume`;
@@ -33,10 +34,8 @@ const ResumePage = () => {
           cbMessage(error.message);
         });
     };
-    if (isEmpty(resume)) {
-      callResumeApi(setResume, setMessage);
-    }
-  }, [resume, getToken]);
+    callResumeApi(setResume, setMessage);
+  }, [getToken]);
 
   return (
     <>
