@@ -1,4 +1,4 @@
-DROP TABLE auth0_login;
+DROP TABLE login_auth0;
 
 DROP TABLE resume_address;
 DROP TABLE resume_contact;

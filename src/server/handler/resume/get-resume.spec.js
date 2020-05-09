@@ -1,5 +1,5 @@
 import { OK } from 'http-status-codes';
-import getResumeHandler from './get';
+import getResumeHandler from './get-resume';
 
 describe('server/routes/resume/get', () => {
   it('should return default response', () => {

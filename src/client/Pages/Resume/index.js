@@ -16,6 +16,9 @@ const ResumePage = () => {
   useEffect(() => {
     const callResumeApi = async (cbResume, cbMessage) => {
       const token = await getToken();
+      if (isEmpty(token)) {
+        return;
+      }
       const url = `${env.host}/api/resume`;
       const options = {
         headers: {
@@ -37,10 +40,9 @@ const ResumePage = () => {
 
   return (
     <>
-      ( messaage &&
-      <div>{ message }</div>
-      )
+      { message && <div>{ JSON.stringify(message) }</div> }
       <Resume />
+      { resume && <div>{ JSON.stringify(resume) }</div> }
     </>
   );
 };
