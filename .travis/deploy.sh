@@ -3,13 +3,15 @@ echo -e "\nDeploy the latest code"
 eval "$(ssh-agent -s)"
 
 echo -e "\nTravis:  openssl decrypt"
-openssl aes-256-cbc -K $encrypted_85fdd383440b_key -iv $encrypted_85fdd383440b_iv -in .travis/private-key.enc -out .travis/private-key -d
+openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv -in .travis/secrets.tar.enc -out .travis/secrets.tar -d
+echo -e "\nTravis:  tar xvf"
+tar xvf .travis/secrets.tar
 echo -e "\nTravis:  openssl chmod"
-chmod 600 .travis/private-key
+chmod 600 private-key
 echo -e "\nTravis:  openssl ssh-add"
-ssh-add .travis/private-key
+ssh-add private-key
 echo -e "\nTravis:  openssl rm"
-rm .travis/private-key
+rm private-key
 
 echo -e "\nRemote:  stop existing server"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net ; sudo yarn run pm2:stop'
@@ -17,6 +19,8 @@ echo -e "\nRemote:  backup existing server"
 ssh $RELEASE_HOST 'mv /var/app/royhome-net /var/app/royhome-net.$(date +%F_%T)'
 echo -e "\nRemote:  git clone"
 ssh $RELEASE_HOST 'git clone https://github.com/kwr760/royhome-net.git /var/app/royhome-net'
+echo -e "\nRemote:  scp env"
+scp .env $RELEASE_HOST:/var/app/royhome-net
 echo -e "\nRemote:  yarn install"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net ; yarn install'
 echo -e "\nRemote:  build webpack"
