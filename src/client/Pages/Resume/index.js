@@ -16,6 +16,10 @@ const ResumePage = () => {
   useEffect(() => {
     const callResumeApi = async (cbResume, cbMessage) => {
       const token = await getToken();
+      if (isEmpty(token)) {
+        cbMessage('Not authorized to view this page');
+        return;
+      }
       const url = `${env.host}/api/resume`;
       const options = {
         headers: {
@@ -30,17 +34,14 @@ const ResumePage = () => {
           cbMessage(error.message);
         });
     };
-    if (isEmpty(resume)) {
-      callResumeApi(setResume, setMessage);
-    }
-  }, [resume, getToken]);
+    callResumeApi(setResume, setMessage);
+  }, [getToken]);
 
   return (
     <>
-      ( messaage &&
-      <div>{ message }</div>
-      )
+      { message && <div>{ JSON.stringify(message) }</div> }
       <Resume />
+      { resume && <div>{ JSON.stringify(resume) }</div> }
     </>
   );
 };

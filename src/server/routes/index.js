@@ -1,8 +1,8 @@
 // @flow
 
 import getStaticResumeHandler from '../handler/staticresume/get';
-import getResumeHandler from '../handler/resume/get';
-import putLogHandler from '../handler/log/put';
+import getResumeHandler from '../handler/resume/get-resume';
+import putLogHandler from '../handler/log/put-log';
 
 const routes = [
   {

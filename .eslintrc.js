@@ -35,6 +35,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': "error",
     'react-hooks/exhaustive-deps': "warn",
     'no-console': 'off',
+    'no-multi-str': 'off',
     'comma-dangle': ["error", "always-multiline"],
     'import/no-dynamic-require': 0,
     'import/prefer-default-export': 'off',

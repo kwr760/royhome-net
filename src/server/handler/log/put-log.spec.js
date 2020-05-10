@@ -1,4 +1,4 @@
-import putLogHandler from './put';
+import putLogHandler from './put-log';
 import LOG_TYPE from '../../../util/logger/levels';
 import Logger from '../../logger';
 

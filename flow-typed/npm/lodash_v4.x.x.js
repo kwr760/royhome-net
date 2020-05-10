@@ -1,5 +1,5 @@
-// flow-typed signature: 85910550af0edb4b41c3057c6b4f98e0
-// flow-typed version: 57bb94fcc5/lodash_v4.x.x/flow_>=v0.104.x
+// flow-typed signature: dbfe069f18511fb86a5b8dcf2cc9d545
+// flow-typed version: 1c8dc4dc61/lodash_v4.x.x/flow_>=v0.104.x
 
 declare module "lodash" {
   declare type Path = $ReadOnlyArray<string | number> | string | number;
@@ -197,9 +197,9 @@ declare module "lodash" {
   declare type OIteratee<O> = OIterateeWithResult<any, any, O, any>;
 
   declare type AFlatMapIteratee<V, O, R> =
-    | ((item: V, index: number, array: O) => Array<R> | R)
+    | ((item: V, index: number, array: O) => $ReadOnlyArray<R> | R)
     | string
-  declare type OFlatMapIteratee<V, K, O, R> = IterateeWithResult<V, K, O, Array<R> | R>;
+  declare type OFlatMapIteratee<V, K, O, R> = IterateeWithResult<V, K, O, $ReadOnlyArray<R> | R>;
 
   declare type Predicate<T> =
     | ((value: T, index: number, array: Array<T>) => any)

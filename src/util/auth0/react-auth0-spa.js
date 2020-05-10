@@ -93,7 +93,13 @@ const Auth0Provider = ({
 
   const login = (...p) => ((isEmpty(auth0Client)) ? undefined : auth0Client.loginWithRedirect(...p));
 
-  const getToken = (...p) => ((isEmpty(auth0Client)) ? undefined : auth0Client.getTokenSilently(...p));
+  // const getToken = (...p) => ((isEmpty(auth0Client)) ? undefined : auth0Client.getTokenSilently(...p));
+  const getToken = (...p) => {
+    if (!isEmpty(auth0Client)) {
+      return auth0Client.getTokenSilently(...p);
+    }
+    return undefined;
+  };
 
   return (
     <Auth0Context.Provider
