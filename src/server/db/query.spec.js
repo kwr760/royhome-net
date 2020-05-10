@@ -1,5 +1,3 @@
-import { wait } from '@testing-library/react';
-
 import { processDatabaseQuery } from './query';
 import pool from './pool';
 import { ERROR_CODE } from './error-codes';
