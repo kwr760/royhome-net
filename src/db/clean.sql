@@ -10,4 +10,3 @@ DROP SEQUENCE resume_owner_id_seq;
 DROP SEQUENCE resume_address_id_seq;
 DROP SEQUENCE resume_contact_id_seq;
 
-

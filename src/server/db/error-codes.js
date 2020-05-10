@@ -9,4 +9,8 @@ export const ERROR_CODE = {
     code: 'DB_INVALIDATE_OBJECT',
     message: 'Received an object which is not valid',
   },
+  DB_UNKNOWN_ERROR: {
+    code: 'DB_UNKNOWN_ERROR',
+    message: 'The database promise rejected base on an error',
+  },
 };

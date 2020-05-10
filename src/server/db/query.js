@@ -1,6 +1,7 @@
 // @flow
 
 import pool from './pool';
+import Logger from '../logger';
 import { ERROR_CODE } from './error-codes';
 
 const query = (sql: string, params: Array<any>): any => new Promise<any>((resolve, reject) => {
@@ -14,11 +15,18 @@ const query = (sql: string, params: Array<any>): any => new Promise<any>((resolv
 });
 
 export const processDatabaseQuery = async (sql: string, args: Array<any>, mapper: function, schema: function) => {
-  const { rows } = await query(sql, args);
+  let result;
+  try {
+    const { rows } = await query(sql, args);
 
-  const object = mapper(rows);
+    const object = mapper(rows);
 
-  const result = schema.validate(object);
+    result = schema.validate(object);
+  } catch (error) {
+    Logger.error(JSON.stringify(error));
+    throw ERROR_CODE.DB_UNKNOWN_ERROR;
+  }
+
   const { error, value } = result;
 
   if (error) {
