@@ -2,8 +2,6 @@ echo -e "\nDeploy the latest code"
 
 eval "$(ssh-agent -s)"
 chmod 600 .travis/private-key
-# openssl aes-256-cbc -K $encrypted_85fdd383440b_key -iv $encrypted_85fdd383440b_iv -in .travis/.env.enc -out .travis/.env -d
-# chmod 600 .travis/.env
 
 ssh-add .travis/private-key
 rm .travis/private-key
