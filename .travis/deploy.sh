@@ -2,9 +2,13 @@ echo -e "\nDeploy the latest code"
 
 eval "$(ssh-agent -s)"
 
+echo -e "\nTravis:  openssl decrypt"
 openssl aes-256-cbc -K $encrypted_85fdd383440b_key -iv $encrypted_85fdd383440b_iv -in .travis/private-key.enc -out .travis/private-key -d
+echo -e "\nTravis:  openssl chmod"
 chmod 600 .travis/private-key
+echo -e "\nTravis:  openssl ssh-add"
 ssh-add .travis/private-key
+echo -e "\nTravis:  openssl rm"
 rm .travis/private-key
 
 echo -e "\nRemote:  stop existing server"
