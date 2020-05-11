@@ -23,6 +23,7 @@ export const processDatabaseQuery = async (sql: string, args: Array<any>, mapper
 
     result = schema.validate(object);
   } catch (error) {
+    Logger.error(JSON.stringify(sql));
     Logger.error(JSON.stringify(error));
     throw ERROR_CODE.DB_UNKNOWN_ERROR;
   }
