@@ -2,6 +2,7 @@
 
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import Logger from '../logger';
 
 // load the db connection information from local .env file.
 dotenv.config();
@@ -16,6 +17,13 @@ const dbConfig = {
   connectionString: dbConnectionString,
 };
 
-const pool = new Pool(dbConfig);
+const createPool = () => {
+  try {
+    return new Pool(dbConfig);
+  } catch (e) {
+    Logger.error(JSON.stringify(e));
+    return null;
+  }
+};
 
-export default pool;
+export default createPool();
