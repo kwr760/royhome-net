@@ -15,7 +15,7 @@ const log = ({ logType, msg } : LogMsgType) => {
     stdout: displayToScreen,
   } = env.log;
 
-  if (logType.level >= logLevel) {
+  if (logType.level >= logLevel.level) {
     const logMessage = formatMessage(logType, msg);
     const logFile = getLogFilename(logLocation);
 
