@@ -42,7 +42,7 @@ describe('server/logger/log', () => {
     // Arrange
     env.log = {
       dir: 'dir_name',
-      level: LOG_TYPE.WARN.level,
+      level: LOG_TYPE.WARN,
       stdout: true,
     };
     const consoleMock = jest.fn();
@@ -69,7 +69,7 @@ describe('server/logger/log', () => {
     // Arrange
     env.log = {
       dir: 'dir_name',
-      level: LOG_TYPE.WARN.level,
+      level: LOG_TYPE.WARN,
       stdout: false,
     };
     const consoleMock = jest.fn();
