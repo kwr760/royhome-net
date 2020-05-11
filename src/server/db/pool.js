@@ -19,6 +19,7 @@ const dbConfig = {
 
 const createPool = () => {
   try {
+    Logger.debug(JSON.stringify(dbConfig));
     return new Pool(dbConfig);
   } catch (e) {
     Logger.error(JSON.stringify(e));
