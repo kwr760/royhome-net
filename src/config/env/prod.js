@@ -19,8 +19,8 @@ const env = (host) => ({
   },
   log: {
     dir: '/var/log/royhome.net',
-    level: LOG_TYPE.WARN,
-    stdout: false,
+    level: LOG_TYPE.DEBUG,
+    stdout: true,
     includePidFilename: true,
   },
 });
