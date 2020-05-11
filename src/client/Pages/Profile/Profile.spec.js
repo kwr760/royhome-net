@@ -19,7 +19,7 @@ describe('client/Components/Pages/Private/Profile', () => {
       </Auth0Context.Provider>
     </Provider>
   );
-  xit('should render profile', async () => {
+  it('should render profile', async () => {
     // Arrange
     const state = {
       session: {
@@ -42,7 +42,7 @@ describe('client/Components/Pages/Private/Profile', () => {
     getByText(/Picture/);
     getByText(/Loaded Arg/);
   });
-  xit('should render Loading', async () => {
+  it('should render Loading', async () => {
     // Arrange
     const state = {
       session: {
