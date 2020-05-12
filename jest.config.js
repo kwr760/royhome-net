@@ -12,8 +12,8 @@ module.exports = {
       testEnvironment: 'jsdom',
       verbose: true,
       testMatch: [
-        // '**/src/client/**/?(*.)(spec|test).js',
-        // '**/src/util/**/?(*.)(spec|test).js',
+        '**/src/xclient/**/?(*.)(spec|test).js',
+        '**/src/xutil/**/?(*.)(spec|test).js',
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',
