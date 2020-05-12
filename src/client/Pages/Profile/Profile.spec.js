@@ -6,17 +6,14 @@ import '@testing-library/jest-dom/extend-expect';
 
 import { Provider } from 'react-redux';
 import Profile from './Profile';
-import { Auth0Context } from '../../../util/auth0/context';
 import configureStore from '../../store/configure-store';
 
 describe('client/Components/Pages/Private/Profile', () => {
   const getProfile = (store) => (
     <Provider store={store}>
-      <Auth0Context.Provider value={{}}>
-        <Router>
-          <Profile />
-        </Router>
-      </Auth0Context.Provider>
+      <Router>
+        <Profile />
+      </Router>
     </Provider>
   );
   it('should render profile', async () => {
