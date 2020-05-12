@@ -14,7 +14,7 @@ describe('config/index', () => {
       process.env.RELEASE_ENV = RELEASE_ENV;
     });
 
-    it('should load prod as expected', () => {
+    xit('should load prod as expected', () => {
       // Arrange
       const expected = {
         default: {
@@ -62,7 +62,7 @@ describe('config/index', () => {
       process.env.RELEASE_ENV = RELEASE_ENV;
     });
 
-    it('should load dev as expected', () => {
+    xit('should load dev as expected', () => {
       // Arrange
       const expected = {
         default: {

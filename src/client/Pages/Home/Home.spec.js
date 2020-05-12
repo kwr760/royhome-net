@@ -7,7 +7,7 @@ import initFontAwesome from '../../util/init-font-awesome';
 initFontAwesome();
 
 describe('client/Components/Pages/Public/Home', () => {
-  it('should render', () => {
+  xit('should render', () => {
     // Arrange/Act
     const { getByText } = render(
       <Home />,

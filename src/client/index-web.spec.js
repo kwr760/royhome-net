@@ -32,7 +32,7 @@ describe('src/client/index-web', () => {
     mainContainer = null;
   });
 
-  it('launches the App with targetUrl', () => {
+  xit('launches the App with targetUrl', () => {
     jest.isolateModules(() => {
       // Arrange
       const appState = {
@@ -51,7 +51,7 @@ describe('src/client/index-web', () => {
       expect(mockApp).toBeCalled();
     });
   });
-  it('launches the App with empty appState', () => {
+  xit('launches the App with empty appState', () => {
     jest.isolateModules(() => {
       // Arrange
       const appState = {};
@@ -68,7 +68,7 @@ describe('src/client/index-web', () => {
       expect(mockApp).toBeCalled();
     });
   });
-  it('launches the App with empty root', () => {
+  xit('launches the App with empty root', () => {
     jest.isolateModules(() => {
       // Arrange
       jest.spyOn(document, 'getElementById').mockImplementation((element) => (null));

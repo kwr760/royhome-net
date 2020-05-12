@@ -35,7 +35,7 @@ describe('src/client/App', () => {
     jest.clearAllMocks();
   });
 
-  it('renders home page', () => {
+  xit('renders home page', () => {
     // Arrange
     const state = {
       session: {
@@ -53,7 +53,7 @@ describe('src/client/App', () => {
     getByText(/Footer/);
     expect(queryByText('Loading')).toBeNull();
   });
-  it('renders Loading', () => {
+  xit('renders Loading', () => {
     // Arrange
     const state = {
       session: {

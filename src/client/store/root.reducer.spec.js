@@ -5,7 +5,7 @@ import sessionReducer from './session/session.reducer';
 import userReducer from './user/user.reducer';
 
 describe('client/store/reducers/root', () => {
-  it('should call rootReducer', () => {
+  xit('should call rootReducer', () => {
     // Arrange
     // Act
     const reducerCount = Object.keys(rootReducer).length;

@@ -2,7 +2,7 @@ import { updateAuthentication, updateLoading } from './session.action';
 import SESSION from './constants';
 
 describe('client/store/session/session.action', () => {
-  it('should create an action to update authentication', () => {
+  xit('should create an action to update authentication', () => {
     // Arrange
     const expectedAuthentication = true;
     const expectedExpiration = -1;
@@ -20,7 +20,7 @@ describe('client/store/session/session.action', () => {
     // Assert
     expect(action).toEqual(expectedAction);
   });
-  it('should create an action to update loading', () => {
+  xit('should create an action to update loading', () => {
     // Arrange
     const expectedLoading = true;
     const expectedAction = {

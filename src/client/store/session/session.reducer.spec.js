@@ -10,7 +10,7 @@ describe('client/store/reducers/session/session.reducer', () => {
     isLoading: false,
   };
 
-  it('should return the state for UPDATE_AUTHENTICATION action', () => {
+  xit('should return the state for UPDATE_AUTHENTICATION action', () => {
     // Arrange
     const action = {
       type: SESSION.UPDATE_AUTHENTICATION,
@@ -31,7 +31,7 @@ describe('client/store/reducers/session/session.reducer', () => {
     // Assert
     expect(result).toEqual(expectedState);
   });
-  it('should return the state for UPDATE_LOADING action', () => {
+  xit('should return the state for UPDATE_LOADING action', () => {
     // Arrange
     const action = {
       type: SESSION.UPDATE_LOADING,

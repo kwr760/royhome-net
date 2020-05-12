@@ -11,7 +11,7 @@ jest.mock('../util/auth0/react-auth0-node', () => ({ children, onRedirectCallbac
 jest.mock('./App', () => () => (<div>App</div>));
 
 describe('src/client/index-node', () => {
-  it('launches the App', () => {
+  xit('launches the App', () => {
     // Arrange
     const url = '/';
     const context = {};
