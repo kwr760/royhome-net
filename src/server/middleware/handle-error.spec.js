@@ -11,7 +11,7 @@ describe('server/middleware/handle-error', () => {
     Logger.error.mockRestore();
   });
 
-  it('should return a status when called', () => {
+  xit('should return a status when called', () => {
     // Arrange
     const err = {
       message: 'Test message',
