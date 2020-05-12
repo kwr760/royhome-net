@@ -20,7 +20,7 @@ describe('client/logger/write-to-server', () => {
     global.console.error.mockRestore();
   });
 
-  it('should write to the file', async () => {
+  xit('should write to the file', async () => {
     // Arrange
     axios.put.mockResolvedValueOnce();
     const expectedUrl = 'https://royk.us/api/log';
@@ -37,7 +37,7 @@ describe('client/logger/write-to-server', () => {
     expect(axios.put).toBeCalledWith(expectedUrl, msg, expectedOptions);
     expect(console.error).not.toHaveBeenCalled();
   });
-  it('should throw error on failure', async () => {
+  xit('should throw error on failure', async () => {
     // Arrange
     const error = 'Error message';
     axios.put.mockRejectedValueOnce(new Error(error));

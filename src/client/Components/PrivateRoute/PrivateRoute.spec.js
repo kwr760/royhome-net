@@ -59,7 +59,7 @@ describe('client/Components/Pages/PrivateRoute', () => {
     getByText(/admin/);
     getByText(/Unauthorized - You need the following role to view this page:/);
   });
-  it('should login without authentication', async () => {
+  xit('should login without authentication', async () => {
     // Arrange
     const path = 'http://url/path';
     const auth = {
