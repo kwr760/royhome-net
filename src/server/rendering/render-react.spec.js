@@ -4,7 +4,7 @@ import renderReact from './render-react';
 jest.mock('@loadable/server');
 
 describe('server/rendering/render-react', () => {
-  xit('should return a html page', () => {
+  it('should return a html page', () => {
     // Arrange
     const req = {
       cookies: {},

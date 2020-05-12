@@ -3,7 +3,7 @@ import { resumeAddressMapper, resumeContactMapper, resumeOwnerMapper } from './r
 
 describe('server/db/resume/resume.mapper', () => {
   describe('addressMap', () => {
-    xit('should map a row into an object', () => {
+    it('should map a row into an object', () => {
       // Arrange
       const src = [{
         id: 'id',
@@ -22,7 +22,7 @@ describe('server/db/resume/resume.mapper', () => {
       // Assert
       expect(result).toEqual(expected);
     });
-    xit('should throw an error when it is unexpected', () => {
+    it('should throw an error when it is unexpected', () => {
       // Arrange
       const src = [];
       const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;
@@ -36,7 +36,7 @@ describe('server/db/resume/resume.mapper', () => {
     });
   });
   describe('contactMap', () => {
-    xit('should map a row into an object', () => {
+    it('should map a row into an object', () => {
       // Arrange
       const src = [{
         id: 'id',
@@ -59,7 +59,7 @@ describe('server/db/resume/resume.mapper', () => {
       // Assert
       expect(result).toEqual(expected);
     });
-    xit('should throw an error when it is unexpected', () => {
+    it('should throw an error when it is unexpected', () => {
       // Arrange
       const src = [];
       const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;
@@ -73,7 +73,7 @@ describe('server/db/resume/resume.mapper', () => {
     });
   });
   describe('ownerMap', () => {
-    xit('should map a row into an object', () => {
+    it('should map a row into an object', () => {
       // Arrange
       const src = [{
         id: 'id',
@@ -92,7 +92,7 @@ describe('server/db/resume/resume.mapper', () => {
       // Assert
       expect(result).toEqual(expected);
     });
-    xit('should throw an error when it is unexpected', () => {
+    it('should throw an error when it is unexpected', () => {
       // Arrange
       const src = [];
       const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;

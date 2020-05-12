@@ -33,7 +33,7 @@ describe('client/Components/Pages/Private/Resume', () => {
   afterEach(() => {
   });
 
-  xit('should render request', async () => {
+  it('should render request', async () => {
     // Arrange
     axios.get
       .mockResolvedValueOnce({
@@ -50,7 +50,7 @@ describe('client/Components/Pages/Private/Resume', () => {
     getByText(/Resume Experience/);
     getByText(/Resume Education/);
   });
-  xit('should render default request if there is no token', async () => {
+  it('should render default request if there is no token', async () => {
     // Arrange
     const overrideAuth = {
       getToken: jest.fn(),
@@ -67,7 +67,7 @@ describe('client/Components/Pages/Private/Resume', () => {
     getByText(/Resume Education/);
     getByText(/Not authorized to view this page/);
   });
-  xit('should throw exception with bad response', async () => {
+  it('should throw exception with bad response', async () => {
     // Arrange
     axios.get
       .mockRejectedValue(new Error('Request failed with status code 500'));

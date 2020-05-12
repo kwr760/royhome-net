@@ -22,7 +22,7 @@ describe('client/Components/Pages/NavBar', () => {
       </Auth0Context.Provider>
     </Provider>
   );
-  xit('should render with authentication and role', () => {
+  it('should render with authentication and role', () => {
     // Arrange
     const auth = {
       logout: jest.fn(),
@@ -46,7 +46,7 @@ describe('client/Components/Pages/NavBar', () => {
 
     fireEvent.click(getByTestId('navbar-toggler'));
   });
-  xit('should render with authentication and user', () => {
+  it('should render with authentication and user', () => {
     // Arrange
     const auth = {
       logout: jest.fn(),
@@ -81,7 +81,7 @@ describe('client/Components/Pages/NavBar', () => {
     fireEvent.click(getAllByText(/Log out/)[1]);
     expect(auth.logout).toHaveBeenCalledTimes(2);
   });
-  xit('should render without authentication and role', () => {
+  it('should render without authentication and role', () => {
     // Arrange
     const auth = {
       login: jest.fn(),

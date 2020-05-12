@@ -6,7 +6,7 @@ import checkJwt from './check-jwt';
 jest.mock('express-jwt');
 
 describe('server/middleware/check-jwt', () => {
-  xit('should setup jwt', () => {
+  it('should setup jwt', () => {
     // Arrange
     const expected = {
       algorithms: ['RS256'],

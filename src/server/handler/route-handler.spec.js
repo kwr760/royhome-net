@@ -12,7 +12,7 @@ describe('server/routes/handler/route-handler', () => {
     Logger.error.mockRestore();
   });
 
-  xit('successful handler', async () => {
+  it('successful handler', async () => {
     // Arrange
     const req = {};
     const res = {
@@ -35,7 +35,7 @@ describe('server/routes/handler/route-handler', () => {
     expect(res.status).toBeCalledWith(OK);
     expect(res.send).toBeCalledWith(expectedBody);
   });
-  xit('partial success route', async () => {
+  it('partial success route', async () => {
     // Arrange
     const req = {};
     const res = {
@@ -59,7 +59,7 @@ describe('server/routes/handler/route-handler', () => {
     expect(res.status).toBeCalledWith(INTERNAL_SERVER_ERROR);
     expect(res.send).toBeCalledWith(expectedBody);
   });
-  xit('throw error', async () => {
+  it('throw error', async () => {
     // Arrange
     const req = {};
     const res = {
@@ -90,7 +90,7 @@ describe('server/routes/handler/route-handler', () => {
     expect(res.send).not.toBeCalled();
     expect(res.json).toBeCalledWith('Unauthorized: Error message');
   });
-  xit('throw error - no status', async () => {
+  it('throw error - no status', async () => {
     // Arrange
     const req = {};
     const res = {

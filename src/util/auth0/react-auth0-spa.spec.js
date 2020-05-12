@@ -56,7 +56,7 @@ describe('util/auth0/react-auth0-spa', () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
-  xit('should logout an authenticated provider', async () => {
+  it('should logout an authenticated provider', async () => {
     // Arrange
     createAuth0Client.mockResolvedValue({
       isAuthenticated: jest.fn(() => true),
@@ -88,7 +88,7 @@ describe('util/auth0/react-auth0-spa', () => {
     expect(dispatch).toHaveBeenNthCalledWith(5, expectedAuthOff);
     expect(dispatch).toHaveBeenNthCalledWith(6, expectedUserOff);
   });
-  xit('should handle redirect callback', async () => {
+  it('should handle redirect callback', async () => {
     // Arrange
     const savedWindow = global.window;
     global.window = Object.create(window);

@@ -4,7 +4,7 @@ import checkRole from './check-role';
 import { TOKEN_URL } from '../../util/auth0/constants';
 
 describe('server/middleware/check-role', () => {
-  xit('should return error if no role', () => {
+  it('should return error if no role', () => {
     // Arrange
     const req = {};
     const res = {
@@ -18,7 +18,7 @@ describe('server/middleware/check-role', () => {
     // Assert
     expect(res.sendStatus).toHaveBeenCalledWith(UNAUTHORIZED);
   });
-  xit('should continue if owner', () => {
+  it('should continue if owner', () => {
     // Arrange
     const req = {
       user: {

@@ -5,7 +5,7 @@ import { isAuthenticated, isLoading } from './session.selector';
 jest.mock('react-redux');
 
 describe('client/store/session/session.selector', () => {
-  xit('should return authenicated', () => {
+  it('should return authenicated', () => {
     // Arrange
     const expectedAuthentication = true;
     const mockState = {
@@ -21,7 +21,7 @@ describe('client/store/session/session.selector', () => {
     // Assert
     expect(authenticated).toEqual(expectedAuthentication);
   });
-  xit('should return isLoading', () => {
+  it('should return isLoading', () => {
     // Arrange
     const expectedLoading = true;
     const mockState = {

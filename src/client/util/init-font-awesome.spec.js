@@ -5,7 +5,7 @@ import initFontAwesome from './init-font-awesome';
 jest.mock('@fortawesome/fontawesome-svg-core');
 
 describe('client/util/init-font-awesome', () => {
-  xit('should load the library', () => {
+  it('should load the library', () => {
     // Arrange
     const mockAdd = jest.fn();
     library.add = mockAdd;

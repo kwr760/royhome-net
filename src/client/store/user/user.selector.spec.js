@@ -5,7 +5,7 @@ import { getUser } from './user.selector';
 jest.mock('react-redux');
 
 describe('client/store/user/user.selector', () => {
-  xit('should return user', () => {
+  it('should return user', () => {
     // Arrange
     const expectedUser = {
       name: 'Test',

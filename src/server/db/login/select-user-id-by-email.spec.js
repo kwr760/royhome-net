@@ -7,7 +7,7 @@ import { loginSchema } from './login.schema';
 jest.mock('../query');
 
 describe('server/db/login/select-user-id-by-email', () => {
-  xit('should call the function correctly', () => {
+  it('should call the function correctly', () => {
     // Arrange
     const email = 'email@company.com';
 

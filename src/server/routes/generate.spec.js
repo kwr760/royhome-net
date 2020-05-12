@@ -17,7 +17,7 @@ describe('server/routes/generate', () => {
   });
 
   describe('generate routes', () => {
-    xit('should generate routes', () => {
+    it('should generate routes', () => {
       // Arrange
       const res = {
         status: jest.fn(() => res),

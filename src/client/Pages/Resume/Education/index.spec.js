@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import ResumeEducation from './index';
 
 describe('client/Components/Pages/Resume/Education', () => {
-  xit('should render', () => {
+  it('should render', () => {
     // Arrange/Act
     const { getByText } = render(
       <ResumeEducation />,

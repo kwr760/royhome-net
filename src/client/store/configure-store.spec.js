@@ -1,7 +1,7 @@
 import configureStore from './configure-store';
 
 describe('client/store/configure', () => {
-  xit('should configure the store without initialState', () => {
+  it('should configure the store without initialState', () => {
     // Arrange
     const expectedState = {
       session: {
@@ -19,7 +19,7 @@ describe('client/store/configure', () => {
     expect(store.dispatch).toEqual(expect.any(Function));
     expect(store.getState()).toEqual(expectedState);
   });
-  xit('should configure the store', () => {
+  it('should configure the store', () => {
     // Arrange
     const state = {
       session: {

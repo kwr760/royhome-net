@@ -6,7 +6,7 @@ jest.mock('http');
 jest.mock('./display-message');
 
 describe('server/middleware/start-http', () => {
-  xit('should create http server and call listen', () => {
+  it('should create http server and call listen', () => {
     // Arrange
     const app = {};
     const port = 3000;

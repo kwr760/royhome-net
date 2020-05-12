@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import ResumeExperience from './index';
 
 describe('client/Components/Pages/Resume/Experience', () => {
-  xit('should render', () => {
+  it('should render', () => {
     // Arrange/Act
     const { getByText } = render(
       <ResumeExperience />,

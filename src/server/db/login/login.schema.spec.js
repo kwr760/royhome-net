@@ -1,7 +1,7 @@
 import { loginSchema } from './login.schema';
 
 describe('server/db/login/login.schema', () => {
-  xit('should validate a good object', () => {
+  it('should validate a good object', () => {
     // Arrange
     const object = {
       id: 100,
@@ -15,7 +15,7 @@ describe('server/db/login/login.schema', () => {
     // Assert
     expect(result.error).toBeUndefined();
   });
-  xit('should find bad id', () => {
+  it('should find bad id', () => {
     // Arrange
     const object = {
       id: 'id',
@@ -29,7 +29,7 @@ describe('server/db/login/login.schema', () => {
     // Assert
     expect(result.error).not.toBeUndefined();
   });
-  xit('should find bad user id', () => {
+  it('should find bad user id', () => {
     // Arrange
     const object = {
       id: 100,
@@ -43,7 +43,7 @@ describe('server/db/login/login.schema', () => {
     // Assert
     expect(result.error).not.toBeUndefined();
   });
-  xit('should find bad email', () => {
+  it('should find bad email', () => {
     // Arrange
     const object = {
       id: 100,

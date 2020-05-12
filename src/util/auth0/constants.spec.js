@@ -3,7 +3,7 @@ import {
 } from './constants';
 
 describe('util/auth0/constants', () => {
-  xit('should provide constants', () => {
+  it('should provide constants', () => {
     // Arrange/Act
     const expectedOwner = 'owner';
     const expectedTokenUrl = 'http://royhome.net';

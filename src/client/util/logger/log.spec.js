@@ -15,7 +15,7 @@ describe('server/logger/log', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  xit('should not log anything', () => {
+  it('should not log anything', () => {
     // Arrange
     env.log = {
       dir: 'dir_name',
@@ -34,7 +34,7 @@ describe('server/logger/log', () => {
     // Assert
     expect(writeToServer).not.toBeCalled();
   });
-  xit('should log and display', () => {
+  it('should log and display', () => {
     // Arrange
     env.log = {
       dir: 'dir_name',
@@ -59,7 +59,7 @@ describe('server/logger/log', () => {
     expect(getConsole).toBeCalledWith(LOG_TYPE.WARN);
     expect(consoleMock).toBeCalledWith(msg);
   });
-  xit('should log and not display', () => {
+  it('should log and not display', () => {
     // Arrange
     env.log = {
       dir: 'dir_name',

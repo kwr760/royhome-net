@@ -8,7 +8,7 @@ describe('server/logger/write-to-log', () => {
   afterEach(() => {
     global.console.error.mockRestore();
   });
-  xit('should write to the file', () => {
+  it('should write to the file', () => {
     // Arrange
     fs.appendFile = jest.fn((f, m, cb) => {
       cb();
@@ -20,7 +20,7 @@ describe('server/logger/write-to-log', () => {
     // Assert
     expect(fs.appendFile).toBeCalledWith('filename', 'message\n', expect.any(Function));
   });
-  xit('should throw error on failure', () => {
+  it('should throw error on failure', () => {
     // Arrange
     fs.appendFile = jest.fn((f, m, cb) => {
       cb(new Error('Error'));

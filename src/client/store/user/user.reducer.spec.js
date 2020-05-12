@@ -4,7 +4,7 @@ import userReducer from './user.reducer';
 import USER from './constants';
 
 describe('client/store/reducers/user/user.reducer', () => {
-  xit('should return the state for UPDATE_USER action', () => {
+  it('should return the state for UPDATE_USER action', () => {
     // Arrange
     const user = {
       name: 'Test',

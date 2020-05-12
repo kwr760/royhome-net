@@ -20,7 +20,7 @@ describe('util/auth0/react-auth0-node', () => {
       </div>
     );
   };
-  xit('should populate a Provider', () => {
+  it('should populate a Provider', () => {
     // Arrange
     const context = {
       jwt: {

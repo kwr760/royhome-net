@@ -22,7 +22,7 @@ describe('client/Components/Pages/PrivateRoute', () => {
     </Router>
   );
 
-  xit('should render with authentication and role', () => {
+  it('should render with authentication and role', () => {
     // Arrange
     const auth = {};
     const state = {
@@ -39,7 +39,7 @@ describe('client/Components/Pages/PrivateRoute', () => {
     // Assert
     getByText(/Mocked/);
   });
-  xit('should render error message without role', () => {
+  it('should render error message without role', () => {
     // Arrange
     const auth = {
       isAuthenticated: true,
@@ -59,7 +59,7 @@ describe('client/Components/Pages/PrivateRoute', () => {
     getByText(/admin/);
     getByText(/Unauthorized - You need the following role to view this page:/);
   });
-  xit('should login without authentication', async () => {
+  it('should login without authentication', async () => {
     // Arrange
     const path = 'http://url/path';
     const auth = {
@@ -79,7 +79,7 @@ describe('client/Components/Pages/PrivateRoute', () => {
     // Assert
     expect(auth.login).toHaveBeenCalledWith({ appState: { targetUrl: 'http://url/path' } });
   });
-  xit('should render with authentication and without role', () => {
+  it('should render with authentication and without role', () => {
     // Arrange
     const auth = {};
     const state = {

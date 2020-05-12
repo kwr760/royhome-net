@@ -11,7 +11,7 @@ jest.mock('../../db/resume/select-contact-by-user-id');
 jest.mock('../../db/resume/select-address-by-user-id');
 
 describe('server/routes/resume/get', () => {
-  xit('should return default response', async () => {
+  it('should return default response', async () => {
     // Arrange
     const req = {};
     const res = {};

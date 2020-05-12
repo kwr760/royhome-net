@@ -7,7 +7,7 @@ import initFontAwesome from '../../util/init-font-awesome';
 initFontAwesome();
 
 describe('src/client/Components/Footer', () => {
-  xit('renders', () => {
+  it('renders', () => {
     // Arrange/Act
     const { getByTestId } = render(
       <Footer />,

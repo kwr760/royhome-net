@@ -11,7 +11,7 @@ describe('server/middleware/not-found', () => {
     Logger.error.mockRestore();
   });
 
-  xit('should return a status when called', () => {
+  it('should return a status when called', () => {
     // Arrange
     const req = jest.fn();
     const res = {
