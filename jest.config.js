@@ -13,7 +13,7 @@ module.exports = {
       verbose: true,
       testMatch: [
         // '**/src/client/**/?(*.)(spec|test).js',
-        '**/src/util/**/?(*.)(spec|test).js',
+        // '**/src/util/**/?(*.)(spec|test).js',
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',
@@ -34,7 +34,7 @@ module.exports = {
       verbose: true,
       testMatch: [
         '**/src/server/**/?(*.)(spec|test).js',
-        '**/src/config/**/?(*.)(spec|test).js',
+        // '**/src/config/**/?(*.)(spec|test).js',
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',
