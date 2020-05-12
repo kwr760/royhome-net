@@ -12,7 +12,7 @@ module.exports = {
       testEnvironment: 'jsdom',
       verbose: true,
       testMatch: [
-        '**/src/client/**/?(*.)(spec|test).js',
+        // '**/src/client/**/?(*.)(spec|test).js',
         '**/src/util/**/?(*.)(spec|test).js',
       ],
       transform: {
