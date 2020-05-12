@@ -2,7 +2,7 @@ import { resumeAddressSchema, resumeContactSchema, resumeOwnerSchema } from './r
 
 describe('server/db/resume/resume.schema', () => {
   describe('addressSchema', () => {
-    it('should validate a good object', () => {
+    xit('should validate a good object', () => {
       // Arrange
       const object = {
         id: 100,
@@ -18,7 +18,7 @@ describe('server/db/resume/resume.schema', () => {
     });
   });
   describe('contactSchema', () => {
-    it('should validate a good object', () => {
+    xit('should validate a good object', () => {
       // Arrange
       const object = {
         id: 100,
@@ -36,7 +36,7 @@ describe('server/db/resume/resume.schema', () => {
     });
   });
   describe('ownerSchema', () => {
-    it('should validate a good object', () => {
+    xit('should validate a good object', () => {
       // Arrange
       const object = {
         id: 100,

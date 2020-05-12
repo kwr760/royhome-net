@@ -7,7 +7,7 @@ import { resumeContactSchema } from './resume.schema';
 jest.mock('../query');
 
 describe('server/db/resume/select-contact-by-user-id', () => {
-  it('should call the function correctly', () => {
+  xit('should call the function correctly', () => {
     // Arrange
     const userId = 100;
 

@@ -7,7 +7,7 @@ import { selectOwnerByUserId } from './select-owner-by-user-id';
 jest.mock('../query');
 
 describe('server/db/resume/select-owner-by-user-id', () => {
-  it('should call the function correctly', () => {
+  xit('should call the function correctly', () => {
     // Arrange
     const userId = 100;
 
