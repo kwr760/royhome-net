@@ -1,7 +1,7 @@
 import fetchInitialData from './fetch-initial-data';
 
 describe('server/rendering/fetch-initial-data', () => {
-  it('should return object with collected data', () => {
+  xit('should return object with collected data', () => {
     // Arrange
     const data1 = {
       data: 'Test #1',

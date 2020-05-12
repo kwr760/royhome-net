@@ -1,7 +1,7 @@
 import redirectInsecure from './redirect-insecure';
 
 describe('server/middleware/redirect-insecure', () => {
-  it('should redirect if req is not secure', () => {
+  xit('should redirect if req is not secure', () => {
     // Arrange
     const req = {
       secure: false,
@@ -24,7 +24,7 @@ describe('server/middleware/redirect-insecure', () => {
     expect(res.end).toHaveBeenCalled();
     expect(next).toHaveBeenCalled();
   });
-  it('should not if req is secure', () => {
+  xit('should not if req is secure', () => {
     // Arrange
     const req = {
       secure: true,

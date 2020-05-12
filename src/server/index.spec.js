@@ -56,7 +56,7 @@ describe('server/index', () => {
     jest.clearAllMocks();
   });
 
-  it('should start setup a basic server', () => {
+  xit('should start setup a basic server', () => {
     jest.isolateModules(() => {
       // Arrange/Act
       require('./index');
@@ -91,7 +91,7 @@ describe('server/index', () => {
     });
   });
 
-  it('should start dev server', () => {
+  xit('should start dev server', () => {
     // Arrange
     jest.isolateModules(() => {
       const { default: env } = require('../config');
@@ -107,7 +107,7 @@ describe('server/index', () => {
     });
   });
 
-  it('should start prod server', () => {
+  xit('should start prod server', () => {
     // Arrange
     jest.isolateModules(() => {
       const { default: env } = require('../config');
