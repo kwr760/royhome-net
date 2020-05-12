@@ -1,7 +1,7 @@
 import LOG_TYPE from './levels';
 
 describe('util/logger/levels', () => {
-  it('should load the expected levels', () => {
+  xit('should load the expected levels', () => {
     // Arrange/Act
     const loadedLevels = LOG_TYPE;
 

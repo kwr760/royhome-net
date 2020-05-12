@@ -1,7 +1,7 @@
 import hasNeededRole from './has-needed-role';
 
 describe('util/auth0/has-needed-role', () => {
-  it('should return false if empty data', () => {
+  xit('should return false if empty data', () => {
     // Arrange
     const data = {};
 
@@ -11,7 +11,7 @@ describe('util/auth0/has-needed-role', () => {
     // Assert
     expect(result).toEqual(false);
   });
-  it('should return true if role is in data', () => {
+  xit('should return true if role is in data', () => {
     // Arrange
     const data = {
       role: 'engineer admin',
@@ -23,7 +23,7 @@ describe('util/auth0/has-needed-role', () => {
     // Assert
     expect(result).toEqual(true);
   });
-  it('should return true if role added with owner', () => {
+  xit('should return true if role added with owner', () => {
     // Arrange
     const data = {
       role: 'engineer owner',

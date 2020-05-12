@@ -1,7 +1,7 @@
 import getCurrentDate from './get-current-date';
 
 describe('util/datetime/get-current-date', () => {
-  it('should return string prefixed with zero', () => {
+  xit('should return string prefixed with zero', () => {
     // Arrange
     jest
       .spyOn(global.Date, 'now')
@@ -13,7 +13,7 @@ describe('util/datetime/get-current-date', () => {
     // Assert
     expect(result).toEqual('20000101');
   });
-  it('should return string without prefix', () => {
+  xit('should return string without prefix', () => {
     // Arrange
     jest
       .spyOn(global.Date, 'now')

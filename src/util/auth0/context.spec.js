@@ -19,7 +19,7 @@ describe('util/auth0/context', () => {
     </Auth0Context.Provider>
   );
 
-  it('should produce a context', () => {
+  xit('should produce a context', () => {
     // Arrange
     const auth = {
       testValue: 'test me',
