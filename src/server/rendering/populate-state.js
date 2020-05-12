@@ -6,6 +6,8 @@ import { COOKIE_JWT_PAYLOAD } from '../../util/auth0/constants';
 import routes from '../routes';
 import fetchInitialData from './fetch-initial-data';
 
+jest.mock('./fetch-initial-data');
+
 const populateState = (req: Request): StateType => {
   const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
   // eslint-disable-next-line no-unused-vars
