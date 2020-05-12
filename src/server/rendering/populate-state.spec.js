@@ -3,7 +3,7 @@ import populateState from './populate-state';
 import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from '../../util/auth0/constants';
 
 describe('server/rendering/populate-state', () => {
-  xit('should return an state from empty context', () => {
+  it('should return an state from empty context', () => {
     // Arrange
     const jwt = {
       exp: 10,
@@ -31,7 +31,7 @@ describe('server/rendering/populate-state', () => {
     // Assert
     expect(state).toEqual(expected);
   });
-  xit('should not find route', () => {
+  it('should not find route', () => {
     // Arrange
     const jwt = {
       exp: 10,
@@ -59,7 +59,7 @@ describe('server/rendering/populate-state', () => {
     // Assert
     expect(state).toEqual(expected);
   });
-  xit('should not find payload', () => {
+  it('should not find payload', () => {
     // Arrange
     const jwt = {
       exp: 10,
