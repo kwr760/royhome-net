@@ -2,6 +2,8 @@ import populateState from './populate-state';
 
 import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from '../../util/auth0/constants';
 
+jest.mock('./fetch-initial-data');
+
 describe('server/rendering/populate-state', () => {
   it('should return an state from empty context', () => {
     // Arrange
