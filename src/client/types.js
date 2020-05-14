@@ -1,9 +1,9 @@
 // @flow
 
 import type { Store } from 'redux';
-import type { StateType } from './store/types';
-import type { DataType } from '../server/rendering/types';
-import type { UserStateType } from './store/user/types';
+import type { StateType } from './store/store.types';
+import type { DataType } from '../server/rendering/rendering.types';
+import type { UserStateType } from './store/user/user.types';
 
 export type ContextType = {|
   jwt?: {|

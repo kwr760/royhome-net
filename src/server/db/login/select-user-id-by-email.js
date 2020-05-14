@@ -1,6 +1,6 @@
 // @flow
 
-import { processDatabaseQuery } from '../query';
+import { processDatabaseQuery } from '../db-query';
 import { selectLoginByEmailSql } from './login.sql';
 import { loginMapper } from './login.mapper';
 import { loginSchema } from './login.schema';

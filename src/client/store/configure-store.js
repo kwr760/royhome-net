@@ -9,7 +9,7 @@ import type {
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import type { StateType } from './types';
+import type { StateType } from './store.types';
 import rootReducer from './root.reducer';
 
 const defaultState = {

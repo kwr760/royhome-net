@@ -1,7 +1,7 @@
 import { UNAUTHORIZED } from 'http-status-codes';
 
 import checkRole from './check-role';
-import { TOKEN_URL } from '../../util/auth0/constants';
+import { TOKEN_URL } from '../../util/auth0/auth0.constants';
 
 describe('server/middleware/check-role', () => {
   it('should return error if no role', () => {

@@ -1,6 +1,6 @@
 // @flow
 
-import LOG_TYPE from '../../util/logger/levels';
+import LOG_LEVELS from '../../util/logger/logger-levels';
 
 const currentHost = global.origin || 'http://localhost:3000';
 
@@ -16,7 +16,7 @@ const env = (host) => ({
   },
   log: {
     dir: './log',
-    level: LOG_TYPE.DEBUG,
+    level: LOG_LEVELS.DEBUG,
     stdout: true,
     includePidFilename: false,
   },

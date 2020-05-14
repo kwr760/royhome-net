@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Home from './Home';
+import Home from './home';
 import initFontAwesome from '../../util/init-font-awesome';
 
 initFontAwesome();

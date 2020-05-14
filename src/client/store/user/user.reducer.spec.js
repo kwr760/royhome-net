@@ -1,7 +1,7 @@
 // @flow
 
 import userReducer from './user.reducer';
-import USER from './constants';
+import USER from './user.constants';
 
 describe('client/store/reducers/user/user.reducer', () => {
   it('should return the state for UPDATE_USER action', () => {

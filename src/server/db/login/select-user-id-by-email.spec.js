@@ -1,10 +1,10 @@
 import { selectUserIdByEmail } from './select-user-id-by-email';
-import { processDatabaseQuery } from '../query';
+import { processDatabaseQuery } from '../db-query';
 import { selectLoginByEmailSql } from './login.sql';
 import { loginMapper } from './login.mapper';
 import { loginSchema } from './login.schema';
 
-jest.mock('../query');
+jest.mock('../db-query');
 
 describe('server/db/login/select-user-id-by-email', () => {
   it('should call the function correctly', () => {

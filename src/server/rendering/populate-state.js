@@ -1,8 +1,8 @@
 // @flow
 
 import { matchPath } from 'react-router-dom';
-import type { StateType } from '../../client/store/types';
-import { COOKIE_JWT_PAYLOAD } from '../../util/auth0/constants';
+import type { StateType } from '../../client/store/store.types';
+import { COOKIE_JWT_PAYLOAD } from '../../util/auth0/auth0.constants';
 import routes from '../routes';
 import fetchInitialData from './fetch-initial-data';
 

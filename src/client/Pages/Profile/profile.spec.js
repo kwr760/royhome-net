@@ -5,7 +5,7 @@ import { render, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import { Provider } from 'react-redux';
-import Profile from './Profile';
+import Profile from './profile';
 import configureStore from '../../store/configure-store';
 
 describe('client/Components/Pages/Private/Profile', () => {

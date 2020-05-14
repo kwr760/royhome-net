@@ -1,6 +1,6 @@
 import {
   OWNER, TOKEN_URL, COOKIE_JWT_PAYLOAD, ROLES,
-} from './constants';
+} from './auth0.constants';
 
 describe('util/auth0/constants', () => {
   it('should provide constants', () => {

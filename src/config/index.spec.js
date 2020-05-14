@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import LOG_TYPE from '../util/logger/levels';
+import LOG_LEVELS from '../util/logger/logger-levels';
 
 describe('config/index', () => {
   const { RELEASE_ENV } = process.env;
@@ -37,7 +37,7 @@ describe('config/index', () => {
           },
           log: {
             dir: '/var/log/royhome.net',
-            level: LOG_TYPE.WARN,
+            level: LOG_LEVELS.WARN,
             stdout: false,
             includePidFilename: true,
           },
@@ -82,7 +82,7 @@ describe('config/index', () => {
           },
           log: {
             dir: './log',
-            level: LOG_TYPE.DEBUG,
+            level: LOG_LEVELS.DEBUG,
             stdout: true,
             includePidFilename: false,
           },

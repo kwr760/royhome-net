@@ -6,7 +6,7 @@ import checkJwt from '../middleware/check-jwt';
 import checkRole from '../middleware/check-role';
 import Logger from '../logger';
 import routeHandler from '../handler/route-handler';
-import type { RouteType } from './types';
+import type { RouteType } from './routes.types';
 
 const generate = (routes: Array< RouteType >) => {
   const router: Object = express.Router< Request, Response>();

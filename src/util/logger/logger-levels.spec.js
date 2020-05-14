@@ -1,9 +1,9 @@
-import LOG_TYPE from './levels';
+import LOG_LEVELS from './logger-levels';
 
 describe('util/logger/levels', () => {
   it('should load the expected levels', () => {
     // Arrange/Act
-    const loadedLevels = LOG_TYPE;
+    const loadedLevels = LOG_LEVELS;
 
     // Assert
     expect(loadedLevels).toEqual({

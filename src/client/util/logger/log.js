@@ -4,7 +4,7 @@ import env from '../../../config';
 
 import getConsole from '../../../util/logger/get-console';
 import writeToServer from './write-to-server';
-import type { LogMsgType } from '../../../server/logger/types';
+import type { LogMsgType } from '../../../server/logger/logger.types';
 
 const log = ({ logType, msg }: LogMsgType) => {
   const {

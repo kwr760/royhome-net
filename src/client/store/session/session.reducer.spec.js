@@ -1,7 +1,7 @@
 // @flow
 
 import sessionReducer from './session.reducer';
-import SESSION from './constants';
+import SESSION from './session.constants';
 
 describe('client/store/reducers/session/session.reducer', () => {
   const state = {

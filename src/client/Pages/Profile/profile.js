@@ -5,7 +5,7 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
 import { useSelector } from 'react-redux';
-import Loading from '../../Components/Loading/Loading';
+import Loading from '../../Components/Loading/loading';
 import { isLoading } from '../../store/session/session.selector';
 import { getUser } from '../../store/user/user.selector';
 

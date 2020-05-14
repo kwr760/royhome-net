@@ -1,9 +1,9 @@
-import { processDatabaseQuery } from './query';
-import pool from './pool';
+import { processDatabaseQuery } from './db-query';
+import pool from './db-pool';
 import { ERROR_CODE } from './error-codes';
 import Logger from '../logger';
 
-jest.mock('./pool');
+jest.mock('./db-pool');
 jest.mock('../logger');
 
 describe('server/db/query', () => {

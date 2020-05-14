@@ -1,5 +1,5 @@
 import { updateAuthentication, updateLoading } from './session.action';
-import SESSION from './constants';
+import SESSION from './session.constants';
 
 describe('client/store/session/session.action', () => {
   it('should create an action to update authentication', () => {

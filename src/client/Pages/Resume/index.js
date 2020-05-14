@@ -5,7 +5,7 @@ import axios from 'axios';
 import { isEmpty } from 'lodash';
 
 import env from '../../../config';
-import { useAuth0 } from '../../../util/auth0/context';
+import { useAuth0 } from '../../../util/auth0/auth0-context';
 import Resume from './Resume';
 
 const ResumePage = () => {

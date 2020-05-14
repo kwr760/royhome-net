@@ -11,8 +11,8 @@ import { loadableReady } from '@loadable/component';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.scss';
 
-import Auth0Provider from '../util/auth0/react-auth0-spa';
-import { config } from '../util/auth0/constants';
+import Auth0Provider from '../util/auth0/auth0-spa';
+import { config } from '../util/auth0/auth0.constants';
 import App from './App';
 import history from '../util/history';
 import configureStore from './store/configure-store';

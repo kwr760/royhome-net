@@ -1,6 +1,6 @@
 // @flow
 
-const LOG_TYPE = {
+const LOG_LEVELS = {
   DEBUG: {
     level: 1,
     name: 'DEBUG',
@@ -27,4 +27,4 @@ const LOG_TYPE = {
   },
 };
 
-export default LOG_TYPE;
+export default LOG_LEVELS;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Auth0Provider from './react-auth0-node';
-import { useAuth0 } from './context';
+import Auth0Provider from './auth0-node';
+import { useAuth0 } from './auth0-context';
 
 describe('util/auth0/react-auth0-node', () => {
   const TestConsumer = () => {

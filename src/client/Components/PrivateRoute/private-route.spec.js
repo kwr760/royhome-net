@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import PrivateRoute from './PrivateRoute';
-import { Auth0Context } from '../../../util/auth0/context';
+import PrivateRoute from './private-route';
+import { Auth0Context } from '../../../util/auth0/auth0-context';
 import hasNeededRole from '../../../util/auth0/has-needed-role';
 import configureStore from '../../store/configure-store';
 

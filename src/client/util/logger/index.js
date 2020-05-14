@@ -1,8 +1,8 @@
 // @flow
 
-import LOG_TYPE from '../../../util/logger/levels';
+import LOG_LEVELS from '../../../util/logger/logger-levels';
 import log from './log';
-import type { LogMsgType } from '../../../server/logger/types';
+import type { LogMsgType } from '../../../server/logger/logger.types';
 
 class Logger {
   writeLog = (msg: LogMsgType) => {
@@ -11,35 +11,35 @@ class Logger {
 
   debug = (msg: string) => {
     this.writeLog({
-      logType: LOG_TYPE.DEBUG,
+      logType: LOG_LEVELS.DEBUG,
       msg,
     });
   };
 
   log = (msg: string) => {
     this.writeLog({
-      logType: LOG_TYPE.INFO,
+      logType: LOG_LEVELS.INFO,
       msg,
     });
   };
 
   warning = (msg: string) => {
     this.writeLog({
-      logType: LOG_TYPE.WARN,
+      logType: LOG_LEVELS.WARN,
       msg,
     });
   };
 
   error = (msg: string) => {
     this.writeLog({
-      logType: LOG_TYPE.ERROR,
+      logType: LOG_LEVELS.ERROR,
       msg,
     });
   };
 
   fatal = (msg: string) => {
     this.writeLog({
-      logType: LOG_TYPE.FATAL,
+      logType: LOG_LEVELS.FATAL,
       msg,
     });
   };

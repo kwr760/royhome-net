@@ -2,7 +2,7 @@
 
 import type { Action } from 'redux';
 
-import SESSION from './constants';
+import SESSION from './session.constants';
 
 export const updateAuthentication = (authenticated: boolean, expiration: number): Action<string> => ({
   type: SESSION.UPDATE_AUTHENTICATION,
