@@ -64,6 +64,6 @@ An important thing to note, is that these scripts will not retain changes made t
 the incrementing of the sequences.  This will become a problem when adding user added data.  
 ```
 clean.sql - drop the sequences and tables
-create.sql - create tables and sequences
-populate.sql - add the data to the tables
+upgrade-0.sql - create tables and sequences
+validate-0.sql - add the data to the tables
 ```

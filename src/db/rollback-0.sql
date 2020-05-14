@@ -1,3 +1,7 @@
+
+\echo Run Rollback/Clean Script
+\echo
+
 DROP TABLE login_auth0;
 
 DROP TABLE resume_address;
