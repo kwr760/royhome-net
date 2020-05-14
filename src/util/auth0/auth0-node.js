@@ -2,8 +2,8 @@
 // @flow
 
 import React from 'react';
-import { Auth0Context } from './context';
-import type { Auth0ProviderPropsType } from './types';
+import { Auth0Context } from './auth0-context';
+import type { Auth0ProviderPropsType } from './auth0.types';
 
 const Auth0Provider = ({
   children,

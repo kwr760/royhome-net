@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { Auth0Context, useAuth0 } from './context';
+import { Auth0Context, useAuth0 } from './auth0-context';
 
 const Test = () => {
   const { testValue } = useAuth0();

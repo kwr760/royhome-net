@@ -1,6 +1,6 @@
 // @flow
 
-import LOG_TYPE from '../../util/logger/levels';
+import LOG_LEVELS from '../../util/logger/logger-levels';
 
 const currentHost = global.origin || 'https://royk.us';
 
@@ -19,7 +19,7 @@ const env = (host) => ({
   },
   log: {
     dir: '/var/log/royhome.net',
-    level: LOG_TYPE.WARN,
+    level: LOG_LEVELS.WARN,
     stdout: false,
     includePidFilename: true,
   },

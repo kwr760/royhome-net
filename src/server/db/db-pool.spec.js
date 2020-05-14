@@ -13,7 +13,7 @@ describe('server/db/pool', () => {
       };
 
       // Act
-      require('./pool');
+      require('./db-pool');
 
       // Assert
       expect(Pool).toHaveBeenCalledWith(config);

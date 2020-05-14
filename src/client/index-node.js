@@ -6,8 +6,8 @@ import { StaticRouter as Router, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.scss';
 
-import Auth0Provider from '../util/auth0/react-auth0-node';
-import { config } from '../util/auth0/constants';
+import Auth0Provider from '../util/auth0/auth0-node';
+import { config } from '../util/auth0/auth0.constants';
 import App from './App';
 import type { AppPropsType } from './types';
 

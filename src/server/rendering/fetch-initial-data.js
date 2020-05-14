@@ -1,6 +1,6 @@
 // @flow
 
-import type { DataType } from './types';
+import type { DataType } from './rendering.types';
 
 const fetchInitialData = (endpoints: Object): DataType => {
   const data = {};

@@ -4,8 +4,8 @@ import { render, fireEvent, wait } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import createAuth0Client from '@auth0/auth0-spa-js';
 
-import Auth0Provider from './react-auth0-spa';
-import { useAuth0 } from './context';
+import Auth0Provider from './auth0-spa';
+import { useAuth0 } from './auth0-context';
 
 jest.mock('@auth0/auth0-spa-js');
 jest.mock('react-redux');

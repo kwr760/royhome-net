@@ -1,10 +1,10 @@
 // @flow
 
-import pool from './pool';
+import pool from './db-pool';
 import Logger from '../logger';
 import { ERROR_CODE } from './error-codes';
 
-const query = (sql: string, params: Array<any>): any => new Promise<any>((resolve, reject) => {
+const dbQuery = (sql: string, params: Array<any>): any => new Promise<any>((resolve, reject) => {
   pool.query(sql, params)
     .then((res) => {
       resolve(res);
@@ -17,7 +17,7 @@ const query = (sql: string, params: Array<any>): any => new Promise<any>((resolv
 export const processDatabaseQuery = async (sql: string, args: Array<any>, mapper: function, schema: function) => {
   let result;
   try {
-    const { rows } = await query(sql, args);
+    const { rows } = await dbQuery(sql, args);
 
     const object = mapper(rows);
 

@@ -1,6 +1,6 @@
 // @flow
 
-import { processDatabaseQuery } from '../query';
+import { processDatabaseQuery } from '../db-query';
 import { selectContactByUserIdSql } from './resume.sql';
 import { resumeContactMapper } from './resume.mapper';
 import { resumeContactSchema } from './resume.schema';

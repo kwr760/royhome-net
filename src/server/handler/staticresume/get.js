@@ -1,7 +1,7 @@
 // @flow
 
 import { OK } from 'http-status-codes';
-import type { ApiResponseType } from '../types';
+import type { ApiResponseType } from '../handler.types';
 
 const getStaticResumeHandler = (): ApiResponseType => ({
   status: OK,

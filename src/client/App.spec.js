@@ -10,10 +10,10 @@ import configureStore from './store/configure-store';
 jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({}),
 }));
-jest.mock('./Components/Loading/Loading', () => () => (<div>Loading</div>));
-jest.mock('./Components/NavBar/NavBar', () => () => (<div>NavBar</div>));
-jest.mock('./Components/Footer/Footer', () => () => (<div>Footer</div>));
-jest.mock('./Pages/Home/Home', () => () => (<div>Home</div>));
+jest.mock('./Components/Loading/loading', () => () => (<div>Loading</div>));
+jest.mock('./Components/NavBar/nav-bar', () => () => (<div>NavBar</div>));
+jest.mock('./Components/Footer/footer', () => () => (<div>Footer</div>));
+jest.mock('./Pages/Home/home', () => () => (<div>Home</div>));
 
 describe('src/client/App', () => {
   const history = createMemoryHistory();

@@ -1,7 +1,7 @@
 // @flow
 
-import type { SessionStateType, SessionActionType } from './types';
-import SESSION from './constants';
+import type { SessionStateType, SessionActionType } from './session.types';
+import SESSION from './session.constants';
 
 const defaultSessionState = {
   authenticated: false,

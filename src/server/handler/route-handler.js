@@ -4,7 +4,7 @@ import { getStatusText, INTERNAL_SERVER_ERROR, OK } from 'http-status-codes';
 
 import Logger from '../logger';
 import displayMessage from '../middleware/display-message';
-import type { RouteType } from '../routes/types';
+import type { RouteType } from '../routes/routes.types';
 
 const routeHandler = async (route: RouteType, req: Request, res: Response) => {
   try {

@@ -5,15 +5,15 @@ import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import { useSelector } from 'react-redux';
-import NavBar from './Components/NavBar/NavBar';
-import Footer from './Components/Footer/Footer';
-import Loading from './Components/Loading/Loading';
+import NavBar from './Components/NavBar/nav-bar';
+import Footer from './Components/Footer/footer';
+import Loading from './Components/Loading/loading';
 // flowlint-next-line untyped-import:off
-import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-import Home from './Pages/Home/Home';
-import Profile from './Pages/Profile/Profile';
+import PrivateRoute from './Components/PrivateRoute/private-route';
+import Home from './Pages/Home/home';
+import Profile from './Pages/Profile/profile';
 import ResumePage from './Pages/Resume';
-import HtmlResume from './Pages/HtmlResume/HtmlResume';
+import HtmlResume from './Pages/HtmlResume/html-resume';
 
 import initFontAwesome from './util/init-font-awesome';
 import { isLoading } from './store/session/session.selector';

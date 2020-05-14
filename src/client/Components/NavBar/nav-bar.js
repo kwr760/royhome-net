@@ -20,7 +20,7 @@ import {
   DropdownItem,
 } from 'reactstrap';
 
-import { useAuth0 } from '../../../util/auth0/context';
+import { useAuth0 } from '../../../util/auth0/auth0-context';
 import { isAuthenticated } from '../../store/session/session.selector';
 import { getUser } from '../../store/user/user.selector';
 import hasNeededRole from '../../../util/auth0/has-needed-role';

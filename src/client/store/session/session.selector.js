@@ -1,8 +1,8 @@
 // @flow
 
 import { createSelector } from 'reselect';
-import type { StateType } from '../types';
-import type { SessionStateType } from './types';
+import type { StateType } from '../store.types';
+import type { SessionStateType } from './session.types';
 
 export const isAuthenticated = createSelector<StateType, null, boolean, SessionStateType>(
   (state: StateType) => state.session,

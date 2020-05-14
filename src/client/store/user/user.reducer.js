@@ -1,7 +1,7 @@
 // @flow
 
-import type { UserStateType, UserActionType } from './types';
-import USER from './constants';
+import type { UserStateType, UserActionType } from './user.types';
+import USER from './user.constants';
 
 const defaultUserState = {};
 

@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 import env from '../../../config';
-import type { LogMsgType } from '../../../server/logger/types';
+import type { LogMsgType } from '../../../server/logger/logger.types';
 
 /**
  * Assumes that the location being written to has been created.

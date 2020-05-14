@@ -3,8 +3,8 @@
 import React from 'react';
 
 // flowlint-next-line untyped-import:off
-import ResumeHtml from './Resume.html';
-import './Resume.scss';
+import ResumeHtml from './resume.html';
+import './resume.scss';
 
 const HtmlResume = () => {
   const template = { __html: ResumeHtml };

@@ -1,10 +1,10 @@
-import { processDatabaseQuery } from '../query';
+import { processDatabaseQuery } from '../db-query';
 import { selectContactByUserId } from './select-contact-by-user-id';
 import { selectContactByUserIdSql } from './resume.sql';
 import { resumeContactMapper } from './resume.mapper';
 import { resumeContactSchema } from './resume.schema';
 
-jest.mock('../query');
+jest.mock('../db-query');
 
 describe('server/db/resume/select-contact-by-user-id', () => {
   it('should call the function correctly', () => {

@@ -1,6 +1,6 @@
 // @flow
 
-import { processDatabaseQuery } from '../query';
+import { processDatabaseQuery } from '../db-query';
 import { selectOwnerByUserIdSql } from './resume.sql';
 import { resumeOwnerMapper } from './resume.mapper';
 import { resumeOwnerSchema } from './resume.schema';

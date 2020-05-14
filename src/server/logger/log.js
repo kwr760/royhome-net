@@ -6,7 +6,7 @@ import getConsole from '../../util/logger/get-console';
 import formatMessage from '../../util/logger/format-message';
 import getLogFilename from './get-filename';
 import writeToLog from './write-to-log';
-import type { LogMsgType } from './types';
+import type { LogMsgType } from './logger.types';
 
 const log = ({ logType, msg } : LogMsgType) => {
   const {
