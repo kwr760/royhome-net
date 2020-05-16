@@ -1,33 +1,26 @@
 // @flow
 
-import type { SessionStateType, SessionActionType } from './session.types';
-import SESSION from './session.constants';
+import type { SessionActionType, SessionStateType } from './session.types';
+import { defaultSessionState, SESSION_ACTION } from './session.constants';
 
-const defaultSessionState = {
-  authenticated: false,
-  expiration: 0,
-  isLoading: false,
-};
-
-const sessionReducer = (
+export const sessionReducer = (
   state: SessionStateType = defaultSessionState,
   action: SessionActionType,
 ): SessionStateType => {
   switch (action.type) {
-  case SESSION.UPDATE_AUTHENTICATION:
+  case SESSION_ACTION.UPDATE_AUTHENTICATION:
     return {
       ...state,
       authenticated: action.payload.authenticated,
       expiration: action.payload.expiration,
     };
-  case SESSION.UPDATE_LOADING:
+  case SESSION_ACTION.UPDATE_LOADING:
     return {
       ...state,
       isLoading: (action.payload.isLoading: boolean),
     };
-  default:
-    return state;
+  // no default
   }
-};
 
-export default sessionReducer;
+  return state;
+};

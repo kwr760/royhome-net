@@ -1,7 +1,5 @@
-// @flow
-
-import sessionReducer from './session.reducer';
-import SESSION from './session.constants';
+import { sessionReducer } from './session.reducer';
+import { SESSION_ACTION } from './session.constants';
 
 describe('client/store/reducers/session/session.reducer', () => {
   const state = {
@@ -13,7 +11,7 @@ describe('client/store/reducers/session/session.reducer', () => {
   it('should return the state for UPDATE_AUTHENTICATION action', () => {
     // Arrange
     const action = {
-      type: SESSION.UPDATE_AUTHENTICATION,
+      type: SESSION_ACTION.UPDATE_AUTHENTICATION,
       payload: {
         authenticated: true,
         expiration: -1,
@@ -34,7 +32,7 @@ describe('client/store/reducers/session/session.reducer', () => {
   it('should return the state for UPDATE_LOADING action', () => {
     // Arrange
     const action = {
-      type: SESSION.UPDATE_LOADING,
+      type: SESSION_ACTION.UPDATE_LOADING,
       payload: {
         isLoading: true,
       },

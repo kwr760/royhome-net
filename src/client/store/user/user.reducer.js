@@ -1,23 +1,20 @@
 // @flow
 
-import type { UserStateType, UserActionType } from './user.types';
-import USER from './user.constants';
+import type { UserActionType, UserStateType } from './user.types';
+import { defaultUserState, USER_ACTION } from './user.constants';
 
-const defaultUserState = {};
-
-const userReducer = (
+export const userReducer = (
   state: UserStateType = defaultUserState,
   action: UserActionType,
 ): UserStateType => {
   switch (action.type) {
-  case USER.UPDATE_USER:
+  case USER_ACTION.UPDATE_USER:
     return {
       ...state,
       ...action.payload.user,
     };
-  default:
-    return state;
+  // no default
   }
-};
 
-export default userReducer;
+  return state;
+};

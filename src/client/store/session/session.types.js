@@ -1,31 +1,27 @@
 // @flow
 
-// import SESSION from './constants';
-
 export type SessionStateType = {|
   authenticated: boolean,
   expiration: number,
   isLoading: boolean,
 |};
 
-type UpdateAuthenticationPayload = {|
+type UpdateAuthenticationPayloadType = {|
   authenticated: boolean,
   expiration: number,
 |};
 
-type UpdateLoadingPayload = {|
+type UpdateLoadingPayloadType = {|
   isLoading: boolean,
 |};
 
-// type SessionActionTypes = $Keys<typeof SESSION>;
-
 type UpdateAuthenticationActionType = {|
   type: 'UPDATE_AUTHENTICATION',
-  payload: UpdateAuthenticationPayload,
+  payload: UpdateAuthenticationPayloadType,
 |};
 type UpdateLoadingActionType = {|
   type: 'UPDATE_LOADING',
-  payload: UpdateLoadingPayload,
+  payload: UpdateLoadingPayloadType,
 |};
 
 export type SessionActionType = UpdateAuthenticationActionType | UpdateLoadingActionType

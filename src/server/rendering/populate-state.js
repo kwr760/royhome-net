@@ -21,6 +21,7 @@ const populateState = (req: Request): StateType => {
       isLoading: false,
     },
     user,
+    resume: {},
   };
 };
 

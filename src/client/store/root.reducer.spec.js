@@ -1,8 +1,7 @@
-// @flow
-
 import rootReducer from './root.reducer';
-import sessionReducer from './session/session.reducer';
-import userReducer from './user/user.reducer';
+import { sessionReducer } from './session/session.reducer';
+import { userReducer } from './user/user.reducer';
+import { resumeReducer } from './resume/resume.reducer';
 
 describe('client/store/reducers/root', () => {
   it('should call rootReducer', () => {
@@ -14,7 +13,8 @@ describe('client/store/reducers/root', () => {
     expect(rootReducer).toEqual({
       session: sessionReducer,
       user: userReducer,
+      resume: resumeReducer,
     });
-    expect(reducerCount).toBe(2);
+    expect(reducerCount).toBe(3);
   });
 });

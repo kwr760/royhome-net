@@ -1,7 +1,7 @@
 // @flow
 
 import ObjectMapper from 'object-mapper';
-import { ERROR_CODE } from '../error-codes';
+import { ERROR_CODE } from '../../../util/error-codes';
 
 const loginMap = {
   id: 'id',

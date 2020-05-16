@@ -25,6 +25,7 @@ describe('server/rendering/populate-state', () => {
         isLoading: false,
       },
       user: {},
+      resume: {},
     };
 
     // Act
@@ -53,6 +54,7 @@ describe('server/rendering/populate-state', () => {
         isLoading: false,
       },
       user: {},
+      resume: {},
     };
 
     // Act
@@ -81,6 +83,7 @@ describe('server/rendering/populate-state', () => {
         isLoading: false,
       },
       user: {},
+      resume: {},
     };
 
     // Act

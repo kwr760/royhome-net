@@ -1,5 +1,5 @@
 import { loginMapper } from './login.mapper';
-import { ERROR_CODE } from '../error-codes';
+import { ERROR_CODE } from '../../../util/error-codes';
 
 describe('server/db/login/login.mapper', () => {
   it('should map a row into an object', () => {
