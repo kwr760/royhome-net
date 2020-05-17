@@ -2,10 +2,10 @@
 
 import type { Action } from 'redux';
 
-import SESSION from './session.constants';
+import { SESSION_ACTION } from './session.constants';
 
 export const updateAuthentication = (authenticated: boolean, expiration: number): Action<string> => ({
-  type: SESSION.UPDATE_AUTHENTICATION,
+  type: SESSION_ACTION.UPDATE_AUTHENTICATION,
   payload: {
     authenticated,
     expiration,
@@ -13,7 +13,7 @@ export const updateAuthentication = (authenticated: boolean, expiration: number)
 });
 
 export const updateLoading = (isLoading: boolean): Action<string> => ({
-  type: SESSION.UPDATE_LOADING,
+  type: SESSION_ACTION.UPDATE_LOADING,
   payload: {
     isLoading,
   },

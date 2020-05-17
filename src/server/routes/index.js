@@ -12,7 +12,7 @@ const routes = [
   },
   {
     method: 'get',
-    path: '/resume',
+    path: '/resume/:email',
     handler: getResumeHandler,
     authenticate: true,
     role: 'engineer',

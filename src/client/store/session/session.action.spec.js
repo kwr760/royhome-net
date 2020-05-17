@@ -1,5 +1,5 @@
 import { updateAuthentication, updateLoading } from './session.action';
-import SESSION from './session.constants';
+import { SESSION_ACTION } from './session.constants';
 
 describe('client/store/session/session.action', () => {
   it('should create an action to update authentication', () => {
@@ -7,7 +7,7 @@ describe('client/store/session/session.action', () => {
     const expectedAuthentication = true;
     const expectedExpiration = -1;
     const expectedAction = {
-      type: SESSION.UPDATE_AUTHENTICATION,
+      type: SESSION_ACTION.UPDATE_AUTHENTICATION,
       payload: {
         authenticated: expectedAuthentication,
         expiration: expectedExpiration,
@@ -24,7 +24,7 @@ describe('client/store/session/session.action', () => {
     // Arrange
     const expectedLoading = true;
     const expectedAction = {
-      type: SESSION.UPDATE_LOADING,
+      type: SESSION_ACTION.UPDATE_LOADING,
       payload: {
         isLoading: expectedLoading,
       },

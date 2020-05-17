@@ -1,5 +1,5 @@
 import { updateUser } from './user.action';
-import USER from './user.constants';
+import { USER_ACTION } from './user.constants';
 
 describe('client/store/user/user.action', () => {
   it('should create an action to update user', () => {
@@ -9,7 +9,7 @@ describe('client/store/user/user.action', () => {
       email: 'email@mail.com',
     };
     const expectedAction = {
-      type: USER.UPDATE_USER,
+      type: USER_ACTION.UPDATE_USER,
       payload: {
         user: expectedUser,
       },

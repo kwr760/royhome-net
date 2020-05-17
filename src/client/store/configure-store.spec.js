@@ -10,6 +10,7 @@ describe('client/store/configure', () => {
         isLoading: false,
       },
       user: {},
+      resume: {},
     };
 
     // Act
@@ -27,6 +28,7 @@ describe('client/store/configure', () => {
         expiration: -1,
       },
       user: {},
+      resume: {},
     };
 
     // Act

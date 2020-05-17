@@ -27,6 +27,7 @@ describe('server/rendering/render-react', () => {
         isLoading: false,
       },
       user: {},
+      resume: {},
     };
 
     // Act

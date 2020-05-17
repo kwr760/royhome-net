@@ -1,4 +1,4 @@
-import { ERROR_CODE } from '../error-codes';
+import { ERROR_CODE } from '../../../util/error-codes';
 import { resumeAddressMapper, resumeContactMapper, resumeOwnerMapper } from './resume.mapper';
 
 describe('server/db/resume/resume.mapper', () => {

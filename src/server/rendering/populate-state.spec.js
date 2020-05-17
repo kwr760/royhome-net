@@ -13,7 +13,7 @@ describe('server/rendering/populate-state', () => {
       user: {},
     };
     const req = {
-      url: '/resume',
+      url: '/resume/email@company.com',
       cookies: {
         [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
       },
@@ -25,6 +25,7 @@ describe('server/rendering/populate-state', () => {
         isLoading: false,
       },
       user: {},
+      resume: {},
     };
 
     // Act
@@ -53,6 +54,7 @@ describe('server/rendering/populate-state', () => {
         isLoading: false,
       },
       user: {},
+      resume: {},
     };
 
     // Act
@@ -81,6 +83,7 @@ describe('server/rendering/populate-state', () => {
         isLoading: false,
       },
       user: {},
+      resume: {},
     };
 
     // Act
