@@ -4,13 +4,26 @@ import type { Method } from 'axios';
 
 export type ActionObjectType = {|
   type: string,
-  urlParams?: Object,
+  payload: Object,
   params?: Object,
-  data?: Object,
-  payload?: Object,
   token?: string,
+|};
+
+export type ActionRequestType = {|
+  type: string,
+  payload: Object,
+|};
+
+export type ActionSuccessType = {|
+  type: string,
+  payload: Object,
+  data?: Object,
+|};
+
+export type ActionFailureType = {|
+  type: string,
+  payload: Object,
   error?: Object,
-  response?: Object,
 |};
 
 export type ApiConfigType = {|

@@ -10,16 +10,21 @@ describe('client/store/resume/resume.action', () => {
     // Arrange
     const dispatch = jest.fn();
     const email = 'email@company.com';
+    const token = 'token';
     const expectedConfig = API_CONFIG.GET_RESUME;
     const expectedAction = {
       type: RESUME_ACTION.GET_RESUME,
-      urlParams: {
+      params: {
         email,
       },
+      payload: {
+        email,
+      },
+      token,
     };
 
     // Act
-    getResumeAction(dispatch, email);
+    getResumeAction(dispatch, email, token);
 
     // Assert
     expect(apiActionCreator).toHaveBeenCalledWith(dispatch, expectedConfig, expectedAction);

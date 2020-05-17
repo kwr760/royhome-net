@@ -14,6 +14,10 @@ describe('client/store/api/api.action', () => {
 
   it('should call a successful dispatch', async () => {
     // Arrange
+    const type = 'TEST';
+    const payload = {
+      pay: 'load',
+    };
     const config = {
       method: 'get',
       url: '/url/{some}',
@@ -23,19 +27,14 @@ describe('client/store/api/api.action', () => {
       authenticated: true,
     };
     const action = {
-      type: 'TEST',
-      urlParams: {
-        some: 'thing',
-      },
+      type,
       params: {
-        param: 'test',
+        some: 'thing',
       },
       data: {
         body: 'fields',
       },
-      payload: {
-        pay: 'load',
-      },
+      payload,
       token: 'token',
     };
     const responseData = {
@@ -46,24 +45,23 @@ describe('client/store/api/api.action', () => {
     };
     axios.mockResolvedValue(axiosResponse);
     const expectedRequestDispatch = {
-      ...action,
+      type,
+      payload,
       status: API_STATUS.REQUEST,
     };
     const expectedSuccessDispatch = {
-      ...action,
+      type,
+      payload,
       status: API_STATUS.SUCCESS,
-      response: responseData,
+      data: responseData,
     };
     const expectedAxios = {
-      data: {
-        body: 'fields',
-      },
+      data: payload,
       headers: {
         Authorization: 'Bearer token',
         head: 'er',
       },
       method: 'get',
-      params: { param: 'test' },
       url: 'https://royk.us/api/url/thing',
     };
 
@@ -78,32 +76,34 @@ describe('client/store/api/api.action', () => {
   });
   it('should fail with failure dispatch', async () => {
     // Arrange
+    const type = 'TEST';
     const config = {
       method: 'get',
       url: '/url',
     };
     const action = {
-      type: 'TEST',
+      type,
     };
     const errorResponse = {
-      fail: 'why',
+      message: 'failed why',
     };
     axios.mockRejectedValue(errorResponse);
     const expectedRequestDispatch = {
-      ...action,
+      type,
+      payload: {},
       status: API_STATUS.REQUEST,
     };
-    const expectedSuccessDispatch = {
-      ...action,
+    const expectedFailureDispatch = {
+      type,
+      payload: {},
       status: API_STATUS.FAILURE,
-      error: errorResponse,
+      error: errorResponse.message,
     };
     const expectedAxios = {
       method: 'get',
       url: 'https://royk.us/api/url',
       data: {},
       headers: {},
-      params: {},
     };
 
     // Act
@@ -113,7 +113,7 @@ describe('client/store/api/api.action', () => {
     expect(dispatch).toHaveBeenNthCalledWith(1, expectedRequestDispatch);
     expect(axios).toBeCalledWith(expectedAxios);
     expect(result).toBeUndefined();
-    expect(dispatch).toHaveBeenNthCalledWith(2, expectedSuccessDispatch);
+    expect(dispatch).toHaveBeenNthCalledWith(2, expectedFailureDispatch);
   });
   it('should call a successful dispatch', async () => {
     // Arrange

@@ -18,7 +18,7 @@ export const apiActionCreator = async (
 ) => {
   const { method, headers = {}, authenticated = false } = config;
   const {
-    params = {}, data = {}, token,
+    type, payload = {}, token,
   } = action;
   const url = getParsedUrl(config, action);
 
@@ -29,26 +29,30 @@ export const apiActionCreator = async (
     headers.Authorization = `Bearer ${token}`;
   }
 
-  dispatch(apiRequestActionCreator(action));
+  dispatch(apiRequestActionCreator({
+    type,
+    payload,
+  }));
   axios(
     {
       method,
       url,
       headers,
-      params,
-      data,
+      data: payload,
     },
   )
     .then((response) => {
       dispatch(apiSucessActionCreator({
-        ...action,
-        response: response.data,
+        type,
+        payload,
+        data: response.data,
       }));
     })
     .catch((error) => {
       dispatch(apiFailureActionCreator({
-        ...action,
-        error,
+        type,
+        payload,
+        error: error.message,
       }));
     });
 };

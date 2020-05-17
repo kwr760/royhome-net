@@ -1,11 +1,13 @@
 // @flow
 
-import type { ActionObjectType } from './api.types';
+import type {
+  ActionRequestType, ActionSuccessType, ActionFailureType,
+} from './api.types';
 
 export const API_STATUS = {
-  REQUEST: 'request',
-  SUCCESS: 'success',
-  FAILURE: 'failure',
+  REQUEST: 'REQUEST',
+  SUCCESS: 'SUCCESS',
+  FAILURE: 'FAILURE',
 };
 
 export const API_CONFIG = {
@@ -19,22 +21,22 @@ export const API_CONFIG = {
   },
   GET_RESUME: {
     method: 'get',
-    url: '/resume',
+    url: '/resume/{email}',
     authenticated: true,
   },
 };
 
-export const apiRequestActionCreator = (action: ActionObjectType) => ({
+export const apiRequestActionCreator = (action: ActionRequestType) => ({
   ...action,
   status: API_STATUS.REQUEST,
 });
 
-export const apiSucessActionCreator = (action: ActionObjectType) => ({
+export const apiSucessActionCreator = (action: ActionSuccessType) => ({
   ...action,
   status: API_STATUS.SUCCESS,
 });
 
-export const apiFailureActionCreator = (action: ActionObjectType) => ({
+export const apiFailureActionCreator = (action: ActionFailureType) => ({
   ...action,
   status: API_STATUS.FAILURE,
 });

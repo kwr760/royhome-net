@@ -10,12 +10,17 @@ import type { ActionObjectType } from '../api/api.types';
 export const getResumeAction = (
   dispatch: Dispatch<Action<string>>,
   email: string,
+  token: string,
 ) => {
   const action: ActionObjectType = {
     type: RESUME_ACTION.GET_RESUME,
-    urlParams: {
+    payload: {
       email,
     },
+    params: {
+      email,
+    },
+    token,
   };
   return apiActionCreator(
     dispatch,

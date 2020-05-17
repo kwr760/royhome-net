@@ -1,13 +1,19 @@
 // @flow
 
 type GetResumePayloadType = {|
-  isLoading: boolean,
+  email: string,
+|};
+
+type ResumeType = {|
+  resume?: Object,
 |};
 
 export type ResumeActionType = {|
   type: 'GET_RESUME',
   status: string,
   payload: GetResumePayloadType,
+  data?: ResumeType,
+  error?: string,
 |};
 
 export type ResumeStateType = {|
@@ -27,5 +33,6 @@ export type ResumeStateType = {|
     id: number,
     userId: number,
     address: string,
-  |}
+  |},
+  error?: string,
 |};

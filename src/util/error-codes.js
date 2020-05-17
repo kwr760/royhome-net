@@ -22,6 +22,6 @@ export const ERROR_CODE = {
   },
   [CODES.API_UNAUTHENTICATED]: {
     code: CODES.API_UNAUTHENTICATED,
-    message: 'Not authenticaed make the api call',
+    message: 'Not authenticaed to make the api call',
   },
 };

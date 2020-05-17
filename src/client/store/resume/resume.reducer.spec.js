@@ -4,6 +4,7 @@ import { API_STATUS } from '../api/api.contants';
 
 describe('client/store/reducers/resume/resume.reducer', () => {
   const state = {};
+  const email = 'email@company.com';
   const resume = {
     owner: {
       id: 1,
@@ -30,24 +31,30 @@ describe('client/store/reducers/resume/resume.reducer', () => {
       type: RESUME_ACTION.GET_RESUME,
       status: API_STATUS.SUCCESS,
       payload: {
+        email,
+      },
+      data: {
         resume,
       },
     };
     const expectedState = {
-      ...resume,
+      [email]: resume,
     };
 
     // Act
     const result = resumeReducer(state, action);
 
     // Assert
-    expect(result).toEqual({});
+    expect(result).toEqual(expectedState);
   });
   it('should not change state with REQUEST', () => {
     // Arrange
     const action = {
       type: RESUME_ACTION.GET_RESUME,
       status: API_STATUS.REQUEST,
+      payload: {
+        email,
+      },
     };
     const expectedState = {};
 
@@ -59,11 +66,37 @@ describe('client/store/reducers/resume/resume.reducer', () => {
   });
   it('should not change state with FAILURE', () => {
     // Arrange
+    const error = 'Error message';
     const action = {
       type: RESUME_ACTION.GET_RESUME,
       status: API_STATUS.FAILURE,
+      payload: {
+        email,
+      },
+      error,
     };
-    const expectedState = {};
+    const expectedState = {
+      error,
+    };
+
+    // Act
+    const result = resumeReducer(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+  it('should update the state without data with SUCCESS', () => {
+    // Arrange
+    const action = {
+      type: RESUME_ACTION.GET_RESUME,
+      status: API_STATUS.SUCCESS,
+      payload: {
+        email,
+      },
+    };
+    const expectedState = {
+      [email]: {},
+    };
 
     // Act
     const result = resumeReducer(state, action);

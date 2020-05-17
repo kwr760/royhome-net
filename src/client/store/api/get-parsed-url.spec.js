@@ -20,7 +20,7 @@ describe('client/store/api/get-parsed-url', () => {
       url: '/url/{field}/{extra}/end',
     };
     const action = {
-      urlParams: {
+      params: {
         field: 'fieldData',
         extra: 'fun_stuff',
       },
