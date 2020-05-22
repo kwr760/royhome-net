@@ -10,10 +10,10 @@ import configureStore from './store/configure-store';
 jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({}),
 }));
-jest.mock('./Components/Loading/loading', () => () => (<div>Loading</div>));
-jest.mock('./Components/NavBar/nav-bar', () => () => (<div>NavBar</div>));
-jest.mock('./Components/Footer/footer', () => () => (<div>Footer</div>));
-jest.mock('./Pages/Home/home', () => () => (<div>Home</div>));
+jest.mock('./components/loading/loading', () => () => (<div>Loading</div>));
+jest.mock('./components/nav-bar/nav-bar', () => () => (<div>NavBar</div>));
+jest.mock('./components/footer/footer', () => () => (<div>Footer</div>));
+jest.mock('./Pages/home/home', () => () => (<div>Home</div>));
 
 describe('src/client/App', () => {
   const history = createMemoryHistory();
@@ -53,7 +53,7 @@ describe('src/client/App', () => {
     getByText(/Footer/);
     expect(queryByText('Loading')).toBeNull();
   });
-  it('renders Loading', () => {
+  it('renders loading', () => {
     // Arrange
     const state = {
       session: {
