@@ -6,7 +6,7 @@ import initFontAwesome from '../../util/init-font-awesome';
 
 initFontAwesome();
 
-describe('client/components/Pages/Public/home', () => {
+describe('client/components/public/home', () => {
   it('should render', () => {
     // Arrange/Act
     const { getByText } = render(

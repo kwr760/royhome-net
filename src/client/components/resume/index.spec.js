@@ -12,7 +12,7 @@ jest.mock('axios', () => ({
   get: jest.fn().mockResolvedValue({ data: {} }),
 }));
 
-describe('client/components/Pages/Private/resume', () => {
+describe('client/components/private/resume', () => {
   const resume = {
     resume: [
       { id: 1, title: 'resume #1' },

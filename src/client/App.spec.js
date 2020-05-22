@@ -13,7 +13,7 @@ jest.mock('axios', () => ({
 jest.mock('./components/loading/loading', () => () => (<div>Loading</div>));
 jest.mock('./components/nav-bar/nav-bar', () => () => (<div>NavBar</div>));
 jest.mock('./components/footer/footer', () => () => (<div>Footer</div>));
-jest.mock('./Pages/home/home', () => () => (<div>Home</div>));
+jest.mock('./components/home/home', () => () => (<div>Home</div>));
 
 describe('src/client/App', () => {
   const history = createMemoryHistory();

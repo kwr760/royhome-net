@@ -12,7 +12,7 @@ initFontAwesome();
 
 jest.mock('../../../util/auth0/has-needed-role');
 
-describe('client/components/Pages/nav-bar', () => {
+describe('client/components/nav-bar', () => {
   const getNavBar = (store, auth) => (
     <Provider store={store}>
       <Auth0Context.Provider value={auth}>

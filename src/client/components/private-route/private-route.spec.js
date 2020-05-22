@@ -9,7 +9,7 @@ import configureStore from '../../store/configure-store';
 
 jest.mock('../../../util/auth0/has-needed-role');
 
-describe('client/components/Pages/private-route', () => {
+describe('client/components/private-route', () => {
   const userRole = 'admin';
   const mockComponent = () => <div>Mocked</div>;
   const getPrivateRoute = (store, auth, role, path) => (

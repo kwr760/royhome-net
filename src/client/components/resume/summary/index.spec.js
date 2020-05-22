@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 import ResumeSummary from './index';
 
-describe('client/components/Pages/resume/summary', () => {
+describe('client/components/resume/summary', () => {
   it('should render', () => {
     // Arrange/Act
     const { getByText } = render(
@@ -11,6 +11,6 @@ describe('client/components/Pages/resume/summary', () => {
     );
 
     // Assert
-    getByText('resume summary');
+    getByText('Resume Summary');
   });
 });

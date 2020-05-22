@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 import Resume from './index';
 
-describe('client/components/Pages/resume/resume', () => {
+describe('client/components/resume/resume', () => {
   it('should render', () => {
     // Arrange/Act
     const { getByText } = render(
@@ -11,10 +11,10 @@ describe('client/components/Pages/resume/resume', () => {
     );
 
     // Assert
-    getByText('resume header');
-    getByText('resume summary');
-    getByText('resume skills');
-    getByText('resume experience');
-    getByText('resume education');
+    getByText('Resume Header');
+    getByText('Resume Summary');
+    getByText('Resume Skills');
+    getByText('Resume Experience');
+    getByText('Resume Education');
   });
 });

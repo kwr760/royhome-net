@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import Profile from './profile';
 import configureStore from '../../store/configure-store';
 
-describe('client/components/Pages/Private/profile', () => {
+describe('client/components/private/profile', () => {
   const getProfile = (store) => (
     <Provider store={store}>
       <Router>
