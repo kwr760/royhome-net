@@ -1,7 +1,5 @@
-// @flow
-
-import userReducer from './user.reducer';
-import USER from './user.constants';
+import { userReducer } from './user.reducer';
+import { USER_ACTION } from './user.constants';
 
 describe('client/store/reducers/user/user.reducer', () => {
   it('should return the state for UPDATE_USER action', () => {
@@ -11,7 +9,7 @@ describe('client/store/reducers/user/user.reducer', () => {
       email: 'email@mail.com',
     };
     const action = {
-      type: USER.UPDATE_USER,
+      type: USER_ACTION.UPDATE_USER,
       payload: {
         user,
       },

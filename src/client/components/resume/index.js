@@ -1,48 +1,28 @@
 // @flow
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { isEmpty } from 'lodash';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-import env from '../../../config';
 import { useAuth0 } from '../../../util/auth0/auth0-context';
 import Resume from './resume';
+import { getResumeAction } from '../../store/resume/resume.action';
 
 const ResumePage = () => {
+  const dispatch = useDispatch();
   const { getToken } = useAuth0();
-  const [resume, setResume] = useState([]);
-  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const callResumeApi = async (cbResume, cbMessage) => {
       const token = await getToken();
-      if (isEmpty(token)) {
-        cbMessage('Not authorized to view this page');
-        return;
+      if (token) {
+        getResumeAction(dispatch, 'kroy760@gmail.com', token);
       }
-      const url = `${env.host}/api/resume`;
-      const options = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      axios.get(url, options)
-        .then((res) => {
-          cbResume(res.data.resume);
-        })
-        .catch((error) => {
-          cbMessage(error.message);
-        });
     };
-    callResumeApi(setResume, setMessage);
-  }, [getToken]);
+    callResumeApi();
+  }, [dispatch, getToken]);
 
   return (
-    <>
-      { message && <div>{ JSON.stringify(message) }</div> }
-      <Resume />
-      { resume && <div>{ JSON.stringify(resume) }</div> }
-    </>
+    <Resume />
   );
 };
 

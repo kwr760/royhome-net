@@ -1,6 +1,6 @@
 import { processDatabaseQuery } from './db-query';
 import pool from './db-pool';
-import { ERROR_CODE } from './error-codes';
+import { ERROR_CODE } from '../../util/error-codes';
 import Logger from '../logger';
 
 jest.mock('./db-pool');

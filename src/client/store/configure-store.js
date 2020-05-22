@@ -19,6 +19,7 @@ const defaultState = {
     isLoading: false,
   },
   user: {},
+  resume: {},
 };
 
 const configureStore = (initialState: StateType = defaultState) => {
