@@ -19,7 +19,9 @@ const defaultState = {
     isLoading: false,
   },
   user: {},
-  resume: {},
+  resume: {
+    activeResume: 'kroy760@gmail.com',
+  },
 };
 
 const configureStore = (initialState: StateType = defaultState) => {

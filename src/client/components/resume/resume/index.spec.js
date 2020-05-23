@@ -11,7 +11,9 @@ describe('client/components/resume/resume', () => {
     );
 
     // Assert
-    getByText('Resume Header');
+    getByText('Address');
+    getByText('Owner');
+    getByText('Contact');
     getByText('Resume Summary');
     getByText('Resume Skills');
     getByText('Resume Experience');

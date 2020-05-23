@@ -1,15 +1,17 @@
 // @flow
 
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useAuth0 } from '../../../util/auth0/auth0-context';
 import Resume from './resume';
 import { getResumeAction } from '../../store/resume/resume.action';
+import { getResume } from '../../store/resume/resume.selector';
 
 const ResumePage = () => {
-  const dispatch = useDispatch();
   const { getToken } = useAuth0();
+  const resume = useSelector(getResume);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const callResumeApi = async (cbResume, cbMessage) => {
@@ -22,7 +24,7 @@ const ResumePage = () => {
   }, [dispatch, getToken]);
 
   return (
-    <Resume />
+    <Resume resume={resume} />
   );
 };
 

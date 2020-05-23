@@ -21,7 +21,9 @@ const populateState = (req: Request): StateType => {
       isLoading: false,
     },
     user,
-    resume: {},
+    resume: {
+      activeResume: 'kroy760@gmail.com',
+    },
   };
 };
 

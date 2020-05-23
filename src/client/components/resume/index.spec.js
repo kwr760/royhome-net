@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { render, waitForElement } from '@testing-library/react';
+import { render, wait } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Resume from './index';
@@ -34,9 +34,12 @@ describe('client/components/private/resume', () => {
 
     // Act
     const { getByText } = render(getResume(defaultAuth));
+    await wait();
 
     // Assert
-    await waitForElement(() => getByText(/Resume Header/));
+    getByText('Address');
+    getByText('Owner');
+    getByText('Contact');
     getByText(/Resume Summary/);
     getByText(/Resume Skills/);
     getByText(/Resume Experience/);
@@ -51,9 +54,12 @@ describe('client/components/private/resume', () => {
 
     // Act
     const { getByText } = render(getResume(overrideAuth));
+    await wait();
 
     // Assert
-    await waitForElement(() => getByText(/Resume Header/));
+    getByText('Address');
+    getByText('Owner');
+    getByText('Contact');
     getByText(/Resume Summary/);
     getByText(/Resume Skills/);
     getByText(/Resume Experience/);

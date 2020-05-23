@@ -25,7 +25,9 @@ describe('server/rendering/populate-state', () => {
         isLoading: false,
       },
       user: {},
-      resume: {},
+      resume: {
+        activeResume: 'kroy760@gmail.com',
+      },
     };
 
     // Act
@@ -54,7 +56,9 @@ describe('server/rendering/populate-state', () => {
         isLoading: false,
       },
       user: {},
-      resume: {},
+      resume: {
+        activeResume: 'kroy760@gmail.com',
+      },
     };
 
     // Act
@@ -83,7 +87,9 @@ describe('server/rendering/populate-state', () => {
         isLoading: false,
       },
       user: {},
-      resume: {},
+      resume: {
+        activeResume: 'kroy760@gmail.com',
+      },
     };
 
     // Act
