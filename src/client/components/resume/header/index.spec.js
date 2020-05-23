@@ -20,7 +20,7 @@ describe('client/components/resume/header', () => {
 
     // Act
     const { getByText } = render(
-      <ResumeHeader owner={owner} contact={contact} address={address}/>,
+      <ResumeHeader owner={owner} contact={contact} address={address} />,
     );
 
     // Assert
@@ -44,7 +44,7 @@ describe('client/components/resume/header', () => {
 
     // Act
     const { getByText } = render(
-      <ResumeHeader owner={owner} contact={contact} address={address}/>,
+      <ResumeHeader owner={owner} contact={contact} address={address} />,
     );
 
     // Assert

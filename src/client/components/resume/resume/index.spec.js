@@ -34,7 +34,7 @@ describe('client/components/resume/resume', () => {
     getByText('Resume Experience');
     getByText('Resume Education');
   });
-  it('should render with empty object', async() => {
+  it('should render with empty object', () => {
     // Arrange
     // Act
     const { getByText } = render(
