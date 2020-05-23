@@ -27,7 +27,9 @@ describe('server/rendering/render-react', () => {
         isLoading: false,
       },
       user: {},
-      resume: {},
+      resume: {
+        activeResume: 'kroy760@gmail.com',
+      },
     };
 
     // Act
