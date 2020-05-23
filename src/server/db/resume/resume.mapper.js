@@ -4,20 +4,20 @@ import ObjectMapper from 'object-mapper';
 import { ERROR_CODE } from '../../../util/error-codes';
 
 const addressMap = {
-  id: 'id',
-  user_id: 'userId',
+  // id: 'id',
+  // user_id: 'userId',
   address: 'address',
 };
 
 const ownerMap = {
-  id: 'id',
-  user_id: 'userId',
+  // id: 'id',
+  // user_id: 'userId',
   name: 'name',
 };
 
 const contactMap = {
-  id: 'id',
-  user_id: 'userId',
+  // id: 'id',
+  // user_id: 'userId',
   phone: 'phone',
   email: 'email',
   display_phone: 'displayPhone',

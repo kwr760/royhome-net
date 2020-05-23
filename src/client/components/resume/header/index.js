@@ -2,36 +2,41 @@
 
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import type { AddressType, ContactType, OwnerType } from '../../../store/resume/resume.types';
+import './header.css';
 
-const ResumeHeader = () => (
-  <Container>
-    <Row>
-      <Col>
-        Address
-      </Col>
-      <Col>
-        Owner
-      </Col>
-      <Col>
-        Contact
-      </Col>
-    </Row>
-  </Container>
-);
+const ResumeHeader = ({
+  owner = {},
+  address = {},
+  contact = {},
+}: {|
+  owner: OwnerType,
+  contact: ContactType,
+  address: AddressType,
+|}) => {
+  const { name = '' } = owner;
+  const { email = '', phone = '', displayPhone = false } = contact;
+  const { address: location = '' } = address;
+  return (
+    <Container className="header">
+      <Row>
+        <Col sm="4" className="name text-center order-0 order-sm-4">
+          { name }
+        </Col>
+        <Col sm="4" className="contact text-center order-4 order-sm-8 text-sm-right">
+          <div>
+            <a href="mailto:{ contact.email }?Subject=In%20response%20to%20your%20resume" target="_top">
+              { email }
+            </a>
+          </div>
+          <div className="phone">{ displayPhone ? phone : 'Cell upon request' }</div>
+        </Col>
+        <Col sm="4" className="address text-center order-8 order-sm-0 text-sm-left">
+          { location }
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default ResumeHeader;
-
-
-// <div className="header row">
-//   <div className="col">
-//     <div className="row">
-//       <div id="address" className="col-sm-4 pull-left">Issaquah, WA 98027</div>
-//       <div id="name" className="col-sm-4 text-center">Kevin Roy</div>
-//       <div id="contact" className="col-sm-4 text-right">
-//         <div id="phone">Cell upon request</div>
-//         <div id="email"><a href="mailto:kroy760@gmaile.com?Subject=In%20response%20to%20your%20resume"
-//                            target="_top">kroy760@gmail.com</a></div>
-//       </div>
-//     </div>
-//   </div>
-// </div>
