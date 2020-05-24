@@ -11,8 +11,6 @@ describe('server/db/resume/resume.mapper', () => {
         address: 'address',
       }];
       const expected = {
-        id: 'id',
-        userId: 'user-id',
         address: 'address',
       };
 
@@ -46,8 +44,6 @@ describe('server/db/resume/resume.mapper', () => {
         display_phone: true,
       }];
       const expected = {
-        id: 'id',
-        userId: 'user-id',
         phone: 'phone',
         email: 'email',
         displayPhone: true,
@@ -81,8 +77,6 @@ describe('server/db/resume/resume.mapper', () => {
         name: 'name',
       }];
       const expected = {
-        id: 'id',
-        userId: 'user-id',
         name: 'name',
       };
 

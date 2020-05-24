@@ -7,9 +7,11 @@ import '@testing-library/jest-dom/extend-expect';
 import Resume from './index';
 import { Auth0Context } from '../../../util/auth0/auth0-context';
 import { getResumeAction } from '../../store/resume/resume.action';
+import ResumeHeader from './header';
 
 jest.mock('react-redux');
 jest.mock('../../store/resume/resume.action');
+jest.mock('./header');
 
 describe('client/components/private/resume', () => {
   const token = 'token';
@@ -24,6 +26,9 @@ describe('client/components/private/resume', () => {
     </Auth0Context.Provider>
   );
 
+  beforeEach(() => {
+    ResumeHeader.mockReturnValue('Resume Header');
+  });
   afterEach(() => {
     jest.resetAllMocks();
   });
@@ -37,9 +42,7 @@ describe('client/components/private/resume', () => {
     await wait();
 
     // Assert
-    getByText('Address');
-    getByText('Owner');
-    getByText('Contact');
+    getByText(/Resume Header/);
     getByText(/Resume Summary/);
     getByText(/Resume Skills/);
     getByText(/Resume Experience/);
@@ -57,9 +60,7 @@ describe('client/components/private/resume', () => {
     await wait();
 
     // Assert
-    getByText('Address');
-    getByText('Owner');
-    getByText('Contact');
+    getByText(/Resume Header/);
     getByText(/Resume Summary/);
     getByText(/Resume Skills/);
     getByText(/Resume Experience/);
