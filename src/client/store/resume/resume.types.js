@@ -41,9 +41,6 @@ export type ResumeActionType = {|
 
 export type ResumeStateType = {|
   activeResume: string,
-  owner?: OwnerType,
-  contact?: ContactType,
-  address?: AddressType,
-  summary?: SummaryType,
+  [string]: ResumeType,
   error?: string,
 |};

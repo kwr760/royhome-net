@@ -2,9 +2,9 @@
 
 import { createSelector } from 'reselect';
 import type { StateType } from '../store.types';
-import type { ResumeStateType } from './resume.types';
+import type { ResumeType, ResumeStateType } from './resume.types';
 
-export const getResume = createSelector<StateType, mixed, ResumeStateType, ResumeStateType>(
+export const getResume = createSelector<StateType, mixed, ResumeType, ResumeStateType>(
   (state) => state.resume,
   (resume) => resume[resume.activeResume],
 );

@@ -9,11 +9,11 @@ import ResumeSummary from '../summary';
 import ResumeExperience from '../experience';
 import ResumeEducation from '../education';
 
-import type { ResumeStateType } from '../../../store/resume/resume.types';
+import type { ResumeType } from '../../../store/resume/resume.types';
 
 import './resume.css';
 
-const ResumePage = ({ resume = {} }: {| resume: ResumeStateType |}) => {
+const ResumePage = ({ resume = {} }: {| resume: ResumeType |}) => {
   const {
     owner = {}, contact = {}, address = {}, summary = {},
   } = resume;
