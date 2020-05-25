@@ -19,4 +19,7 @@ SELECT
   'resume_address',
   CASE WHEN COUNT(*) = 1 THEN 'PASS' ELSE 'FAIL' END
 FROM resume_address;
-
+SELECT
+  'resume_summary',
+  CASE WHEN COUNT(*) = 1 THEN 'PASS' ELSE 'FAIL' END
+FROM resume_summary;

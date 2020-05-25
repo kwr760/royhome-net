@@ -1,6 +1,24 @@
-import { resumeAddressSchema, resumeContactSchema, resumeOwnerSchema } from './resume.schema';
+import {
+  resumeAddressSchema, resumeContactSchema, resumeOwnerSchema, resumeSummarySchema,
+} from './resume.schema';
 
 describe('server/db/resume/resume.schema', () => {
+  describe('summarySchema', () => {
+    it('should validate a good object', () => {
+      // Arrange
+      const object = {
+        id: 100,
+        userId: 1000,
+        summary: 'summary',
+      };
+
+      // Act
+      const result = resumeSummarySchema.validate(object);
+
+      // Assert
+      expect(result.error).toBeUndefined();
+    });
+  });
   describe('addressSchema', () => {
     it('should validate a good object', () => {
       // Arrange

@@ -4,23 +4,21 @@ import ObjectMapper from 'object-mapper';
 import { ERROR_CODE } from '../../../util/error-codes';
 
 const addressMap = {
-  // id: 'id',
-  // user_id: 'userId',
   address: 'address',
 };
 
 const ownerMap = {
-  // id: 'id',
-  // user_id: 'userId',
   name: 'name',
 };
 
 const contactMap = {
-  // id: 'id',
-  // user_id: 'userId',
   phone: 'phone',
   email: 'email',
   display_phone: 'displayPhone',
+};
+
+const summaryMap = {
+  summary: 'summary',
 };
 
 export const resumeAddressMapper = (src: Array<string>) => {
@@ -45,4 +43,12 @@ export const resumeContactMapper = (src: Array<string>) => {
   }
 
   return ObjectMapper(src, contactMap);
+};
+
+export const resumeSummaryMapper = (src: Array<string>) => {
+  if (src.length !== 1) {
+    throw ERROR_CODE.DB_UNEXPECTED_RESULT;
+  }
+
+  return ObjectMapper(src, summaryMap);
 };

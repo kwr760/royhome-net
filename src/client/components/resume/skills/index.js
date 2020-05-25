@@ -1,9 +1,9 @@
 // @flow
 
 import React from 'react';
-import type { ResumeStateType } from '../../../store/resume/resume.types';
+import type { ResumeType } from '../../../store/resume/resume.types';
 
-const ResumeSkills = ({ resume }: {| resume: ResumeStateType |}) => (
+const ResumeSkills = ({ resume }: {| resume: ResumeType |}) => (
   <div>
     Resume Skills
   </div>

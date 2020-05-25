@@ -20,3 +20,10 @@ FROM \
   resume_contact \
 WHERE \
   user_id = $1';
+
+export const selectSummaryByUserIdSql: string = 'SELECT \
+  id, user_id, summary \
+FROM \
+  resume_summary \
+WHERE \
+  user_id = $1';

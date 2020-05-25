@@ -5,12 +5,27 @@ import ResumeSummary from './index';
 
 describe('client/components/resume/summary', () => {
   it('should render', () => {
-    // Arrange/Act
+    // Arrange
+    const summary = {
+      summary: 'summary',
+    };
+
+    // Act
+    const { getByText } = render(
+      <ResumeSummary summary={summary} />,
+    );
+
+    // Assert
+    getByText('summary');
+  });
+  it('should render without props', () => {
+    // Arrange
+    // Act
     const { getByText } = render(
       <ResumeSummary />,
     );
 
     // Assert
-    getByText('Resume Summary');
+    getByText('Summary');
   });
 });
