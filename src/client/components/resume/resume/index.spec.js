@@ -32,7 +32,7 @@ describe('client/components/resume/resume', () => {
     getByText('Summary');
     getByText('Resume Skills');
     getByText('Resume Experience');
-    getByText('Resume Education');
+    getByText('Education');
   });
   it('should render with empty object', () => {
     // Arrange
@@ -46,6 +46,6 @@ describe('client/components/resume/resume', () => {
     getByText('Summary');
     getByText('Resume Skills');
     getByText('Resume Experience');
-    getByText('Resume Education');
+    getByText('Education');
   });
 });

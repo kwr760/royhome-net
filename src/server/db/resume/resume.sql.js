@@ -27,3 +27,10 @@ FROM \
   resume_summary \
 WHERE \
   user_id = $1';
+
+export const selectEducationByUserIdSql: string = 'SELECT \
+  id, user_id, degree, school, to_char(graduation_date, \'Month YYYY\') as graduation_date \
+FROM \
+  resume_education \
+WHERE \
+  user_id = $1';

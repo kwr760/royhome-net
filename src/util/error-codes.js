@@ -10,18 +10,18 @@ const CODES = {
 export const ERROR_CODE = {
   [CODES.DB_UNEXPECTED_RESULT]: {
     code: CODES.DB_UNEXPECTED_RESULT,
-    message: 'Received unexpected data from the data source',
+    msg: 'Received unexpected data from the data source',
   },
   [CODES.DB_INVALID_OBJECT]: {
     code: CODES.DB_INVALID_OBJECT,
-    message: 'Received an object which is not valid',
+    msg: 'Received an object which is not valid',
   },
   [CODES.DB_UNKNOWN_ERROR]: {
     code: CODES.DB_UNKNOWN_ERROR,
-    message: 'The database promise rejected base on an error',
+    msg: 'The database promise rejected base on an error',
   },
   [CODES.API_UNAUTHENTICATED]: {
     code: CODES.API_UNAUTHENTICATED,
-    message: 'Not authenticaed to make the api call',
+    msg: 'Not authenticated to make the api call',
   },
 };
