@@ -23,20 +23,19 @@ export type SummaryType = {|
 |} | {||};
 
 export type ResumeType = {|
-  resume: {
-    owner: OwnerType,
-    contact: ContactType,
-    address: AddressType,
-    summary: SummaryType,
-    ...
-  },
+  owner: OwnerType,
+  contact: ContactType,
+  address: AddressType,
+  summary: SummaryType,
 |} | {||};
 
 export type ResumeActionType = {|
   type: 'GET_RESUME',
   status: string,
   payload: GetResumePayloadType,
-  data?: ResumeType,
+  data?: {|
+    resume: ResumeType,
+  |},
   error?: string,
 |};
 
