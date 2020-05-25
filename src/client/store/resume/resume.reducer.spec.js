@@ -23,6 +23,9 @@ describe('client/store/reducers/resume/resume.reducer', () => {
       userId: 1,
       address: 'Town, ST 99999',
     },
+    summary: {
+      summary: 'summary',
+    },
   };
 
   it('should update the state with resume with SUCCESS', () => {

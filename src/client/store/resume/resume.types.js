@@ -24,11 +24,18 @@ export type AddressType = {|
   address: string,
 |} | {||};
 
+export type SummaryType = {|
+  id: number,
+  userId: number,
+  summary: string,
+|} | {||};
+
 export type ResumeType = {|
   resume: {
     owner: OwnerType,
     contact: ContactType,
     address: AddressType,
+    summary: SummaryType,
     ...
   },
 |} | {||};
@@ -46,5 +53,6 @@ export type ResumeStateType = {|
   owner?: OwnerType,
   contact?: ContactType,
   address?: AddressType,
+  summary?: SummaryType,
   error?: string,
 |};

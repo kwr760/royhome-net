@@ -29,7 +29,7 @@ describe('client/components/resume/resume', () => {
     getByText('address');
     getByText('email');
     getByText('name');
-    getByText('Resume Summary');
+    getByText('Summary');
     getByText('Resume Skills');
     getByText('Resume Experience');
     getByText('Resume Education');
@@ -43,7 +43,7 @@ describe('client/components/resume/resume', () => {
 
     // Assert
     getByText('Cell upon request');
-    getByText('Resume Summary');
+    getByText('Summary');
     getByText('Resume Skills');
     getByText('Resume Experience');
     getByText('Resume Education');

@@ -8,10 +8,12 @@ import Resume from './index';
 import { Auth0Context } from '../../../util/auth0/auth0-context';
 import { getResumeAction } from '../../store/resume/resume.action';
 import ResumeHeader from './header';
+import ResumeSummary from './summary';
 
 jest.mock('react-redux');
 jest.mock('../../store/resume/resume.action');
 jest.mock('./header');
+jest.mock('./summary');
 
 describe('client/components/private/resume', () => {
   const token = 'token';
@@ -28,6 +30,7 @@ describe('client/components/private/resume', () => {
 
   beforeEach(() => {
     ResumeHeader.mockReturnValue('Resume Header');
+    ResumeSummary.mockReturnValue('Resume Summary');
   });
   afterEach(() => {
     jest.resetAllMocks();

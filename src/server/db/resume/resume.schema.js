@@ -21,3 +21,9 @@ export const resumeContactSchema = Joi.object().keys({
   email: Joi.string().required(),
   displayPhone: Joi.boolean().required(),
 });
+
+export const resumeSummarySchema = Joi.object().keys({
+  id: Joi.number(),
+  userId: Joi.number(),
+  summary: Joi.string().required(),
+});

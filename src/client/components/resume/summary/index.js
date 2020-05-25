@@ -1,12 +1,22 @@
 // @flow
 
 import React from 'react';
-import type { ResumeStateType } from '../../../store/resume/resume.types';
+import { Col, Row } from 'reactstrap';
 
-const ResumeSummary = ({ resume }: {| resume: ResumeStateType |}) => (
-  <div>
-    Resume Summary
-  </div>
-);
+import type { SummaryType } from '../../../store/resume/resume.types';
+
+const ResumeSummary = ({ summary = {} }: {| summary: SummaryType |}) => {
+  const { summary: summaryText = '' } = summary;
+  return (
+    <Row>
+      <Col>
+        <div className="title">Summary</div>
+        <div className="content text-justify">
+          { summaryText }
+        </div>
+      </Col>
+    </Row>
+  );
+};
 
 export default ResumeSummary;

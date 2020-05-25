@@ -54,3 +54,17 @@ ALTER TABLE resume_contact OWNER TO server;
 
 INSERT INTO resume_contact(id, user_id, phone, display_phone, email)
     VALUES (1, 1, '(425) 208-1223', false, 'kroy760@gmail.com');
+
+
+CREATE SEQUENCE resume_summary_id_seq;
+CREATE TABLE resume_summary
+(
+  id integer NOT NULL DEFAULT nextval('resume_summary_id_seq'::regclass) PRIMARY KEY,
+  user_id integer REFERENCES resume_owner (id),
+  summary character varying(1000) NOT NULL
+);
+ALTER TABLE resume_summary OWNER TO server;
+
+INSERT INTO resume_summary(id, user_id, summary)
+    VALUES (1, 1, 'Proactive and results-oriented professional with experience as technical leader on fast-paced and time-critical projects. Aggressive at overcoming challenges by developing robust solutions. Exceptional communicator and practitioner of full-cycle communications with capacity to independently manage complex software projects and support organizational customer service, quality assurance and sales goals.');
+

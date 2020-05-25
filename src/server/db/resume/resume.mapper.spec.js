@@ -1,7 +1,40 @@
 import { ERROR_CODE } from '../../../util/error-codes';
-import { resumeAddressMapper, resumeContactMapper, resumeOwnerMapper } from './resume.mapper';
+import {
+  resumeAddressMapper, resumeContactMapper, resumeOwnerMapper, resumeSummaryMapper,
+} from './resume.mapper';
 
 describe('server/db/resume/resume.mapper', () => {
+  describe('summaryMap', () => {
+    it('should map a row into an object', () => {
+      // Arrange
+      const src = [{
+        id: 'id',
+        user_id: 'user-id',
+        summary: 'summary',
+      }];
+      const expected = {
+        summary: 'summary',
+      };
+
+      // Act
+      const result = resumeSummaryMapper(src);
+
+      // Assert
+      expect(result).toEqual(expected);
+    });
+    it('should throw an error when it is unexpected', () => {
+      // Arrange
+      const src = [];
+      const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;
+
+      // Act/Assert
+      try {
+        resumeSummaryMapper(src);
+      } catch (e) {
+        expect(e).toEqual(expectedError);
+      }
+    });
+  });
   describe('addressMap', () => {
     it('should map a row into an object', () => {
       // Arrange

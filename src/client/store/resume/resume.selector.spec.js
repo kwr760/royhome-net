@@ -26,6 +26,9 @@ describe('client/store/resume/resume.selector', () => {
         userId: 1,
         address: 'Town, ST 98028',
       },
+      summary: {
+        summary: 'summary',
+      },
     };
     const mockState = {
       resume: {
