@@ -7,20 +7,14 @@ describe('client/store/reducers/resume/resume.reducer', () => {
   const email = 'email@company.com';
   const resume = {
     owner: {
-      id: 1,
-      userId: 1,
       name: 'Test Name',
     },
     contact: {
-      id: 1,
-      userId: 1,
       phone: '(111) 222-3333',
       email: 'email@company.com',
       displayPhone: false,
     },
     address: {
-      id: 1,
-      userId: 1,
       address: 'Town, ST 99999',
     },
     summary: {
