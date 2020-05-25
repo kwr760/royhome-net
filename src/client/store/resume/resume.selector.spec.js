@@ -23,6 +23,11 @@ describe('client/store/resume/resume.selector', () => {
       summary: {
         summary: 'summary',
       },
+      education: {
+        degree: 'degree',
+        school: 'school',
+        graduationDate: '2000-01',
+      },
     };
     const mockState = {
       resume: {

@@ -45,7 +45,10 @@ describe('server/db/query', () => {
       rows: expected,
     };
     const schemaResult = {
-      error: 'Error happened',
+      error: {
+        message: 'Error happened',
+        details: { },
+      },
       value: expected,
     };
     pool.query.mockResolvedValue(Promise.resolve(dataResult));

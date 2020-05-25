@@ -23,3 +23,7 @@ SELECT
   'resume_summary',
   CASE WHEN COUNT(*) = 1 THEN 'PASS' ELSE 'FAIL' END
 FROM resume_summary;
+SELECT
+  'resume_education',
+  CASE WHEN COUNT(*) = 2 THEN 'PASS' ELSE 'FAIL' END
+FROM resume_education;

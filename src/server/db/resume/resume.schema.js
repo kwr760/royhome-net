@@ -27,3 +27,11 @@ export const resumeSummarySchema = Joi.object().keys({
   userId: Joi.number(),
   summary: Joi.string().required(),
 });
+
+export const resumeEducationSchema = Joi.array().items({
+  id: Joi.number(),
+  userId: Joi.number(),
+  degree: Joi.string().required(),
+  school: Joi.string().required(),
+  graduationDate: Joi.string().required(),
+});

@@ -31,7 +31,9 @@ export const processDatabaseQuery = async (sql: string, args: Array<any>, mapper
   const { error, value } = result;
 
   if (error) {
-    throw Object.assign(ERROR_CODE.DB_INVALID_OBJECT, error.details);
+    const errorCode = ERROR_CODE.DB_INVALID_OBJECT;
+    const { details } = error;
+    throw { ...errorCode, ...details };
   }
 
   return value;

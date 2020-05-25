@@ -15,7 +15,7 @@ import './resume.css';
 
 const ResumePage = ({ resume = {} }: {| resume: ResumeType |}) => {
   const {
-    owner = {}, contact = {}, address = {}, summary = {},
+    owner = {}, contact = {}, address = {}, summary = {}, education = [{}],
   } = resume;
 
   return (
@@ -24,7 +24,7 @@ const ResumePage = ({ resume = {} }: {| resume: ResumeType |}) => {
       <ResumeSummary summary={summary} />
       <ResumeSkills resume={resume} />
       <ResumeExperience resume={resume} />
-      <ResumeEducation resume={resume} />
+      <ResumeEducation education={education} />
     </Container>
   );
 };

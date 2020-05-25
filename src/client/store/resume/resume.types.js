@@ -22,11 +22,18 @@ export type SummaryType = {|
   summary: string,
 |} | {||};
 
+export type EducationType = {|
+  degreee: string,
+  school: string,
+  graduationDate: string,
+|} | {||};
+
 export type ResumeType = {|
   owner: OwnerType,
   contact: ContactType,
   address: AddressType,
   summary: SummaryType,
+  education: [EducationType],
 |} | {||};
 
 export type ResumeActionType = {|

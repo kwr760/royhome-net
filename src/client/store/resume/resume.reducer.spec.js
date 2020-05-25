@@ -20,6 +20,11 @@ describe('client/store/reducers/resume/resume.reducer', () => {
     summary: {
       summary: 'summary',
     },
+    education: {
+      degree: 'degree',
+      school: 'school',
+      graduationDate: '2000-01',
+    },
   };
 
   it('should update the state with resume with SUCCESS', () => {

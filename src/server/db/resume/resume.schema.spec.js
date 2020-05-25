@@ -1,8 +1,26 @@
 import {
-  resumeAddressSchema, resumeContactSchema, resumeOwnerSchema, resumeSummarySchema,
+  resumeAddressSchema, resumeContactSchema, resumeOwnerSchema, resumeSummarySchema, resumeEducationSchema,
 } from './resume.schema';
 
 describe('server/db/resume/resume.schema', () => {
+  describe('educationSchema', () => {
+    it('should validate a good object', () => {
+      // Arrange
+      const object = [{
+        id: 100,
+        userId: 1000,
+        degree: 'degree',
+        school: 'school',
+        graduationDate: '2000-01-01',
+      }];
+
+      // Act
+      const result = resumeEducationSchema.validate(object);
+
+      // Assert
+      expect(result.error).toBeUndefined();
+    });
+  });
   describe('summarySchema', () => {
     it('should validate a good object', () => {
       // Arrange

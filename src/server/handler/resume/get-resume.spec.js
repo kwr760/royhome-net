@@ -5,12 +5,14 @@ import { selectOwnerByUserId } from '../../db/resume/select-owner-by-user-id';
 import { selectContactByUserId } from '../../db/resume/select-contact-by-user-id';
 import { selectAddressByUserId } from '../../db/resume/select-address-by-user-id';
 import { selectSummaryByUserId } from '../../db/resume/select-summary-by-user-id';
+import { selectEducationByUserId } from '../../db/resume/select-education-by-user-id';
 
 jest.mock('../../db/login/select-user-id-by-email');
 jest.mock('../../db/resume/select-owner-by-user-id');
 jest.mock('../../db/resume/select-contact-by-user-id');
 jest.mock('../../db/resume/select-address-by-user-id');
 jest.mock('../../db/resume/select-summary-by-user-id');
+jest.mock('../../db/resume/select-education-by-user-id');
 
 describe('server/routes/resume/get', () => {
   it('should return default response', async () => {
@@ -22,6 +24,7 @@ describe('server/routes/resume/get', () => {
     selectAddressByUserId.mockReturnValue('address');
     selectContactByUserId.mockReturnValue('contact');
     selectSummaryByUserId.mockReturnValue('summary');
+    selectEducationByUserId.mockReturnValue('education');
     const expected = {
       status: OK,
       body: {
@@ -30,6 +33,7 @@ describe('server/routes/resume/get', () => {
           address: 'address',
           contact: 'contact',
           summary: 'summary',
+          education: 'education',
         },
       },
     };
