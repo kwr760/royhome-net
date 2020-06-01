@@ -9,12 +9,16 @@ import { Auth0Context } from '../../../util/auth0/auth0-context';
 import { getResumeAction } from '../../store/resume/resume.action';
 import ResumeHeader from './header';
 import ResumeSummary from './summary';
+import ResumeSkills from './skills';
+import ResumeExperience from './experience';
 import ResumeEducation from './education';
 
 jest.mock('react-redux');
 jest.mock('../../store/resume/resume.action');
 jest.mock('./header');
 jest.mock('./summary');
+jest.mock('./skills');
+jest.mock('./experience');
 jest.mock('./education');
 
 describe('client/components/private/resume', () => {
@@ -33,6 +37,8 @@ describe('client/components/private/resume', () => {
   beforeEach(() => {
     ResumeHeader.mockReturnValue('Resume Header');
     ResumeSummary.mockReturnValue('Resume Summary');
+    ResumeSkills.mockReturnValue('Resume Skills');
+    ResumeExperience.mockReturnValue('Resume Experience');
     ResumeEducation.mockReturnValue('Resume Education');
   });
   afterEach(() => {

@@ -11,6 +11,6 @@ describe('client/components/resume/experience', () => {
     );
 
     // Assert
-    getByText('Resume Experience');
+    getByText('Experience');
   });
 });
