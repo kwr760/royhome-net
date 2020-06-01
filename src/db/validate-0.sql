@@ -24,6 +24,22 @@ SELECT
   CASE WHEN COUNT(*) = 1 THEN 'PASS' ELSE 'FAIL' END
 FROM resume_summary;
 SELECT
+    'resume_skill',
+    CASE WHEN COUNT(*) = 7 THEN 'PASS' ELSE 'FAIL' END
+FROM resume_skill;
+SELECT
+    'resume_skill_item',
+    CASE WHEN COUNT(*) = 48 THEN 'PASS' ELSE 'FAIL' END
+FROM resume_skill_item;
+SELECT
+    'resume_experience',
+    CASE WHEN COUNT(*) = 8 THEN 'PASS' ELSE 'FAIL' END
+FROM resume_experience;
+SELECT
+    'resume_experience_item',
+    CASE WHEN COUNT(*) = 66 THEN 'PASS' ELSE 'FAIL' END
+FROM resume_experience_item;
+SELECT
   'resume_education',
   CASE WHEN COUNT(*) = 2 THEN 'PASS' ELSE 'FAIL' END
 FROM resume_education;

@@ -1,9 +1,69 @@
 import { ERROR_CODE } from '../../../util/error-codes';
 import {
-  resumeAddressMapper, resumeContactMapper, resumeOwnerMapper, resumeSummaryMapper, resumeEducationMapper,
+  resumeAddressMapper,
+  resumeContactMapper,
+  resumeOwnerMapper,
+  resumeSummaryMapper,
+  resumeEducationMapper,
+  resumeSkillMapper,
 } from './resume.mapper';
 
 describe('server/db/resume/resume.mapper', () => {
+  describe('skillMap', () => {
+    it('should map a skill with multiple item', () => {
+      // Arrange
+      const src = [{
+        skill_id: 1,
+        skill_position: 1,
+        skill_name: 'Languages',
+        item_id: 1,
+        item_position: 1,
+        item_name: 'PHP',
+      }, {
+        skill_id: 1,
+        skill_position: 1,
+        skill_name: 'Languages',
+        item_id: 2,
+        item_position: 2,
+        item_name: 'HTML',
+      }];
+      const expected = [{
+        id: 1,
+        position: 1,
+        name: 'Languages',
+        items: [
+          {
+            id: 1,
+            position: 1,
+            name: 'PHP',
+          },
+          {
+            id: 2,
+            position: 2,
+            name: 'HTML',
+          },
+        ],
+      }];
+
+      // Act
+      const result = resumeSkillMapper(src);
+
+      // Assert
+      expect(result).toEqual(expected);
+    });
+    it('should throw an error when it is unexpected', () => {
+      // Arrange
+      const src = [];
+      const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;
+
+      // Act/Assert
+      try {
+        resumeSkillMapper(src);
+      } catch (e) {
+        expect(e).toEqual(expectedError);
+      }
+    });
+  });
   describe('educationMap', () => {
     it('should map a row into an object', () => {
       // Arrange

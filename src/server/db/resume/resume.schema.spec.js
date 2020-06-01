@@ -1,8 +1,38 @@
 import {
-  resumeAddressSchema, resumeContactSchema, resumeOwnerSchema, resumeSummarySchema, resumeEducationSchema,
+  resumeAddressSchema,
+  resumeContactSchema,
+  resumeOwnerSchema,
+  resumeSummarySchema,
+  resumeEducationSchema,
+  resumeSkillSchema,
 } from './resume.schema';
 
 describe('server/db/resume/resume.schema', () => {
+  describe('skillSchema', () => {
+    it('should validate a good object', () => {
+      // Arrange
+      const object = [{
+        id: 1,
+        position: 1,
+        name: 'skills',
+        items: [{
+          id: 1,
+          position: 1,
+          name: 'skill #1',
+        }, {
+          id: 2,
+          position: 2,
+          name: 'skill #2',
+        }],
+      }];
+
+      // Act
+      const result = resumeSkillSchema.validate(object);
+
+      // Assert
+      expect(result.error).toBeUndefined();
+    });
+  });
   describe('educationSchema', () => {
     it('should validate a good object', () => {
       // Arrange

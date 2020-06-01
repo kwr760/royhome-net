@@ -22,6 +22,19 @@ export type SummaryType = {|
   summary: string,
 |} | {||};
 
+export type SkillItemType = {|
+  id: number,
+  position: number,
+  name: string,
+|} | {||};
+
+export type SkillsType = {|
+  id: number,
+  position: number,
+  name: string,
+  items: [SkillItemType],
+|} | {||};
+
 export type EducationType = {|
   degreee: string,
   school: string,
@@ -33,6 +46,7 @@ export type ResumeType = {|
   contact: ContactType,
   address: AddressType,
   summary: SummaryType,
+  skills: [SkillsType],
   education: [EducationType],
 |} | {||};
 

@@ -34,3 +34,12 @@ FROM \
   resume_education \
 WHERE \
   user_id = $1';
+
+export const selectSkillByUserIdSql: string = 'SELECT \
+  skill.id as skill_id, skill.position as skill_position, skill.name as skill_name, \
+  item.id as item_id, item.position as item_position, item.item as item_name \
+FROM resume_skill skill \
+INNER JOIN resume_skill_item item \
+ON skill.id = item.skill_id \
+WHERE skill.user_id = $1 \
+ORDER BY skill.position, item.position;';
