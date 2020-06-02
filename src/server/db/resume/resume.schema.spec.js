@@ -3,81 +3,23 @@ import {
   resumeContactSchema,
   resumeOwnerSchema,
   resumeSummarySchema,
+  resumeSkillsSchema,
+  resumeExperienceSchema,
   resumeEducationSchema,
-  resumeSkillSchema,
 } from './resume.schema';
 
 describe('server/db/resume/resume.schema', () => {
-  describe('skillSchema', () => {
-    it('should validate a good object', () => {
-      // Arrange
-      const object = [{
-        id: 1,
-        position: 1,
-        name: 'skills',
-        items: [{
-          id: 1,
-          position: 1,
-          name: 'skill #1',
-        }, {
-          id: 2,
-          position: 2,
-          name: 'skill #2',
-        }],
-      }];
-
-      // Act
-      const result = resumeSkillSchema.validate(object);
-
-      // Assert
-      expect(result.error).toBeUndefined();
-    });
-  });
-  describe('educationSchema', () => {
-    it('should validate a good object', () => {
-      // Arrange
-      const object = [{
-        id: 100,
-        userId: 1000,
-        degree: 'degree',
-        school: 'school',
-        graduationDate: '2000-01-01',
-      }];
-
-      // Act
-      const result = resumeEducationSchema.validate(object);
-
-      // Assert
-      expect(result.error).toBeUndefined();
-    });
-  });
-  describe('summarySchema', () => {
+  describe('ownerSchema', () => {
     it('should validate a good object', () => {
       // Arrange
       const object = {
         id: 100,
         userId: 1000,
-        summary: 'summary',
+        name: 'name',
       };
 
       // Act
-      const result = resumeSummarySchema.validate(object);
-
-      // Assert
-      expect(result.error).toBeUndefined();
-    });
-  });
-  describe('addressSchema', () => {
-    it('should validate a good object', () => {
-      // Arrange
-      const object = {
-        id: 100,
-        userId: 1000,
-        address: 'address',
-      };
-
-      // Act
-      const result = resumeAddressSchema.validate(object);
+      const result = resumeOwnerSchema.validate(object);
 
       // Assert
       expect(result.error).toBeUndefined();
@@ -101,17 +43,112 @@ describe('server/db/resume/resume.schema', () => {
       expect(result.error).toBeUndefined();
     });
   });
-  describe('ownerSchema', () => {
+  describe('addressSchema', () => {
     it('should validate a good object', () => {
       // Arrange
       const object = {
         id: 100,
         userId: 1000,
-        name: 'name',
+        address: 'address',
       };
 
       // Act
-      const result = resumeOwnerSchema.validate(object);
+      const result = resumeAddressSchema.validate(object);
+
+      // Assert
+      expect(result.error).toBeUndefined();
+    });
+  });
+  describe('summarySchema', () => {
+    it('should validate a good object', () => {
+      // Arrange
+      const object = {
+        id: 100,
+        userId: 1000,
+        summary: 'summary',
+      };
+
+      // Act
+      const result = resumeSummarySchema.validate(object);
+
+      // Assert
+      expect(result.error).toBeUndefined();
+    });
+  });
+  describe('skillsSchema', () => {
+    it('should validate a good object', () => {
+      // Arrange
+      const object = [{
+        id: 1,
+        position: 1,
+        name: 'skills',
+        items: [{
+          id: 1,
+          position: 1,
+          name: 'skill #1',
+        }, {
+          id: 2,
+          position: 2,
+          name: 'skill #2',
+        }],
+      }];
+
+      // Act
+      const result = resumeSkillsSchema.validate(object);
+
+      // Assert
+      expect(result.error).toBeUndefined();
+    });
+  });
+  describe('experienceSchema', () => {
+    it('should validate a good object', () => {
+      // Arrange
+      const object = [{
+        id: 1,
+        position: 1,
+        title: 'title',
+        company: 'company',
+        startDate: 'December, 2010',
+        description: [{
+          id: 1,
+          position: 1,
+          type: 'text',
+          item: 'skill #1',
+        }],
+        bullets: [{
+          id: 2,
+          position: 2,
+          type: 'bullet',
+          item: 'bullet #1',
+        }],
+        techs: [{
+          id: 3,
+          position: 3,
+          type: 'tech',
+          item: 'tech #1',
+        }],
+      }];
+
+      // Act
+      const result = resumeExperienceSchema.validate(object);
+
+      // Assert
+      expect(result.error).toBeUndefined();
+    });
+  });
+  describe('educationSchema', () => {
+    it('should validate a good object', () => {
+      // Arrange
+      const object = [{
+        id: 100,
+        userId: 1000,
+        degree: 'degree',
+        school: 'school',
+        graduationDate: '2000-01-01',
+      }];
+
+      // Act
+      const result = resumeEducationSchema.validate(object);
 
       // Assert
       expect(result.error).toBeUndefined();
