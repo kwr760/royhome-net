@@ -56,7 +56,7 @@ const NavBar = () => {
               <NavItem>
                 <NavLink
                   tag={RouterNavLink}
-                  to="/staticresume"
+                  to="/resume"
                   exact
                   activeClassName="router-link-exact-active"
                 >
@@ -71,7 +71,7 @@ const NavBar = () => {
                     exact
                     activeClassName="router-link-exact-active"
                   >
-                    The New Resume
+                    Work In Progress
                   </NavLink>
                 </NavItem>
               )}

@@ -13,7 +13,6 @@ import PrivateRoute from './components/private-route/private-route';
 import Home from './components/home/home';
 import Profile from './components/profile/profile';
 import ResumePage from './components/resume';
-import HtmlResume from './components/html-resume/html-resume';
 
 import initFontAwesome from './util/init-font-awesome';
 import { isLoading } from './store/session/session.selector';
@@ -41,7 +40,7 @@ const App = () => {
             component={Home}
           />
           <PrivateRoute path="/profile" component={Profile} />
-          <Route path="/staticresume" component={HtmlResume} />
+          <Route path="/resume" component={ResumePage} />
           <PrivateRoute
             path="/resume"
             component={ResumePage}
