@@ -1,13 +1,13 @@
 // @flow
 
 import { processDatabaseQuery } from '../db-query';
-import { selectSkillByUserIdSql } from './resume.sql';
-import { resumeSkillMapper } from './resume.mapper';
-import { resumeSkillSchema } from './resume.schema';
+import { selectSkillsByUserIdSql } from './resume.sql';
+import { resumeSkillsMapper } from './resume.mapper';
+import { resumeSkillsSchema } from './resume.schema';
 
 export const selectSkillsByUserId = (userId: number) => processDatabaseQuery(
-  selectSkillByUserIdSql,
+  selectSkillsByUserIdSql,
   [userId],
-  resumeSkillMapper,
-  resumeSkillSchema,
+  resumeSkillsMapper,
+  resumeSkillsSchema,
 );

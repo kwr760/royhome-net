@@ -31,7 +31,7 @@ describe('client/components/resume/resume', () => {
     getByText('name');
     getByText('Summary');
     getByText('Skills');
-    getByText('Experience');
+    getByText('Professional Experience');
     getByText('Education');
   });
   it('should render with empty object', () => {
@@ -45,7 +45,7 @@ describe('client/components/resume/resume', () => {
     getByText('Cell upon request');
     getByText('Summary');
     getByText('Skills');
-    getByText('Experience');
+    getByText('Professional Experience');
     getByText('Education');
   });
 });

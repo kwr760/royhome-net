@@ -28,15 +28,7 @@ export const resumeSummarySchema = Joi.object().keys({
   summary: Joi.string().required(),
 });
 
-export const resumeEducationSchema = Joi.array().items({
-  id: Joi.number(),
-  userId: Joi.number(),
-  degree: Joi.string().required(),
-  school: Joi.string().required(),
-  graduationDate: Joi.string().required(),
-});
-
-export const resumeSkillSchema = Joi.array().items({
+export const resumeSkillsSchema = Joi.array().items({
   id: Joi.number(),
   position: Joi.number().required(),
   name: Joi.string().required(),
@@ -45,4 +37,39 @@ export const resumeSkillSchema = Joi.array().items({
     position: Joi.number().required(),
     name: Joi.string().required(),
   }).required(),
+});
+
+export const resumeExperienceSchema = Joi.array().items({
+  id: Joi.number(),
+  position: Joi.number().required(),
+  title: Joi.string().required(),
+  company: Joi.string().required(),
+  startDate: Joi.string().required(),
+  endDate: Joi.string(),
+  description: Joi.array().items({
+    id: Joi.number(),
+    position: Joi.number().required(),
+    type: Joi.string().required(),
+    item: Joi.string().required(),
+  }),
+  bullets: Joi.array().items({
+    id: Joi.number(),
+    position: Joi.number().required(),
+    type: Joi.string().required(),
+    item: Joi.string().required(),
+  }),
+  techs: Joi.array().items({
+    id: Joi.number(),
+    position: Joi.number().required(),
+    type: Joi.string().required(),
+    item: Joi.string().required(),
+  }),
+});
+
+export const resumeEducationSchema = Joi.array().items({
+  id: Joi.number(),
+  userId: Joi.number(),
+  degree: Joi.string().required(),
+  school: Joi.string().required(),
+  graduationDate: Joi.string().required(),
 });

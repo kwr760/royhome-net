@@ -180,25 +180,26 @@ CREATE TABLE resume_experience
 (
   id integer NOT NULL DEFAULT nextval('resume_experience_id_seq'::regclass) PRIMARY KEY,
   user_id integer REFERENCES resume_owner (id),
-  position text NOT NULL,
+  position integer NOT NULL,
+  title text NOT NULL,
   company text NOT NULL,
   start_date date NOT NULL,
   end_date date
 );
 ALTER TABLE resume_experience OWNER TO server;
 
-INSERT INTO resume_experience(user_id, position, company, start_date, end_date)
-SELECT user_id, position, company, date(start_date), date(end_date) FROM
+INSERT INTO resume_experience(user_id, position, title, company, start_date, end_date)
+SELECT user_id, position, title, company, date(start_date), date(end_date) FROM
 ( VALUES
-  ('Technical Lead', 'Sterling Talent Solutions', '2012-05-01', NULL),
-  ('Senior Software Engineer', 'Applied Discovery, Inc.', '2010-10-01', '2012-04-01'),
-  ('Software Engineer/Technical Lead', 'SofTech, Inc.', '2001-03-01', '2010-10-01'),
-  ('Contractor/Software Engineer', 'OrderTrust', '2000-02-01', '2001-03-01'),
-  ('Software Engineer', 'PSW Technology', '1999-04-01', '2000-02-01'),
-  ('Contractor', 'Celestica, Inc.', '1997-05-01', '1999-04-01'),
-  ('Project Leader/Software Engineer', 'Boston Technology, Inc.', '1995-12-01', '1997-05-01'),
-  ('Software Engineer', 'ESSENSE Systems, Inc.', '1994-08-01', '1995-12-01')
-) AS data(position, company, start_date, end_date)
+  (1, 'Technical Lead', 'Sterling Talent Solutions', '2012-05-01', NULL),
+  (2, 'Senior Software Engineer', 'Applied Discovery, Inc.', '2010-10-01', '2012-04-01'),
+  (3, 'Software Engineer/Technical Lead', 'SofTech, Inc.', '2001-03-01', '2010-10-01'),
+  (4, 'Contractor/Software Engineer', 'OrderTrust', '2000-02-01', '2001-03-01'),
+  (5, 'Software Engineer', 'PSW Technology', '1999-04-01', '2000-02-01'),
+  (6, 'Contractor', 'Celestica, Inc.', '1997-05-01', '1999-04-01'),
+  (7, 'Project Leader/Software Engineer', 'Boston Technology, Inc.', '1995-12-01', '1997-05-01'),
+  (8, 'Software Engineer', 'ESSENSE Systems, Inc.', '1994-08-01', '1995-12-01')
+) AS data(position, title, company, start_date, end_date)
 JOIN login_auth0 ON email = 'kroy760@gmail.com';
 
 
@@ -206,7 +207,7 @@ CREATE SEQUENCE resume_experience_item_id_seq;
 CREATE TABLE resume_experience_item
 (
   id integer NOT NULL DEFAULT nextval('resume_experience_item_id_seq'::regclass) PRIMARY KEY,
-  experience_item_id integer REFERENCES resume_experience (id),
+  experience_id integer REFERENCES resume_experience (id),
   user_id integer REFERENCES resume_owner (id),
   position integer NOT NULL,
   type text NOT NULL,
@@ -214,11 +215,11 @@ CREATE TABLE resume_experience_item
 );
 ALTER TABLE resume_experience_item OWNER TO server;
 
-INSERT INTO resume_experience_item(experience_item_id, user_id, position, type, item)
+INSERT INTO resume_experience_item(experience_id, user_id, position, type, item)
 SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
 ( VALUES
   ('Sterling Talent Solutions', 1, 'text', 'A key contributor on developing a product in a small aggressive company to be acquired by a large industry leader. We provided quality background screening and onboarding solutions. Worked in major areas of the company and developed multiple large features individually and as a leader in the team.'),
-  ('Sterling Talent Solutions', 2, 'text', 'I worked on two major aspects of the company''s product. The first is a highly configurable form based data collection framework. The second being the order and processing of the various searches and the compliance around them.'),
+  ('Sterling Talent Solutions', 2, 'text', 'I worked on two major aspects of the company''s product. The first is a highly configurable form based data collection framework. The second being the position and processing of the various searches and the compliance around them.'),
   ('Sterling Talent Solutions', 3, 'bullet', 'Fair Chance: Implemented the current states requirements for a process similar to Individualized Assessment including filling out state provided forms.'),
   ('Sterling Talent Solutions', 4, 'bullet', 'Individualized Assessment: Implemented the ability for the customer to request and process a candidate''s response to an adverse action being preformed on a candidate.'),
   ('Sterling Talent Solutions', 5, 'bullet', 'eDispute: Implemented the ability for candidate to review and dispute the reports or searches preformed on them.'),
@@ -283,9 +284,9 @@ SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
   ('Boston Technology, Inc.', 3, 'tech', 'SCO Unix'),
   ('Boston Technology, Inc.', 4, 'tech', 'SQL'),
   ('ESSENSE Systems, Inc.', 1, 'text', 'Developed aspects of a data-driven GUI that empowered employees to manage their own human resource records.')
-) AS data(exp_company, pos, type, item)
+) AS data(item_company, pos, type, item)
 JOIN login_auth0 ON login_auth0.email = 'kroy760@gmail.com'
-JOIN resume_experience ON company = exp_company;
+JOIN resume_experience ON company = item_company;
 
 CREATE SEQUENCE resume_education_id_seq;
 CREATE TABLE resume_education

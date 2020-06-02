@@ -35,6 +35,25 @@ export type SkillsType = {|
   items: [SkillItemType],
 |} | {||};
 
+export type ExperienceItemType = {|
+  id: number,
+  position: number,
+  type: string,
+  item: string,
+|} | {||};
+
+export type ExperienceType = {|
+  id: number,
+  position: number,
+  title: string,
+  company: string,
+  startDate: string,
+  endDate: string,
+  description: [ExperienceItemType],
+  bullets: [ExperienceItemType],
+  techs: [ExperienceItemType],
+|} | {||};
+
 export type EducationType = {|
   degreee: string,
   school: string,
@@ -47,6 +66,7 @@ export type ResumeType = {|
   address: AddressType,
   summary: SummaryType,
   skills: [SkillsType],
+  experience: [ExperienceType],
   education: [EducationType],
 |} | {||};
 

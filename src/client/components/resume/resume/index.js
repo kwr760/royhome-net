@@ -15,15 +15,15 @@ import './resume.css';
 
 const ResumePage = ({ resume = {} }: {| resume: ResumeType |}) => {
   const {
-    owner = {}, contact = {}, address = {}, summary = {}, education = [{}], skills = [{}],
+    owner = {}, contact = {}, address = {}, summary = {}, skills = [{}], experience = [{}], education = [{}],
   } = resume;
 
   return (
-    <Container>
+    <Container className="mb-3">
       <ResumeHeader owner={owner} contact={contact} address={address} />
       <ResumeSummary summary={summary} />
       <ResumeSkills skills={skills} />
-      <ResumeExperience resume={resume} />
+      <ResumeExperience experience={experience} />
       <ResumeEducation education={education} />
     </Container>
   );
