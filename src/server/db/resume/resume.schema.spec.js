@@ -109,21 +109,23 @@ describe('server/db/resume/resume.schema', () => {
         title: 'title',
         company: 'company',
         startDate: 'December, 2010',
-        items: [{
+        description: [{
           id: 1,
           position: 1,
           type: 'text',
-          description: 'skill #1',
-        }, {
+          item: 'skill #1',
+        }],
+        bullets: [{
           id: 2,
           position: 2,
           type: 'bullet',
-          description: 'bullet #1',
-        }, {
+          item: 'bullet #1',
+        }],
+        techs: [{
           id: 3,
           position: 3,
           type: 'tech',
-          description: 'tech #1',
+          item: 'tech #1',
         }],
       }];
 

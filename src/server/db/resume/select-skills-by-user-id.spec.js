@@ -1,8 +1,8 @@
 import { processDatabaseQuery } from '../db-query';
 import { selectSkillsByUserId } from './select-skills-by-user-id';
-import { selectSkillByUserIdSql } from './resume.sql';
-import { resumeSkillMapper } from './resume.mapper';
-import { resumeSkillSchema } from './resume.schema';
+import { selectSkillsByUserIdSql } from './resume.sql';
+import { resumeSkillsMapper } from './resume.mapper';
+import { resumeSkillsSchema } from './resume.schema';
 
 jest.mock('../db-query');
 
@@ -16,10 +16,10 @@ describe('server/db/resume/select-skills-by-user-id', () => {
 
     // Assert
     expect(processDatabaseQuery).toHaveBeenCalledWith(
-      selectSkillByUserIdSql,
+      selectSkillsByUserIdSql,
       [userId],
-      resumeSkillMapper,
-      resumeSkillSchema,
+      resumeSkillsMapper,
+      resumeSkillsSchema,
     );
   });
 });
