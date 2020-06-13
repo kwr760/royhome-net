@@ -1,8 +1,8 @@
 # Overview
-This is my home page.
+This is my website.
 
 ## Intent
-I want to create a robust and website, even if it is over engineered.  Using good practices.
+I want to create a robust website, even if it is over engineered.  Using good practices.
 
 This is built with SSR react and will have a database on the backend
 
@@ -19,6 +19,23 @@ Use these steps to start locally as a development build.
 ### Secure
 
 Use these steps to start locally as a production build.
+
+### encrypted passcodes
+
+Only can include one encrpyted file in travis at a time.  So we need
+to tar up the encrypted information.
+
+Currently including the ssh private key for transport and .env for the 
+connection to resources, such as the database.
+
+travis encrypt-file needed some setup.  google it.
+
+```
+tar cvf secrets.tar private-key .env
+cp secrets.tar <project>/.travis
+travis encrypt-file secrets.tar
+rm <project>/.travis/secrets.tar
+```
 
 #### Steps
 - `yarn start build:prod`
