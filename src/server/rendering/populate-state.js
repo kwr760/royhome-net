@@ -2,7 +2,7 @@
 
 // import { matchPath } from 'react-router-dom';
 import { COOKIE_JWT_PAYLOAD } from '../../util/auth0/auth0.constants';
-import getResumeHandler from '../handler/resume/get-resume';
+import { loadResumeByEmail } from '../db/resume';
 
 const populateState = async (req: Request) => {
   // const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
@@ -16,8 +16,7 @@ const populateState = async (req: Request) => {
     isLoading: false,
   };
   const email = 'kroy760@gmail.com';
-  const fetchedResume = await getResumeHandler();
-  const { body: { resume = {} } = {} } = fetchedResume;
+  const resume = await loadResumeByEmail(email);
 
   return {
     session,

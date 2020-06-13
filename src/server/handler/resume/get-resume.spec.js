@@ -1,48 +1,19 @@
 import { OK } from 'http-status-codes';
 import getResumeHandler from './get-resume';
-import { selectUserIdByEmail } from '../../db/login/select-user-id-by-email';
-import { selectOwnerByUserId } from '../../db/resume/select-owner-by-user-id';
-import { selectContactByUserId } from '../../db/resume/select-contact-by-user-id';
-import { selectAddressByUserId } from '../../db/resume/select-address-by-user-id';
-import { selectSummaryByUserId } from '../../db/resume/select-summary-by-user-id';
-import { selectSkillsByUserId } from '../../db/resume/select-skills-by-user-id';
-import { selectExperienceByUserId } from '../../db/resume/select-experience-by-user-id';
-import { selectEducationByUserId } from '../../db/resume/select-education-by-user-id';
+import { loadResumeByEmail } from '../../db/resume';
 
-jest.mock('../../db/login/select-user-id-by-email');
-jest.mock('../../db/resume/select-owner-by-user-id');
-jest.mock('../../db/resume/select-contact-by-user-id');
-jest.mock('../../db/resume/select-address-by-user-id');
-jest.mock('../../db/resume/select-summary-by-user-id');
-jest.mock('../../db/resume/select-skills-by-user-id');
-jest.mock('../../db/resume/select-experience-by-user-id');
-jest.mock('../../db/resume/select-education-by-user-id');
+jest.mock('../../db/resume');
 
 describe('server/routes/resume/get', () => {
   it('should return default response', async () => {
     // Arrange
     const req = {};
     const res = {};
-    selectUserIdByEmail.mockReturnValue('user-id');
-    selectOwnerByUserId.mockReturnValue('owner');
-    selectAddressByUserId.mockReturnValue('address');
-    selectContactByUserId.mockReturnValue('contact');
-    selectSummaryByUserId.mockReturnValue('summary');
-    selectSkillsByUserId.mockReturnValue('skills');
-    selectExperienceByUserId.mockReturnValue('experience');
-    selectEducationByUserId.mockReturnValue('education');
+    loadResumeByEmail.mockReturnValue('resume');
     const expected = {
       status: OK,
       body: {
-        resume: {
-          owner: 'owner',
-          address: 'address',
-          contact: 'contact',
-          summary: 'summary',
-          skills: 'skills',
-          experience: 'experience',
-          education: 'education',
-        },
+        resume: 'resume',
       },
     };
 
