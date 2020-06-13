@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import spinner from '../../assets/loading.svg';
+import spinner from '../../../assets/loading.svg';
 
 const Loading = () => (
   <div className="spinner">

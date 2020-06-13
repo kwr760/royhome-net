@@ -5,11 +5,11 @@ import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import { useSelector } from 'react-redux';
-import NavBar from './components/nav-bar/nav-bar';
-import Footer from './components/footer/footer';
-import Loading from './components/loading/loading';
+import NavBar from './components/page/nav-bar/nav-bar';
+import Footer from './components/page/footer/footer';
+import Loading from './components/page/loading/loading';
 // flowlint-next-line untyped-import:off
-import PrivateRoute from './components/private-route/private-route';
+import PrivateRoute from './components/page/private-route/private-route';
 import Home from './components/home/home';
 import Profile from './components/profile/profile';
 import ResumePage from './components/resume';

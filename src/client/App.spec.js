@@ -10,9 +10,9 @@ import configureStore from './store/configure-store';
 jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({}),
 }));
-jest.mock('./components/loading/loading', () => () => (<div>Loading</div>));
-jest.mock('./components/nav-bar/nav-bar', () => () => (<div>NavBar</div>));
-jest.mock('./components/footer/footer', () => () => (<div>Footer</div>));
+jest.mock('./components/page/loading/loading', () => () => (<div>Loading</div>));
+jest.mock('./components/page/nav-bar/nav-bar', () => () => (<div>NavBar</div>));
+jest.mock('./components/page/footer/footer', () => () => (<div>Footer</div>));
 jest.mock('./components/home/home', () => () => (<div>Home</div>));
 
 describe('src/client/App', () => {
