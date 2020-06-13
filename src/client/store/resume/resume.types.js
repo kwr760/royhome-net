@@ -82,6 +82,7 @@ export type ResumeActionType = {|
 
 export type ResumeStateType = {|
   activeResume: string,
-  [string]: ResumeType,
+  [email: string]: ResumeType,
+  'kroy760@gmail.com'?: ResumeType,
   error?: string,
 |};

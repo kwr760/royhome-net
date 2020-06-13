@@ -9,3 +9,5 @@ export type StateType = {|
   user: UserStateType,
   resume: ResumeStateType,
 |};
+
+export type PromisedStateType = Promise<StateType> | StateType;
