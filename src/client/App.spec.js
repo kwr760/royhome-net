@@ -10,10 +10,12 @@ import configureStore from './store/configure-store';
 jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({}),
 }));
-jest.mock('./components/page/loading/loading', () => () => (<div>Loading</div>));
-jest.mock('./components/page/nav-bar/nav-bar', () => () => (<div>NavBar</div>));
-jest.mock('./components/page/footer/footer', () => () => (<div>Footer</div>));
-jest.mock('./components/home/home', () => () => (<div>Home</div>));
+jest.mock('./components/page/loading', () => () => (<div>Loading</div>));
+jest.mock('./components/page/nav-bar', () => () => (<div>NavBar</div>));
+jest.mock('./components/page/footer', () => () => (<div>Footer</div>));
+jest.mock('./components/about', () => () => (<div>About</div>));
+jest.mock('./components/kevin', () => () => (<div>Kevin</div>));
+jest.mock('./components/tictactoe', () => () => (<div>Tic Tac Toe</div>));
 
 describe('src/client/App', () => {
   const history = createMemoryHistory();
@@ -35,7 +37,7 @@ describe('src/client/App', () => {
     jest.clearAllMocks();
   });
 
-  it('renders home page', () => {
+  it('renders about page', () => {
     // Arrange
     const state = {
       session: {
@@ -49,7 +51,7 @@ describe('src/client/App', () => {
 
     // Assert
     getByText(/NavBar/);
-    queryByText(/Home/);
+    queryByText(/Index/);
     getByText(/Footer/);
     expect(queryByText('Loading')).toBeNull();
   });

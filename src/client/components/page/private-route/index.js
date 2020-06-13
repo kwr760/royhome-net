@@ -10,7 +10,7 @@ import { isAuthenticated } from '../../../store/session/session.selector';
 import { getUser } from '../../../store/user/user.selector';
 import hasNeededRole from '../../../../util/auth0/has-needed-role';
 
-const PrivateRoute = ({
+const Index = ({
   component: Component, path, userRole = '', url, ...rest
 }: PrivateRoutePropsType) => {
   const { login } = useAuth0();
@@ -43,4 +43,4 @@ const PrivateRoute = ({
   return <Route path={path} render={render} {...rest} />;
 };
 
-export default PrivateRoute;
+export default Index;

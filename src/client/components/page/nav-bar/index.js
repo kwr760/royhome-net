@@ -50,24 +50,34 @@ const NavBar = () => {
                   exact
                   activeClassName="router-link-exact-active"
                 >
-                  Home
+                  Resume
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
                   tag={RouterNavLink}
-                  to="/resume"
+                  to="/about"
                   exact
                   activeClassName="router-link-exact-active"
                 >
-                  Resume
+                  About
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  tag={RouterNavLink}
+                  to="/kevin"
+                  exact
+                  activeClassName="router-link-exact-active"
+                >
+                  Kevin
                 </NavLink>
               </NavItem>
               { authenticated && hasNeededRole('engineer', user.context) && (
                 <NavItem>
                   <NavLink
                     tag={RouterNavLink}
-                    to="/resume"
+                    to="/tictactoe"
                     exact
                     activeClassName="router-link-exact-active"
                   >

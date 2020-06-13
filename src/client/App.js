@@ -5,13 +5,14 @@ import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import { useSelector } from 'react-redux';
-import NavBar from './components/page/nav-bar/nav-bar';
-import Footer from './components/page/footer/footer';
-import Loading from './components/page/loading/loading';
-// flowlint-next-line untyped-import:off
-import PrivateRoute from './components/page/private-route/private-route';
-import Home from './components/home/home';
-import Profile from './components/profile/profile';
+import NavBar from './components/page/nav-bar';
+import Footer from './components/page/footer';
+import Loading from './components/page/loading';
+import Index from './components/page/private-route';
+import AboutPage from './components/about';
+import KevinPage from './components/kevin';
+import TicTacToePage from './components/tictactoe';
+import ProfilePage from './components/profile';
 import ResumePage from './components/resume';
 
 import initFontAwesome from './util/init-font-awesome';
@@ -37,15 +38,16 @@ const App = () => {
           <Route
             path="/"
             exact
-            component={Home}
-          />
-          <PrivateRoute path="/profile" component={Profile} />
-          <Route path="/resume" component={ResumePage} />
-          <PrivateRoute
-            path="/resume"
             component={ResumePage}
+          />
+          <Route path="/about" component={AboutPage} />
+          <Route path="/kevin" component={KevinPage} />
+          <Index
+            path="/tictactoe"
+            component={TicTacToePage}
             userRole="engineer"
           />
+          <Index path="/profile" component={ProfilePage} />
         </Switch>
       </Container>
       <Footer />
