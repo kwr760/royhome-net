@@ -1,16 +1,13 @@
 import { ChunkExtractor } from '@loadable/server';
 import renderReact from './render-react';
-import getResumeHandler from '../handler/resume/get-resume';
+import { loadResumeByEmail } from '../db/resume';
 
 jest.mock('@loadable/server');
-jest.mock('../handler/resume/get-resume');
+jest.mock('../db/resume');
 
 describe('server/rendering/render-react', () => {
   const resume = {
     owner: 'owner',
-  };
-  const response = {
-    body: { resume },
   };
   it('should return a html page', async () => {
     // Arrange
@@ -28,7 +25,7 @@ describe('server/rendering/render-react', () => {
       getStyleTags: jest.fn(() => '<div>Styles</div>'),
       getScriptTags: jest.fn(() => '<div>Scripts</div>'),
     }));
-    getResumeHandler.mockResolvedValueOnce(response);
+    loadResumeByEmail.mockResolvedValueOnce(resume);
 
     // Act
     await renderReact(req, res);

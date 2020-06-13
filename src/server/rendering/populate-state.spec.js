@@ -1,10 +1,10 @@
 import populateState from './populate-state';
-import getResumeHandler from '../handler/resume/get-resume';
+import { loadResumeByEmail } from '../db/resume';
 
 import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from '../../util/auth0/auth0.constants';
 
 jest.mock('./fetch-initial-data');
-jest.mock('../handler/resume/get-resume');
+jest.mock('../db/resume');
 
 describe('server/rendering/populate-state', () => {
   const jwt = {
@@ -16,9 +16,6 @@ describe('server/rendering/populate-state', () => {
   const resume = {
     owner: 'owner',
   };
-  const response = {
-    body: { resume },
-  };
   it('should return an state from empty context', async () => {
     // Arrange
     const req = {
@@ -27,7 +24,7 @@ describe('server/rendering/populate-state', () => {
         [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
       },
     };
-    getResumeHandler.mockResolvedValueOnce(response);
+    loadResumeByEmail.mockResolvedValueOnce(resume);
     const expected = {
       session: {
         authenticated: true,
@@ -55,7 +52,7 @@ describe('server/rendering/populate-state', () => {
         [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
       },
     };
-    getResumeHandler.mockResolvedValueOnce(response);
+    loadResumeByEmail.mockResolvedValueOnce(resume);
     const expected = {
       session: {
         authenticated: true,
@@ -83,7 +80,7 @@ describe('server/rendering/populate-state', () => {
         nopayload: JSON.stringify(jwt),
       },
     };
-    getResumeHandler.mockResolvedValueOnce({});
+    loadResumeByEmail.mockResolvedValueOnce({});
     const expected = {
       session: {
         authenticated: false,
