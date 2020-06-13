@@ -1,23 +1,33 @@
 import populateState from './populate-state';
+import getResumeHandler from '../handler/resume/get-resume';
 
 import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from '../../util/auth0/auth0.constants';
 
 jest.mock('./fetch-initial-data');
+jest.mock('../handler/resume/get-resume');
 
 describe('server/rendering/populate-state', () => {
-  it('should return an state from empty context', () => {
+  const jwt = {
+    exp: 10,
+    [TOKEN_URL]: 'test data',
+    user: {},
+  };
+  const email = 'kroy760@gmail.com';
+  const resume = {
+    owner: 'owner',
+  };
+  const response = {
+    body: { resume },
+  };
+  it('should return an state from empty context', async () => {
     // Arrange
-    const jwt = {
-      exp: 10,
-      [TOKEN_URL]: 'test data',
-      user: {},
-    };
     const req = {
       url: '/resume/email@company.com',
       cookies: {
         [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
       },
     };
+    getResumeHandler.mockResolvedValueOnce(response);
     const expected = {
       session: {
         authenticated: true,
@@ -26,29 +36,26 @@ describe('server/rendering/populate-state', () => {
       },
       user: {},
       resume: {
-        activeResume: 'kroy760@gmail.com',
+        activeResume: email,
+        [email]: resume,
       },
     };
 
     // Act
-    const state = populateState(req);
+    const state = await populateState(req);
 
     // Assert
     expect(state).toEqual(expected);
   });
-  it('should not find route', () => {
+  it('should not find route', async () => {
     // Arrange
-    const jwt = {
-      exp: 10,
-      [TOKEN_URL]: 'test data',
-      user: {},
-    };
     const req = {
       url: '/ourses',
       cookies: {
         [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
       },
     };
+    getResumeHandler.mockResolvedValueOnce(response);
     const expected = {
       session: {
         authenticated: true,
@@ -57,29 +64,26 @@ describe('server/rendering/populate-state', () => {
       },
       user: {},
       resume: {
-        activeResume: 'kroy760@gmail.com',
+        activeResume: email,
+        [email]: resume,
       },
     };
 
     // Act
-    const state = populateState(req);
+    const state = await populateState(req);
 
     // Assert
     expect(state).toEqual(expected);
   });
-  it('should not find payload', () => {
+  it('should not find payload', async () => {
     // Arrange
-    const jwt = {
-      exp: 10,
-      [TOKEN_URL]: 'test data',
-      user: {},
-    };
     const req = {
       url: '/ourses',
       cookies: {
         nopayload: JSON.stringify(jwt),
       },
     };
+    getResumeHandler.mockResolvedValueOnce({});
     const expected = {
       session: {
         authenticated: false,
@@ -88,12 +92,13 @@ describe('server/rendering/populate-state', () => {
       },
       user: {},
       resume: {
-        activeResume: 'kroy760@gmail.com',
+        activeResume: email,
+        [email]: {},
       },
     };
 
     // Act
-    const state = populateState(req);
+    const state = await populateState(req);
 
     // Assert
     expect(state).toEqual(expected);

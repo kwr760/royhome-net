@@ -1,10 +1,18 @@
 import { ChunkExtractor } from '@loadable/server';
 import renderReact from './render-react';
+import getResumeHandler from '../handler/resume/get-resume';
 
 jest.mock('@loadable/server');
+jest.mock('../handler/resume/get-resume');
 
 describe('server/rendering/render-react', () => {
-  it('should return a html page', () => {
+  const resume = {
+    owner: 'owner',
+  };
+  const response = {
+    body: { resume },
+  };
+  it('should return a html page', async () => {
     // Arrange
     const req = {
       cookies: {},
@@ -20,40 +28,12 @@ describe('server/rendering/render-react', () => {
       getStyleTags: jest.fn(() => '<div>Styles</div>'),
       getScriptTags: jest.fn(() => '<div>Scripts</div>'),
     }));
-    const preloaededState = {
-      session: {
-        authenticated: false,
-        expiration: -1,
-        isLoading: false,
-      },
-      user: {},
-      resume: {
-        activeResume: 'kroy760@gmail.com',
-      },
-    };
+    getResumeHandler.mockResolvedValueOnce(response);
 
     // Act
-    renderReact(req, res);
+    await renderReact(req, res);
 
     // Assert
-    expect(res.send).toHaveBeenCalledWith(`<!DOCTYPE html>
-<html lang="en" class="h-100">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roy Home</title>
-    <base href="/" >
-    <link rel="shortcut icon" href="/dist/web/favicon.ico">
-    <link href="https://use.fontawesome.com/releases/v5.12.1/css/svg-with-js.css" rel="stylesheet">
-    <div>Links</div>
-    <div>Styles</div>
-    <script>window.__PRELOADED_STATE__ = ${JSON.stringify(preloaededState)}</script>
-  </head>
-  <body class="h-100">
-    <div id="main" class="h-100">&lt;div&gt;Chunks&lt;/div&gt;</div>
-    <div>Scripts</div>
-  </body>
-</html>
-`);
+    expect(res.send).toMatchSnapshot();
   });
 });

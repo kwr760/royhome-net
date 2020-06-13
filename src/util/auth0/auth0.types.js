@@ -1,9 +1,5 @@
 // @flow
 
-export type TokenDataType = {
-  role?: string,
-  ...
-};
 export type Auth0ProviderPropsType = {|
   children: Object,
   onRedirectCallback: Function,
