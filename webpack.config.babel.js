@@ -41,10 +41,6 @@ const getConfig = (target) => ({
         ],
       },
       {
-        test: /\.html$/,
-        use: ['html-loader'],
-      },
-      {
         test: /\.scss$/,
         use: [
           'isomorphic-style-loader',
