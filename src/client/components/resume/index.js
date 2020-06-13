@@ -1,17 +1,17 @@
 // @flow
 
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { useAuth0 } from '../../../util/auth0/auth0-context';
+// import { useAuth0 } from '../../../util/auth0/auth0-context';
 import Resume from './resume';
 // import { getResumeAction } from '../../store/resume/resume.action';
 import { getResume } from '../../store/resume/resume.selector';
 
 const ResumePage = () => {
-  const { getToken } = useAuth0();
+  // const { getToken } = useAuth0();
   const resume = useSelector(getResume);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // useEffect(() => {
   //   const callResumeApi = async (cbResume, cbMessage) => {
