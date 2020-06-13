@@ -4,7 +4,7 @@
 import { COOKIE_JWT_PAYLOAD } from '../../util/auth0/auth0.constants';
 import getResumeHandler from '../handler/resume/get-resume';
 
-const populateState: any = async (req: Request) => {
+const populateState = async (req: Request) => {
   // const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
   // const data = fetchInitialData(activeRoute.fetchData ? activeRoute.fetchData : {});
   const jwt = req.cookies[COOKIE_JWT_PAYLOAD] ? JSON.parse(req.cookies[COOKIE_JWT_PAYLOAD]) : {};
