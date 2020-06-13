@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Loading from './loading';
+import Loading from './index';
 
 describe('src/client/components/page/loading', () => {
   it('renders without crashing', () => {

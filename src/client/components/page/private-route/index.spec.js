@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import PrivateRoute from './private-route';
+import Index from './index';
 import { Auth0Context } from '../../../../util/auth0/auth0-context';
 import hasNeededRole from '../../../../util/auth0/has-needed-role';
 import configureStore from '../../../store/configure-store';
@@ -16,7 +16,7 @@ describe('client/components/page/private-route', () => {
     <Router>
       <Provider store={store}>
         <Auth0Context.Provider value={auth}>
-          <PrivateRoute component={mockComponent} userRole={role} path={path} />
+          <Index component={mockComponent} userRole={role} path={path} />
         </Auth0Context.Provider>
       </Provider>
     </Router>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Footer from './footer';
+import Footer from './index';
 import initFontAwesome from '../../../util/init-font-awesome';
 
 initFontAwesome();

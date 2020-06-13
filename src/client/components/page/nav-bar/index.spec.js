@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import NavBar from './nav-bar';
+import NavBar from './index';
 import { Auth0Context } from '../../../../util/auth0/auth0-context';
 import hasNeededRole from '../../../../util/auth0/has-needed-role';
 import initFontAwesome from '../../../util/init-font-awesome';
@@ -39,7 +39,8 @@ describe('client/components/page/nav-bar', () => {
     const { getByText, getAllByText, getByTestId } = render(getNavBar(store, auth));
 
     // Assert
-    getByText(/Home/);
+    getByText(/About/);
+    getByText(/Kevin/);
     getAllByText(/Resume/);
     getAllByText(/Log out/);
 
@@ -68,7 +69,8 @@ describe('client/components/page/nav-bar', () => {
     } = render(getNavBar(store, auth));
 
     // Assert
-    getByText(/Home/);
+    getByText(/About/);
+    getByText(/Kevin/);
     getByText(/Resume/);
     getAllByText(/Tester/);
     getAllByAltText(/Profile/);
@@ -98,7 +100,8 @@ describe('client/components/page/nav-bar', () => {
     const { getByText, getAllByText } = render(getNavBar(store, auth));
 
     // Assert
-    getByText(/Home/);
+    getByText(/About/);
+    getByText(/Kevin/);
     getByText(/Resume/);
     getAllByText(/Log in/);
 
