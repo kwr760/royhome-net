@@ -12,7 +12,7 @@ import displayMessage from '../middleware/display-message';
 import env from '../../config';
 import configureStore from '../../client/store/configure-store';
 
-const renderReact = (req: Request, res: Response) => {
+const renderReact = async (req: Request, res: Response) => {
   displayMessage(`Server render:  ${req.url}`);
 
   // Extract the creation of the markup to a separate file
@@ -21,7 +21,7 @@ const renderReact = (req: Request, res: Response) => {
   const { default: Main } = nodeExtractor.requireEntrypoint();
   const webStats = path.resolve(env.root, './dist/web/loadable-stats.json');
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
-  const state = populateState(req);
+  const state = await populateState(req);
   const store = configureStore(state);
   const jsx = webExtractor.collectChunks(
     <Main

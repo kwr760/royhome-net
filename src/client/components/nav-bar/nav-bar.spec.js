@@ -41,7 +41,6 @@ describe('client/components/nav-bar', () => {
     // Assert
     getByText(/Home/);
     getAllByText(/Resume/);
-    getByText(/The New Resume/);
     getAllByText(/Log out/);
 
     fireEvent.click(getByTestId('navbar-toggler'));
