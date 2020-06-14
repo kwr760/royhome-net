@@ -30,7 +30,6 @@ describe('util/auth0/react-auth0-spa', () => {
     </Auth0Provider>
   );
 
-  // eslint-disable-next-line react/prop-types
   const TestConsumer = ({ config = {} }) => {
     const performCoverage = (config.coverage) ? config.coverage : false;
 
@@ -100,7 +99,6 @@ describe('util/auth0/react-auth0-spa', () => {
         },
       },
     });
-    // document.title = 'Title';
     createAuth0Client.mockResolvedValue({
       isAuthenticated: jest.fn(() => false),
       loginWithRedirect: jest.fn(() => ({})),
