@@ -1,5 +1,6 @@
 import { ChunkExtractor } from '@loadable/server';
 import renderReact from './render-react';
+
 import { loadResumeByEmail } from '../db/resume';
 
 jest.mock('@loadable/server');
@@ -12,6 +13,7 @@ describe('server/rendering/render-react', () => {
   it('should return a html page', async () => {
     // Arrange
     const req = {
+      url: '/',
       cookies: {},
     };
     const res = {
@@ -25,7 +27,7 @@ describe('server/rendering/render-react', () => {
       getStyleTags: jest.fn(() => '<div>Styles</div>'),
       getScriptTags: jest.fn(() => '<div>Scripts</div>'),
     }));
-    loadResumeByEmail.mockResolvedValueOnce(resume);
+    loadResumeByEmail.mockResolvedValue(resume);
 
     // Act
     await renderReact(req, res);

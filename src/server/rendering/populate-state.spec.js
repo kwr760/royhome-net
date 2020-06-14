@@ -3,7 +3,6 @@ import { loadResumeByEmail } from '../db/resume';
 
 import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from '../../util/auth0/auth0.constants';
 
-jest.mock('./fetch-initial-data');
 jest.mock('../db/resume');
 
 describe('server/rendering/populate-state', () => {
@@ -19,7 +18,7 @@ describe('server/rendering/populate-state', () => {
   it('should return an state from empty context', async () => {
     // Arrange
     const req = {
-      url: '/resume/email@company.com',
+      url: '/',
       cookies: {
         [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
       },
@@ -60,10 +59,6 @@ describe('server/rendering/populate-state', () => {
         isLoading: false,
       },
       user: {},
-      resume: {
-        activeResume: email,
-        [email]: resume,
-      },
     };
 
     // Act
@@ -75,7 +70,7 @@ describe('server/rendering/populate-state', () => {
   it('should not find payload', async () => {
     // Arrange
     const req = {
-      url: '/ourses',
+      url: '/',
       cookies: {
         nopayload: JSON.stringify(jwt),
       },
@@ -90,7 +85,7 @@ describe('server/rendering/populate-state', () => {
       user: {},
       resume: {
         activeResume: email,
-        [email]: {},
+        [email]: resume,
       },
     };
 
