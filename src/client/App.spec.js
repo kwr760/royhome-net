@@ -1,9 +1,10 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
 
-import { Provider } from 'react-redux';
+import { Auth0Context } from '../util/auth0/auth0-context';
 import App from './App';
 import configureStore from './store/configure-store';
 
@@ -13,6 +14,7 @@ jest.mock('axios', () => ({
 jest.mock('./components/page/loading', () => () => (<div>Loading</div>));
 jest.mock('./components/page/nav-bar', () => () => (<div>NavBar</div>));
 jest.mock('./components/page/footer', () => () => (<div>Footer</div>));
+jest.mock('./components/resume', () => () => (<div>Resume</div>));
 jest.mock('./components/about', () => () => (<div>About</div>));
 jest.mock('./components/kevin', () => () => (<div>Kevin</div>));
 jest.mock('./components/tictactoe', () => () => (<div>Tic Tac Toe</div>));
@@ -24,9 +26,11 @@ describe('src/client/App', () => {
   };
   const getApp = (store) => (
     <Provider store={store}>
-      <Router>
-        <App history={history} context={context} />
-      </Router>
+      <Auth0Context.Provider value={{}}>
+        <Router>
+          <App history={history} context={context} />
+        </Router>
+      </Auth0Context.Provider>
     </Provider>
   );
   beforeEach(() => {
