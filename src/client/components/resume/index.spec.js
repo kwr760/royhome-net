@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { render, wait } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
@@ -23,7 +23,7 @@ jest.mock('./education');
 
 describe('client/components/private/resume', () => {
   const token = 'token';
-  // const email = 'kroy760@gmail.com';
+  const email = 'kroy760@gmail.com';
   const dispatch = jest.fn();
   const defaultAuth = {
     getToken: jest.fn(() => token),
@@ -59,7 +59,24 @@ describe('client/components/private/resume', () => {
     getByText(/Resume Skills/);
     getByText(/Resume Experience/);
     getByText(/Resume Education/);
-    // expect(getResumeAction).toBeCalledWith(dispatch, email, token);
+    expect(getResumeAction).toBeCalledWith(dispatch, email, token);
+  });
+  it('should render resume when resume is already loaded', async () => {
+    // Arrange
+    useDispatch.mockReturnValue(dispatch);
+    useSelector.mockReturnValue({ owner: 'owner' });
+
+    // Act
+    const { getByText } = render(getResume(defaultAuth));
+    await wait();
+
+    // Assert
+    getByText(/Resume Header/);
+    getByText(/Resume Summary/);
+    getByText(/Resume Skills/);
+    getByText(/Resume Experience/);
+    getByText(/Resume Education/);
+    expect(getResumeAction).not.toBeCalled();
   });
   it('should render default request if there is no token', async () => {
     // Arrange
