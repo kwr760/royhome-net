@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { render, waitForElement } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import { Provider } from 'react-redux';
@@ -34,7 +34,7 @@ describe('client/components/resume/profile', () => {
     const { getByText, getByAltText } = render(getProfile(store));
 
     // Assert
-    await waitForElement(() => getByAltText('Profile'));
+    await waitFor(() => getByAltText('Profile'));
     getByText(/Nickname/);
     getByText(/Picture/);
     getByText(/Loaded Arg/);

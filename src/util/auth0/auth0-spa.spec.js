@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { render, fireEvent, wait } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import createAuth0Client from '@auth0/auth0-spa-js';
 
@@ -74,9 +74,9 @@ describe('util/auth0/react-auth0-spa', () => {
 
     // Act
     const { getByText } = render(testProvider(testContext));
-    await wait();
+    await waitFor(() => {});
     fireEvent.click(getByText(/Logout/));
-    await wait();
+    await waitFor(() => {});
 
     // Assert
     expect(dispatch).toBeCalledTimes(6);
@@ -114,7 +114,7 @@ describe('util/auth0/react-auth0-spa', () => {
 
     // Act
     render(testProvider(testContext, { coverage: true }));
-    await wait();
+    await waitFor(() => {});
 
     // Assert
     expect(dispatch).toBeCalledTimes(4);
