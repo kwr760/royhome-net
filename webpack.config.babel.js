@@ -1,7 +1,6 @@
 import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
@@ -73,7 +72,7 @@ const getConfig = (target) => ({
     target === 'node' ? [
       '@loadable/component',
       nodeExternals({
-        whitelist: [/\.(?!(?:jsx?|json)$).{1,5}$/i],
+        allowlist: [/\.(?!(?:jsx?|json)$).{1,5}$/i],
       }),
     ] : undefined,
   output: {
@@ -89,9 +88,6 @@ const getConfig = (target) => ({
       filename: dev ? '[name].css' : '[name].[chunkhash:8].css',
       chunkFilename: dev ? '[id].css' : '[id].[chunkhash:8].css',
     }),
-    new CopyWebpackPlugin([
-      { from: './src/client/assets/favicon.ico' },
-    ]),
     new WebpackMd5Hash(),
     new StylelintPlugin({
       configFile: './stylelint.config.js',
