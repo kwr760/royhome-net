@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { render, wait } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Resume from './index';
@@ -51,10 +51,9 @@ describe('client/components/private/resume', () => {
 
     // Act
     const { getByText } = render(getResume(defaultAuth));
-    await wait();
 
     // Assert
-    getByText(/Resume Header/);
+    await waitFor(() => getByText(/Resume Header/));
     getByText(/Resume Summary/);
     getByText(/Resume Skills/);
     getByText(/Resume Experience/);
@@ -68,10 +67,9 @@ describe('client/components/private/resume', () => {
 
     // Act
     const { getByText } = render(getResume(defaultAuth));
-    await wait();
 
     // Assert
-    getByText(/Resume Header/);
+    await waitFor(() => getByText(/Resume Header/));
     getByText(/Resume Summary/);
     getByText(/Resume Skills/);
     getByText(/Resume Experience/);
@@ -86,10 +84,9 @@ describe('client/components/private/resume', () => {
 
     // Act
     const { getByText } = render(getResume(overrideAuth));
-    await wait();
 
     // Assert
-    getByText(/Resume Header/);
+    await waitFor(() => getByText(/Resume Header/));
     getByText(/Resume Summary/);
     getByText(/Resume Skills/);
     getByText(/Resume Experience/);
