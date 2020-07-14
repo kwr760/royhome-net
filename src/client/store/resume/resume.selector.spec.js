@@ -10,7 +10,7 @@ describe('client/store/resume/resume.selector', () => {
     const email = 'kroy760@gmail.com';
     const expectedResume = {
       owner: {
-        name: 'Kevin Roy',
+        name: 'Author Roy',
       },
       contact: {
         phone: '(425) 555-1234',

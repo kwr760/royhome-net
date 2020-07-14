@@ -8,11 +8,13 @@ import { useAuth0 } from '../../../util/auth0/auth0-context';
 import Resume from './resume';
 import { getResumeAction } from '../../store/resume/resume.action';
 import { getResume } from '../../store/resume/resume.selector';
+import { isLoading } from '../../store/session/session.selector';
 
 const ResumePage = () => {
   const { getToken } = useAuth0();
   const resume = useSelector(getResume);
   const dispatch = useDispatch();
+  const loading = useSelector(isLoading);
 
   useEffect(() => {
     const callResumeApi = async () => {
@@ -27,7 +29,7 @@ const ResumePage = () => {
   }, [resume, dispatch, getToken]);
 
   return (
-    <Resume resume={resume} />
+    loading ? null : <Resume resume={resume} />
   );
 };
 

@@ -63,7 +63,7 @@ describe('client/components/private/resume', () => {
   it('should render resume when resume is already loaded', async () => {
     // Arrange
     useDispatch.mockReturnValue(dispatch);
-    useSelector.mockReturnValue({ owner: 'owner' });
+    useSelector.mockReturnValueOnce({ owner: 'owner' }).mockReturnValueOnce(false);
 
     // Act
     const { getByText } = render(getResume(defaultAuth));
@@ -75,6 +75,19 @@ describe('client/components/private/resume', () => {
     getByText(/Resume Experience/);
     getByText(/Resume Education/);
     expect(getResumeAction).not.toBeCalled();
+  });
+  it('should not render resume when loading', async () => {
+    // Arrange
+    useDispatch.mockReturnValue(dispatch);
+    useSelector.mockReturnValueOnce({ owner: 'owner' }).mockReturnValueOnce(true);
+
+    // Act
+    const { queryByText } = render(getResume(defaultAuth));
+    await waitFor(() => {});
+
+    // Assert
+    const missingHeader = queryByText(/Resume Header/);
+    expect(missingHeader).toBeNull();
   });
   it('should render default request if there is no token', async () => {
     // Arrange

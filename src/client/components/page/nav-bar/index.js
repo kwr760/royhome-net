@@ -66,11 +66,11 @@ const NavBar = () => {
               <NavItem>
                 <NavLink
                   tag={RouterNavLink}
-                  to="/kevin"
+                  to="/author"
                   exact
                   activeClassName="router-link-exact-active"
                 >
-                  Kevin
+                  Author
                 </NavLink>
               </NavItem>
               { authenticated && hasNeededRole('engineer', user.context) && (

@@ -9,7 +9,7 @@ export const isAuthenticated = createSelector<StateType, null, boolean, SessionS
   (session: SessionStateType) => session.authenticated,
 );
 
-export const isLoading = createSelector<StateType, null, boolean, SessionStateType>(
+export const isLoading = createSelector<StateType, mixed, boolean, SessionStateType>(
   (state: StateType) => state.session,
   (session: SessionStateType): boolean => session.isLoading,
 );

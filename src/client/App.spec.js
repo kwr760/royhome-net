@@ -16,7 +16,7 @@ jest.mock('./components/page/nav-bar', () => () => (<div>NavBar</div>));
 jest.mock('./components/page/footer', () => () => (<div>Footer</div>));
 jest.mock('./components/resume', () => () => (<div>Resume</div>));
 jest.mock('./components/about', () => () => (<div>About</div>));
-jest.mock('./components/kevin', () => () => (<div>Kevin</div>));
+jest.mock('./components/author', () => () => (<div>Author</div>));
 jest.mock('./components/tictactoe', () => () => (<div>Tic Tac Toe</div>));
 
 describe('src/client/App', () => {

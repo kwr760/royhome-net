@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const Kevin = () => (
+const Author = () => (
   <div>
     <p>
       There is not a lot I want to say about myself.  I care about my family, skiing, hiking, biking,
@@ -17,4 +17,4 @@ const Kevin = () => (
   </div>
 );
 
-export default Kevin;
+export default Author;

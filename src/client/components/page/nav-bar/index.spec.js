@@ -40,7 +40,7 @@ describe('client/components/page/nav-bar', () => {
 
     // Assert
     getByText(/About/);
-    getByText(/Kevin/);
+    getByText(/Author/);
     getAllByText(/Resume/);
     getAllByText(/Log out/);
 
@@ -70,7 +70,7 @@ describe('client/components/page/nav-bar', () => {
 
     // Assert
     getByText(/About/);
-    getByText(/Kevin/);
+    getByText(/Author/);
     getByText(/Resume/);
     getAllByText(/Tester/);
     getAllByAltText(/Profile/);
@@ -101,7 +101,7 @@ describe('client/components/page/nav-bar', () => {
 
     // Assert
     getByText(/About/);
-    getByText(/Kevin/);
+    getByText(/Author/);
     getByText(/Resume/);
     getAllByText(/Log in/);
 
