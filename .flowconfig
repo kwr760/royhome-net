@@ -7,6 +7,8 @@
 [libs]
 ./flow-typed/.*
 
+[untyped]
+
 [lints]
 all=warn
 ambiguous-object-type=error
@@ -28,13 +30,15 @@ module.file_ext=.json
 module.file_ext=.css
 module.file_ext=.scss
 module.file_ext=.html
+module.file_ext=.md
 module.name_mapper.extension='css' -> 'empty/object'
 module.name_mapper.extension='scss' -> 'empty/object'
 module.name_mapper.extension='html' -> 'empty/string'
+module.name_mapper.extension='md' -> 'empty/object'
+module.name_mapper='^@src' ->'<PROJECT_ROOT>/src'
 
 [strict]
 nonstrict-import
-unclear-type
 unsafe-getters-setters
 untyped-import
 untyped-type-import

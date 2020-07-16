@@ -66,6 +66,14 @@ const getConfig = (target) => ({
           },
         ],
       },
+      {
+        test: /\.(md)$/i,
+        use: [
+          {
+            loader: 'raw-loader',
+          },
+        ],
+      },
     ],
   },
   externals:
@@ -97,6 +105,9 @@ const getConfig = (target) => ({
   ],
   resolve: {
     extensions: ['.js', '.scss'],
+    alias: {
+      '@src': path.resolve(__dirname, 'src/'),
+    },
   },
 });
 
