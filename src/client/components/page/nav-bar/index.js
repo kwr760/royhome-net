@@ -20,10 +20,10 @@ import {
   DropdownItem,
 } from 'reactstrap';
 
-import { useAuth0 } from '../../../../util/auth0/auth0-context';
+import { useAuth0 } from '@src/util/auth0/auth0-context';
+import hasNeededRole from '@src/util/auth0/has-needed-role';
 import { isAuthenticated } from '../../../store/session/session.selector';
 import { getUser } from '../../../store/user/user.selector';
-import hasNeededRole from '../../../../util/auth0/has-needed-role';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -122,6 +122,15 @@ const NavBar = () => {
                       Profile
                     </DropdownItem>
                     <DropdownItem
+                      tag={RouterNavLink}
+                      to="/privacy"
+                      className="dropdown-profile"
+                      activeClassName="router-link-exact-active"
+                    >
+                      <FontAwesomeIcon icon="user-secret" className="mr-3" />
+                      Privacy
+                    </DropdownItem>
+                    <DropdownItem
                       id="qsLogoutBtn"
                       onClick={() => logout()}
                     >
@@ -152,23 +161,21 @@ const NavBar = () => {
                 navbar
               >
                 <NavItem>
-                  <span className="user-info">
-                    <img
-                      src={picture}
-                      alt="Profile"
-                      className="nav-user-profile d-inline-block rounded-circle mr-3"
-                      width="50"
-                    />
-                    <h6 className="d-inline-block">{name}</h6>
-                  </span>
-                </NavItem>
-                <NavItem>
                   <FontAwesomeIcon icon="user-alt" className="mr-3" />
                   <RouterNavLink
                     to="/profile"
                     activeClassName="router-link-exact-active"
                   >
                     Profile
+                  </RouterNavLink>
+                </NavItem>
+                <NavItem>
+                  <FontAwesomeIcon icon="user-secret" className="mr-3" />
+                  <RouterNavLink
+                    to="/privacy"
+                    activeClassName="router-link-exact-active"
+                  >
+                    Privacy
                   </RouterNavLink>
                 </NavItem>
                 <NavItem>

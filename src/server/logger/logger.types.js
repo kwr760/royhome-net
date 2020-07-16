@@ -1,6 +1,6 @@
 // @flow
 
-import type { LogType } from '../../util/logger/logger.types';
+import type { LogType } from '@src/util/logger/logger.types';
 
 export type LogMsgType = {|
   logType: LogType,

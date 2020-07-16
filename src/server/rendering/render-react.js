@@ -7,9 +7,9 @@ import { ChunkExtractor } from '@loadable/server';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 
+import env from '@src/config';
 import populateState from './populate-state';
 import displayMessage from '../middleware/display-message';
-import env from '../../config';
 import configureStore from '../../client/store/configure-store';
 
 const renderReact = async (req: Request, res: Response) => {

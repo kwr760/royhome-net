@@ -1,9 +1,8 @@
 // @flow
 
-import env from '../../config';
-
-import getConsole from '../../util/logger/get-console';
-import formatMessage from '../../util/logger/format-message';
+import env from '@src/config';
+import getConsole from '@src/util/logger/get-console';
+import formatMessage from '@src/util/logger/format-message';
 import getLogFilename from './get-filename';
 import writeToLog from './write-to-log';
 import type { LogMsgType } from './logger.types';

@@ -1,8 +1,8 @@
 // @flow
 
-import env from '../../../config';
+import env from '@src/config';
 
-import getConsole from '../../../util/logger/get-console';
+import getConsole from '@src/util/logger/get-console';
 import writeToServer from './write-to-server';
 import type { LogMsgType } from '../../../server/logger/logger.types';
 

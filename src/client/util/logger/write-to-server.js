@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-import env from '../../../config';
+import env from '@src/config';
 import type { LogMsgType } from '../../../server/logger/logger.types';
 
 /**

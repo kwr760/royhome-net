@@ -2,8 +2,9 @@
 
 import fs from 'fs';
 import https from 'https';
+
+import env from '@src/config';
 import displayMessage from './display-message';
-import env from '../../config';
 
 const startHttpsServer = (app: Object, port: number) => {
   const privateKey = fs.readFileSync(env.server.key, 'utf8');

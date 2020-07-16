@@ -11,6 +11,7 @@ import Loading from './components/page/loading';
 import PrivateRoute from './components/page/private-route';
 import AboutPage from './components/about';
 import AuthorPage from './components/author';
+import PrivacyPage from './components/privacy';
 import TicTacToePage from './components/tictactoe';
 import ProfilePage from './components/profile';
 import ResumePage from './components/resume';
@@ -40,6 +41,7 @@ const App = () => {
             />
             <Route path="/about" component={AboutPage} />
             <Route path="/author" component={AuthorPage} />
+            <Route path="/privacy" component={PrivacyPage} />
             <PrivateRoute
               path="/tictactoe"
               component={TicTacToePage}

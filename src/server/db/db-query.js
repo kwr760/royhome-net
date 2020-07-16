@@ -1,8 +1,8 @@
 // @flow
 
+import { ERROR_CODE } from '@src/util/error-codes';
 import pool from './db-pool';
 import Logger from '../logger';
-import { ERROR_CODE } from '../../util/error-codes';
 
 const dbQuery = (sql: string, params: Array<any>): any => new Promise<any>((resolve, reject) => {
   pool.query(sql, params)

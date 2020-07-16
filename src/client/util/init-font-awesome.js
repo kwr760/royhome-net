@@ -2,7 +2,7 @@
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faPowerOff, faUserAlt, faSignInAlt, faSignOutAlt,
+  faPowerOff, faUserAlt, faSignInAlt, faSignOutAlt, faUserSecret,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faGithub,
@@ -14,6 +14,7 @@ function initFontAwesome() {
   library.add(faSignInAlt);
   library.add(faSignOutAlt);
   library.add(faGithub);
+  library.add(faUserSecret);
 }
 
 export default initFontAwesome;

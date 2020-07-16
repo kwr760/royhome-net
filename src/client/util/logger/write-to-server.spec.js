@@ -1,7 +1,7 @@
 import axios from 'axios';
 
+import LOG_LEVELS from '@src/util/logger/logger-levels';
 import writeToServer from './write-to-server';
-import LOG_LEVELS from '../../../util/logger/logger-levels';
 
 jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({ data: {} }),

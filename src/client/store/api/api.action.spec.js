@@ -1,7 +1,8 @@
 import axios from 'axios';
+
+import { ERROR_CODE } from '@src/util/error-codes';
 import { apiActionCreator } from './api.action';
 import { API_STATUS } from './api.contants';
-import { ERROR_CODE } from '../../../util/error-codes';
 
 jest.mock('axios');
 

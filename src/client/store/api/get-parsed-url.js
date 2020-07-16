@@ -1,6 +1,6 @@
 // @flow
 
-import env from '../../../config';
+import env from '@src/config';
 import type { ActionObjectType, ApiConfigType } from './api.types';
 
 export const getParsedUrl = (config: ApiConfigType, action: ActionObjectType) => {

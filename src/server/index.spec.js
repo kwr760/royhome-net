@@ -94,8 +94,8 @@ describe('server/index', () => {
   it('should start dev server', () => {
     // Arrange
     jest.isolateModules(() => {
-      const { default: env } = require('../config');
-      const { default: dev } = require('../config/env/dev');
+      const { default: env } = require('@src/config');
+      const { default: dev } = require('@src/config/env/dev');
       env.mode = dev.mode;
       env.server = dev.server;
 
@@ -110,8 +110,8 @@ describe('server/index', () => {
   it('should start prod server', () => {
     // Arrange
     jest.isolateModules(() => {
-      const { default: env } = require('../config');
-      const { default: prod } = require('../config/env/prod');
+      const { default: env } = require('@src/config');
+      const { default: prod } = require('@src/config/env/prod');
       env.mode = prod.mode;
       env.server = prod.server;
 

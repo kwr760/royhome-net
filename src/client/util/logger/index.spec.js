@@ -1,5 +1,5 @@
+import LOG_LEVELS from '@src/util/logger/logger-levels';
 import Logger from './index';
-import LOG_LEVELS from '../../../util/logger/logger-levels';
 import log from './log';
 
 jest.mock('./log');

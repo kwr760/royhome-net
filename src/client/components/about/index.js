@@ -1,18 +1,15 @@
 // @flow
 
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
+
+// $FlowFixMe
+import projectMarkdown from '@src/../PROJECT.md';
 
 const About = () => (
-  <div>
-    <h1>Project</h1>
-    <p>
-      nodejs - react
-    </p>
-    <p>
-      React frontend and with SSR and api backend.
-    </p>
-    <p>more details to come</p>
-  </div>
+  <ReactMarkdown
+    source={projectMarkdown}
+  />
 );
 
 export default About;

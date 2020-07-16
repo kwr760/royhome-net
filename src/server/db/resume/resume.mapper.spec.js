@@ -1,4 +1,4 @@
-import { ERROR_CODE } from '../../../util/error-codes';
+import { ERROR_CODE } from '@src/util/error-codes';
 import {
   resumeAddressMapper,
   resumeContactMapper,

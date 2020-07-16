@@ -1,7 +1,8 @@
 // @flow
 
 import { matchPath } from 'react-router-dom';
-import { COOKIE_JWT_PAYLOAD } from '../../util/auth0/auth0.constants';
+
+import { COOKIE_JWT_PAYLOAD } from '@src/util/auth0/auth0.constants';
 import { fetchRoutes } from './fetch-routes';
 
 const populateState = async (req: Request): any => {

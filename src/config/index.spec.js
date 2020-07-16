@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import LOG_LEVELS from '../util/logger/logger-levels';
+import LOG_LEVELS from '@src/util/logger/logger-levels';
 
 describe('config/index', () => {
   const { RELEASE_ENV } = process.env;

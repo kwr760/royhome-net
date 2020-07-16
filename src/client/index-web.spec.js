@@ -2,10 +2,10 @@
 import React from 'react';
 import reactDOM, { render, unmountComponentAtNode } from 'react-dom';
 
-import MockProvider from '../util/auth0/auth0-spa';
+import MockProvider from '@src/util/auth0/auth0-spa';
 import MockApp from './App';
 
-jest.mock('../util/auth0/auth0-spa');
+jest.mock('@src/util/auth0/auth0-spa');
 jest.mock('@loadable/component', () => ({
   loadableReady: (done) => (done()),
 }));

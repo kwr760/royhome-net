@@ -19,7 +19,7 @@ module.exports = {
         '^.+\\.js$': 'babel-jest',
       },
       moduleNameMapper: {
-        '\\.(jpg|jpeg|png|gif|eot|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$': '<rootDir>/src/mocks/file.js',
+        '\\.(svg|md)$': '<rootDir>/src/mocks/file.js',
         '\\.(css|scss)$': 'identity-obj-proxy',
       },
       modulePathIgnorePatterns: commonIgnoreDirs,
@@ -39,7 +39,7 @@ module.exports = {
         '^.+\\.js$': 'babel-jest',
       },
       moduleNameMapper: {
-        '\\.(jpg|jpeg|png|gif|eot|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$': '<rootDir>/src/mocks/file.js',
+        '\\.(svg|md)$': '<rootDir>/src/mocks/file.js',
       },
       modulePathIgnorePatterns: commonIgnoreDirs,
       testPathIgnorePatterns: commonIgnoreDirs,

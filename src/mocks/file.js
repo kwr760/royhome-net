@@ -1,1 +1,1 @@
-module.exports = 'favicon.ico';
+module.exports = 'mocked file';

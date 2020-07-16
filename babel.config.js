@@ -34,6 +34,14 @@ module.exports = (api) => {
           loose: true,
         },
       ],
+      [
+        'module-resolver',
+        {
+          alias: {
+            '@src': './src',
+          },
+        },
+      ],
       '@loadable/babel-plugin',
       'lodash',
     ],

@@ -9,7 +9,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import httpContext from 'express-http-context';
 
-import env from '../config';
+import env from '@src/config';
 
 import redirectInsecure from './middleware/redirect-insecure';
 import handleError from './middleware/handle-error';
