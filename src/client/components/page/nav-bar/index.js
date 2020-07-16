@@ -20,10 +20,10 @@ import {
   DropdownItem,
 } from 'reactstrap';
 
-import { useAuth0 } from '../../../../util/auth0/auth0-context';
+import { useAuth0 } from '@src/util/auth0/auth0-context';
+import hasNeededRole from '@src/util/auth0/has-needed-role';
 import { isAuthenticated } from '../../../store/session/session.selector';
 import { getUser } from '../../../store/user/user.selector';
-import hasNeededRole from '../../../../util/auth0/has-needed-role';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
 
-import { Auth0Context } from '../util/auth0/auth0-context';
+import { Auth0Context } from '@src/util/auth0/auth0-context';
 import App from './App';
 import configureStore from './store/configure-store';
 

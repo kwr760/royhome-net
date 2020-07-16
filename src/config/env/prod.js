@@ -1,6 +1,6 @@
 // @flow
 
-import LOG_LEVELS from '../../util/logger/logger-levels';
+import LOG_LEVELS from '@src/util/logger/logger-levels';
 
 const currentHost = global.origin || 'https://royk.us';
 

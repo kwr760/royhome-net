@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { useAuth0 } from '../../../util/auth0/auth0-context';
+import { useAuth0 } from '@src/util/auth0/auth0-context';
 import Resume from './resume';
 import { getResumeAction } from '../../store/resume/resume.action';
 import { getResume } from '../../store/resume/resume.selector';

@@ -5,8 +5,8 @@ import axios from 'axios';
 import { isEmpty } from 'lodash';
 import type { Action, Dispatch } from 'redux';
 
+import { ERROR_CODE } from '@src/util/error-codes';
 import { apiFailureActionCreator, apiRequestActionCreator, apiSucessActionCreator } from './api.contants';
-import { ERROR_CODE } from '../../../util/error-codes';
 import { getParsedUrl } from './get-parsed-url';
 
 import type { ActionObjectType, ApiConfigType } from './api.types';

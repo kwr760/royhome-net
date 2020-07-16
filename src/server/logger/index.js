@@ -1,7 +1,6 @@
 // @flow
 
-import LOG_LEVELS from '../../util/logger/logger-levels';
-
+import LOG_LEVELS from '@src/util/logger/logger-levels';
 import log from './log';
 import type { LogMsgType } from './logger.types';
 

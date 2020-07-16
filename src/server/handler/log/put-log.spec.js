@@ -1,5 +1,5 @@
+import LOG_LEVELS from '@src/util/logger/logger-levels';
 import putLogHandler from './put-log';
-import LOG_LEVELS from '../../../util/logger/logger-levels';
 import Logger from '../../logger';
 
 describe('server/routes/log/put', () => {

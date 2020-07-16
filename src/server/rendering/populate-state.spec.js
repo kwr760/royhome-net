@@ -1,7 +1,7 @@
+import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from '@src/util/auth0/auth0.constants';
+
 import populateState from './populate-state';
 import { loadResumeByEmail } from '../db/resume';
-
-import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from '../../util/auth0/auth0.constants';
 
 jest.mock('../db/resume');
 

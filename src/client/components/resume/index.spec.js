@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import Resume from './index';
-import { Auth0Context } from '../../../util/auth0/auth0-context';
+import { Auth0Context } from '@src/util/auth0/auth0-context';
 import { getResumeAction } from '../../store/resume/resume.action';
+import Resume from './index';
 import ResumeHeader from './header';
 import ResumeSummary from './summary';
 import ResumeSkills from './skills';

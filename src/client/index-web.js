@@ -11,10 +11,10 @@ import { loadableReady } from '@loadable/component';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.scss';
 
-import Auth0Provider from '../util/auth0/auth0-spa';
-import { config } from '../util/auth0/auth0.constants';
+import history from '@src/util/history';
+import Auth0Provider from '@src/util/auth0/auth0-spa';
+import { config } from '@src/util/auth0/auth0.constants';
 import App from './App';
-import history from '../util/history';
 import configureStore from './store/configure-store';
 
 const onRedirectCallback = (appState) => {
