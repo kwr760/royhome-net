@@ -122,6 +122,15 @@ const NavBar = () => {
                       Profile
                     </DropdownItem>
                     <DropdownItem
+                      tag={RouterNavLink}
+                      to="/privacy"
+                      className="dropdown-profile"
+                      activeClassName="router-link-exact-active"
+                    >
+                      <FontAwesomeIcon icon="user-secret" className="mr-3" />
+                      Privacy
+                    </DropdownItem>
+                    <DropdownItem
                       id="qsLogoutBtn"
                       onClick={() => logout()}
                     >
@@ -152,23 +161,21 @@ const NavBar = () => {
                 navbar
               >
                 <NavItem>
-                  <span className="user-info">
-                    <img
-                      src={picture}
-                      alt="Profile"
-                      className="nav-user-profile d-inline-block rounded-circle mr-3"
-                      width="50"
-                    />
-                    <h6 className="d-inline-block">{name}</h6>
-                  </span>
-                </NavItem>
-                <NavItem>
                   <FontAwesomeIcon icon="user-alt" className="mr-3" />
                   <RouterNavLink
                     to="/profile"
                     activeClassName="router-link-exact-active"
                   >
                     Profile
+                  </RouterNavLink>
+                </NavItem>
+                <NavItem>
+                  <FontAwesomeIcon icon="user-secret" className="mr-3" />
+                  <RouterNavLink
+                    to="/privacy"
+                    activeClassName="router-link-exact-active"
+                  >
+                    Privacy
                   </RouterNavLink>
                 </NavItem>
                 <NavItem>

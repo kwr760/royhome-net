@@ -11,6 +11,6 @@ describe('client/components/author', () => {
     );
 
     // Assert
-    getByText(/about myself/);
+    getByText(/mocked file/);
   });
 });
