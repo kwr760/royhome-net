@@ -8,9 +8,9 @@ import { useDispatch } from 'react-redux';
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Cookies from 'universal-cookie';
 
+import env from '@src/config';
 import { Auth0Context } from './auth0-context';
 import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from './auth0.constants';
-import env from '../../config';
 import type { Auth0ProviderPropsType, Auth0ClientType } from './auth0.types';
 import { updateAuthentication, updateLoading } from '../../client/store/session/session.action';
 import { updateUser } from '../../client/store/user/user.action';

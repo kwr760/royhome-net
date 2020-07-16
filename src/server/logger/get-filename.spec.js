@@ -1,5 +1,5 @@
+import env from '@src/config';
 import getLogFilename from './get-filename';
-import env from '../../config';
 
 describe('server/logger/get-filename', () => {
   it('should return filename with date', () => {

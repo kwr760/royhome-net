@@ -1,8 +1,9 @@
 // @flow
 
 import path from 'path';
+
+import env from '@src/config';
 import getCurrentDate from '../../util/datetime/get-current-date';
-import env from '../../config';
 
 const getLogFilename = (location: string) => {
   const date = getCurrentDate();

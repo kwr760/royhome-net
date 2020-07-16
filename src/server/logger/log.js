@@ -1,6 +1,6 @@
 // @flow
 
-import env from '../../config';
+import env from '@src/config';
 
 import getConsole from '../../util/logger/get-console';
 import formatMessage from '../../util/logger/format-message';

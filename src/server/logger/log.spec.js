@@ -1,4 +1,4 @@
-import env from '../../config';
+import env from '@src/config';
 
 import LOG_LEVELS from '../../util/logger/logger-levels';
 

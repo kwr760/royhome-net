@@ -3,7 +3,7 @@
 import jwt from 'express-jwt';
 import jwtRsa from 'jwks-rsa';
 
-import env from '../../config';
+import env from '@src/config';
 
 const checkJwt = jwt({
   secret: jwtRsa.expressJwtSecret({
