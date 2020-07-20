@@ -1,3 +1,4 @@
+
 # Overview (WIP)
 
 The main aspect of this project to provide a point to display my skills in the form of hosting my resume.
@@ -85,3 +86,15 @@ typed.  Maybe I'll change my mind about that, but not at the moment.
 
 I am striving for 100% unit test coverage.  So far so good.  Eventually I'll need to consider adding more tests.  
 Adding an E2E and intergation test framework will be another set of challenges.
+
+
+
+
+
+
+
+
+
+
+
+

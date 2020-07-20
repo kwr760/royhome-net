@@ -1,3 +1,4 @@
+
 # Privacy Policy
 Last updated: July 16, 2020
 
@@ -99,7 +100,6 @@ The Company will also retain Usage Data for internal analysis purposes. Usage Da
 
 ## Transfer of Your Personal Data
 Your information, including Personal Data, is processed at the Company's operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of Your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from Your jurisdiction.
-
 Your consent to this Privacy Policy followed by Your submission of such information represents Your agreement to that transfer.
 
 The Company will take all steps reasonably necessary to ensure that Your data is treated securely and in accordance with this Privacy Policy and no transfer of Your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information.
@@ -112,9 +112,7 @@ If the Company is involved in a merger, acquisition or asset sale, Your Personal
 Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).
 
 ### Other legal requirements
-The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:
-
-- Comply with a legal obligation
+The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:- Comply with a legal obligation
 - Protect and defend the rights or property of the Company
 - Prevent or investigate possible wrongdoing in connection with the Service
 - Protect the personal safety of Users of the Service or the public
@@ -150,3 +148,5 @@ You are advised to review this Privacy Policy periodically for any changes. Chan
 If you have any questions about this Privacy Policy, You can contact us:
 
 - By email: kroy760@gmail.com
+
+

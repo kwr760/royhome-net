@@ -1,3 +1,4 @@
+
 # Practice (WIP)
 
 I try to practice as a software engineer, in a term which I heard from one of my colleagues, a humble developer.  I 
@@ -38,3 +39,8 @@ into active list for shopping.
 I like to keep my life fairly simple and entertaining myself with simple things.  Which I like to enjoy with my 
 family.  We like to hike, travel, and cook.  But probably most of all we enjoy skiing.  We have a son, which is 
 growning very fast and we are sad that soon he will live to away to school.
+
+
+
+
+
