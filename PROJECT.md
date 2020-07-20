@@ -85,16 +85,4 @@ I think enjoy the simplicity of code described in the various forums I view.  Bu
 typed.  Maybe I'll change my mind about that, but not at the moment.
 
 I am striving for 100% unit test coverage.  So far so good.  Eventually I'll need to consider adding more tests.  
-Adding an E2E and intergation test framework will be another set of challenges.
-
-
-
-
-
-
-
-
-
-
-
-
+Adding an E2E or intergation test framework will be another set of challenges.
