@@ -81,7 +81,7 @@ const NavBar = () => {
                     exact
                     activeClassName="router-link-exact-active"
                   >
-                    Work In Progress
+                    Working...
                   </NavLink>
                 </NavItem>
               )}
