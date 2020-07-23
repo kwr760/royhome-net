@@ -1,10 +1,10 @@
 import fs from 'fs';
-import https from 'https';
+import spdy from 'spdy';
 import startHttpsServer from './start-https';
 import displayMessage from './display-message';
 
 jest.mock('fs');
-jest.mock('https');
+jest.mock('spdy');
 jest.mock('./display-message');
 
 describe('server/middleware/start-https', () => {
@@ -22,7 +22,7 @@ describe('server/middleware/start-https', () => {
       ca: 'ca',
     };
     const mockServer = { listen: jest.fn() };
-    https.createServer.mockImplementation(() => mockServer);
+    spdy.createServer.mockImplementation(() => mockServer);
     const mockDisplay = jest.fn();
     displayMessage.mockImplementation(() => mockDisplay);
 
@@ -30,7 +30,7 @@ describe('server/middleware/start-https', () => {
     startHttpsServer(app, port);
 
     // Assert
-    expect(https.createServer).toHaveBeenCalledWith(expectedCred, app);
+    expect(spdy.createServer).toHaveBeenCalledWith(expectedCred, app);
     expect(mockServer.listen).toHaveBeenCalledWith(port, mockDisplay);
   });
 });

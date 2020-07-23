@@ -29,7 +29,7 @@ app.set('json spaces', 2);
 app.enable('etag');
 app.enable('query parser');
 
-if (env.server.https) {
+if (env.server.startHttp) {
   app.use(redirectInsecure);
 }
 
@@ -50,11 +50,10 @@ app.get('/*', renderReact);
 app.use(handleError);
 app.use(notFound);
 
-if (env.server.https) {
-  startHttpsServer(app, 443);
+startHttpsServer(app, env.server.port);
+
+if (env.server.startHttp) {
   startHttpServer(app, 80);
-} else {
-  startHttpServer(app, 3000);
 }
 
 export default app;

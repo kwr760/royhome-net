@@ -13,6 +13,9 @@ const env = {
     clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
     audience: 'http://royk.us',
   },
+  server: {
+    rendering: true,
+  },
 };
 
 export default env;

@@ -37,9 +37,14 @@ travis encrypt-file secrets.tar
 rm <project>/.travis/secrets.tar
 ```
 
-#### Steps
-- `yarn start build:prod`
-- `yarn start start:prod`
+#### https
+
+Starting https on localhost is a little trickie, at least I don't know
+an easy way to way to do it.  At least not one I do not think is hackie.
+I updated /etc/hosts to redirect to loopback for local.<domain>.  This 
+way I can use my cert for my production site signed at let's encrypt. 
+This seems to avoid the self-signing cert required for localhost.
+
 
 ### Production
 
