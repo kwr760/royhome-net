@@ -6,7 +6,6 @@ import WebpackMd5Hash from 'webpack-md5-hash';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import StylelintPlugin from 'stylelint-webpack-plugin';
 
-const DIST_PATH = path.resolve(__dirname, 'dist');
 const dev = !process.env.RELEASE_ENV || process.env.RELEASE_ENV === 'dev';
 
 const getConfig = (target) => ({
@@ -84,7 +83,7 @@ const getConfig = (target) => ({
       }),
     ] : undefined,
   output: {
-    path: path.join(DIST_PATH, target),
+    path: path.resolve(__dirname, 'dist', target),
     filename: dev ? '[name].js' : '[name].[chunkhash:8].js',
     publicPath: `/dist/${target}/`,
     libraryTarget: target === 'node' ? 'commonjs2' : undefined,
