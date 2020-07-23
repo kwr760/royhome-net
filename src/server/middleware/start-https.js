@@ -1,7 +1,7 @@
 // @flow
 
-import fs from 'fs';
 import spdy from 'spdy';
+import fs from 'fs';
 
 import env from '@src/config';
 import displayMessage from './display-message';
