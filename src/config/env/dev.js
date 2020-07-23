@@ -2,7 +2,7 @@
 
 import LOG_LEVELS from '@src/util/logger/logger-levels';
 
-const currentHost = global.origin || 'http://localhost:3000';
+const currentHost = global.origin || 'http://local.royk.us:3000';
 
 const env = (host) => ({
   mode: 'development',
@@ -11,8 +11,10 @@ const env = (host) => ({
     callbackUrl: `${host}`,
   },
   server: {
-    rendering: true,
-    https: false,
+    port: 3000,
+    key: '/etc/letsencrypt/royhome/privkey.pem',
+    cert: '/etc/letsencrypt/royhome/cert.pem',
+    ca: '/etc/letsencrypt/royhome/chain.pem',
   },
   log: {
     dir: './log',

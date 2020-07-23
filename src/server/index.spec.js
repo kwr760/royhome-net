@@ -103,7 +103,7 @@ describe('server/index', () => {
       const { default: app } = require('./index');
 
       // Assert
-      expect(startHttpServer).toHaveBeenCalledWith(app, 3000);
+      expect(startHttpsServer).toHaveBeenCalledWith(app, 3000);
     });
   });
 

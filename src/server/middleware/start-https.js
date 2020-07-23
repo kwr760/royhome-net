@@ -1,7 +1,7 @@
 // @flow
 
 import fs from 'fs';
-import https from 'https';
+import spdy from 'spdy';
 
 import env from '@src/config';
 import displayMessage from './display-message';
@@ -17,8 +17,7 @@ const startHttpsServer = (app: Object, port: number) => {
     ca,
   };
 
-  const server = https.createServer(credentials, app);
-  server.listen(port, displayMessage('Secure server is running'));
+  spdy.createServer(credentials, app).listen(port, displayMessage('Secure server is running'));
 };
 
 export default startHttpsServer;
