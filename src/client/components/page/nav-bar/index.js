@@ -90,7 +90,7 @@ const NavBar = () => {
               {!authenticated && (
                 <NavItem>
                   <Button
-                    id="qsLoginBtn"
+                    id="LoginButton"
                     color="secondary"
                     className="btn-margin"
                     onClick={() => login()}
@@ -145,7 +145,7 @@ const NavBar = () => {
               <Nav className="d-md-none" navbar>
                 <NavItem>
                   <Button
-                    id="qsLoginBtn"
+                    id="LoginButtonDropdown"
                     color="secondary"
                     onClick={() => login()}
                   >

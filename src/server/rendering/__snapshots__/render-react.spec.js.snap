@@ -14,11 +14,13 @@ exports[`server/rendering/render-react should return a html page 1`] = `
     <title>Roy Home</title>
     <base href=\\"/\\" >
     <link href=\\"https://use.fontawesome.com/releases/v5.12.1/css/svg-with-js.css\\" rel=\\"stylesheet\\">
+    <div>Links</div>
     <div>Styles</div>
     <script>window.__PRELOADED_STATE__ = {\\"session\\":{\\"authenticated\\":false,\\"expiration\\":-1,\\"isLoading\\":false},\\"user\\":{},\\"resume\\":{\\"activeResume\\":\\"kroy760@gmail.com\\",\\"kroy760@gmail.com\\":{\\"owner\\":\\"owner\\"}}}</script>
   </head>
   <body class=\\"h-100 backdrop\\">
     <div id=\\"main\\" class=\\"h-100\\">&lt;div&gt;Chunks&lt;/div&gt;</div>
+    <div>Scripts</div>
   </body>
 </html>
 ",

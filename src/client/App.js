@@ -32,7 +32,7 @@ const App = () => {
       { loading ? <Loading /> : null }
       <div id="app" className="d-flex flex-column h-100 backdrop">
         <NavBar />
-        <Container className="flex-grow-1 pt-3 main-container">
+        <Container className="flex-grow-1 pt-3 main-container overflow-auto">
           <Switch>
             <Route
               path="/"
