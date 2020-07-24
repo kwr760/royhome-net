@@ -1,7 +1,7 @@
 import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
+// import TerserPlugin from 'terser-webpack-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
@@ -102,12 +102,12 @@ const getConfig = (target) => ({
       files: './src/**/*.scss',
       syntax: 'scss',
     }),
-    new TerserPlugin({
-      parallel: true,
-      terserOptions: {
-        ecma: 6,
-      },
-    }),
+    // new TerserPlugin({
+    //   parallel: true,
+    //   terserOptions: {
+    //     ecma: 6,
+    //   },
+    // }),
   ],
   resolve: {
     extensions: ['.js', '.scss'],
