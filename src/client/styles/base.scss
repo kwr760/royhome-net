@@ -46,6 +46,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
+a {
+  color: lighten($color-primary-4, 10%);
+}
 .backdrop {
   background-color: $color-backdrop;
 }

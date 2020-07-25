@@ -31,8 +31,9 @@ const App = () => {
     <>
       { loading ? <Loading /> : null }
       <div id="app" className="d-flex flex-column h-100 backdrop">
+        <a className="skip-link" href="#main"><div className="sr-only">Skip to main</div></a>
         <NavBar />
-        <Container className="flex-grow-1 pt-3 main-container overflow-auto">
+        <Container id="main" className="flex-grow-1 pt-3 main-container overflow-auto">
           <Switch>
             <Route
               path="/"
