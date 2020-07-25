@@ -30,6 +30,13 @@
 }
 .navbar-nav .btn {
   min-width: 145px;
+  color: $color-banner-text;
+}
+.navbar-nav .btn:hover {
+  color: lighten($color-banner-text, 15%);
+}
+.navbar-nav .btn:focus {
+  color: $color-banner-text;
 }
 .nav-user-profile {
   border-radius: 50% 50%;
