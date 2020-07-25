@@ -29,8 +29,9 @@
   color: $color-banner-text;
 }
 .navbar-nav .btn {
-  min-width: 145px;
-  color: $color-banner-text;
+  min-width: 110px;
+  color: lighten($color-banner-text, 15%);
+  background-color: darken($color-banner-light, 15%);
 }
 .navbar-nav .btn:hover {
   color: lighten($color-banner-text, 15%);
