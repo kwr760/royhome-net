@@ -13,6 +13,8 @@ ssh-add private-key
 echo -e "\nTravis:  openssl rm"
 rm private-key
 
+echo -e "\nRemote:  remove old release"
+ssh $RELEASE_HOST 'rm -rf /var/app/royhome-net.20*'
 echo -e "\nRemote:  stop existing server"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net ; sudo yarn run pm2:stop'
 echo -e "\nRemote:  backup existing server"
