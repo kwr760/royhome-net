@@ -1,0 +1,19 @@
+{
+  "short_name": "RoyHome",
+  "name": "RoyHome Site for Kevin Roy resume",
+  "icons": [
+    {
+      "src": "dist/web/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "dist/web/favicon.png",
+      "sizes": "893x893",
+      "type": "image/png"
+    }
+  ],
+  "display": "standalone",
+  "theme_color": "#556275",
+  "background_color": "#FFF6ED"
+}

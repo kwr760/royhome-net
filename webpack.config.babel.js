@@ -6,6 +6,7 @@ import LoadablePlugin from '@loadable/webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import StylelintPlugin from 'stylelint-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 
 const dev = !process.env.RELEASE_ENV || process.env.RELEASE_ENV === 'dev';
 
@@ -113,6 +114,12 @@ const getConfig = (target) => {
         configFile: './stylelint.config.js',
         files: './src/**/*.scss',
         syntax: 'scss',
+      }),
+      new CopyPlugin({
+        patterns: [
+          { from: 'src/client/assets/favicon.ico', to: './favicon.ico' },
+          { from: 'src/client/assets/images/gold-on-blue.png', to: './favicon.png' },
+        ],
       }),
       ...additionalPlugins,
     ],
