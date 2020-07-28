@@ -1,7 +1,8 @@
+/* eslint-disable no-template-curly-in-string */
+
 function isWebTarget(caller) {
   return Boolean(caller && caller.target === 'web');
 }
-
 function isWebpack(caller) {
   return Boolean(caller && caller.name === 'babel-loader');
 }
@@ -26,6 +27,19 @@ module.exports = (api) => {
     ],
     retainLines: true,
     plugins: [
+      [
+        'transform-imports',
+        {
+          reactstrap: {
+            transform: 'reactstrap/lib/${member}',
+            preventFullImport: true,
+          },
+          lodash: {
+            transform: 'lodash/${member}',
+            preventFullImport: true,
+          },
+        },
+      ],
       '@babel/plugin-syntax-dynamic-import',
       '@babel/plugin-transform-runtime',
       [

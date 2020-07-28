@@ -7,12 +7,23 @@ import WebpackMd5Hash from 'webpack-md5-hash';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import StylelintPlugin from 'stylelint-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 
 const dev = !process.env.RELEASE_ENV || process.env.RELEASE_ENV === 'dev';
 
 const getConfig = (target) => {
   let additionalPlugins = [];
-  if (!dev) {
+  if (dev) {
+    if (target === 'web') {
+      additionalPlugins = [
+        new BundleAnalyzerPlugin({
+          defaultSizes: 'gzip',
+          openAnalyzer: false,
+        }),
+      ];
+    }
+  } else {
     additionalPlugins = [
       new TerserPlugin({
         parallel: true,
@@ -22,6 +33,7 @@ const getConfig = (target) => {
       }),
     ];
   }
+
   return {
     name: target,
     mode: dev ? 'development' : 'production',
@@ -121,6 +133,7 @@ const getConfig = (target) => {
           { from: 'src/client/assets/images/gold-on-blue.png', to: './favicon.png' },
         ],
       }),
+      new LodashModuleReplacementPlugin(),
       ...additionalPlugins,
     ],
     resolve: {
@@ -129,6 +142,39 @@ const getConfig = (target) => {
         '@src': path.resolve(__dirname, 'src/'),
       },
     },
+    // optimization: {
+    //   splitChunks: {
+    // include all types of chunks
+    // chunks: 'all',
+    // },
+    // },
+    // optimization: {
+    //   splitChunks: {
+    // chunks: 'all',
+    // maxInitialRequests: Infinity,
+    // minSize: 0,
+    // cacheGroups: {
+    //   commons: {
+    //     test: /[\\/]node_modules[\\/]/,
+    //     name(module) {
+    //       const splitMap = [
+    //         { name: 'core-js', packages: ['core-js'] },
+    //         { name: 'react', packages: ['react', 'react-router', 'react-redux', 'redux'] },
+    //         { name: 'reactstrap', packages: ['reactstrap'] },
+    //         { name: 'react-dom', packages: ['react-dom'] },
+    //         { name: 'auth0-spa', packages: ['auth0'] },
+    //       ];
+    //       const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1].replace('@', '');
+    //       const splitPackage = splitMap.filter((e) => e.packages.includes(packageName));
+    //       const splitName = (splitPackage.length) ? splitPackage[0].name : 'packages';
+    //
+    //       return `vendor-${splitName}`;
+    //     },
+    //     chunks: 'all',
+    //   },
+    // },
+    // },
+    // },
   };
 };
 
