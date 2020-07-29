@@ -3,9 +3,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { StaticRouter as Router, Route } from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import './styles/index.scss';
-
 import Auth0Provider from '@src/util/auth0/auth0-node';
 import { config } from '@src/util/auth0/auth0.constants';
 import App from './App';
