@@ -11,19 +11,10 @@ import { loadableReady } from '@loadable/component';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.scss';
 
-import history from '@src/util/history';
 import Auth0Provider from '@src/util/auth0/auth0-spa';
 import { config } from '@src/util/auth0/auth0.constants';
 import App from './App';
 import configureStore from './store/configure-store';
-
-const onRedirectCallback = (appState) => {
-  history.push(
-    appState && appState.targetUrl
-      ? appState.targetUrl
-      : window.location.pathname,
-  );
-};
 
 loadableReady(() => {
   const root = document.getElementById('main');
@@ -38,7 +29,6 @@ loadableReady(() => {
           client_id={config.clientId}
           audience={config.audience}
           redirect_uri={window.location.origin}
-          onRedirectCallback={onRedirectCallback}
         >
           <Router>
             <Route component={(props) => <App {...props} />} />

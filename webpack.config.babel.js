@@ -142,39 +142,35 @@ const getConfig = (target) => {
         '@src': path.resolve(__dirname, 'src/'),
       },
     },
-    // optimization: {
-    //   splitChunks: {
-    // include all types of chunks
-    // chunks: 'all',
-    // },
-    // },
-    // optimization: {
-    //   splitChunks: {
-    // chunks: 'all',
-    // maxInitialRequests: Infinity,
-    // minSize: 0,
-    // cacheGroups: {
-    //   commons: {
-    //     test: /[\\/]node_modules[\\/]/,
-    //     name(module) {
-    //       const splitMap = [
-    //         { name: 'core-js', packages: ['core-js'] },
-    //         { name: 'react', packages: ['react', 'react-router', 'react-redux', 'redux'] },
-    //         { name: 'reactstrap', packages: ['reactstrap'] },
-    //         { name: 'react-dom', packages: ['react-dom'] },
-    //         { name: 'auth0-spa', packages: ['auth0'] },
-    //       ];
-    //       const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1].replace('@', '');
-    //       const splitPackage = splitMap.filter((e) => e.packages.includes(packageName));
-    //       const splitName = (splitPackage.length) ? splitPackage[0].name : 'packages';
-    //
-    //       return `vendor-${splitName}`;
-    //     },
-    //     chunks: 'all',
-    //   },
-    // },
-    // },
-    // },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        maxInitialRequests: Infinity,
+        minSize: 0,
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name(module) {
+              const splitMap = [
+                { name: 'core-js', packages: ['core-js'] },
+                { name: 'react', packages: ['react', 'react-router', 'react-router-dom', 'react-redux', 'redux', 'react-dom', 'react-transition-group'] },
+                { name: 'reactstrap', packages: ['reactstrap', 'popper.js'] },
+                { name: 'axios', packages: ['axios'] },
+                { name: 'lodash', packages: ['lodash'] },
+                { name: 'auth0-spa', packages: ['auth0'] },
+                { name: 'fortawesome', packages: ['fortawesome'] },
+                { name: 'markdown', packages: ['react-markdown', 'remark-parse'] },
+              ];
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1].replace('@', '');
+              const splitPackage = splitMap.filter((e) => e.packages.includes(packageName));
+              const splitName = (splitPackage.length) ? splitPackage[0].name : 'packages';
+
+              return `vendor-${splitName}`;
+            },
+          },
+        },
+      },
+    },
   };
 };
 
