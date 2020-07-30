@@ -27,7 +27,11 @@ const setCookies = (newCookies) => {
     cookies.set(
       COOKIE_JWT_PAYLOAD,
       newCookies,
-      { maxAge: 60 * 60 * 24 * 7 },
+      {
+        maxAge: 60 * 60 * 24 * 7,
+        SameSite: 'None',
+        Secure: 1,
+      },
     );
   } else {
     cookies.remove(COOKIE_JWT_PAYLOAD);

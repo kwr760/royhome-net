@@ -2,6 +2,7 @@
 
 import path from 'path';
 import fs from 'fs';
+import parseUrl from 'parseurl';
 
 import { ChunkExtractor } from '@loadable/server';
 import React from 'react';
@@ -21,11 +22,13 @@ const renderReact = async (req: Request, res: Response) => {
   const { default: Main } = nodeExtractor.requireEntrypoint();
   const webStats = path.resolve(env.root, './dist/web/loadable-stats.json');
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
-  const state = await populateState(req);
+  const urlPath = parseUrl(req).pathname;
+  const { cookies } = req;
+  const state = await populateState(urlPath, cookies);
   const store = configureStore(state);
   const jsx = webExtractor.collectChunks(
     <Main
-      url={req.url}
+      url={urlPath}
       store={store}
     />,
   );

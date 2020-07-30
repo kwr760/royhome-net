@@ -12,10 +12,7 @@ jest.mock('@loadable/component', () => ({
 jest.mock('./App');
 
 describe('src/client/index-web', () => {
-  const ProviderCallback = (appState) => ({ children, onRedirectCallback }) => {
-    onRedirectCallback(appState);
-    return children;
-  };
+  const ProviderCallback = () => ({ children }) => children;
   const mockApp = jest.fn(() => (<div>App</div>));
   let mainContainer = null;
   beforeEach(() => {
@@ -35,10 +32,7 @@ describe('src/client/index-web', () => {
   it('launches the App with targetUrl', () => {
     jest.isolateModules(() => {
       // Arrange
-      const appState = {
-        targetUrl: '/',
-      };
-      MockProvider.mockImplementation(ProviderCallback(appState));
+      MockProvider.mockImplementation(ProviderCallback());
       jest.spyOn(reactDOM, 'hydrate').mockImplementation((element, container) => render(element, container));
       MockApp.mockImplementation(mockApp);
 
@@ -54,8 +48,7 @@ describe('src/client/index-web', () => {
   it('launches the App with empty appState', () => {
     jest.isolateModules(() => {
       // Arrange
-      const appState = {};
-      MockProvider.mockImplementation(ProviderCallback(appState));
+      MockProvider.mockImplementation(ProviderCallback());
       jest.spyOn(reactDOM, 'hydrate').mockImplementation((element, container) => render(element, container));
       MockApp.mockImplementation(mockApp);
 

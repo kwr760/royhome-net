@@ -17,11 +17,9 @@ describe('server/rendering/populate-state', () => {
   };
   it('should return an state from empty context', async () => {
     // Arrange
-    const req = {
-      url: '/',
-      cookies: {
-        [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
-      },
+    const url = '/';
+    const cookies = {
+      [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
     };
     loadResumeByEmail.mockResolvedValueOnce(resume);
     const expected = {
@@ -38,18 +36,16 @@ describe('server/rendering/populate-state', () => {
     };
 
     // Act
-    const state = await populateState(req);
+    const state = await populateState(url, cookies);
 
     // Assert
     expect(state).toEqual(expected);
   });
   it('should not find route', async () => {
     // Arrange
-    const req = {
-      url: '/ourses',
-      cookies: {
-        [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
-      },
+    const url = '/notfound';
+    const cookies = {
+      [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
     };
     loadResumeByEmail.mockResolvedValueOnce(resume);
     const expected = {
@@ -62,18 +58,16 @@ describe('server/rendering/populate-state', () => {
     };
 
     // Act
-    const state = await populateState(req);
+    const state = await populateState(url, cookies);
 
     // Assert
     expect(state).toEqual(expected);
   });
   it('should not find payload', async () => {
     // Arrange
-    const req = {
-      url: '/',
-      cookies: {
-        nopayload: JSON.stringify(jwt),
-      },
+    const url = '/';
+    const cookies = {
+      nopayload: JSON.stringify(jwt),
     };
     loadResumeByEmail.mockResolvedValueOnce({});
     const expected = {
@@ -90,7 +84,7 @@ describe('server/rendering/populate-state', () => {
     };
 
     // Act
-    const state = await populateState(req);
+    const state = await populateState(url, cookies);
 
     // Assert
     expect(state).toEqual(expected);

@@ -2,7 +2,6 @@
 
 export type Auth0ProviderPropsType = {|
   children: Object,
-  onRedirectCallback: Function,
   audience?: string,
   client_id: string,
   domain: string,

@@ -8,14 +8,11 @@ import { config } from '@src/util/auth0/auth0.constants';
 import App from './App';
 import type { AppPropsType } from './types';
 
-const onRedirectCallback = () => {};
-
 const Main = ({ url, store }: AppPropsType) => (
   <Provider store={store}>
     <Auth0Provider
       domain={config.domain}
       client_id={config.clientId}
-      onRedirectCallback={onRedirectCallback}
     >
       <Router location={url} context={{}}>
         <Route component={(props) => <App {...props} />} />

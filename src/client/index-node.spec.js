@@ -4,10 +4,7 @@ import { render } from '@testing-library/react';
 import Main from './index-node';
 import configureStore from './store/configure-store';
 
-jest.mock('@src/util/auth0/auth0-node', () => ({ children, onRedirectCallback }) => {
-  onRedirectCallback();
-  return children;
-});
+jest.mock('@src/util/auth0/auth0-node', () => ({ children }) => children);
 jest.mock('./App', () => () => (<div>App</div>));
 
 describe('src/client/index-node', () => {
