@@ -6,11 +6,17 @@
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-color: $color-background;
+  background-color: var(--color-background);
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+}
+body.dark-theme .spinner {
+  background-color: var(--color-dark-background);
+}
+body.light-theme .spinner {
+  background-color: var(--color-light-background);
 }
 .loading {
   position: absolute;

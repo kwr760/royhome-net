@@ -22,13 +22,47 @@ $color-complement-2: #FFF5E4;
 $color-complement-3: #3C3323;
 $color-complement-4: #A67829;
 
-$color-background: $color-secondary-1-1;
-$color-backdrop: $color-secondary-1-2;
-$color-foreground: $color-secondary-1-3;
-$color-banner-dark: $color-primary-3;
-$color-banner-light: $color-primary-0;
-$color-banner-text: $color-secondary-1-0;
+:root {
+  --color-light-background: #{$color-secondary-1-1};
+  --color-light-backdrop: #{$color-secondary-1-2};
+  --color-light-foreground: #{$color-secondary-1-3};
+  --color-light-banner-dark: #{$color-primary-3};
+  --color-light-banner-light: #{$color-primary-0};
+  --color-light-banner-light-dark: #{darken($color-primary-0, 15%)};
+  --color-light-banner-text: #{$color-secondary-1-0};
+  --color-light-banner-text-light: #{lighten($color-secondary-1-0, 15%)};
+  --color-light-link: #{lighten($color-primary-4, 10%)};
 
-$color-primary:  $color-primary-4;
-$color-secondary: $color-secondary-2-3;
+  --color-dark-background: #{$color-primary-0};
+  --color-dark-backdrop: #{$color-primary-3};
+  --color-dark-foreground: #{$color-secondary-1-2};
+  --color-dark-banner-dark: #{$color-secondary-1-4};
+  --color-dark-banner-light: #{$color-secondary-1-3};
+  --color-dark-banner-light-dark: #{darken($color-secondary-1-4, 10%)};
+  --color-dark-banner-text: #{$color-primary-3};
+  --color-dark-banner-text-light: #{lighten($color-primary-3, 15%)};
+  --color-dark-link: #{darken($color-primary-4, 25%)};
 
+  @media not all and (prefers-color-scheme: dark) {
+    --color-background: var(--color-light-background);
+    --color-backdrop: var(--color-light-backdrop);
+    --color-foreground: var(--color-light-foreground);
+    --color-banner-dark: var(--color-light-banner-dark);
+    --color-banner-light: var(--color-light-banner-light);
+    --color-banner-light-dark: var(--color-light-banner-light-dark);
+    --color-banner-text: var(--color-light-banner-text);
+    --color-banner-text-light: var(--color-light-banner-text-light);
+    --color-link: var(--color-light-link);
+  }
+  @media (prefers-color-scheme: dark) {
+    --color-background: var(--color-dark-background);
+    --color-backdrop: var(--color-dark-backdrop);
+    --color-foreground: var(--color-dark-foreground);
+    --color-banner-dark: var(--color-dark-banner-dark);
+    --color-banner-light: var(--color-dark-banner-light);
+    --color-banner-light-dark: var(--color-dark-banner-light-dark);
+    --color-banner-text: var(--color-dark-banner-text);
+    --color-banner-text-light: var(--color-dark-banner-text-light);
+    --color-link: var(--color-dark-link);
+  }
+}
