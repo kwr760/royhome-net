@@ -8,8 +8,14 @@
   font-size: 1.25rem;
 }
 .profile-header .profile-picture {
-  box-shadow: 0 0 4px 0 $color-banner-text;
+  box-shadow: 0 0 4px 0 var(--color-banner-text);
   margin-bottom: 1.5rem;
+}
+body.dark-theme .profile-header .profile-picture {
+  box-shadow: 0 0 4px 0 var(--color-dark-banner-text);
+}
+body.light-theme .profile-header .profile-picture {
+  box-shadow: 0 0 4px 0 var(--color-light-banner-text);
 }
 @media (min-width: 768px) {
   .profile-header {

@@ -3,23 +3,34 @@
 html {
   font-size: 16px;
 }
+
 body {
   margin: 0;
   padding: 0;
-  color: $color-foreground;
-  background-color: $color-background;
+  color: var(--color-foreground);
+  background-color: var(--color-background);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body.dark-theme {
+  color: var(--color-dark-foreground);
+  background-color: var(--color-dark-background);
+}
+body.light-theme {
+  color: var(--color-light-foreground);
+  background-color: var(--color-light-background);
+}
+
 body,
 html {
   height: 100%;
   margin: 0;
   padding: 0;
 }
+
 h1,
 h2,
 h3,
@@ -28,31 +39,71 @@ h5,
 h6 {
   font-weight: 600;
 }
+
 h6.muted {
-  color: $color-banner-text;
+  color: var(--color-banner-text);
   text-transform: uppercase;
   font-weight: 300;
   margin-bottom: 1.5rem;
   font-size: 1rem;
 }
+body.dark-theme h6.muted {
+  color: var(--color-dark-banner-text);
+}
+body.light-theme h6.muted {
+  color: var(--color-light-banner-text);
+}
+
 pre {
   width: 100%;
-  background-color: $color-secondary-1-2;
+  background-color: var(--color-backdrop);
   padding: 0.5em;
-  box-shadow: 0 0 4px 1px $color-banner-text;
+  box-shadow: 0 0 4px 1px var(--color-banner-text);
   margin: 0 2em;
 }
+body.dark-theme pre {
+  background-color: var(--color-dark-backdrop);
+  box-shadow: 0 0 4px 1px var(--color-dark-banner-text);
+}
+body.light-theme pre {
+  background-color: var(--color-light-backdrop);
+  box-shadow: 0 0 4px 1px var(--color-light-banner-text);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
+
 a {
-  color: lighten($color-primary-4, 10%);
+  color: var(--color-link);
 }
+body.dark-theme a {
+  color: var(--color-dark-link);
+}
+body.light-theme a {
+  color: var(--color-light-link);
+}
+
 .backdrop {
-  background-color: $color-backdrop;
+  background-color: var(--color-backdrop);
 }
+body.dark-theme .backdrop {
+  background-color: var(--color-dark-backdrop);
+}
+body.light-theme .backdrop {
+  background-color: var(--color-light-backdrop);
+}
+
 .main-container {
-  background-color: $color-background;
-  box-shadow: 0 0 4px 1px $color-banner-text;
+  background-color: var(--color-background);
+  box-shadow: 0 0 4px 1px var(--color-banner-text);
+}
+body.dark-theme .main-container {
+  background-color: var(--color-dark-background);
+  box-shadow: 0 0 4px 1px var(--color-dark-banner-text);
+}
+body.light-theme .main-container {
+  background-color: var(--color-light-background);
+  box-shadow: 0 0 4px 1px var(--color-light-banner-text);
 }

@@ -11,6 +11,7 @@ module.exports = {
     'media-feature-name-no-unknown': true,
     'at-rule-no-unknown': true,
     'comment-no-empty': true,
+    'no-descending-specificity': null,
     'no-duplicate-at-import-rules': true,
     'no-extra-semicolons': true,
     'no-invalid-double-slash-comments': true,
