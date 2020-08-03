@@ -60,14 +60,17 @@ pre {
   padding: 0.5em;
   box-shadow: 0 0 4px 1px var(--color-banner-text);
   margin: 0 2em;
+  color: var(--color-foreground);
 }
 body.dark-theme pre {
   background-color: var(--color-dark-backdrop);
   box-shadow: 0 0 4px 1px var(--color-dark-banner-text);
+  color: var(--color-dark-foreground);
 }
 body.light-theme pre {
   background-color: var(--color-light-backdrop);
   box-shadow: 0 0 4px 1px var(--color-light-banner-text);
+  color: var(--color-light-foreground);
 }
 
 code {
