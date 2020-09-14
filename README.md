@@ -54,9 +54,11 @@ help with docker or AWS instance.  When I want to pay for these things, I'll fig
 
 ## Certificate - letsencrypt renewal
 
-- sudo yarn pm2:stop
-- suod -H certbot renew --standalone
-- sudo yarn pm2:start
+```
+sudo yarn pm2:stop
+sudo -H certbot renew --standalone
+sudo yarn pm2:start
+```
 
 ## Database
 ### Setup
