@@ -12,16 +12,16 @@ import NavProfileDropDown from './nav-profile-dropdown';
 const NavProfile = () => {
   const authenticated = useSelector((state) => isAuthenticated(state, null));
 
-  let ProfileComponent;
+  let NavComponenet;
   if (authenticated) {
-    ProfileComponent = NavProfileDropDown;
+    NavComponenet = NavProfileDropDown;
   } else {
-    ProfileComponent = NavLogin;
+    NavComponenet = NavLogin;
   }
 
   return (
     <Nav className="d-none d-md-block" navbar>
-      <ProfileComponent />
+      <NavComponenet />
     </Nav>
   );
 };

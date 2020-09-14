@@ -14,6 +14,7 @@ import { getUser } from '../../../store/user/user.selector';
 type Props = {|
   path: string,
   name: string,
+  // eslint-disable-next-line react/require-default-props
   neededRole?: string,
 |}
 
@@ -45,10 +46,6 @@ const NavTabItem = ({ path, name, neededRole = '' }: Props) => {
       </NavLink>
     </NavItem>
   );
-};
-
-NavTabItem.defaultProps = {
-  neededRole: '',
 };
 
 export default NavTabItem;
