@@ -1,6 +1,6 @@
 import { resumeReducer } from './resume.reducer';
-import { RESUME_ACTION } from './resume.constants';
-import { API_STATUS } from '../api/api.contants';
+import { ResumeActions } from './resume.constants';
+import { ApiStatuses } from '../api/api.contants';
 
 describe('client/store/reducers/resume/resume.reducer', () => {
   const state = {};
@@ -30,8 +30,8 @@ describe('client/store/reducers/resume/resume.reducer', () => {
   it('should update the state with resume with SUCCESS', () => {
     // Arrange
     const action = {
-      type: RESUME_ACTION.GET_RESUME,
-      status: API_STATUS.SUCCESS,
+      type: ResumeActions.GET_RESUME,
+      status: ApiStatuses.SUCCESS,
       payload: {
         email,
       },
@@ -52,8 +52,8 @@ describe('client/store/reducers/resume/resume.reducer', () => {
   it('should not change state with REQUEST', () => {
     // Arrange
     const action = {
-      type: RESUME_ACTION.GET_RESUME,
-      status: API_STATUS.REQUEST,
+      type: ResumeActions.GET_RESUME,
+      status: ApiStatuses.REQUEST,
       payload: {
         email,
       },
@@ -70,8 +70,8 @@ describe('client/store/reducers/resume/resume.reducer', () => {
     // Arrange
     const error = 'Error message';
     const action = {
-      type: RESUME_ACTION.GET_RESUME,
-      status: API_STATUS.FAILURE,
+      type: ResumeActions.GET_RESUME,
+      status: ApiStatuses.FAILURE,
       payload: {
         email,
       },
@@ -90,8 +90,8 @@ describe('client/store/reducers/resume/resume.reducer', () => {
   it('should update the state without data with SUCCESS', () => {
     // Arrange
     const action = {
-      type: RESUME_ACTION.GET_RESUME,
-      status: API_STATUS.SUCCESS,
+      type: ResumeActions.GET_RESUME,
+      status: ApiStatuses.SUCCESS,
       payload: {
         email,
       },
