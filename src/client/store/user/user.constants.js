@@ -1,6 +1,6 @@
 // @flow
 
-export const USER_ACTION = {
+export const UserActions = {
   UPDATE_USER: 'UPDATE_USER',
 };
 
