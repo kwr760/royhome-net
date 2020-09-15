@@ -1,0 +1,12 @@
+button.btn.remove-outline.dark-switch {
+  border: none;
+}
+button.dark-switch.clear-button {
+  width: .5rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+button.dark-switch.light-button, button.dark-switch.dark-button {
+  line-height: 1.2;
+  border-radius: 1rem;
+}
