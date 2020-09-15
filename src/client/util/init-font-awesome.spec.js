@@ -14,6 +14,6 @@ describe('client/util/init-font-awesome', () => {
     initFontAwesome();
 
     // Assert
-    expect(mockAdd).toBeCalledTimes(6);
+    expect(mockAdd).toBeCalledTimes(8);
   });
 });
