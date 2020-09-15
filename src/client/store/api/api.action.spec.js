@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { ERROR_CODE } from '@src/util/error-codes';
 import { apiActionCreator } from './api.action';
-import { API_STATUS } from './api.contants';
+import { ApiStatuses } from './api.contants';
 
 jest.mock('axios');
 
@@ -48,12 +48,12 @@ describe('client/store/api/api.action', () => {
     const expectedRequestDispatch = {
       type,
       payload,
-      status: API_STATUS.REQUEST,
+      status: ApiStatuses.REQUEST,
     };
     const expectedSuccessDispatch = {
       type,
       payload,
-      status: API_STATUS.SUCCESS,
+      status: ApiStatuses.SUCCESS,
       data: responseData,
     };
     const expectedAxios = {
@@ -92,12 +92,12 @@ describe('client/store/api/api.action', () => {
     const expectedRequestDispatch = {
       type,
       payload: {},
-      status: API_STATUS.REQUEST,
+      status: ApiStatuses.REQUEST,
     };
     const expectedFailureDispatch = {
       type,
       payload: {},
-      status: API_STATUS.FAILURE,
+      status: ApiStatuses.FAILURE,
       error: errorResponse.message,
     };
     const expectedAxios = {
