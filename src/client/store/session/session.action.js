@@ -2,10 +2,10 @@
 
 import type { Action } from 'redux';
 
-import { SESSION_ACTION } from './session.constants';
+import { SessionActions } from './session.constants';
 
 export const updateAuthentication = (authenticated: boolean, expiration: number): Action<string> => ({
-  type: SESSION_ACTION.UPDATE_AUTHENTICATION,
+  type: SessionActions.UPDATE_AUTHENTICATION,
   payload: {
     authenticated,
     expiration,
@@ -13,8 +13,15 @@ export const updateAuthentication = (authenticated: boolean, expiration: number)
 });
 
 export const updateLoading = (isLoading: boolean): Action<string> => ({
-  type: SESSION_ACTION.UPDATE_LOADING,
+  type: SessionActions.UPDATE_LOADING,
   payload: {
     isLoading,
+  },
+});
+
+export const updateDarkMode = (darkMode: string): Action<string> => ({
+  type: SessionActions.UPDATE_DARKMODE,
+  payload: {
+    darkMode,
   },
 });

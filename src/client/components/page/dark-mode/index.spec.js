@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import DarkMode from './index';
+import { DarkModes } from '../../../store/session/session.constants';
 
 jest.mock('@fortawesome/react-fontawesome');
 jest.mock('react', () => ({
@@ -32,8 +34,8 @@ describe('src/client/components/page/dark-mode', () => {
     const group = getByRole('group');
     expect(group.children.length).toBe(3);
     expect(buttons.length).toBe(3);
-    expect(setDarkness).toBeCalledWith('light-mode');
-    expect(setDarkness).toBeCalledWith('clear');
-    expect(setDarkness).toBeCalledWith('dark-mode');
+    expect(setDarkness).toBeCalledWith(DarkModes.LIGHT_MODE);
+    expect(setDarkness).toBeCalledWith(DarkModes.CLEAR_MODE);
+    expect(setDarkness).toBeCalledWith(DarkModes.DARK_MODE);
   });
 });

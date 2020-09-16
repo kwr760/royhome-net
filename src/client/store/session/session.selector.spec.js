@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 
-import { isAuthenticated, isLoading } from './session.selector';
+import { isAuthenticated, isLoading, getDarkMode } from './session.selector';
+import { DarkModes } from './session.constants';
 
 jest.mock('react-redux');
 
@@ -16,7 +17,7 @@ describe('client/store/session/session.selector', () => {
     useSelector.mockImplementation((callback) => callback(mockState));
 
     // Act
-    const authenticated = useSelector((state) => isAuthenticated(state, null));
+    const authenticated = useSelector((state) => isAuthenticated(state));
 
     // Assert
     expect(authenticated).toEqual(expectedAuthentication);
@@ -32,9 +33,25 @@ describe('client/store/session/session.selector', () => {
     useSelector.mockImplementation((callback) => callback(mockState));
 
     // Act
-    const loading = useSelector((state) => isLoading(state, null));
+    const loading = useSelector((state) => isLoading(state));
 
     // Assert
     expect(loading).toEqual(expectedLoading);
+  });
+  it('should return darkMode', () => {
+    // Arrange
+    const expectedDarkMode = DarkModes.DARK_MODE;
+    const mockState = {
+      session: {
+        darkMode: expectedDarkMode,
+      },
+    };
+    useSelector.mockImplementation((callback) => callback(mockState));
+
+    // Act
+    const darkMode = useSelector((state) => getDarkMode(state));
+
+    // Assert
+    expect(darkMode).toEqual(expectedDarkMode);
   });
 });
