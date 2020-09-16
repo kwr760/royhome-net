@@ -2,6 +2,7 @@ import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from '@src/util/auth0/auth0.constants';
 
 import populateState from './populate-state';
 import { loadResumeByEmail } from '../db/resume';
+import { DarkModes } from '../../client/store/session/session.constants';
 
 jest.mock('../db/resume');
 
@@ -27,6 +28,7 @@ describe('server/rendering/populate-state', () => {
         authenticated: true,
         expiration: -1,
         isLoading: false,
+        darkMode: DarkModes.CLEAR_MODE,
       },
       user: {},
       resume: {
@@ -53,6 +55,7 @@ describe('server/rendering/populate-state', () => {
         authenticated: true,
         expiration: -1,
         isLoading: false,
+        darkMode: DarkModes.CLEAR_MODE,
       },
       user: {},
     };
@@ -75,6 +78,7 @@ describe('server/rendering/populate-state', () => {
         authenticated: false,
         expiration: -1,
         isLoading: false,
+        darkMode: DarkModes.CLEAR_MODE,
       },
       user: {},
       resume: {

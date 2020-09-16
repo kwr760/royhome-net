@@ -4,6 +4,7 @@ import { matchPath } from 'react-router-dom';
 
 import { COOKIE_JWT_PAYLOAD } from '@src/util/auth0/auth0.constants';
 import { fetchRoutes } from './fetch-routes';
+import { DarkModes } from '../../client/store/session/session.constants';
 
 const populateState = async (url: string, cookies: Object): any => {
   const activeRoute = fetchRoutes.find((route) => matchPath(url, route)) || {};
@@ -15,6 +16,7 @@ const populateState = async (url: string, cookies: Object): any => {
     authenticated: (expiresAt > 0),
     expiration: -1,
     isLoading: false,
+    darkMode: DarkModes.CLEAR_MODE,
   };
 
   return {
