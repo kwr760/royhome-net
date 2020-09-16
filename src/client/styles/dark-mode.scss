@@ -1,0 +1,35 @@
+button.dark-switch,
+button.dark-switch:focus,
+button.dark-switch:hover,
+button.dark-switch:active,
+button.dark-switch:active:focus:hover {
+  color: var(--color-banner-text);
+  background-color: var(--color-light-banner-light-dark);
+}
+#app.light-theme button.dark-switch,
+#app.light-theme button.dark-switch:focus,
+#app.light-theme button.dark-switch:hover,
+#app.light-theme button.dark-switch:active,
+#app.light-theme button.dark-switch:active:focus:hover {
+  color: var(--color-light-banner-text);
+}
+#app.dark-theme button.dark-switch,
+#app.dark-theme button.dark-switch:focus,
+#app.dark-theme button.dark-switch:hover,
+#app.dark-theme button.dark-switch:active,
+#app.dark-theme button.dark-switch:active:focus:hover {
+  color: var(--color-dark-banner-text);
+}
+
+button.btn.remove-outline.dark-switch {
+  border: none;
+}
+button.dark-switch.clear-button {
+  width: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+button.dark-switch.light-button, button.dark-switch.dark-button {
+  line-height: 1.2;
+  border-radius: 1rem;
+}

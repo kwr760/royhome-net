@@ -3,7 +3,6 @@
 import React, { useCallback } from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
 
-import './dark-mode.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
 import { DarkModes } from '../../../store/session/session.constants';
@@ -19,7 +18,7 @@ const DarkMode = () => {
   const handleClick = useCallback(changeDarkMode, [dispatch]);
 
   return (
-    <ButtonGroup size="sm" className="m-3">
+    <ButtonGroup size="sm" className="dark-mode-group m-3">
       <Button
         className="dark-switch remove-outline light-button"
         onClick={() => handleClick(DarkModes.LIGHT_MODE)}

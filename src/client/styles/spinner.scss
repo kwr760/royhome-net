@@ -12,10 +12,10 @@
   left: 0;
   right: 0;
 }
-body.dark-theme .spinner {
+#app.dark-theme .spinner {
   background-color: var(--color-dark-background);
 }
-body.light-theme .spinner {
+#app.light-theme .spinner {
   background-color: var(--color-light-background);
 }
 .loading {
