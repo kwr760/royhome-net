@@ -34,6 +34,16 @@ const getConfig = (target) => {
     ];
   }
 
+  let devServer;
+  if (dev) {
+    devServer = {
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      hot: true,
+      port: 3000,
+    };
+  }
+
   return {
     name: target,
     mode: dev ? 'development' : 'production',
@@ -101,13 +111,12 @@ const getConfig = (target) => {
         },
       ],
     },
-    externals:
-      target === 'node' ? [
-        '@loadable/component',
-        nodeExternals({
-          allowlist: [/\.(?!(?:jsx?|json)$).{1,5}$/i],
-        }),
-      ] : undefined,
+    externals: target === 'node' ? [
+      '@loadable/component',
+      nodeExternals({
+        allowlist: [/\.(?!(?:jsx?|json)$).{1,5}$/i],
+      }),
+    ] : undefined,
     output: {
       path: path.resolve(__dirname, 'dist', target),
       filename: dev ? '[name].js' : '[name].[chunkhash:8].js',
@@ -171,6 +180,7 @@ const getConfig = (target) => {
         },
       },
     },
+    devServer,
   };
 };
 
