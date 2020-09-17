@@ -51,13 +51,15 @@ describe('src/client/App', () => {
     const store = configureStore(state);
 
     // Act
-    const { getByText, queryByText } = render(getApp(store));
+    const { container, getByText, queryByText } = render(getApp(store));
 
     // Assert
     getByText(/NavBar/);
     queryByText(/Index/);
     getByText(/Footer/);
     expect(queryByText('Loading')).toBeNull();
+    expect(container.firstChild.classList.contains('dark-theme')).toBe(false);
+    expect(container.firstChild.classList.contains('light-theme')).toBe(false);
   });
   it('renders loading', () => {
     // Arrange
@@ -74,5 +76,35 @@ describe('src/client/App', () => {
     // Assert
     getByText(/Loading/);
     expect(queryByText('Home')).toBeNull();
+  });
+  it('renders in dark mode', () => {
+    // Arrange
+    const state = {
+      session: {
+        darkMode: 'dark-mode',
+      },
+    };
+    const store = configureStore(state);
+
+    // Act
+    const { container } = render(getApp(store));
+
+    // Assert
+    expect(container.firstChild.classList.contains('dark-theme')).toBe(true);
+  });
+  it('renders in light mode', () => {
+    // Arrange
+    const state = {
+      session: {
+        darkMode: 'light-mode',
+      },
+    };
+    const store = configureStore(state);
+
+    // Act
+    const { container } = render(getApp(store));
+
+    // Assert
+    expect(container.firstChild.classList.contains('light-theme')).toBe(true);
   });
 });
