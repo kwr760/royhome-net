@@ -76,15 +76,15 @@
 
 .navbar-nav .btn {
   min-width: 110px;
-  color: var(--color-banner-text-light);
+  color: var(--color-banner-text);
   background-color: var(--color-light-banner-light-dark);
 }
 #app.dark-theme .navbar-nav .btn {
-  color: var(--color-dark-banner-text-light);
+  color: var(--color-dark-banner-text);
   background-color: var(--color-light-banner-light-dark);
 }
 #app.light-theme .navbar-nav .btn {
-  color: var(--color-light-banner-text-light);
+  color: var(--color-light-banner-text);
   background-color: var(--color-light-banner-light-dark);
 }
 

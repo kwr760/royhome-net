@@ -25,19 +25,17 @@ const DarkMode = () => {
         active={darkness === DarkModes.LIGHT_MODE}
       >
         <FontAwesomeIcon icon={['fas', 'lightbulb']} />
-        <i className="fas fa-lightbulb" />
       </Button>
       <Button
         className="dark-switch remove-outline clear-button"
         onClick={() => handleClick(DarkModes.CLEAR_MODE)}
       />
       <Button
-        className="dark-switch remove-outline dark-button fas"
+        className="dark-switch remove-outline dark-button"
         onClick={() => handleClick(DarkModes.DARK_MODE)}
         active={darkness === DarkModes.DARK_MODE}
       >
         <FontAwesomeIcon icon={['far', 'lightbulb']} />
-        <i className="far fa-lightbulb" />
       </Button>
     </ButtonGroup>
   );
