@@ -38,6 +38,7 @@ const getConfig = (target) => {
   if (dev) {
     devServer = {
       contentBase: path.join(__dirname, 'dist'),
+      watchContentBase: true,
       compress: true,
       hot: true,
       port: 3000,
