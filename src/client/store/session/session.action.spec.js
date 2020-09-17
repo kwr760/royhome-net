@@ -1,5 +1,5 @@
-import { updateAuthentication, updateLoading } from './session.action';
-import { SESSION_ACTION } from './session.constants';
+import { updateAuthentication, updateDarkMode, updateLoading } from './session.action';
+import { DarkModes, SessionActions } from './session.constants';
 
 describe('client/store/session/session.action', () => {
   it('should create an action to update authentication', () => {
@@ -7,7 +7,7 @@ describe('client/store/session/session.action', () => {
     const expectedAuthentication = true;
     const expectedExpiration = -1;
     const expectedAction = {
-      type: SESSION_ACTION.UPDATE_AUTHENTICATION,
+      type: SessionActions.UPDATE_AUTHENTICATION,
       payload: {
         authenticated: expectedAuthentication,
         expiration: expectedExpiration,
@@ -24,7 +24,7 @@ describe('client/store/session/session.action', () => {
     // Arrange
     const expectedLoading = true;
     const expectedAction = {
-      type: SESSION_ACTION.UPDATE_LOADING,
+      type: SessionActions.UPDATE_LOADING,
       payload: {
         isLoading: expectedLoading,
       },
@@ -32,6 +32,22 @@ describe('client/store/session/session.action', () => {
 
     // Act
     const action = updateLoading(expectedLoading);
+
+    // Assert
+    expect(action).toEqual(expectedAction);
+  });
+  it('should create an action to update darkMode', () => {
+    // Arrange
+    const expectedDarkMode = DarkModes.DARK_MODE;
+    const expectedAction = {
+      type: SessionActions.UPDATE_DARKMODE,
+      payload: {
+        darkMode: expectedDarkMode,
+      },
+    };
+
+    // Act
+    const action = updateDarkMode(expectedDarkMode);
 
     // Assert
     expect(action).toEqual(expectedAction);

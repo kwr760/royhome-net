@@ -4,10 +4,10 @@ footer .nav-link {
   color: var(--color-background);
   padding: 0;
 }
-body.dark-theme footer .nav-link {
+#app.dark-theme footer .nav-link {
   color: var(--color-dark-background);
 }
-body.light-theme footer .nav-link {
+#app.light-theme footer .nav-link {
   color: var(--color-light-background);
 }
 
@@ -15,10 +15,10 @@ footer .nav-link:hover {
   color: var(--color-background);
   text-decoration: underline;
 }
-body.dark-theme footer .nav-link:hover {
+#app.dark-theme footer .nav-link:hover {
   color: var(--color-dark-background);
 }
-body.light-theme footer .nav-link:hover {
+#app.light-theme footer .nav-link:hover {
   color: var(--color-light-background);
 }
 
@@ -29,11 +29,11 @@ footer {
   background-image: linear-gradient(to bottom right, var(--color-banner-dark), var(--color-banner-light));
   z-index: 1;
 }
-body.dark-theme footer {
+#app.dark-theme footer {
   box-shadow: 0 0 4px 1px var(--color-dark-banner-text);
   background-image: linear-gradient(to bottom right, var(--color-dark-banner-dark), var(--color-dark-banner-light));
 }
-body.light-theme footer {
+#app.light-theme footer {
   box-shadow: 0 0 4px 1px var(--color-light-banner-text);
   background-image: linear-gradient(to bottom right, var(--color-light-banner-dark), var(--color-light-banner-light));
 }

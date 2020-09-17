@@ -1,5 +1,5 @@
 import { userReducer } from './user.reducer';
-import { USER_ACTION } from './user.constants';
+import { UserActions } from './user.constants';
 
 describe('client/store/reducers/user/user.reducer', () => {
   it('should return the state for UPDATE_USER action', () => {
@@ -9,7 +9,7 @@ describe('client/store/reducers/user/user.reducer', () => {
       email: 'email@mail.com',
     };
     const action = {
-      type: USER_ACTION.UPDATE_USER,
+      type: UserActions.UPDATE_USER,
       payload: {
         user,
       },

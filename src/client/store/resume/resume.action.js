@@ -2,9 +2,9 @@
 
 import type { Action, Dispatch } from 'redux';
 
-import { RESUME_ACTION } from './resume.constants';
+import { ResumeActions } from './resume.constants';
 import { apiActionCreator } from '../api/api.action';
-import { API_CONFIG } from '../api/api.contants';
+import { ApiConfigs } from '../api/api.contants';
 import type { ActionObjectType } from '../api/api.types';
 
 export const getResumeAction = (
@@ -13,7 +13,7 @@ export const getResumeAction = (
   token: string,
 ) => {
   const action: ActionObjectType = {
-    type: RESUME_ACTION.GET_RESUME,
+    type: ResumeActions.GET_RESUME,
     payload: {
       email,
     },
@@ -24,7 +24,7 @@ export const getResumeAction = (
   };
   return apiActionCreator(
     dispatch,
-    API_CONFIG.GET_RESUME,
+    ApiConfigs.GET_RESUME,
     action,
   );
 };

@@ -1,4 +1,5 @@
 import configureStore from './configure-store';
+import { DarkModes } from './session/session.constants';
 
 describe('client/store/configure', () => {
   it('should configure the store without initialState', () => {
@@ -8,6 +9,7 @@ describe('client/store/configure', () => {
         authenticated: false,
         expiration: 0,
         isLoading: false,
+        darkMode: DarkModes.CLEAR_MODE,
       },
       user: {},
       resume: {

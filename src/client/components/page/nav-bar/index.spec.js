@@ -6,7 +6,7 @@ import NavBar from './index';
 jest.mock('./nav-tabs', () => () => (<div>Nav Tabs</div>));
 jest.mock('./nav-profile', () => () => (<div>Nav Profile</div>));
 jest.mock('./nav-toggler', () => () => (<div>Nav Toggler</div>));
-jest.mock('../dark-mode', () => () => (<div>Dark Mode</div>));
+jest.mock('../dark-button', () => () => (<div>Dark Button</div>));
 
 describe('client/components/page/nav-bar', () => {
   const getNavBar = () => (
@@ -21,7 +21,7 @@ describe('client/components/page/nav-bar', () => {
     getByText(/Nav Tabs/);
     getByText(/Nav Profile/);
     getByText(/Nav Toggler/);
-    getByText(/Dark Mode/);
+    getByText(/Dark Button/);
 
     fireEvent.click(getByTestId('navbar-toggler'));
   });

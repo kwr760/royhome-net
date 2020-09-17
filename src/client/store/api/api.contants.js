@@ -4,13 +4,13 @@ import type {
   ActionRequestType, ActionSuccessType, ActionFailureType,
 } from './api.types';
 
-export const API_STATUS = {
+export const ApiStatuses = {
   REQUEST: 'REQUEST',
   SUCCESS: 'SUCCESS',
   FAILURE: 'FAILURE',
 };
 
-export const API_CONFIG = {
+export const ApiConfigs = {
   PUT_LOG: {
     method: 'put',
     url: '/log',
@@ -28,15 +28,15 @@ export const API_CONFIG = {
 
 export const apiRequestActionCreator = (action: ActionRequestType) => ({
   ...action,
-  status: API_STATUS.REQUEST,
+  status: ApiStatuses.REQUEST,
 });
 
 export const apiSucessActionCreator = (action: ActionSuccessType) => ({
   ...action,
-  status: API_STATUS.SUCCESS,
+  status: ApiStatuses.SUCCESS,
 });
 
 export const apiFailureActionCreator = (action: ActionFailureType) => ({
   ...action,
-  status: API_STATUS.FAILURE,
+  status: ApiStatuses.FAILURE,
 });

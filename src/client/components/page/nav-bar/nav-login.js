@@ -16,7 +16,7 @@ const NavLogin = () => {
       <Button
         id="LoginButton"
         color="secondary"
-        className="btn-margin"
+        className="btn-margin border-0"
         onClick={() => login()}
       >
         <FontAwesomeIcon icon="sign-in-alt" className="mr-3" />

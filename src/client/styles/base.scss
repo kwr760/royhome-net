@@ -15,11 +15,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-body.dark-theme {
+#app.dark-theme {
   color: var(--color-dark-foreground);
   background-color: var(--color-dark-background);
 }
-body.light-theme {
+#app.light-theme {
   color: var(--color-light-foreground);
   background-color: var(--color-light-background);
 }
@@ -47,10 +47,10 @@ h6.muted {
   margin-bottom: 1.5rem;
   font-size: 1rem;
 }
-body.dark-theme h6.muted {
+#app.dark-theme h6.muted {
   color: var(--color-dark-banner-text);
 }
-body.light-theme h6.muted {
+#app.light-theme h6.muted {
   color: var(--color-light-banner-text);
 }
 
@@ -62,12 +62,12 @@ pre {
   margin: 0 2em;
   color: var(--color-foreground);
 }
-body.dark-theme pre {
+#app.dark-theme pre {
   background-color: var(--color-dark-backdrop);
   box-shadow: 0 0 4px 1px var(--color-dark-banner-text);
   color: var(--color-dark-foreground);
 }
-body.light-theme pre {
+#app.light-theme pre {
   background-color: var(--color-light-backdrop);
   box-shadow: 0 0 4px 1px var(--color-light-banner-text);
   color: var(--color-light-foreground);
@@ -81,20 +81,20 @@ code {
 a {
   color: var(--color-link);
 }
-body.dark-theme a {
+#app.dark-theme a {
   color: var(--color-dark-link);
 }
-body.light-theme a {
+#app.light-theme a {
   color: var(--color-light-link);
 }
 
 .backdrop {
   background-color: var(--color-backdrop);
 }
-body.dark-theme .backdrop {
+#app.dark-theme .backdrop {
   background-color: var(--color-dark-backdrop);
 }
-body.light-theme .backdrop {
+#app.light-theme .backdrop {
   background-color: var(--color-light-backdrop);
 }
 
@@ -102,11 +102,11 @@ body.light-theme .backdrop {
   background-color: var(--color-background);
   box-shadow: 0 0 4px 1px var(--color-banner-text);
 }
-body.dark-theme .main-container {
+#app.dark-theme .main-container {
   background-color: var(--color-dark-background);
   box-shadow: 0 0 4px 1px var(--color-dark-banner-text);
 }
-body.light-theme .main-container {
+#app.light-theme .main-container {
   background-color: var(--color-light-background);
   box-shadow: 0 0 4px 1px var(--color-light-banner-text);
 }

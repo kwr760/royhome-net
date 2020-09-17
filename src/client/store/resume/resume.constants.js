@@ -1,6 +1,6 @@
 // @flow
 
-export const RESUME_ACTION = {
+export const ResumeActions = {
   GET_RESUME: 'GET_RESUME',
 };
 

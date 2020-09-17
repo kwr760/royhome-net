@@ -11,12 +11,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import type { PromisedStateType } from './store.types';
 import rootReducer from './root.reducer';
+import { DarkModes } from './session/session.constants';
 
 const defaultState = {
   session: {
     authenticated: false,
     expiration: 0,
     isLoading: false,
+    darkMode: DarkModes.CLEAR_MODE,
   },
   user: {},
   resume: {

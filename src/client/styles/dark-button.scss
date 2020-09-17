@@ -1,0 +1,35 @@
+button.dark-button,
+button.dark-button:focus,
+button.dark-button:active {
+  color: var(--color-banner-text);
+  background-color: var(--color-light-banner-light-dark);
+}
+#app.light-theme button.dark-button,
+#app.light-theme button.dark-button:focus,
+#app.light-theme button.dark-button:active {
+  color: var(--color-light-banner-text);
+}
+#app.dark-theme button.dark-button,
+#app.dark-theme button.dark-button:focus,
+#app.dark-theme button.dark-button:active {
+  color: var(--color-dark-banner-text);
+}
+
+button.dark-button:hover,
+button.dark-button:active:focus:hover {
+  color: var(--color-banner-text-light);
+  background-color: var(--color-light-banner-light-dark);
+}
+#app.light-theme button.dark-button:hover,
+#app.light-theme button.dark-button:active:focus:hover {
+  color: var(--color-light-banner-text-light);
+}
+#app.dark-theme button.dark-button:hover,
+#app.dark-theme button.dark-button:active:focus:hover {
+  color: var(--color-dark-banner-text-light);
+}
+
+button.dark-button {
+  line-height: 1.2;
+  border-radius: 1rem;
+}

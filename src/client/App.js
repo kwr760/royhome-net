@@ -17,7 +17,8 @@ import ProfilePage from './components/profile';
 import ResumePage from './components/resume';
 
 import initFontAwesome from './util/init-font-awesome';
-import { isLoading } from './store/session/session.selector';
+import { isLoading, getDarkMode } from './store/session/session.selector';
+import { DarkModes } from './store/session/session.constants';
 
 initFontAwesome();
 
@@ -25,12 +26,20 @@ initFontAwesome();
  * @return {string}
  */
 const App = () => {
-  const loading = useSelector((state) => isLoading(state, null));
+  const loading = useSelector((state) => isLoading(state));
+  const darkMode = useSelector((state) => getDarkMode(state));
+
+  let appClasses = 'd-flex flex-column h-100 backdrop';
+  if (darkMode === DarkModes.DARK_MODE) {
+    appClasses += ' dark-theme';
+  } else if (darkMode === DarkModes.LIGHT_MODE) {
+    appClasses += ' light-theme';
+  }
 
   return (
     <>
       { loading ? <Loading /> : null }
-      <div id="app" className="d-flex flex-column h-100 backdrop">
+      <div id="app" className={appClasses}>
         <a className="skip-link" href="#main"><div className="sr-only">Skip to main</div></a>
         <NavBar />
         <Container id="main" className="flex-grow-1 pt-3 main-container overflow-auto">
