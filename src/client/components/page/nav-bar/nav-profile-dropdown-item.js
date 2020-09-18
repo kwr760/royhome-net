@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import {
   DropdownItem,
@@ -22,5 +23,11 @@ const NavProfileDropDownItem = ({ path, name, icon }: Props) => (
     {name}
   </DropdownItem>
 );
+
+NavProfileDropDownItem.propTypes = {
+  path: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+};
 
 export default NavProfileDropDownItem;

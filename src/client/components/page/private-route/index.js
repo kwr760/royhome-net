@@ -1,6 +1,7 @@
 // @flow
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Route } from 'react-router-dom';
 
@@ -11,8 +12,8 @@ import { getUser } from '../../../store/user/user.selector';
 
 import type { PrivateRoutePropsType } from './private-route.types';
 
-const Index = ({
-  component: Component, path, userRole = '', url, ...rest
+const PrivateRoute = ({
+  component: Component, path, url, userRole = '', ...rest
 }: PrivateRoutePropsType) => {
   const { login } = useAuth0();
   const authenticated = useSelector((state) => isAuthenticated(state, null));
@@ -44,4 +45,10 @@ const Index = ({
   return <Route path={path} render={render} {...rest} />;
 };
 
-export default Index;
+PrivateRoute.propTypes = {
+  path: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  userRole: PropTypes.string,
+};
+
+export default PrivateRoute;

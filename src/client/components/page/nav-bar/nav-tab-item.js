@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import {
@@ -14,7 +15,6 @@ import { getUser } from '../../../store/user/user.selector';
 type Props = {|
   path: string,
   name: string,
-  // eslint-disable-next-line react/require-default-props
   neededRole?: string,
 |}
 
@@ -46,6 +46,13 @@ const NavTabItem = ({ path, name, neededRole = '' }: Props) => {
       </NavLink>
     </NavItem>
   );
+};
+
+NavTabItem.propTypes = {
+  path: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  neededRole: PropTypes.string,
 };
 
 export default NavTabItem;

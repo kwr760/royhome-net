@@ -1,22 +1,19 @@
 // @flow
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Col, Row } from 'reactstrap';
-import { isEmpty } from 'lodash';
 
 import type { SkillsType } from '../../../store/resume/resume.types';
 
 import './skills.css';
 
-const ResumeSkills = ({ skills = [{}] }: {| skills: [SkillsType] |}) => (
+const ResumeSkills = ({ skills }: {| skills: SkillsType |}) => (
   <Row>
     <Col>
       <div className="title">Skills</div>
       {
         skills.map((item) => {
-          if (isEmpty(item)) {
-            return '';
-          }
           const { name, items } = item;
           return (
             <Row key={name}>
@@ -33,5 +30,26 @@ const ResumeSkills = ({ skills = [{}] }: {| skills: [SkillsType] |}) => (
     </Col>
   </Row>
 );
+
+ResumeSkills.propTypes = {
+  skills: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      position: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          position: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
+        }),
+      ),
+    }),
+  ),
+};
+
+ResumeSkills.defaultProps = {
+  skills: [],
+};
 
 export default ResumeSkills;

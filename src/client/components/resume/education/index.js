@@ -1,19 +1,16 @@
 // @flow
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Col, Row } from 'reactstrap';
-import { isEmpty } from 'lodash';
 import type { EducationType } from '../../../store/resume/resume.types';
 
-const ResumeEducation = ({ education = [{}] }: {| education: [EducationType] |}) => (
+const ResumeEducation = ({ education }: {| education: EducationType |}) => (
   <Row>
     <Col>
       <div className="title">Education</div>
       {
         education.map((item) => {
-          if (isEmpty(item)) {
-            return '';
-          }
           const { degree, school, graduationDate } = item;
           return (
             <Row key={school}>
@@ -32,5 +29,19 @@ const ResumeEducation = ({ education = [{}] }: {| education: [EducationType] |})
     </Col>
   </Row>
 );
+
+ResumeEducation.propTypes = {
+  education: PropTypes.arrayOf(
+    PropTypes.shape({
+      degree: PropTypes.string.isRequired,
+      school: PropTypes.string.isRequired,
+      graduationDate: PropTypes.string.isRequired,
+    }),
+  ),
+};
+
+ResumeEducation.defaultProps = {
+  education: [],
+};
 
 export default ResumeEducation;
