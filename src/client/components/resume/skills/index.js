@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Row } from 'reactstrap';
-import { isEmpty } from 'lodash';
 
 import type { SkillsType } from '../../../store/resume/resume.types';
 

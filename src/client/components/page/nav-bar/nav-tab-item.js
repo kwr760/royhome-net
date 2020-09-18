@@ -15,11 +15,10 @@ import { getUser } from '../../../store/user/user.selector';
 type Props = {|
   path: string,
   name: string,
-  // eslint-disable-next-line react/require-default-props
   neededRole?: string,
 |}
 
-const NavTabItem = ({ path, name, neededRole = ''}: Props) => {
+const NavTabItem = ({ path, name, neededRole = '' }: Props) => {
   const authenticated = useSelector((state) => isAuthenticated(state, null));
   const user = useSelector((state) => getUser(state, null));
   const shouldDisplayTab = (checkRole: string) => {
