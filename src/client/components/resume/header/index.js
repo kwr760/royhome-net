@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 
 import type { AddressType, ContactType, OwnerType } from '../../../store/resume/resume.types';
@@ -8,9 +9,9 @@ import type { AddressType, ContactType, OwnerType } from '../../../store/resume/
 import './header.css';
 
 const ResumeHeader = ({
-  owner = {},
-  address = {},
-  contact = {},
+  owner,
+  address,
+  contact,
 }: {|
   owner: OwnerType,
   contact: ContactType,
@@ -37,6 +38,26 @@ const ResumeHeader = ({
       </Col>
     </Row>
   );
+};
+
+ResumeHeader.propTypes = {
+  owner: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+  contact: PropTypes.shape({
+    phone: PropTypes.string,
+    email: PropTypes.string,
+    displayPhone: PropTypes.bool,
+  }),
+  address: PropTypes.shape({
+    address: PropTypes.string,
+  }),
+};
+
+ResumeHeader.defaultProps = {
+  owner: {},
+  contact: {},
+  address: {},
 };
 
 export default ResumeHeader;

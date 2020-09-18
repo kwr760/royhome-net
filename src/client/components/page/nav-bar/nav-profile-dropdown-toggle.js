@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   DropdownToggle,
 } from 'reactstrap';
@@ -25,6 +26,10 @@ const NavProfileDropDownToggle = ({ name }: Props) => {
       />
     </DropdownToggle>
   );
+};
+
+NavProfileDropDownToggle.propTypes = {
+  name: PropTypes.string.isRequired,
 };
 
 export default NavProfileDropDownToggle;

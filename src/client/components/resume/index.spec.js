@@ -60,22 +60,6 @@ describe('client/components/private/resume', () => {
     getByText(/Resume Education/);
     expect(getResumeAction).toBeCalledWith(dispatch, email, token);
   });
-  it('should render resume when resume is already loaded', async () => {
-    // Arrange
-    useDispatch.mockReturnValue(dispatch);
-    useSelector.mockReturnValueOnce({ owner: 'owner' }).mockReturnValueOnce(false);
-
-    // Act
-    const { getByText } = render(getResume(defaultAuth));
-
-    // Assert
-    await waitFor(() => getByText(/Resume Header/));
-    getByText(/Resume Summary/);
-    getByText(/Resume Skills/);
-    getByText(/Resume Experience/);
-    getByText(/Resume Education/);
-    expect(getResumeAction).not.toBeCalled();
-  });
   it('should not render resume when loading', async () => {
     // Arrange
     useDispatch.mockReturnValue(dispatch);

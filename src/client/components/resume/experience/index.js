@@ -1,21 +1,19 @@
 // @flow
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Col, Row } from 'reactstrap';
 import { isEmpty } from 'lodash';
 import type { ExperienceType } from '../../../store/resume/resume.types';
 
 import './experience.css';
 
-const ResumeExperience = ({ experience = [{}] }: {| experience: [ExperienceType] |}) => (
+const ResumeExperience = ({ experience }: {| experience: ExperienceType |}) => (
   <Row>
     <Col>
       <div className="title">Professional Experience</div>
       {
         experience.map((item) => {
-          if (isEmpty(item)) {
-            return '';
-          }
           const {
             title, company, startDate, endDate = 'current', description, bullets, techs,
           } = item;
@@ -58,5 +56,32 @@ const ResumeExperience = ({ experience = [{}] }: {| experience: [ExperienceType]
     </Col>
   </Row>
 );
+
+const ExperienceItemType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  position: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  item: PropTypes.string.isRequired,
+});
+
+ResumeExperience.propTypes = {
+  experience: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      position: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      company: PropTypes.string.isRequired,
+      startDate: PropTypes.string.isRequired,
+      endDate: PropTypes.string,
+      description: PropTypes.arrayOf(ExperienceItemType),
+      bullets: PropTypes.arrayOf(ExperienceItemType),
+      techs: PropTypes.arrayOf(ExperienceItemType),
+    }),
+  ),
+};
+
+ResumeExperience.defaultProps = {
+  experience: [],
+};
 
 export default ResumeExperience;

@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import {
   NavItem,
@@ -24,5 +25,11 @@ const NavTogglerMenuItem = ({ path, name, icon }: Props) => (
     </RouterNavLink>
   </NavItem>
 );
+
+NavTogglerMenuItem.propTypes = {
+  path: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+};
 
 export default NavTogglerMenuItem;

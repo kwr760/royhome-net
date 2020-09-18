@@ -1,8 +1,7 @@
 // @flow
 import React from 'react';
-import {
-  DropdownItem,
-} from 'reactstrap';
+import PropTypes from 'prop-types';
+import { DropdownItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAuth0 } from '@src/util/auth0/auth0-context';
@@ -23,6 +22,11 @@ const NavProfileDropDownLogout = ({ name, icon }: Props) => {
       {name}
     </DropdownItem>
   );
+};
+
+NavProfileDropDownLogout.propTypes = {
+  name: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
 };
 
 export default NavProfileDropDownLogout;

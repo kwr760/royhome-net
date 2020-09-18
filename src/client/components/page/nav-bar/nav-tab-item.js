@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import {
@@ -18,7 +19,7 @@ type Props = {|
   neededRole?: string,
 |}
 
-const NavTabItem = ({ path, name, neededRole = '' }: Props) => {
+const NavTabItem = ({ path, name, neededRole = ''}: Props) => {
   const authenticated = useSelector((state) => isAuthenticated(state, null));
   const user = useSelector((state) => getUser(state, null));
   const shouldDisplayTab = (checkRole: string) => {
@@ -46,6 +47,13 @@ const NavTabItem = ({ path, name, neededRole = '' }: Props) => {
       </NavLink>
     </NavItem>
   );
+};
+
+NavTabItem.propTypes = {
+  path: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  neededRole: PropTypes.string,
 };
 
 export default NavTabItem;
