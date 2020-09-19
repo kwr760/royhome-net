@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { FiLogOut } from 'react-icons/fi';
 
 import { BrowserRouter as Router } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NavProfileDropDownItem from './nav-profile-dropdown-item';
 
-jest.mock('@fortawesome/react-fontawesome');
+jest.mock('react-icons/fi');
 
 describe('client/components/page/nav-bar/nav-profile-dropdown-item', () => {
   const getComponent = (path, name, icon) => (
@@ -15,14 +15,14 @@ describe('client/components/page/nav-bar/nav-profile-dropdown-item', () => {
   );
   it('should render the dropdown', () => {
     // Arrange
-    FontAwesomeIcon.mockImplementation(({ icon }) => `Icon: ${icon}`);
+    FiLogOut.mockImplementation(({ icon }) => 'MockIcon');
 
     // Act
-    const { getByText, getByRole } = render(getComponent('/path', 'Name', 'icon-test'));
+    const { getByText, getByRole } = render(getComponent('/path', 'Name', <FiLogOut />));
 
     // Assert
     getByText(/Name/);
     getByRole('menuitem');
-    getByText(/Icon: icon-test/);
+    getByText(/MockIcon/);
   });
 });

@@ -2,11 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { Provider } from 'react-redux';
-import initFontAwesome from '../../../util/init-font-awesome';
 import NavProfileDropDown from './nav-profile-dropdown';
 import configureStore from '../../../store/configure-store';
-
-initFontAwesome();
 
 jest.mock('./nav-profile-dropdown-toggle', () => () => (<div>Nav Profile Dropdown Toggle</div>));
 jest.mock('./nav-profile-dropdown-item', () => () => (<div>Nav Profile Dropdown Item</div>));

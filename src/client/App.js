@@ -16,11 +16,8 @@ import TicTacToePage from './components/tictactoe';
 import ProfilePage from './components/profile';
 import ResumePage from './components/resume';
 
-import initFontAwesome from './util/init-font-awesome';
 import { isLoading, getDarkMode } from './store/session/session.selector';
 import { DarkModes } from './store/session/session.constants';
-
-initFontAwesome();
 
 /**
  * @return {string}

@@ -1,10 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import initFontAwesome from '../../../util/init-font-awesome';
 import NavTabs from './nav-tabs';
-
-initFontAwesome();
 
 jest.mock('./nav-tab-item', () => () => (<div>Nav Tab Item</div>));
 
