@@ -2,10 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
 import { Auth0Context } from '@src/util/auth0/auth0-context';
-import initFontAwesome from '../../../util/init-font-awesome';
 import NavLogin from './nav-login';
-
-initFontAwesome();
 
 describe('client/components/page/nav-bar/nav-login', () => {
   const getNavLogin = (auth) => (

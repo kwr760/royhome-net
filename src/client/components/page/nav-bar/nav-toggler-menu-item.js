@@ -6,17 +6,15 @@ import {
   NavItem,
 } from 'reactstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 type Props = {|
   path: string,
   name: string,
-  icon: string,
+  icon: any,
 |}
 
 const NavTogglerMenuItem = ({ path, name, icon }: Props) => (
   <NavItem>
-    <FontAwesomeIcon icon={icon} className="mr-3" />
+    {icon}
     <RouterNavLink
       to={path}
       activeClassName="router-link-exact-active"
@@ -29,7 +27,7 @@ const NavTogglerMenuItem = ({ path, name, icon }: Props) => (
 NavTogglerMenuItem.propTypes = {
   path: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.element.isRequired,
 };
 
 export default NavTogglerMenuItem;

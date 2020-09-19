@@ -168,7 +168,7 @@ const getConfig = (target) => {
                 { name: 'axios', packages: ['axios'] },
                 { name: 'lodash', packages: ['lodash'] },
                 { name: 'auth0-spa', packages: ['auth0'] },
-                { name: 'fortawesome', packages: ['fortawesome'] },
+                { name: 'react-icons', packages: ['react-icons'] },
                 { name: 'markdown', packages: ['react-markdown', 'remark-parse'] },
               ];
               const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1].replace('@', '');

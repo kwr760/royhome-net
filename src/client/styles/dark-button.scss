@@ -1,3 +1,7 @@
+button.dark-button .moon-fix {
+  margin-bottom: 0.125rem;
+}
+
 button.dark-button,
 button.dark-button:focus,
 button.dark-button:active {
@@ -32,4 +36,6 @@ button.dark-button:active:focus:hover {
 button.dark-button {
   line-height: 1.2;
   border-radius: 1rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
 }

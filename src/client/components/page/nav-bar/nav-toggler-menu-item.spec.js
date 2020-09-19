@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-
 import { BrowserRouter as Router } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { render } from '@testing-library/react';
+import { FiLogOut } from 'react-icons/fi';
+
 import NavTogglerMenuItem from './nav-toggler-menu-item';
 
-jest.mock('@fortawesome/react-fontawesome');
+jest.mock('react-icons/fi');
 
 describe('client/components/page/nav-bar/nav-toggler-menu-item', () => {
   const getComponent = (path, name, icon) => (
@@ -15,16 +15,16 @@ describe('client/components/page/nav-bar/nav-toggler-menu-item', () => {
   );
   it('should render the dropdown', () => {
     // Arrange
-    FontAwesomeIcon.mockImplementation(({ icon }) => `Icon: ${icon}`);
+    FiLogOut.mockImplementation(({ icon }) => 'MockIcon');
 
     // Act
-    const { getByText, getByRole } = render(getComponent('/path', 'Name', 'icon-test'));
+    const { getByText, getByRole } = render(getComponent('/path', 'Name', <FiLogOut />));
 
     // Assert
     getByText(/Name/);
     getByRole('listitem');
     const link = getByRole('link');
     expect(link.pathname).toBe('/path');
-    getByText(/Icon: icon-test/);
+    getByText(/MockIcon/);
   });
 });
