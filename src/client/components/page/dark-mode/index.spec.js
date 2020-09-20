@@ -1,19 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { fireEvent, render } from '@testing-library/react';
+import { FiSun, FiMoon } from 'react-icons/fi';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DarkMode from './index';
 import { DarkModes } from '../../../store/session/session.constants';
 import configureStore from '../../../store/configure-store';
 import { updateDarkMode } from '../../../store/session/session.action';
 
-jest.mock('@fortawesome/react-fontawesome');
-jest.mock('../../../store/session/session.action');
+jest.mock('react-icons/fi');
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
   useDispatch: () => jest.fn(),
 }));
+jest.mock('../../../store/session/session.action');
 
 describe('src/client/components/page/dark-mode', () => {
   const getComponent = (store) => (
@@ -29,7 +29,8 @@ describe('src/client/components/page/dark-mode', () => {
       },
     };
     const store = configureStore(state);
-    FontAwesomeIcon.mockImplementation(({ icon }) => `Icon: ${icon}`);
+    FiSun.mockImplementation(({ icon }) => 'FiSun');
+    FiMoon.mockImplementation(({ icon }) => 'FiMoon');
     const mockUpdateDarkMode = jest.fn();
     updateDarkMode.mockImplementation(mockUpdateDarkMode);
 
@@ -41,8 +42,8 @@ describe('src/client/components/page/dark-mode', () => {
     fireEvent.click(buttons[2]);
 
     // Assert
-    getByText(/Icon: fas,lightbulb/);
-    getByText(/Icon: far,lightbulb/);
+    getByText(/FiSun/);
+    getByText(/FiMoon/);
     const group = getByRole('group');
     expect(group.children.length).toBe(3);
     expect(buttons.length).toBe(3);

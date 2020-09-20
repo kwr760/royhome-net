@@ -3,11 +3,8 @@ import { render } from '@testing-library/react';
 
 import { Provider } from 'react-redux';
 import { UncontrolledDropdown } from 'reactstrap';
-import initFontAwesome from '../../../util/init-font-awesome';
 import NavProfileDropDownToggle from './nav-profile-dropdown-toggle';
 import configureStore from '../../../store/configure-store';
-
-initFontAwesome();
 
 describe('client/components/page/nav-bar/nav-profile-dropdown-toggle', () => {
   const getComponent = (store, name) => (

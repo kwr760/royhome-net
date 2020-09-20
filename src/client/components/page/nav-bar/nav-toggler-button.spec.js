@@ -1,12 +1,12 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-
 import { BrowserRouter as Router } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FiLogIn } from 'react-icons/fi';
+
 import { Auth0Context } from '@src/util/auth0/auth0-context';
 import NavTogglerButton from './nav-toggler-button';
 
-jest.mock('@fortawesome/react-fontawesome');
+jest.mock('react-icons/fi');
 
 describe('client/components/page/nav-bar/nav-toggler-menu-button', () => {
   const getComponent = (auth) => (
@@ -21,14 +21,14 @@ describe('client/components/page/nav-bar/nav-toggler-menu-button', () => {
     const auth = {
       login: jest.fn(),
     };
-    FontAwesomeIcon.mockImplementation(({ icon }) => `Icon: ${icon}`);
+    FiLogIn.mockImplementation(({ icon }) => 'FiLogIn');
 
     // Act
     const { getByText } = render(getComponent(auth));
     fireEvent.click(getByText(/Log in/));
 
     // Assert
-    getByText(/Icon: sign-in-alt/);
+    getByText(/FiLogIn/);
     expect(auth.login).toHaveBeenCalledTimes(1);
   });
 });

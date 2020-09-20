@@ -2,23 +2,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink as RouterNavLink } from 'react-router-dom';
+import { FiLogOut } from 'react-icons/fi';
+
 import {
   NavItem,
 } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAuth0 } from '@src/util/auth0/auth0-context';
 
 type Props = {|
   name: string,
-  icon: string,
 |}
 
-const NavTogglerMenuLogout = ({ name, icon }: Props) => {
+const NavTogglerMenuLogout = ({ name }: Props) => {
   const { logout } = useAuth0();
   return (
     <NavItem>
-      <FontAwesomeIcon icon={icon} className="mr-3" />
+      <FiLogOut className="mr-3" />
       <RouterNavLink
         to="#"
         id="qsLogoutBtn"
@@ -32,7 +32,6 @@ const NavTogglerMenuLogout = ({ name, icon }: Props) => {
 
 NavTogglerMenuLogout.propTypes = {
   name: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
 };
 
 export default NavTogglerMenuLogout;

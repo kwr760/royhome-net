@@ -3,8 +3,8 @@
 import React, { useCallback } from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
+import { FiSun, FiMoon } from 'react-icons/fi';
 import { DarkModes } from '../../../store/session/session.constants';
 import { updateDarkMode } from '../../../store/session/session.action';
 import { getDarkMode } from '../../../store/session/session.selector';
@@ -24,7 +24,7 @@ const DarkMode = () => {
         onClick={() => handleClick(DarkModes.LIGHT_MODE)}
         active={darkness === DarkModes.LIGHT_MODE}
       >
-        <FontAwesomeIcon icon={['fas', 'lightbulb']} />
+        <FiSun />
       </Button>
       <Button
         className="dark-switch remove-outline clear-button"
@@ -35,7 +35,7 @@ const DarkMode = () => {
         onClick={() => handleClick(DarkModes.DARK_MODE)}
         active={darkness === DarkModes.DARK_MODE}
       >
-        <FontAwesomeIcon icon={['far', 'lightbulb']} />
+        <FiMoon />
       </Button>
     </ButtonGroup>
   );

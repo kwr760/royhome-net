@@ -3,11 +3,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 
-import initFontAwesome from '../../../util/init-font-awesome';
 import configureStore from '../../../store/configure-store';
 import NavToggler from './nav-toggler';
-
-initFontAwesome();
 
 jest.mock('./nav-toggler-button', () => () => (<div>Nav Toggler Button</div>));
 jest.mock('./nav-toggler-menu', () => () => (<div>Nav Toggler Menu</div>));

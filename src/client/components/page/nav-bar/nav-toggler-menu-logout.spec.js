@@ -1,12 +1,12 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
+import { FiLogOut } from 'react-icons/fi';
 
 import { Auth0Context } from '@src/util/auth0/auth0-context';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BrowserRouter as Router } from 'react-router-dom';
 import NavTogglerMenuLogout from './nav-toggler-menu-logout';
 
-jest.mock('@fortawesome/react-fontawesome');
+jest.mock('react-icons/fi');
 
 describe('client/components/page/nav-bar/nav-toggler-menu-logout', () => {
   const getComponent = (auth, name, icon) => (
@@ -21,7 +21,7 @@ describe('client/components/page/nav-bar/nav-toggler-menu-logout', () => {
     const auth = {
       logout: jest.fn(),
     };
-    FontAwesomeIcon.mockImplementation(({ icon }) => `Icon: ${icon}`);
+    FiLogOut.mockImplementation(({ icon }) => 'FiLogOut');
 
     // Act
     const { getByText } = render(getComponent(auth, 'Logout', 'test-icon'));
@@ -29,7 +29,7 @@ describe('client/components/page/nav-bar/nav-toggler-menu-logout', () => {
     fireEvent.click(button);
 
     // Assert
-    getByText(/Icon: test-icon/);
+    getByText(/FiLogOut/);
     getByText(/Logout/);
     expect(auth.logout).toHaveBeenCalledTimes(1);
   });

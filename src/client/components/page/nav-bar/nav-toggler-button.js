@@ -5,9 +5,9 @@ import {
   Nav,
   NavItem,
 } from 'reactstrap';
+import { FiLogIn } from 'react-icons/fi';
 
 import { useAuth0 } from '@src/util/auth0/auth0-context';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavTogglerButton = () => {
   const { login } = useAuth0();
@@ -20,7 +20,7 @@ const NavTogglerButton = () => {
           color="secondary"
           onClick={() => login()}
         >
-          <FontAwesomeIcon icon="sign-in-alt" className="mr-3" />
+          <FiLogIn className="mr-3" />
           Log in
         </Button>
       </NavItem>

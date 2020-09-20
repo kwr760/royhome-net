@@ -1,25 +1,26 @@
 @import 'theme';
 
 footer .nav-link {
-  color: var(--color-background);
   padding: 0;
 }
-#app.dark-theme footer .nav-link {
-  color: var(--color-dark-background);
+footer .nav-link svg {
+  color: var(--color-banner-text);
 }
-#app.light-theme footer .nav-link {
-  color: var(--color-light-background);
+#app.dark-theme footer .nav-link svg {
+  color: var(--color-dark-banner-text);
+}
+#app.light-theme footer .nav-link svg {
+  color: var(--color-light-banner-text);
 }
 
-footer .nav-link:hover {
-  color: var(--color-background);
-  text-decoration: underline;
+footer .nav-link svg:hover {
+  color: var(--color-banner-text-light);
 }
-#app.dark-theme footer .nav-link:hover {
-  color: var(--color-dark-background);
+#app.dark-theme footer .nav-link svg:hover {
+  color: var(--color-dark-banner-text-light);
 }
-#app.light-theme footer .nav-link:hover {
-  color: var(--color-light-background);
+#app.light-theme footer .nav-link svg:hover {
+  color: var(--color-light-banner-text-light);
 }
 
 footer {
