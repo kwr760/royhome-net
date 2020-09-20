@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import LOG_LEVELS from '@src/util/logger/logger-levels';
+import LOG_LEVELS from '@common/util/logger/logger-levels';
 
 describe('config/index', () => {
   const { RELEASE_ENV } = process.env;
@@ -29,8 +29,8 @@ describe('config/index', () => {
           mode: 'production',
           root: expect.stringContaining('/royhome-net'),
           server: {
-            rendering: true,
             startHttp: true,
+            apiPort: 3001,
             port: 443,
             cert: '/etc/letsencrypt/live/royk.us/cert.pem',
             key: '/etc/letsencrypt/live/royk.us/privkey.pem',
@@ -70,16 +70,16 @@ describe('config/index', () => {
           appName: 'roy-home',
           auth0: {
             audience: 'http://royk.us',
-            callbackUrl: 'https://local.royk.us:3000',
+            callbackUrl: 'https://royk.us:3000',
             clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
             domain: 'royk.auth0.com',
           },
-          host: 'https://local.royk.us:3000',
+          host: 'https://royk.us:3000',
           mode: 'development',
           root: expect.stringContaining('/royhome-net'),
           server: {
-            rendering: true,
             port: 3000,
+            apiPort: 3001,
             ca: '/etc/letsencrypt/royhome/chain.pem',
             cert: '/etc/letsencrypt/royhome/cert.pem',
             key: '/etc/letsencrypt/royhome/privkey.pem',

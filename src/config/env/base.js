@@ -14,7 +14,7 @@ const env = {
     audience: 'http://royk.us',
   },
   server: {
-    rendering: true,
+    apiPort: 3001,
   },
 };
 

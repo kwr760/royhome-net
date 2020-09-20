@@ -12,8 +12,7 @@ module.exports = {
       testEnvironment: 'jsdom',
       verbose: true,
       testMatch: [
-        '**/src/client/**/?(*.)(spec|test).js',
-        '**/src/util/**/?(*.)(spec|test).js',
+        '**/src/web/**/?(*.)(spec|test).js',
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',
@@ -32,8 +31,9 @@ module.exports = {
       testEnvironment: 'node',
       verbose: true,
       testMatch: [
-        '**/src/server/**/?(*.)(spec|test).js',
+        '**/src/api/**/?(*.)(spec|test).js',
         '**/src/config/**/?(*.)(spec|test).js',
+        '**/src/common/**/?(*.)(spec|test).js',
       ],
       transform: {
         '^.+\\.js$': 'babel-jest',

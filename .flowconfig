@@ -36,6 +36,10 @@ module.name_mapper.extension='scss' -> 'empty/object'
 module.name_mapper.extension='html' -> 'empty/string'
 module.name_mapper.extension='md' -> 'empty/object'
 module.name_mapper='^@src' ->'<PROJECT_ROOT>/src'
+module.name_mapper='^@config' ->'<PROJECT_ROOT>/src/config'
+module.name_mapper='^@common' ->'<PROJECT_ROOT>/src/common'
+module.name_mapper='^@api' ->'<PROJECT_ROOT>/src/api'
+module.name_mapper='^@web' ->'<PROJECT_ROOT>/src/web'
 
 [strict]
 nonstrict-import

@@ -1,8 +1,8 @@
 // @flow
 
-import LOG_LEVELS from '@src/util/logger/logger-levels';
+import LOG_LEVELS from '@common/util/logger/logger-levels';
 
-const currentHost = global.origin || 'https://local.royk.us:3000';
+const currentHost = global.origin || 'https://royk.us:3000';
 
 const env = (host) => ({
   mode: 'development',
