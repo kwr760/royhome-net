@@ -12,7 +12,7 @@ describe('client/store/api/get-parsed-url', () => {
     const result = getParsedUrl(config, action);
 
     // Assert
-    expect(result).toEqual(expect.stringMatching(/\/api\/url/));
+    expect(result).toEqual(expect.stringMatching(/\/api.localhost\/url/));
   });
   it('should parse params into an url', () => {
     // Arrange
@@ -30,6 +30,6 @@ describe('client/store/api/get-parsed-url', () => {
     const result = getParsedUrl(config, action);
 
     // Assert
-    expect(result).toEqual(expect.stringMatching(/\/api\/url\/fieldData\/fun_stuff\/end/));
+    expect(result).toEqual(expect.stringMatching(/\/api.localhost\/url\/fieldData\/fun_stuff\/end/));
   });
 });

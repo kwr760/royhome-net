@@ -80,7 +80,7 @@ describe('server/index', () => {
       expect(mockExpress.use).toHaveBeenCalledWith(httpContext.middleware);
       expect(mockExpress.use).toHaveBeenCalledWith(handleError);
       expect(mockExpress.use).toHaveBeenCalledWith(notFound);
-      expect(mockExpress.use).toHaveBeenCalledWith('/api', undefined);
+      expect(mockExpress.use).toHaveBeenCalledWith('/', undefined);
     });
   });
 

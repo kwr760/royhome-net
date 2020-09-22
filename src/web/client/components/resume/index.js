@@ -15,10 +15,11 @@ const ResumePage = () => {
   const resume = useSelector(getResume);
   const dispatch = useDispatch();
   const loading = useSelector(isLoading);
+  const isResumeEmpty = isEmpty(resume);
 
   useEffect(() => {
     const callResumeApi = async () => {
-      if (isEmpty(resume)) {
+      if (isResumeEmpty) {
         const token = await getToken();
         if (token) {
           getResumeAction(dispatch, 'kroy760@gmail.com', token);
@@ -26,7 +27,7 @@ const ResumePage = () => {
       }
     };
     callResumeApi();
-  }, [resume, dispatch, getToken]);
+  }, [isResumeEmpty, dispatch, getToken]);
 
   return (
     loading ? null : <Resume resume={resume} />

@@ -63,7 +63,7 @@ describe('client/store/api/api.action', () => {
         head: 'er',
       },
       method: 'get',
-      url: expect.stringMatching(/api\/url\/thing/),
+      url: expect.stringMatching(/api.localhost\/url\/thing/),
     };
 
     // Act
@@ -102,7 +102,7 @@ describe('client/store/api/api.action', () => {
     };
     const expectedAxios = {
       method: 'get',
-      url: expect.stringMatching(/api\/url/),
+      url: expect.stringMatching(/api.localhost\/url/),
       data: {},
       headers: {},
     };

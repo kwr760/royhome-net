@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(httpContext.middleware);
 
-app.use('/api', generate(routes));
+app.use('/', generate(routes));
 
 app.use(handleError);
 app.use(notFound);
