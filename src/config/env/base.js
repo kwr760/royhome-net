@@ -13,8 +13,9 @@ const env = {
     clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
     audience: 'http://royk.us',
   },
-  server: {
-    apiPort: 3001,
+  port: {
+    web: 3000,
+    api: 5000,
   },
 };
 

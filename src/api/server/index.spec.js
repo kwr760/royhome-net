@@ -99,7 +99,7 @@ describe('server/index', () => {
       const { default: app } = require('./index');
 
       // Assert
-      expect(startHttpsServer).toHaveBeenCalledWith(app, 3001);
+      expect(startHttpsServer).toHaveBeenCalledWith(app, 5000);
     });
   });
 
@@ -119,7 +119,7 @@ describe('server/index', () => {
 
       // Assert
       expect(mockExpress.use).toHaveBeenCalledTimes(10);
-      expect(startHttpsServer).toHaveBeenCalledWith(app, 3001);
+      expect(startHttpsServer).toHaveBeenCalledWith(app, 5000);
     });
   });
 });

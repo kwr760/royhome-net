@@ -10,9 +10,7 @@ const env = (host) => ({
   auth0: {
     callbackUrl: `${host}`,
   },
-  server: {
-    startHttp: true,
-    port: 443,
+  cert: {
     key: '/etc/letsencrypt/live/royk.us/privkey.pem',
     cert: '/etc/letsencrypt/live/royk.us/cert.pem',
     ca: '/etc/letsencrypt/live/royk.us/chain.pem',

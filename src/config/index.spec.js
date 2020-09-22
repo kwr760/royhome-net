@@ -28,13 +28,14 @@ describe('config/index', () => {
           host: 'https://royk.us',
           mode: 'production',
           root: expect.stringContaining('/royhome-net'),
-          server: {
-            startHttp: true,
-            apiPort: 3001,
-            port: 443,
+          port: {
+            api: 5000,
+            web: 3000,
+          },
+          cert: {
+            ca: '/etc/letsencrypt/live/royk.us/chain.pem',
             cert: '/etc/letsencrypt/live/royk.us/cert.pem',
             key: '/etc/letsencrypt/live/royk.us/privkey.pem',
-            ca: '/etc/letsencrypt/live/royk.us/chain.pem',
           },
           log: {
             dir: '/var/log/royhome.net',
@@ -77,9 +78,11 @@ describe('config/index', () => {
           host: 'https://royk.us:3000',
           mode: 'development',
           root: expect.stringContaining('/royhome-net'),
-          server: {
-            port: 3000,
-            apiPort: 3001,
+          port: {
+            api: 5000,
+            web: 3000,
+          },
+          cert: {
             ca: '/etc/letsencrypt/royhome/chain.pem',
             cert: '/etc/letsencrypt/royhome/cert.pem',
             key: '/etc/letsencrypt/royhome/privkey.pem',

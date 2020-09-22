@@ -10,8 +10,7 @@ const env = (host) => ({
   auth0: {
     callbackUrl: `${host}`,
   },
-  server: {
-    port: 3000,
+  cert: {
     key: '/etc/letsencrypt/royhome/privkey.pem',
     cert: '/etc/letsencrypt/royhome/cert.pem',
     ca: '/etc/letsencrypt/royhome/chain.pem',

@@ -11,7 +11,7 @@ describe('server/middleware/start-https', () => {
   it('should create http server and call listen', () => {
     // Arrange
     const app = {};
-    const port = 443;
+    const port = 3000;
     fs.readFileSync
       .mockReturnValueOnce('key')
       .mockReturnValueOnce('cert')

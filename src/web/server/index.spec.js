@@ -9,9 +9,7 @@ import httpContext from 'express-http-context';
 
 import handleError from '../../common/server/middleware/handle-error';
 import notFound from '../../common/server/middleware/not-found';
-import redirectInsecure from '../../common/server/middleware/redirect-insecure';
 import renderReact from './rendering/render-react';
-import startHttpServer from '../../common/server/middleware/start-http';
 import startHttpsServer from '../../common/server/middleware/start-https';
 
 jest.mock('express');
@@ -24,7 +22,6 @@ jest.mock('body-parser', () => ({
 }));
 jest.mock('cookie-parser');
 jest.mock('express-http-context');
-jest.mock('@common/server/middleware/start-http');
 jest.mock('@common/server/middleware/start-https');
 
 describe('server/index', () => {
@@ -66,7 +63,7 @@ describe('server/index', () => {
       expect(mockExpress.enable).toHaveBeenCalledWith('etag');
       expect(mockExpress.enable).toHaveBeenCalledWith('query parser');
 
-      expect(mockExpress.use).toHaveBeenCalledTimes(11);
+      expect(mockExpress.use).toHaveBeenCalledTimes(10);
       expect(cors).toHaveBeenCalledWith();
       expect(mockExpress.use).toHaveBeenCalledWith(corsCb);
       expect(helmet).toHaveBeenCalledWith();
@@ -117,10 +114,8 @@ describe('server/index', () => {
       const { default: app } = require('./index');
 
       // Assert
-      expect(mockExpress.use).toHaveBeenCalledTimes(11);
-      expect(mockExpress.use).toHaveBeenCalledWith(redirectInsecure);
-      expect(startHttpServer).toHaveBeenCalledWith(app, 80);
-      expect(startHttpsServer).toHaveBeenCalledWith(app, 443);
+      expect(mockExpress.use).toHaveBeenCalledTimes(10);
+      expect(startHttpsServer).toHaveBeenCalledWith(app, 3000);
     });
   });
 });

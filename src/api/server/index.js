@@ -38,6 +38,6 @@ app.use('/api', generate(routes));
 app.use(handleError);
 app.use(notFound);
 
-startHttpsServer(app, env.server.apiPort);
+startHttpsServer(app, env.port.api);
 
 export default app;
