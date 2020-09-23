@@ -15,7 +15,7 @@
   "scripts": {
     "dev:web": "RELEASE_ENV=dev babel-node src/web/server/index.js",
     "dev:api": "RELEASE_ENV=dev babel-node src/api/server/index.js",
-    "start:dev": "yarn dev:web && yarn dev:api",
+    "start:dev": "yarn dev:web & yarn dev:api",
     "build:dev": "yarn clean && webpack -p --mode=development --env dev --watch",
     "test": "yarn test:flow && yarn test:lint && yarn test:only",
     "test:flow": "flow",
@@ -24,7 +24,7 @@
     "build:flow": "flow-typed install",
     "prod:web": "RELEASE_ENV=prod babel-node src/web/server/index.js",
     "prod:api": "RELEASE_ENV=prod babel-node src/api/server/index.js",
-    "start:prod": "yarn prod:web && yarn prod:api",
+    "start:prod": "yarn prod:web & yarn prod:api",
     "build:prod": "yarn clean && RELEASE_ENV=prod webpack -p --mode=production",
     "release": "yarn install --production && yarn run build:prod && yarn run pm2:start",
     "pm2:start": "pm2 start \\\"RELEASE_ENV=prod babel-node src/web/server/index.js\\\"",
