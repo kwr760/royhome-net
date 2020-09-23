@@ -52,6 +52,10 @@ module.exports = {
     'import/resolver': {
       alias: [
         ['@src', './src'],
+        ['@config', './src/config'],
+        ['@common', './src/common'],
+        ['@web', './src/web'],
+        ['@api', './src/api'],
       ],
     },
   },

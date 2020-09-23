@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import LOG_LEVELS from '@src/util/logger/logger-levels';
+import LOG_LEVELS from '@common/util/logger/logger-levels';
 
 describe('config/index', () => {
   const { RELEASE_ENV } = process.env;
@@ -28,19 +28,23 @@ describe('config/index', () => {
           host: 'https://royk.us',
           mode: 'production',
           root: expect.stringContaining('/royhome-net'),
-          server: {
-            rendering: true,
-            startHttp: true,
-            port: 443,
+          port: {
+            api: 5000,
+            web: 3000,
+          },
+          cert: {
+            ca: '/etc/letsencrypt/live/royk.us/chain.pem',
             cert: '/etc/letsencrypt/live/royk.us/cert.pem',
             key: '/etc/letsencrypt/live/royk.us/privkey.pem',
-            ca: '/etc/letsencrypt/live/royk.us/chain.pem',
           },
           log: {
             dir: '/var/log/royhome.net',
             level: LOG_LEVELS.WARN,
             stdout: false,
             includePidFilename: true,
+          },
+          api: {
+            url: 'https://api.royk.us',
           },
         },
       };
@@ -70,16 +74,18 @@ describe('config/index', () => {
           appName: 'roy-home',
           auth0: {
             audience: 'http://royk.us',
-            callbackUrl: 'https://local.royk.us:3000',
+            callbackUrl: 'https://royk.us:3000',
             clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
             domain: 'royk.auth0.com',
           },
-          host: 'https://local.royk.us:3000',
+          host: 'https://royk.us:3000',
           mode: 'development',
           root: expect.stringContaining('/royhome-net'),
-          server: {
-            rendering: true,
-            port: 3000,
+          port: {
+            api: 5000,
+            web: 3000,
+          },
+          cert: {
             ca: '/etc/letsencrypt/royhome/chain.pem',
             cert: '/etc/letsencrypt/royhome/cert.pem',
             key: '/etc/letsencrypt/royhome/privkey.pem',
@@ -89,6 +95,9 @@ describe('config/index', () => {
             level: LOG_LEVELS.DEBUG,
             stdout: true,
             includePidFilename: false,
+          },
+          api: {
+            url: 'https://api.royk.us',
           },
         },
       };

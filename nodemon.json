@@ -1,5 +1,5 @@
 {
-  "ignore": ["src/client", "dist"],
+  "ignore": ["src/web/client", "dist"],
   "execMap": {
     "js": "babel-node"
   }

@@ -13,8 +13,12 @@ const env = {
     clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
     audience: 'http://royk.us',
   },
-  server: {
-    rendering: true,
+  port: {
+    web: 3000,
+    api: 5000,
+  },
+  api: {
+    url: 'https://api.royk.us',
   },
 };
 

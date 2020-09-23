@@ -53,6 +53,10 @@ module.exports = (api) => {
         {
           alias: {
             '@src': './src',
+            '@config': './src/config',
+            '@common': './src/common',
+            '@api': './src/api',
+            '@web': './src/web',
           },
         },
       ],
