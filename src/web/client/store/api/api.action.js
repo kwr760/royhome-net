@@ -7,9 +7,10 @@ import type { Action, Dispatch } from 'redux';
 
 import { ERROR_CODE } from '@web/util/error-codes';
 import { apiFailureActionCreator, apiRequestActionCreator, apiSucessActionCreator } from './api.contants';
-import { getParsedUrl } from './get-parsed-url';
+import { getParsedUrl } from '../../util/url/get-parsed-url';
 
 import type { ActionObjectType, ApiConfigType } from './api.types';
+import { getApiUrl } from '../../util/url/get-api-url';
 
 export const apiActionCreator = async (
   dispatch: Dispatch<Action<string>>,
@@ -20,7 +21,8 @@ export const apiActionCreator = async (
   const {
     type, payload = {}, token,
   } = action;
-  const url = getParsedUrl(config, action);
+  const apiUrl = getApiUrl();
+  const url = getParsedUrl(config, action, apiUrl);
 
   if (authenticated) {
     if (isEmpty(token)) {

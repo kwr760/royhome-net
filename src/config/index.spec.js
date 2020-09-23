@@ -43,6 +43,9 @@ describe('config/index', () => {
             stdout: false,
             includePidFilename: true,
           },
+          api: {
+            url: 'https://api.royk.us',
+          },
         },
       };
 
@@ -92,6 +95,9 @@ describe('config/index', () => {
             level: LOG_LEVELS.DEBUG,
             stdout: true,
             includePidFilename: false,
+          },
+          api: {
+            url: 'https://api.royk.us',
           },
         },
       };

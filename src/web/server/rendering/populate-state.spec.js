@@ -1,10 +1,11 @@
-import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from '@web/util/auth0/auth0.constants';
+import { COOKIE_JWT_PAYLOAD } from '@web/util/auth0/auth0.constants';
+import { TOKEN_URL } from '@common/util/auth0/role.constants';
 
-import { loadResumeByEmail } from '@api/server/db/resume';
+import { getResumeProxy } from '../proxy/resume.proxy';
 import populateState from './populate-state';
 import { DarkModes } from '../../client/store/session/session.constants';
 
-jest.mock('@api/server/db/resume');
+jest.mock('../proxy/resume.proxy');
 
 describe('server/rendering/populate-state', () => {
   const jwt = {
@@ -22,7 +23,7 @@ describe('server/rendering/populate-state', () => {
     const cookies = {
       [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
     };
-    loadResumeByEmail.mockResolvedValueOnce(resume);
+    getResumeProxy.mockResolvedValueOnce(resume);
     const expected = {
       session: {
         authenticated: true,
@@ -49,7 +50,7 @@ describe('server/rendering/populate-state', () => {
     const cookies = {
       [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
     };
-    loadResumeByEmail.mockResolvedValueOnce(resume);
+    getResumeProxy.mockResolvedValueOnce(resume);
     const expected = {
       session: {
         authenticated: true,
@@ -72,7 +73,7 @@ describe('server/rendering/populate-state', () => {
     const cookies = {
       nopayload: JSON.stringify(jwt),
     };
-    loadResumeByEmail.mockResolvedValueOnce({});
+    getResumeProxy.mockResolvedValueOnce({});
     const expected = {
       session: {
         authenticated: false,

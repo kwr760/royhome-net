@@ -3,11 +3,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { Auth0Context } from '@web/util/auth0/auth0-context';
-import hasNeededRole from '@web/util/auth0/has-needed-role';
+import hasNeededRole from '@common/util/auth0/has-needed-role';
 import PrivateRoute from './index';
 import configureStore from '../../../store/configure-store';
 
-jest.mock('@web/util/auth0/has-needed-role');
+jest.mock('@common/util/auth0/has-needed-role');
 
 describe('client/components/page/private-route', () => {
   const userRole = 'admin';

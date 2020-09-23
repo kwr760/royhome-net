@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { Route } from 'react-router-dom';
 
 import { useAuth0 } from '@web/util/auth0/auth0-context';
-import hasNeededRole from '@web/util/auth0/has-needed-role';
+import hasNeededRole from '@common/util/auth0/has-needed-role';
 import { isAuthenticated } from '../../../store/session/session.selector';
 import { getUser } from '../../../store/user/user.selector';
 

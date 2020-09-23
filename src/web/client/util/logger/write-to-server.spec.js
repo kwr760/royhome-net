@@ -23,7 +23,7 @@ describe('client/logger/write-to-server', () => {
   it('should write to the file', async () => {
     // Arrange
     axios.put.mockResolvedValueOnce();
-    const expectedUrl = expect.stringMatching(/\/api\/log/);
+    const expectedUrl = expect.stringMatching(/\/api.localhost\/log/);
     const expectedOptions = {
       headers: {
         'Content-Type': 'application/json',

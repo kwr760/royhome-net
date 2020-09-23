@@ -8,8 +8,6 @@ const routes = [
     method: 'get',
     path: '/resume/:email',
     handler: getResumeHandler,
-    authenticate: true,
-    role: 'engineer',
     fetchData: {
       resume: getResumeHandler,
     },

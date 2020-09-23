@@ -6,8 +6,8 @@ import { COOKIE_JWT_PAYLOAD } from '@web/util/auth0/auth0.constants';
 import { fetchRoutes } from './fetch-routes';
 import { DarkModes } from '../../client/store/session/session.constants';
 
-const populateState = async (url: string, cookies: Object): any => {
-  const activeRoute = fetchRoutes.find((route) => matchPath(url, route)) || {};
+const populateState = async (path: string, cookies: Object): any => {
+  const activeRoute = fetchRoutes.find((route) => matchPath(path, route)) || {};
   const data = activeRoute.fetchData ? await activeRoute.fetchData() : {};
   const jwt = cookies[COOKIE_JWT_PAYLOAD] ? JSON.parse(cookies[COOKIE_JWT_PAYLOAD]) : {};
   const { exp = 0, user = {} } = jwt;

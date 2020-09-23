@@ -9,8 +9,9 @@ import createAuth0Client from '@auth0/auth0-spa-js';
 import Cookies from 'universal-cookie';
 
 import env from '@config';
+import { TOKEN_URL } from '@common/util/auth0/role.constants';
 import { Auth0Context } from './auth0-context';
-import { COOKIE_JWT_PAYLOAD, TOKEN_URL } from './auth0.constants';
+import { COOKIE_JWT_PAYLOAD } from './auth0.constants';
 import type { Auth0ProviderPropsType, Auth0ClientType } from './auth0.types';
 import { updateAuthentication, updateLoading } from '../../client/store/session/session.action';
 import { updateUser } from '../../client/store/user/user.action';

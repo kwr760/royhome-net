@@ -8,7 +8,7 @@ import {
   NavLink,
 } from 'reactstrap';
 
-import hasNeededRole from '@web/util/auth0/has-needed-role';
+import hasNeededRole from '@common/util/auth0/has-needed-role';
 import { isAuthenticated } from '../../../store/session/session.selector';
 import { getUser } from '../../../store/user/user.selector';
 

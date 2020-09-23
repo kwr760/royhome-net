@@ -1,9 +1,9 @@
 import { matchPath } from 'react-router-dom';
 
-import { loadResumeByEmail } from '@api/server/db/resume';
+import { getResumeProxy } from '../proxy/resume.proxy';
 import { fetchRoutes } from './fetch-routes';
 
-jest.mock('@api/server/db/resume');
+jest.mock('../proxy/resume.proxy');
 
 describe('server/rendering/fetch-routes', () => {
   const email = 'kroy760@gmail.com';
@@ -17,7 +17,7 @@ describe('server/rendering/fetch-routes', () => {
   it('should return resume state', async () => {
     // Arrange
     const url = '/';
-    loadResumeByEmail.mockResolvedValueOnce(resume);
+    getResumeProxy.mockResolvedValueOnce(resume);
     const expectedResult = {
       resume: {
         activeResume: email,

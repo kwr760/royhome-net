@@ -1,6 +1,6 @@
 // @flow
 
-import { loadResumeByEmail } from '@api/server/db/resume';
+import { getResumeProxy } from '../proxy/resume.proxy';
 
 export const fetchRoutes = [
   {
@@ -8,7 +8,7 @@ export const fetchRoutes = [
     exact: true,
     fetchData: async () => {
       const email = 'kroy760@gmail.com';
-      const resume = await loadResumeByEmail(email);
+      const resume = await getResumeProxy(email);
       return {
         resume: {
           activeResume: email,

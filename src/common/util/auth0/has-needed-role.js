@@ -1,7 +1,7 @@
 // @flow
 
-import { OWNER, ROLES } from './auth0.constants';
-import type { UserContextType } from '../../client/store/user/user.types';
+import { OWNER, ROLES } from './role.constants';
+import type { UserContextType } from '../../../web/client/store/user/user.types';
 
 const hasNeededRole = (neededRole: string, context: UserContextType = {}) => {
   const { role: rolesString = '' } = context;

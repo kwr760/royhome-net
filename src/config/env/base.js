@@ -17,6 +17,9 @@ const env = {
     web: 3000,
     api: 5000,
   },
+  api: {
+    url: 'https://api.royk.us',
+  },
 };
 
 export default env;

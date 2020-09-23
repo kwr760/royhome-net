@@ -1,6 +1,6 @@
 import { UNAUTHORIZED } from 'http-status-codes';
 
-import { TOKEN_URL } from '@web/util/auth0/auth0.constants';
+import { TOKEN_URL } from '../../util/auth0/role.constants';
 import checkRole from './check-role';
 
 describe('server/middleware/check-role', () => {

@@ -1,9 +1,9 @@
 import { ChunkExtractor } from '@loadable/server';
-import { loadResumeByEmail } from '@api/server/db/resume';
+import { getResumeProxy } from '../proxy/resume.proxy';
 import renderReact from './render-react';
 
 jest.mock('@loadable/server');
-jest.mock('@api/server/db/resume');
+jest.mock('../proxy/resume.proxy');
 
 describe('server/rendering/render-react', () => {
   const resume = {
@@ -26,7 +26,7 @@ describe('server/rendering/render-react', () => {
       getStyleTags: jest.fn(() => '<div>Styles</div>'),
       getScriptTags: jest.fn(() => '<div>Scripts</div>'),
     }));
-    loadResumeByEmail.mockResolvedValue(resume);
+    getResumeProxy.mockResolvedValue(resume);
 
     // Act
     await renderReact(req, res);
