@@ -11,7 +11,7 @@ const ResumeSummary = ({ summary }: {| summary: SummaryType |}) => {
   return (
     <Row>
       <Col>
-        <div className="title">Summary</div>
+        <div className="title">Summary for test</div>
         <div className="content text-justify">
           { summaryText }
         </div>
