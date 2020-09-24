@@ -16,7 +16,7 @@ describe('client/components/resume/summary', () => {
     );
 
     // Assert
-    getByText('summary');
+    getByText(/summary/);
   });
   it('should render without props', () => {
     // Arrange
@@ -26,6 +26,6 @@ describe('client/components/resume/summary', () => {
     );
 
     // Assert
-    getByText('Summary');
+    getByText(/Summary/);
   });
 });

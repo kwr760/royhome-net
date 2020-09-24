@@ -33,9 +33,9 @@ describe('config/index', () => {
             web: 3000,
           },
           cert: {
-            ca: '/etc/letsencrypt/live/royk.us/chain.pem',
-            cert: '/etc/letsencrypt/live/royk.us/cert.pem',
-            key: '/etc/letsencrypt/live/royk.us/privkey.pem',
+            ca: '/var/cert/royk.us/chain.pem',
+            cert: '/var/cert/royk.us/cert.pem',
+            key: '/var/cert/royk.us/privkey.pem',
           },
           log: {
             dir: '/var/log/royhome.net',
@@ -74,11 +74,11 @@ describe('config/index', () => {
           appName: 'roy-home',
           auth0: {
             audience: 'http://royk.us',
-            callbackUrl: 'https://royk.us:3000',
+            callbackUrl: 'https://royk.us',
             clientId: 'J5Mu7fSFraTWgQBz1WJgikpnuRnKRkaL',
             domain: 'royk.auth0.com',
           },
-          host: 'https://royk.us:3000',
+          host: 'https://royk.us',
           mode: 'development',
           root: expect.stringContaining('/royhome-net'),
           port: {
@@ -86,9 +86,9 @@ describe('config/index', () => {
             web: 3000,
           },
           cert: {
-            ca: '/etc/letsencrypt/royhome/chain.pem',
-            cert: '/etc/letsencrypt/royhome/cert.pem',
-            key: '/etc/letsencrypt/royhome/privkey.pem',
+            ca: '/var/cert/royk.us/chain.pem',
+            cert: '/var/cert/royk.us/cert.pem',
+            key: '/var/cert/royk.us/privkey.pem',
           },
           log: {
             dir: './log',
