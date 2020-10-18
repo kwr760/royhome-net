@@ -1,10 +1,12 @@
 const commonIgnoreDirs = [
   '<rootDir>/node_modules/',
   '<rootDir>/build/',
+  '<rootDir>/reports/',
   '<rootDir>/dist/',
 ];
 
 module.exports = {
+  preset: 'ts-jest',
   projects: [
     {
       name: 'browser',
@@ -12,13 +14,13 @@ module.exports = {
       testEnvironment: 'jsdom',
       verbose: true,
       testMatch: [
-        '**/src/web/**/?(*.)(spec|test).js',
+        '**/src/web/**/?(*.)spec.ts?(x)',
       ],
       transform: {
-        '^.+\\.js$': 'babel-jest',
+        '^.+\\.tsx?$': 'ts-jest',
       },
       moduleNameMapper: {
-        '\\.(svg|md)$': '<rootDir>/src/mocks/file.js',
+        '\\.(svg|md)$': '<rootDir>/src/mocks/file.ts',
         '\\.(css|scss)$': 'identity-obj-proxy',
       },
       modulePathIgnorePatterns: commonIgnoreDirs,
@@ -31,15 +33,15 @@ module.exports = {
       testEnvironment: 'node',
       verbose: true,
       testMatch: [
-        '**/src/api/**/?(*.)(spec|test).js',
-        '**/src/config/**/?(*.)(spec|test).js',
-        '**/src/common/**/?(*.)(spec|test).js',
+        '**/src/api/**/?(*.)spec.ts',
+        '**/src/config/**/?(*.)spec.ts',
+        '**/src/common/**/?(*.)spec.ts',
       ],
       transform: {
-        '^.+\\.js$': 'babel-jest',
+        '^.+\\.ts$': 'ts-jest',
       },
       moduleNameMapper: {
-        '\\.(svg|md)$': '<rootDir>/src/mocks/file.js',
+        '\\.(svg|md)$': '<rootDir>/src/mocks/file.ts',
       },
       modulePathIgnorePatterns: commonIgnoreDirs,
       testPathIgnorePatterns: commonIgnoreDirs,
@@ -47,7 +49,7 @@ module.exports = {
     },
   ],
   collectCoverage: true,
-  coverageDirectory: './build/coverage',
+  coverageDirectory: './reports/coverage',
   coverageThreshold: {
     global: {
       statements: 100,
@@ -61,7 +63,7 @@ module.exports = {
       './node_modules/jest-html-reporter',
       {
         pageTitle: 'Test Results',
-        outputPath: './build/unit/test-results.html',
+        outputPath: './reports/unit-results.html',
       },
     ],
   ],

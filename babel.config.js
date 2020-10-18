@@ -13,8 +13,7 @@ module.exports = (api) => {
 
   return {
     presets: [
-      '@babel/preset-react',
-      '@babel/preset-flow',
+      '@babel/preset-typescript',
       [
         '@babel/preset-env',
         {
@@ -24,6 +23,7 @@ module.exports = (api) => {
           modules: webpack ? false : 'commonjs',
         },
       ],
+      '@babel/preset-react',
     ],
     retainLines: true,
     plugins: [
@@ -50,25 +50,9 @@ module.exports = (api) => {
       ],
       [
         'module-resolver',
-        {
-          alias: {
-            '@src': './src',
-            '@config': './src/config',
-            '@common': './src/common',
-            '@api': './src/api',
-            '@web': './src/web',
-          },
-        },
       ],
       '@loadable/babel-plugin',
       'lodash',
     ],
-    env: {
-      'build:server': {
-        ignore: [
-          '**/*.spec.js',
-        ],
-      },
-    },
   };
 };

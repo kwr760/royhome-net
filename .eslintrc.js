@@ -1,7 +1,7 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
@@ -16,20 +16,26 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'airbnb',
+    // 'airbnb-typescript',
+    'airbnb/hooks',
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
+    'plugin:@typescript-eslint/recommended',
   ],
   plugins: [
     'react',
     'react-hooks',
+    '@typescript-eslint',
     'jsx-a11y',
   ],
   rules: {
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': [0],
+    'react/jsx-uses-react': 'error',
+    'react/jsx-uses-vars': 'error',
+    'react/prop-types': [0],
     semi: ['error', 'always'],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
@@ -45,18 +51,33 @@ module.exports = {
       'warn',
       { vars: 'all', args: 'none', ignoreRestSiblings: false },
     ],
+    '@typescript-eslint/no-empty-function': [0],
     'max-len': ['warn', { code: 120, tabWidth: 2 }],
     'no-throw-literal': 0,
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
   },
   settings: {
+    'react': {
+      'pragma': 'React',
+      'version': 'detect',
+    },
     'import/resolver': {
-      alias: [
-        ['@src', './src'],
-        ['@config', './src/config'],
-        ['@common', './src/common'],
-        ['@web', './src/web'],
-        ['@api', './src/api'],
-      ],
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
   },
 };

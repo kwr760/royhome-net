@@ -54,17 +54,9 @@ const getConfig = (target) => {
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.tsx?$/,
+          use: 'ts-loader',
           exclude: /node_modules/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                caller: { target },
-              },
-            },
-            'eslint-loader',
-          ],
         },
         {
           test: /\.css$/,
