@@ -50,21 +50,13 @@ const getConfig = (target) => {
     mode: dev ? 'development' : 'production',
     target,
     devtool: 'source-map',
-    entry: `./src/web/client/index-${target}.js`,
+    entry: `./src/web/client/index-${target}.tsx`,
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.tsx?$/,
+          use: 'ts-loader',
           exclude: /node_modules/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                caller: { target },
-              },
-            },
-            'eslint-loader',
-          ],
         },
         {
           test: /\.css$/,
@@ -115,7 +107,7 @@ const getConfig = (target) => {
     externals: target === 'node' ? [
       '@loadable/component',
       nodeExternals({
-        allowlist: [/\.(?!(?:jsx?|json)$).{1,5}$/i],
+        allowlist: [/\.(?!(?:tsx?|json)$).{1,5}$/i],
       }),
     ] : undefined,
     output: {
@@ -147,7 +139,7 @@ const getConfig = (target) => {
       ...additionalPlugins,
     ],
     resolve: {
-      extensions: ['.js', '.scss'],
+      extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss'],
       alias: {
         '@src': path.resolve(__dirname, 'src/'),
       },
