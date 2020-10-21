@@ -1,11 +1,4 @@
-import {
-  AddressType,
-  ContactType, EducationType,
-  ExperienceType,
-  OwnerType,
-  SkillsType,
-  SummaryType,
-} from '../../../../types/resume.types';
+import { ResumeType } from '../../../../types/resume.types';
 import { selectUserIdByEmail } from '../login/select-user-id-by-email';
 import { selectOwnerByUserId } from './select-owner-by-user-id';
 import { selectContactByUserId } from './select-contact-by-user-id';
@@ -15,15 +8,6 @@ import { selectSkillsByUserId } from './select-skills-by-user-id';
 import { selectExperienceByUserId } from './select-experience-by-user-id';
 import { selectEducationByUserId } from './select-education-by-user-id';
 
-interface ResumeType {
-  owner: OwnerType;
-  contact: ContactType;
-  address: AddressType;
-  summary: SummaryType;
-  skills: SkillsType[];
-  experience: ExperienceType[];
-  education: EducationType[];
-}
 export const loadResumeByEmail = async (email: string): Promise<ResumeType> => {
   const { userId } = await selectUserIdByEmail(email);
   const owner = await selectOwnerByUserId(userId);

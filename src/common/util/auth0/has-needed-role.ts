@@ -1,10 +1,7 @@
 import { OWNER, ROLES } from './role.constants';
+import { ContextType } from '../../../types/context.types';
 
-interface Context {
-  role: string;
-}
-
-const hasNeededRole = (neededRole: string, context: Context = { role: '' }): boolean => {
+const hasNeededRole = (neededRole: string, context: ContextType = { role: '' }): boolean => {
   const { role } = context;
 
   let grantedRoles = role.split(' ');
