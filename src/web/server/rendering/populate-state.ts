@@ -1,5 +1,5 @@
 import { matchPath } from 'react-router-dom';
-import { StateType } from '../../types/server.types';
+import { StateType } from '../../types/state.types';
 
 import { COOKIE_JWT_PAYLOAD } from '../../util/auth0/auth0.constants';
 import { fetchRoutes } from './fetch-routes';

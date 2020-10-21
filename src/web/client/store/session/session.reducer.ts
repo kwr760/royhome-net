@@ -1,5 +1,6 @@
+import { SessionActionType } from '../../../types/action.types';
+import { SessionStateType } from '../../../types/state.types';
 import { defaultSessionState, SessionActions } from './session.constants';
-import { SessionActionType, SessionStateType } from '../../../types/session.types';
 
 export const sessionReducer = (
   state: SessionStateType = defaultSessionState,

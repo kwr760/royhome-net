@@ -1,4 +1,4 @@
-import { SessionActionType } from '../../../types/session.types';
+import { SessionActionType } from '../../../types/action.types';
 import { sessionReducer } from './session.reducer';
 import { DarkModes, SessionActions } from './session.constants';
 

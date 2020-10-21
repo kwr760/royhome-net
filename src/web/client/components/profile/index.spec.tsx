@@ -5,7 +5,7 @@ import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import { Provider } from 'react-redux';
-import { StateType } from '../../../types/store.types';
+import { StateType } from '../../../types/state.types';
 import Profile from './index';
 import configureStore from '../../store/configure-store';
 

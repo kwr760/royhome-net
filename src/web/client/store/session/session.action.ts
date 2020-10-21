@@ -1,5 +1,5 @@
+import { SessionActionType } from '../../../types/action.types';
 import { SessionActions } from './session.constants';
-import { SessionActionType } from '../../../types/session.types';
 
 export const updateAuthentication = (authenticated: boolean, expiration: number): SessionActionType => ({
   type: SessionActions.UPDATE_AUTHENTICATION,

@@ -1,7 +1,8 @@
+import { UserActionType } from '../../../types/action.types';
+import { UserStateType } from '../../../types/state.types';
 import { UserActions } from './user.constants';
-import { UpdateUserActionType, UserStateType } from '../../../types/user.types';
 
-export const updateUser = (user: UserStateType): UpdateUserActionType => ({
+export const updateUser = (user: UserStateType): UserActionType => ({
   type: UserActions.UPDATE_USER,
   payload: {
     user,
