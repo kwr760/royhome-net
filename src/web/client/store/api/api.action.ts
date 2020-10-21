@@ -20,7 +20,7 @@ export const apiActionCreator = async (
     type, payload, token,
   } = action;
   const apiUrl = getApiUrl();
-  const url = getParsedUrl(config, action, apiUrl);
+  const url = getParsedUrl(apiUrl, config.url, action.params);
 
   if (authenticated) {
     if (isEmpty(token)) {

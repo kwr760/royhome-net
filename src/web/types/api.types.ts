@@ -1,9 +1,13 @@
 import { Method } from 'axios';
 
+export interface Params {
+  [key: string]: string;
+}
+
 export interface ActionObjectType {
   type: string;
   payload: unknown;
-  params?: unknown;
+  params?: Params;
   token?: string;
 }
 
@@ -31,6 +35,10 @@ export interface ApiConfigType {
     Authorization?: string;
   };
   authenticated?: boolean;
+}
+
+export interface ConfigType {
+  url: string;
 }
 
 export type ApiResponseType = {

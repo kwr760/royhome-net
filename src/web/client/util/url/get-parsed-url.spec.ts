@@ -14,38 +14,26 @@ describe('client/util/url/get-parsed-url', () => {
   });
   it('should create an url', () => {
     // Arrange
-    const config = {
-      url: '/url',
-    };
-    const action = {
-      type: 'type',
-      payload: {},
-    };
+    const url = '/url';
     const apiUrl = 'https://api.royk.us';
 
     // Act
-    const result = getParsedUrl(config, action, apiUrl);
+    const result = getParsedUrl(apiUrl, url);
 
     // Assert
     expect(result).toEqual(expect.stringMatching(/https:\/\/api.royk.us\/url/));
   });
   it('should parse params into an url', () => {
     // Arrange
-    const config = {
-      url: '/url/{field}/{extra}/end',
-    };
-    const action = {
-      type: 'type',
-      payload: {},
-      params: {
-        field: 'fieldData',
-        extra: 'fun_stuff',
-      },
+    const url = '/url/{field}/{extra}/end';
+    const params = {
+      field: 'fieldData',
+      extra: 'fun_stuff',
     };
     const apiUrl = 'https://api.royk.us';
 
     // Act
-    const result = getParsedUrl(config, action, apiUrl);
+    const result = getParsedUrl(apiUrl, url, params);
 
     // Assert
     expect(result).toEqual(expect.stringMatching(/https:\/\/api.royk.us\/url\/fieldData\/fun_stuff\/end/));

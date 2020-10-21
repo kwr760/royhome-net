@@ -11,12 +11,8 @@ import { getApiUrl } from '../url/get-api-url';
  */
 const writeToServer = ({ logType, msg }: LogMsgType): void => {
   const apiUrl = getApiUrl();
-  const action = {
-    type: '',
-    params: {},
-    payload: {},
-  };
-  const logUrl = getParsedUrl(ApiConfigs.PUT_LOG, action, apiUrl);
+  const params = {};
+  const logUrl = getParsedUrl(apiUrl, ApiConfigs.PUT_LOG.url, params);
   const options = {
     headers: {
       'Content-Type': 'application/json',
