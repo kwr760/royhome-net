@@ -1,6 +1,7 @@
+import { ResumeActionType } from '../../../types/action.types';
+import { ResumeStateType } from '../../../types/state.types';
 import { ResumeActions, defaultResumeState } from './resume.constants';
 import { ApiStatuses } from '../api/api.contants';
-import { ResumeActionType, ResumeStateType } from '../../../types/resume.types';
 
 export const resumeReducer = (
   state: ResumeStateType = defaultResumeState,

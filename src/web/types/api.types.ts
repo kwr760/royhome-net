@@ -1,26 +1,33 @@
 import { Method } from 'axios';
 
+export interface Params {
+  [key: string]: string;
+}
+
 export interface ActionObjectType {
   type: string;
   payload: unknown;
-  params?: unknown;
+  params?: Params;
   token?: string;
 }
 
-export interface ActionRequestType {
+export interface ApiRequestType {
   type: string;
   payload: unknown;
 }
-
-export interface ActionSuccessType {
+export interface ApiSuccessType {
   type: string;
   payload: unknown;
   data?: unknown;
 }
-
-export interface ActionFailureType {
+export interface ApiFailureType {
   type: string;
   payload: unknown;
+  error?: unknown;
+}
+export type ApiResponseType = {
+  status: string;
+  data?: unknown;
   error?: unknown;
 }
 
@@ -31,10 +38,4 @@ export interface ApiConfigType {
     Authorization?: string;
   };
   authenticated?: boolean;
-}
-
-export type ApiResponseType = {
-  status: string;
-  data?: unknown;
-  error?: unknown;
 }

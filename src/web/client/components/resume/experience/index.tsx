@@ -3,7 +3,7 @@ import { Col, Row } from 'reactstrap';
 import { isEmpty } from 'lodash';
 
 import './experience.css';
-import { ExperienceType } from '../../../../types/resume.types';
+import { ExperienceType } from '../../../../../types/resume.types';
 
 interface Props {
   experience: ExperienceType[];

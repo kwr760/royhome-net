@@ -3,7 +3,7 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { StateType } from '../../types/store.types';
+import { StateType } from '../../types/state.types';
 
 import rootReducer from './root.reducer';
 import { DarkModes } from './session/session.constants';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { fireEvent, render } from '@testing-library/react';
 import { FiSun, FiMoon } from 'react-icons/fi';
-import { StateType } from '../../../../types/store.types';
+import { StateType } from '../../../../types/state.types';
 
 import DarkButton from './index';
 import { DarkModes } from '../../../store/session/session.constants';

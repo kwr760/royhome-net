@@ -1,5 +1,6 @@
+import { UserActionType } from '../../../types/action.types';
+import { UserStateType } from '../../../types/state.types';
 import { defaultUserState, UserActions } from './user.constants';
-import { UserActionType, UserStateType } from '../../../types/user.types';
 
 export const userReducer = (
   state: UserStateType = defaultUserState,

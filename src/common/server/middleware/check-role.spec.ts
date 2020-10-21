@@ -1,13 +1,14 @@
 import { Response, NextFunction } from 'express';
 import { UNAUTHORIZED } from 'http-status-codes';
+import { TokenRequest } from '../../../types/token.types';
 
 import { TOKEN_URL } from '../../util/auth0/role.constants';
-import checkRole, { ExRequest } from './check-role';
+import checkRole from './check-role';
 
 describe('server/middleware/check-role', () => {
   it('should return error if no role', () => {
     // Arrange
-    const req = {} as ExRequest;
+    const req = {} as TokenRequest;
     const res = {
       sendStatus: jest.fn(),
     } as unknown as Response;
@@ -27,7 +28,7 @@ describe('server/middleware/check-role', () => {
           role: 'owner',
         },
       },
-    } as ExRequest;
+    } as TokenRequest;
     const res = {
       sendStatus: jest.fn(),
     } as unknown as Response;

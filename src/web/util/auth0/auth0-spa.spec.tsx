@@ -23,13 +23,7 @@ describe('util/auth0/react-auth0-spa', () => {
       },
     },
   };
-  interface ConfigType {
-    coverage: boolean;
-  }
-  interface ConsumerProps {
-    config: ConfigType;
-  }
-  const testProvider = (context: Auth0ContextType, config?: ConfigType) => (
+  const testProvider = (context: Auth0ContextType, coverage?: boolean) => (
     <Auth0Provider
       domain="domain"
       client_id="clientId"
@@ -37,20 +31,18 @@ describe('util/auth0/react-auth0-spa', () => {
       redirect_uri="/origin"
       context={context}
     >
-      <TestConsumer config={config} />
+      <TestConsumer coverage={coverage} />
     </Auth0Provider>
   );
 
-  const TestConsumer: React.FC<ConsumerProps> = ({ config = {} }) => {
-    const performCoverage = (config.coverage) ? config.coverage : false;
-
+  const TestConsumer: React.FC<{ coverage: boolean; }> = ({ coverage = false }) => {
     const {
       login,
       getToken,
       logout,
     } = useAuth0();
 
-    if (performCoverage) {
+    if (coverage) {
       login();
       getToken();
     }
@@ -124,7 +116,7 @@ describe('util/auth0/react-auth0-spa', () => {
     const expectedUserOff = { payload: { user: { } }, type: 'UPDATE_USER' };
 
     // Act
-    render(testProvider(testContext, { coverage: true }));
+    render(testProvider(testContext, true));
     await waitFor(() => {});
 
     // Assert

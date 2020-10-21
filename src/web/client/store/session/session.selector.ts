@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { StateType } from '../../../types/store.types';
+import { StateType } from '../../../types/state.types';
 
 export const isAuthenticated = createSelector(
   (state: StateType) => state.session,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { AddressType, ContactType, OwnerType } from '../../../../types/resume.types';
+import { AddressType, ContactType, OwnerType } from '../../../../../types/resume.types';
 
 import ResumeHeader from './index';
 

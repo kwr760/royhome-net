@@ -1,4 +1,5 @@
 import { merge } from 'object-mapper';
+import { LoginType } from '../../../../types/login.types';
 import { ERROR_CODE } from '../../../util/error-codes';
 
 const loginMap = {
@@ -6,12 +7,6 @@ const loginMap = {
   user_id: 'userId',
   email: 'email',
 };
-
-export interface LoginType {
-  id: number;
-  userId: number;
-  email: string;
-}
 
 export const loginMapper = (src: unknown[]): LoginType => {
   if (src.length !== 1) {

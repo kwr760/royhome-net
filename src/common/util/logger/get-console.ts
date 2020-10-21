@@ -1,6 +1,6 @@
 import LOG_LEVELS from './logger-levels';
 
-import { LogType } from '../../types/logger.types';
+import { LogType } from '../../../types/logger.types';
 
 const getConsole = (logType: LogType): (...data: string[]) => void => {
   switch (logType) {

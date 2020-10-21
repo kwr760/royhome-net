@@ -1,7 +1,7 @@
 import {
-  ActionFailureType,
-  ActionRequestType,
-  ActionSuccessType,
+  ApiFailureType,
+  ApiRequestType,
+  ApiSuccessType,
   ApiResponseType,
 } from '../../../types/api.types';
 
@@ -27,17 +27,17 @@ export const ApiConfigs = {
   },
 };
 
-export const apiRequestActionCreator = (action: ActionRequestType): ApiResponseType => ({
+export const apiRequestActionCreator = (action: ApiRequestType): ApiResponseType => ({
   ...action,
   status: ApiStatuses.REQUEST,
 });
 
-export const apiSucessActionCreator = (action: ActionSuccessType): ApiResponseType => ({
+export const apiSucessActionCreator = (action: ApiSuccessType): ApiResponseType => ({
   ...action,
   status: ApiStatuses.SUCCESS,
 });
 
-export const apiFailureActionCreator = (action: ActionFailureType): ApiResponseType => ({
+export const apiFailureActionCreator = (action: ApiFailureType): ApiResponseType => ({
   ...action,
   status: ApiStatuses.FAILURE,
 });
