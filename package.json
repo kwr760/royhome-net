@@ -13,8 +13,8 @@
     "url": "https://github.com/kwr760/royhome-net/issues"
   },
   "scripts": {
-    "dev:web": "RELEASE_ENV=dev babel-node src/web/server/index.js",
-    "dev:api": "RELEASE_ENV=dev babel-node src/api/server/index.js",
+    "dev:web": "RELEASE_ENV=dev ts-node src/web/server/index.ts",
+    "dev:api": "RELEASE_ENV=dev ts-node src/api/server/index.ts",
     "start:dev": "yarn dev:web & yarn dev:api",
     "build:dev": "yarn clean && webpack -p --mode=development --env dev --watch",
     "test": "yarn test:typescript && yarn test:lint && yarn test:only",
@@ -75,6 +75,7 @@
     "reselect": "^4.0.0",
     "spdy": "^4.0.2",
     "ts-jest": "^26.4.0",
+    "ts-node": "^9.0.0",
     "typescript": "^4.0.3",
     "universal-cookie": "^4.0.3"
   },

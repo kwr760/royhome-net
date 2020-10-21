@@ -1,13 +1,13 @@
 {
   "apps" : [{
     "name"        : "api",
-    "script"      : "babel-node src/api/server/index.js",
+    "script"      : "ts-node src/api/server/index.ts",
     "env_production" : {
       "RELEASE_ENV": "prod"
     }
   },{
     "name"       : "web",
-    "script"     : "babel-node src/web/server/index.js",
+    "script"     : "ts-node src/web/server/index.ts",
     "env_production" : {
       "RELEASE_ENV": "prod"
     }
