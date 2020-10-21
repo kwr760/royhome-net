@@ -1,3 +1,4 @@
+import { AnySchema } from '@hapi/joi';
 import { ERROR_CODE } from '../../util/error-codes';
 import Logger from '../../../common/server/logger';
 import { processDatabaseQuery } from './db-query';
@@ -24,7 +25,7 @@ describe('server/db/query', () => {
     const mapper = jest.fn(() => expected);
     const schema = {
       validate: jest.fn(() => schemaResult),
-    };
+    } as unknown as AnySchema;
 
     // Act
     const actual = await processDatabaseQuery(sql, data, mapper, schema);
@@ -55,7 +56,7 @@ describe('server/db/query', () => {
     const mapper = jest.fn(() => expected);
     const schema = {
       validate: jest.fn(() => schemaResult),
-    };
+    } as unknown as AnySchema;
     const expectedError = ERROR_CODE.DB_INVALID_OBJECT;
 
     // Act
@@ -81,7 +82,7 @@ describe('server/db/query', () => {
 
     // Act
     try {
-      await processDatabaseQuery(sql, data, mock, mock);
+      await processDatabaseQuery(sql, data, mock, mock as unknown as AnySchema);
     } catch (e) {
       expect(e).toEqual(expectedError);
     }

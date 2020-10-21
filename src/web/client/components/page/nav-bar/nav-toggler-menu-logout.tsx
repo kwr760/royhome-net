@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
-import { NavLink as RouterNavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 
 import {
   NavItem,
+  // NavLink,
 } from 'reactstrap';
 
 import { useAuth0 } from '../../../../util/auth0/auth0-context';
@@ -17,13 +18,13 @@ const NavTogglerMenuLogout: FunctionComponent<Props> = ({ name }) => {
   return (
     <NavItem>
       <FiLogOut className="mr-3" />
-      <RouterNavLink
+      <NavLink
         to="#"
         id="qsLogoutBtn"
         onClick={() => logout()}
       >
         {name}
-      </RouterNavLink>
+      </NavLink>
     </NavItem>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
-import { Route, RouteComponentProps } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { useAuth0 } from '../../../../util/auth0/auth0-context';
 import hasNeededRole from '../../../../../common/util/auth0/has-needed-role';
@@ -11,11 +11,11 @@ interface Props {
   component: FunctionComponent;
   path: string;
   url?: string;
-  userRole: string;
+  userRole?: string;
 }
-const PrivateRoute: FunctionComponent<RouteComponentProps> = ({
+const PrivateRoute: FunctionComponent<Props> = ({
   component: Component, path, userRole = '', ...rest
-}: Props) => {
+}) => {
   const { login } = useAuth0();
   const authenticated = useSelector((state) => isAuthenticated(state));
   const user = useSelector((state) => getUser(state));

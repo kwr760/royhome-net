@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Route, Switch, RouteComponentProps } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import { useSelector } from 'react-redux';
@@ -20,7 +20,7 @@ import { DarkModes } from './store/session/session.constants';
 /**
  * @return {string}
  */
-const App: FunctionComponent<RouteComponentProps> = () => {
+const App: FunctionComponent = () => {
   const loading = useSelector((state) => isLoading(state));
   const darkMode = useSelector((state) => getDarkMode(state));
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
 
 import { Auth0Context } from '../util/auth0/auth0-context';
@@ -27,15 +26,11 @@ jest.mock('./components/author');
 jest.mock('./components/tictactoe');
 
 describe('src/client/App', () => {
-  const history = createMemoryHistory();
-  const context = {
-    jwt: {},
-  };
   const getApp = (store) => (
     <Provider store={store}>
       <Auth0Context.Provider value={{}}>
         <Router>
-          <App history={history} context={context} />
+          <App />
         </Router>
       </Auth0Context.Provider>
     </Provider>

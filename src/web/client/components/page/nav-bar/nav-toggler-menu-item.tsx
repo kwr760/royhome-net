@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import { NavLink as RouterNavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {
   NavItem,
+  // NavLink,
 } from 'reactstrap';
 
 interface Props {
@@ -13,12 +14,12 @@ interface Props {
 const NavTogglerMenuItem: FunctionComponent<Props> = ({ path, name, icon }) => (
   <NavItem>
     {icon}
-    <RouterNavLink
+    <NavLink
       to={path}
       activeClassName="router-link-exact-active"
     >
       {name}
-    </RouterNavLink>
+    </NavLink>
   </NavItem>
 );
 
