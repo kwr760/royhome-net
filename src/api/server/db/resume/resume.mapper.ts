@@ -1,72 +1,44 @@
 import { merge } from 'object-mapper';
+import {
+  AddressType,
+  ContactType, EducationType, ExperienceItemType,
+  ExperienceType,
+  OwnerType,
+  SkillItemType, SkillsType,
+  SummaryType,
+} from '../../../../types/resume.types';
 import { ERROR_CODE } from '../../../util/error-codes';
 
 const addressMap = {
   address: 'address',
 };
-export interface AddressType {
-  address: string;
-}
-
 const ownerMap = {
   name: 'name',
 };
-export interface OwnerType {
-  name: string;
-}
-
 const contactMap = {
   phone: 'phone',
   email: 'email',
   display_phone: 'displayPhone',
 };
-export interface ContactType {
-  phone: string;
-  email: string;
-  displayPhone: string;
-}
-
 const summaryMap = {
   summary: 'summary',
 };
-export interface SummaryType {
-  summary: string;
-}
-
 const skillItemMap = {
   item_id: 'id',
   item_position: 'position',
   item_name: 'name',
 };
-export interface SkillItemType {
-  id: string;
-  position: string;
-  name: string;
-}
 const skillMap = {
   skill_id: 'id',
   skill_position: 'position',
   skill_name: 'name',
 };
-export interface SkillType {
-  id: string;
-  position: string;
-  type: string;
-  items: SkillItemType[];
-}
-
 const experienceItemMap = {
   item_id: 'id',
   item_position: 'position',
   item_type: 'type',
   item_item: 'item',
 };
-export interface ExperienceItemType {
-  id: string;
-  position: string;
-  type: string;
-  item: string;
-}
 const experienceMap = {
   experience_id: 'id',
   experience_position: 'position',
@@ -75,28 +47,11 @@ const experienceMap = {
   experience_start_date: 'startDate',
   experience_end_date: 'endDate',
 };
-export interface ExperienceType {
-  id: string;
-  position: string;
-  title: string;
-  company: string;
-  startDate: string;
-  endDate: string;
-  description: ExperienceItemType[];
-  bullets: ExperienceItemType[];
-  techs: ExperienceItemType[];
-}
-
 const educationMap = {
   degree: 'degree',
   school: 'school',
   graduation_date: 'graduationDate',
 };
-export interface EducationType {
-  degree: string;
-  school: string;
-  graduationDate: string;
-}
 
 export const resumeAddressMapper = (src: unknown[]): AddressType => {
   if (src.length !== 1) {
@@ -130,13 +85,13 @@ export const resumeSummaryMapper = (src: unknown[]): SummaryType => {
   return merge(src, summaryMap) as SummaryType;
 };
 
-export const resumeSkillsMapper = (src: unknown[]): SkillType[] => {
+export const resumeSkillsMapper = (src: unknown[]): SkillsType[] => {
   if (src.length <= 0) {
     throw ERROR_CODE.DB_UNEXPECTED_RESULT;
   }
 
-  return src.reduce((acc: SkillType[], row: SkillType) => {
-    const rowSkill = merge(row, skillMap) as SkillType;
+  return src.reduce((acc: SkillsType[], row: SkillsType) => {
+    const rowSkill = merge(row, skillMap) as SkillsType;
     rowSkill.items = [] as SkillItemType[];
     const rowItem = merge(row, skillItemMap) as SkillItemType;
     let skill = acc.find((e) => e.id === rowSkill.id);
@@ -146,7 +101,7 @@ export const resumeSkillsMapper = (src: unknown[]): SkillType[] => {
     }
     skill.items.push(rowItem);
     return acc;
-  }, []) as SkillType[];
+  }, []) as SkillsType[];
 };
 
 export const resumeExperienceMapper = (src: unknown[]): ExperienceType[] => {

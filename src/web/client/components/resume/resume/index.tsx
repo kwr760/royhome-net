@@ -7,7 +7,7 @@ import {
   ResumeType,
   SkillsType,
   SummaryType,
-} from '../../../../types/resume.types';
+} from '../../../../../types/resume.types';
 
 import ResumeHeader from '../header';
 import ResumeSkills from '../skills';

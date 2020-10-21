@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { ResumeType } from '../../../../types/resume.types';
+import { ResumeType } from '../../../../../types/resume.types';
 
 import Resume from './index';
 

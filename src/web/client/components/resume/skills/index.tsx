@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row } from 'reactstrap';
 
 import './skills.css';
-import { SkillsType } from '../../../../types/resume.types';
+import { SkillsType } from '../../../../../types/resume.types';
 
 interface Props {
   skills: SkillsType[];

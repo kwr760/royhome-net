@@ -1,5 +1,5 @@
 import env from '../../../config';
-import { LogMsgType } from '../../types/logger.types';
+import { LogMsgType } from '../../../types/logger.types';
 import getConsole from '../../util/logger/get-console';
 import formatMessage from '../../util/logger/format-message';
 import getLogFilename from './get-filename';

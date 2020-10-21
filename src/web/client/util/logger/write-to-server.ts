@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LogMsgType } from '../../../../common/types/logger.types';
+import { LogMsgType } from '../../../../types/logger.types';
 
 import { getParsedUrl } from '../url/get-parsed-url';
 

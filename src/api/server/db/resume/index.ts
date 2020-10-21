@@ -1,13 +1,12 @@
-import { selectUserIdByEmail } from '../login/select-user-id-by-email';
 import {
   AddressType,
-  ContactType,
-  EducationType,
+  ContactType, EducationType,
   ExperienceType,
   OwnerType,
-  SkillType,
+  SkillsType,
   SummaryType,
-} from './resume.mapper';
+} from '../../../../types/resume.types';
+import { selectUserIdByEmail } from '../login/select-user-id-by-email';
 import { selectOwnerByUserId } from './select-owner-by-user-id';
 import { selectContactByUserId } from './select-contact-by-user-id';
 import { selectAddressByUserId } from './select-address-by-user-id';
@@ -21,7 +20,7 @@ interface ResumeType {
   contact: ContactType;
   address: AddressType;
   summary: SummaryType;
-  skills: SkillType[];
+  skills: SkillsType[];
   experience: ExperienceType[];
   education: EducationType[];
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import { SummaryType } from '../../../../types/resume.types';
+import { SummaryType } from '../../../../../types/resume.types';
 
 interface Props {
   summary: SummaryType;

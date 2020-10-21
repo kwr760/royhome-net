@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import { EducationType } from '../../../../types/resume.types';
+import { EducationType } from '../../../../../types/resume.types';
 
 interface Props {
   education: EducationType[];

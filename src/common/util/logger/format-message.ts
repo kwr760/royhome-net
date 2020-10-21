@@ -1,5 +1,5 @@
 import getCurrentDatetime from '../datetime/get-current-datetime';
-import { LogType } from '../../types/logger.types';
+import { LogType } from '../../../types/logger.types';
 
 const formatMessage = (logType: LogType, msg: string): string => {
   const datetime = getCurrentDatetime();

@@ -1,4 +1,4 @@
-import { LogMsgType } from '../../../../common/types/logger.types';
+import { LogMsgType } from '../../../../types/logger.types';
 import env from '../../../../config';
 
 import getConsole from '../../../../common/util/logger/get-console';

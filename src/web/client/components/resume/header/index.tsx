@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 
 import './header.css';
-import { AddressType, ContactType, OwnerType } from '../../../../types/resume.types';
+import { AddressType, ContactType, OwnerType } from '../../../../../types/resume.types';
 
 interface Props {
   owner: OwnerType;

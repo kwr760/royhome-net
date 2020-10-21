@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { SummaryType } from '../../../../types/resume.types';
+import { SummaryType } from '../../../../../types/resume.types';
 
 import ResumeSummary from './index';
 
