@@ -12,7 +12,7 @@ import './styles/index.scss';
 import Auth0Provider from '../util/auth0/auth0-spa';
 import { config } from '../util/auth0/auth0.constants';
 import App from './App';
-import configureStore from './store/configure-store';
+import createStore from './store/create-store';
 
 declare global {
   interface Window {
@@ -25,7 +25,7 @@ loadableReady(() => {
   if (root !== null) {
     const preloadedState = window.__PRELOADED_STATE__;
     delete window.__PRELOADED_STATE__;
-    const store = configureStore(preloadedState);
+    const store = createStore(preloadedState);
     hydrate(
       <Provider store={store}>
         <Auth0Provider
@@ -43,3 +43,4 @@ loadableReady(() => {
     );
   }
 });
+

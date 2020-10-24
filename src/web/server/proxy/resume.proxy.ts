@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 import env from '../../../config';
-import { ApiConfigs } from '../../client/store/api/api.contants';
-import { getParsedUrl } from '../../client/util/url/get-parsed-url';
+import { ApiConfigs } from '../../client/util/api/api.config';
+import { getParsedUrl } from '../../client/util/api/get-parsed-url';
 
 export const getResumeProxy = async (email: string): Promise<unknown> => {
   const config = ApiConfigs.GET_RESUME;
@@ -10,7 +10,7 @@ export const getResumeProxy = async (email: string): Promise<unknown> => {
   const params = {
     email,
   };
-  const url = getParsedUrl(apiUrl, config.url, params);
+  const url = getParsedUrl(apiUrl, config.path, params);
 
   const { data: { resume } } = await axios.get(url);
 

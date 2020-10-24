@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import NavLogin from './nav-login';
 import NavProfile from './nav-profile';
-import configureStore from '../../../store/configure-store';
+import createStore from '../../../store/create-store';
 import NavProfileDropDown from './nav-profile-dropdown';
 
 jest.mock('./nav-profile-dropdown');
@@ -23,7 +23,7 @@ describe('client/components/page/nav-bar/nav-profile', () => {
         authenticated: true,
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
     (NavProfileDropDown as jest.Mock).mockImplementation(() => <div>Nav Profile Dropdown</div>);
 
     // Act
@@ -39,7 +39,7 @@ describe('client/components/page/nav-bar/nav-profile', () => {
         authenticated: false,
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
     (NavLogin as jest.Mock).mockImplementation(() => <div>Nav Login</div>);
 
     // Act

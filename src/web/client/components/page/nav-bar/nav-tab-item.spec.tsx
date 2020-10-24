@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import NavTabItem from './nav-tab-item';
-import configureStore from '../../../store/configure-store';
+import createStore from '../../../store/create-store';
 
 describe('client/components/page/nav-bar/nav-tab-item', () => {
   const getComponent = (store, path, name, role) => (
@@ -28,7 +28,7 @@ describe('client/components/page/nav-bar/nav-tab-item', () => {
         },
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
 
     // Act
     const { getByText, getByRole } = render(getComponent(store, '/path', 'Name', 'engineer'));
@@ -45,7 +45,7 @@ describe('client/components/page/nav-bar/nav-tab-item', () => {
         authenticated: true,
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
 
     // Act
     const { container } = render(getComponent(store, '/path', 'Name', 'engineer'));
@@ -60,7 +60,7 @@ describe('client/components/page/nav-bar/nav-tab-item', () => {
         authenticated: true,
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
 
     // Act
     const { getByText } = render(getComponent(store, '/path', 'Name', undefined));

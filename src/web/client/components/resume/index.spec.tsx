@@ -5,7 +5,7 @@ import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import { Auth0Context } from '../../../util/auth0/auth0-context';
-import { getResumeAction } from '../../store/resume/resume.action';
+import { fetchResume } from '../../store/resume/resume.slice';
 import Resume from './index';
 import ResumeHeader from './header';
 import ResumeSummary from './summary';
@@ -14,7 +14,7 @@ import ResumeExperience from './experience';
 import ResumeEducation from './education';
 
 jest.mock('react-redux');
-jest.mock('../../store/resume/resume.action');
+jest.mock('../../store/resume/resume.slice');
 jest.mock('./header');
 jest.mock('./summary');
 jest.mock('./skills');
@@ -58,7 +58,7 @@ describe('client/components/private/resume', () => {
     getByText(/Resume Skills/);
     getByText(/Resume Experience/);
     getByText(/Resume Education/);
-    expect(getResumeAction).toBeCalledWith(dispatch, email, token);
+    expect(fetchResume).toBeCalledWith(email);
   });
   it('should not render resume when loading', async () => {
     // Arrange
@@ -72,22 +72,5 @@ describe('client/components/private/resume', () => {
     // Assert
     const missingHeader = queryByText(/Resume Header/);
     expect(missingHeader).toBeNull();
-  });
-  it('should render default request if there is no token', async () => {
-    // Arrange
-    const overrideAuth = {
-      getToken: jest.fn(),
-    };
-
-    // Act
-    const { getByText } = render(getResume(overrideAuth));
-
-    // Assert
-    await waitFor(() => getByText(/Resume Header/));
-    getByText(/Resume Summary/);
-    getByText(/Resume Skills/);
-    getByText(/Resume Experience/);
-    getByText(/Resume Education/);
-    expect(getResumeAction).not.toBeCalled();
   });
 });

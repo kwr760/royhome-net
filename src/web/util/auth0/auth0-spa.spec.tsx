@@ -68,12 +68,15 @@ describe('util/auth0/react-auth0-spa', () => {
     });
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
-    const expectedLoadingOn = { payload: { isLoading: true }, type: 'UPDATE_LOADING' };
-    const expectedLoadingOff = { payload: { isLoading: false }, type: 'UPDATE_LOADING' };
-    const expectedAuthOn = { payload: { authenticated: true, expiration: 999999999 }, type: 'UPDATE_AUTHENTICATION' };
-    const expectedAuthOff = { payload: { authenticated: false, expiration: 0 }, type: 'UPDATE_AUTHENTICATION' };
-    const expectedUserOn = { payload: { user: { name: 'Tester' } }, type: 'UPDATE_USER' };
-    const expectedUserOff = { payload: { user: { } }, type: 'UPDATE_USER' };
+    const expectedLoadingOn = { payload: undefined, type: 'session/setLoading' };
+    const expectedLoadingOff = { payload: undefined, type: 'session/clearLoading' };
+    const expectedAuthOn = {
+      payload: { authenticated: true, expiration: 999999999 },
+      type: 'session/updateAuthentication',
+    };
+    const expectedAuthOff = { payload: { authenticated: false, expiration: 0 }, type: 'session/updateAuthentication' };
+    const expectedUserOn = { payload: { name: 'Tester' }, type: 'user/updateUser' };
+    const expectedUserOff = { payload: {}, type: 'user/updateUser' };
 
     // Act
     const { getByText } = render(testProvider(testContext));
@@ -110,10 +113,10 @@ describe('util/auth0/react-auth0-spa', () => {
     });
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
-    const expectedLoadingOn = { payload: { isLoading: true }, type: 'UPDATE_LOADING' };
-    const expectedLoadingOff = { payload: { isLoading: false }, type: 'UPDATE_LOADING' };
-    const expectedAuthOff = { payload: { authenticated: false, expiration: 0 }, type: 'UPDATE_AUTHENTICATION' };
-    const expectedUserOff = { payload: { user: { } }, type: 'UPDATE_USER' };
+    const expectedLoadingOn = { payload: undefined, type: 'session/setLoading' };
+    const expectedLoadingOff = { payload: undefined, type: 'session/clearLoading' };
+    const expectedAuthOff = { payload: { authenticated: false, expiration: 0 }, type: 'session/updateAuthentication' };
+    const expectedUserOff = { payload: { }, type: 'user/updateUser' };
 
     // Act
     render(testProvider(testContext, true));

@@ -1,11 +1,15 @@
-import { sessionReducer } from './session/session.reducer';
-import { userReducer } from './user/user.reducer';
-import { resumeReducer } from './resume/resume.reducer';
+import { combineReducers } from '@reduxjs/toolkit';
 
-const rootReducer = {
+import sessionReducer from './session/session.slice';
+import userReducer from './user/user.slice';
+import resumeReducer from './resume/resume.slice';
+
+const rootReducer = combineReducers({
   session: sessionReducer,
   user: userReducer,
   resume: resumeReducer,
-};
+});
+
+export type RootState = ReturnType<typeof rootReducer>
 
 export default rootReducer;

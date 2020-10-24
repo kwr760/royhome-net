@@ -1,4 +1,4 @@
-import configureStore from './configure-store';
+import createStore from './create-store';
 import { DarkModes } from './session/session.constants';
 
 describe('client/store/configure', () => {
@@ -18,7 +18,7 @@ describe('client/store/configure', () => {
     };
 
     // Act
-    const store = configureStore();
+    const store = createStore();
 
     // Assert
     expect(store.dispatch).toEqual(expect.any(Function));
@@ -40,7 +40,7 @@ describe('client/store/configure', () => {
     };
 
     // Act
-    const store = configureStore(state);
+    const store = createStore(state);
 
     // Assert
     expect(store.dispatch).toEqual(expect.any(Function));

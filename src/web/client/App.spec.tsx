@@ -12,7 +12,7 @@ import Resume from './components/resume';
 import About from './components/about';
 import Author from './components/author';
 import TicTacToe from './components/tictactoe';
-import configureStore from './store/configure-store';
+import createStore from './store/create-store';
 
 jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({}),
@@ -50,7 +50,7 @@ describe('src/client/App', () => {
         isLoading: false,
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
     (Loading as jest.Mock).mockImplementation(() => <div>Loading</div>);
     (NavBar as jest.Mock).mockImplementation(() => <div>NavBar</div>);
     (Footer as jest.Mock).mockImplementation(() => <div>Footer</div>);
@@ -77,7 +77,7 @@ describe('src/client/App', () => {
         isLoading: true,
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
 
     // Act
     const { getByText, queryByText } = render(getApp(store));
@@ -93,7 +93,7 @@ describe('src/client/App', () => {
         darkMode: 'dark-mode',
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
 
     // Act
     const { container } = render(getApp(store));
@@ -108,7 +108,7 @@ describe('src/client/App', () => {
         darkMode: 'light-mode',
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
 
     // Act
     const { container } = render(getApp(store));

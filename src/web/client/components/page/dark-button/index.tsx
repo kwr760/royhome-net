@@ -4,7 +4,7 @@ import { Button } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { DarkModes } from '../../../store/session/session.constants';
-import { updateDarkMode } from '../../../store/session/session.action';
+import { updateDarkMode } from '../../../store/session/session.slice';
 import { getDarkMode } from '../../../store/session/session.selector';
 
 const DarkButton = (): JSX.Element => {

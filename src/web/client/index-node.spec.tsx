@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import Main from './index-node';
-import configureStore from './store/configure-store';
+import createStore from './store/create-store';
 import App from './App';
 
 jest.mock('../util/auth0/auth0-node', () => ({ children }) => children);
@@ -12,7 +12,7 @@ describe('src/client/index-node', () => {
   it('launches the App', () => {
     // Arrange
     const url = '/';
-    const store = configureStore();
+    const store = createStore({});
     (App as jest.Mock).mockImplementation(() => <div>App</div>);
 
     // Act

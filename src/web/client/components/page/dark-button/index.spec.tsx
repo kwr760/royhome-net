@@ -1,22 +1,21 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { useDispatch, Provider } from 'react-redux';
 import { fireEvent, render } from '@testing-library/react';
 import { FiSun, FiMoon } from 'react-icons/fi';
-import { StateType } from '../../../../types/state.types';
 
 import DarkButton from './index';
 import { DarkModes } from '../../../store/session/session.constants';
-import configureStore from '../../../store/configure-store';
-import { updateDarkMode } from '../../../store/session/session.action';
+import createStore from '../../../store/create-store';
 
 jest.mock('react-icons/fi');
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
-  useDispatch: () => jest.fn(),
+  useDispatch: jest.fn(),
 }));
-jest.mock('../../../store/session/session.action');
 
 describe('src/client/components/page/dark-mode', () => {
+  const expectLightMode = { payload: DarkModes.LIGHT_MODE, type: 'session/updateDarkMode' };
+  const expectDarkMode = { payload: DarkModes.DARK_MODE, type: 'session/updateDarkMode' };
   const getComponent = (store) => (
     <Provider store={store}>
       <DarkButton />
@@ -24,15 +23,15 @@ describe('src/client/components/page/dark-mode', () => {
   );
   it('renders in light mode', () => {
     // Arrange
-    const state: StateType = {
+    const state = {
       session: {
         darkMode: DarkModes.LIGHT_MODE,
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
     (FiSun as jest.Mock).mockImplementation(() => 'FiSun');
-    const mockUpdateDarkMode = jest.fn();
-    (updateDarkMode as jest.Mock).mockImplementation(mockUpdateDarkMode);
+    const dispatch = jest.fn();
+    (useDispatch as jest.Mock).mockReturnValue(dispatch);
 
     // Act
     const { getByText, getByRole } = render(getComponent(store));
@@ -40,19 +39,19 @@ describe('src/client/components/page/dark-mode', () => {
 
     // Assert
     getByText(/FiSun/);
-    expect(mockUpdateDarkMode).toBeCalledWith(DarkModes.DARK_MODE);
+    expect(dispatch).toHaveBeenNthCalledWith(1, expectDarkMode);
   });
   it('renders in dark mode', () => {
     // Arrange
-    const state: StateType = {
+    const state = {
       session: {
         darkMode: DarkModes.DARK_MODE,
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
     (FiMoon as jest.Mock).mockImplementation(() => 'FiMoon');
-    const mockUpdateDarkMode = jest.fn();
-    (updateDarkMode as jest.Mock).mockImplementation(mockUpdateDarkMode);
+    const dispatch = jest.fn();
+    (useDispatch as jest.Mock).mockReturnValue(dispatch);
 
     // Act
     const { getByText, getByRole } = render(getComponent(store));
@@ -60,6 +59,6 @@ describe('src/client/components/page/dark-mode', () => {
 
     // Assert
     getByText(/FiMoon/);
-    expect(mockUpdateDarkMode).toBeCalledWith(DarkModes.LIGHT_MODE);
+    expect(dispatch).toHaveBeenNthCalledWith(1, expectLightMode);
   });
 });

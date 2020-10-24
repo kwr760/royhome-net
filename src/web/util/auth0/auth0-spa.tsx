@@ -6,10 +6,11 @@ import Cookies from 'universal-cookie';
 
 import env from '../../../config';
 import { TOKEN_URL } from '../../../common/util/auth0/role.constants';
+import { UserStateType } from '../../types/state.types';
 import { Auth0Context } from './auth0-context';
 import { COOKIE_JWT_PAYLOAD } from './auth0.constants';
-import { updateAuthentication, updateLoading } from '../../client/store/session/session.action';
-import { updateUser } from '../../client/store/user/user.action';
+import { updateAuthentication, setLoading, clearLoading } from '../../client/store/session/session.slice';
+import { updateUser } from '../../client/store/user/user.slice';
 import { Auth0ClientType, Auth0ProviderType } from '../../types/auth0.types';
 
 const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState(
@@ -45,7 +46,7 @@ const Auth0Provider: React.FC<Auth0ProviderType> = ({
 
   useEffect(() => {
     const initAuth0 = async () => {
-      dispatch(updateLoading(true));
+      dispatch(setLoading());
       const auth0FromHook = await createAuth0Client(initOptions);
       setAuth0(auth0FromHook);
 
@@ -67,15 +68,15 @@ const Auth0Provider: React.FC<Auth0ProviderType> = ({
           },
         };
         setCookies(token);
-        dispatch(updateAuthentication(true, token.exp));
+        dispatch(updateAuthentication({ authenticated: true, expiration: token.exp }));
         dispatch(updateUser(token.user));
       } else {
         setCookies();
-        dispatch(updateAuthentication(false, 0));
-        dispatch(updateUser({}));
+        dispatch(updateAuthentication({ authenticated: false, expiration: 0 }));
+        dispatch(updateUser({} as UserStateType));
       }
 
-      dispatch(updateLoading(false));
+      dispatch(clearLoading());
     };
     initAuth0();
     // eslint-disable-next-line
@@ -87,8 +88,8 @@ const Auth0Provider: React.FC<Auth0ProviderType> = ({
       returnTo: env.host,
     };
     await auth0Client.logout(logoutProps);
-    dispatch(updateAuthentication(false, 0));
-    dispatch(updateUser({}));
+    dispatch(updateAuthentication({ authenticated: false, expiration: 0 }));
+    dispatch(updateUser({} as UserStateType));
     setCookies();
   };
 
