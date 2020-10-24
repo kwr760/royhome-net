@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { useAuth0 } from '../../../util/auth0/auth0-context';
 import Resume from './resume';
-import { getResumeAction } from '../../store/resume/resume.action';
+import { fetchResume } from '../../store/resume/resume.slice';
 import { getResume } from '../../store/resume/resume.selector';
 import { isLoading } from '../../store/session/session.selector';
 
@@ -18,10 +18,7 @@ const ResumePage = (): JSX.Element => {
   useEffect(() => {
     const callResumeApi = async () => {
       if (isResumeEmpty) {
-        const token = await getToken();
-        if (token) {
-          getResumeAction(dispatch, 'kroy760@gmail.com', token);
-        }
+        dispatch(fetchResume('kroy760@gmail.com'));
       }
     };
     callResumeApi();

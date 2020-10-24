@@ -1,11 +1,13 @@
-import { get, merge } from 'lodash';
+import { merge } from 'lodash';
 
 import base from './env/base';
 import prod from './env/prod';
 import dev from './env/dev';
 
 let mergedConfig;
-switch (get(process, 'env.RELEASE_ENV', 'prod')) {
+
+const release = process.env.RELEASE_ENV || 'prod';
+switch (release) {
 case 'dev':
   mergedConfig = merge({}, base, dev);
   break;
