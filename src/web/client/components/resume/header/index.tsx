@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Row, Col } from 'reactstrap';
 
 import './header.css';
@@ -9,11 +9,7 @@ interface Props {
   address: AddressType;
   contact: ContactType;
 }
-const ResumeHeader = ({
-  owner,
-  address,
-  contact,
-}: Props): JSX.Element => {
+const ResumeHeader: FunctionComponent<Props> = ({ owner, address, contact }) => {
   const { name = '' } = owner;
   const { email = '', phone = '', displayPhone = false } = contact;
   const { address: location = '' } = address;

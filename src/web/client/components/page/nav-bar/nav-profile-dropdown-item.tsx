@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import {
   DropdownItem,
@@ -10,7 +10,7 @@ interface Props {
   icon: unknown;
 }
 
-const NavProfileDropDownItem = ({ path, name, icon }: Props): JSX.Element => (
+const NavProfileDropDownItem: FunctionComponent<Props> = ({ path, name, icon }) => (
   <DropdownItem
     tag={RouterNavLink}
     to={path}

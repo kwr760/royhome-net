@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { DropdownItem } from 'reactstrap';
 import { FiLogOut } from 'react-icons/fi';
 
@@ -8,7 +8,7 @@ interface Props {
   name: string;
 }
 
-const NavProfileDropDownLogout = ({ name }: Props): JSX.Element => {
+const NavProfileDropDownLogout: FunctionComponent<Props> = ({ name }) => {
   const { logout } = useAuth0();
   return (
     <DropdownItem

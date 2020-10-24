@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import React, { useEffect } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useAuth0 } from '../../../util/auth0/auth0-context';
@@ -8,7 +8,7 @@ import { fetchResume } from '../../store/resume/resume.slice';
 import { getResume } from '../../store/resume/resume.selector';
 import { isLoading } from '../../store/session/session.selector';
 
-const ResumePage = (): JSX.Element => {
+const ResumePage: FunctionComponent = () => {
   const { getToken } = useAuth0();
   const resume = useSelector(getResume);
   const dispatch = useDispatch();

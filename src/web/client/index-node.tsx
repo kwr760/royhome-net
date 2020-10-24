@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Provider } from 'react-redux';
 import { StaticRouter as Router, Route } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ interface Props {
   url: string;
   store: unknown;
 }
-const Main = ({ url, store }: Props): JSX.Element => (
+const Main: FunctionComponent<Props> = ({ url, store }) => (
   <Provider store={store}>
     <Auth0Provider
       domain={config.domain}

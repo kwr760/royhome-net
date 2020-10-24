@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Col, Row } from 'reactstrap';
 import { SummaryType } from '../../../../../types/resume.types';
 
 interface Props {
   summary: SummaryType;
 }
-const ResumeSummary = ({ summary }: Props): JSX.Element => {
+const ResumeSummary: FunctionComponent<Props> = ({ summary }) => {
   const { summary: summaryText = '' } = summary;
   return (
     <Row>
