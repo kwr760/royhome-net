@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Col, Row } from 'reactstrap';
 
 import './skills.css';
@@ -7,7 +7,7 @@ import { SkillsType } from '../../../../../types/resume.types';
 interface Props {
   skills: SkillsType[];
 }
-const ResumeSkills = ({ skills }: Props): JSX.Element => (
+const ResumeSkills: FunctionComponent<Props> = ({ skills }) => (
   <Row>
     <Col>
       <div className="title">Skills</div>

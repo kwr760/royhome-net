@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import authorMarkdown from '../../../../../AUTHOR.md';
 
-const Author = (): JSX.Element => (
+const Author: FunctionComponent = () => (
   <ReactMarkdown
     source={authorMarkdown}
   />

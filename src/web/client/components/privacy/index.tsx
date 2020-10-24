@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import privacyMarkdown from '../../../../../PRIVACY.md';
 
-const Privacy = (): JSX.Element => (
+const Privacy: FunctionComponent = () => (
   <ReactMarkdown
     source={privacyMarkdown}
   />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Container } from 'reactstrap';
 import {
   AddressType,
@@ -20,7 +20,7 @@ import './resume.css';
 interface Props {
   resume: ResumeType;
 }
-const ResumePage = ({ resume = {} as ResumeType}: Props): JSX.Element => {
+const ResumePage: FunctionComponent<Props> = ({ resume = {} as ResumeType}) => {
   const {
     owner = {} as OwnerType,
     contact = {} as ContactType,

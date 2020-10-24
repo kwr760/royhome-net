@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
 import {
   DropdownItem,
@@ -13,7 +13,7 @@ import NavProfileDropDownItem from './nav-profile-dropdown-item';
 import NavProfileDropDownLogout from './nav-profile-dropdown-logout';
 import NavProfileDropDownToggle from './nav-profile-dropdown-toggle';
 
-const NavProfileDropDown = (): JSX.Element => {
+const NavProfileDropDown: FunctionComponent = () => {
   const user = useSelector((state) => getUser(state));
   const name = (user && user.name) || '';
   const UserIcon = <FiUser className="mr-3" />;

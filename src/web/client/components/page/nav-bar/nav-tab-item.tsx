@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import {
@@ -16,7 +16,7 @@ interface Props {
   neededRole?: string;
 }
 
-const NavTabItem = ({ path, name, neededRole = '' }: Props): JSX.Element => {
+const NavTabItem: FunctionComponent<Props> = ({ path, name, neededRole = '' }) => {
   const authenticated = useSelector((state) => isAuthenticated(state));
   const user = useSelector((state) => getUser(state));
   const shouldDisplayTab = (checkRole: string) => {

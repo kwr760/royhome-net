@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import projectMarkdown from '../../../../../PROJECT.md';
 
-const About = (): JSX.Element => (
+const About: FunctionComponent = () => (
   <ReactMarkdown
     source={projectMarkdown}
   />

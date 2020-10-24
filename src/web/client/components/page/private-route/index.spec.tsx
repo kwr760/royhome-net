@@ -59,26 +59,6 @@ describe('client/components/page/private-route', () => {
     getByText(/admin/);
     getByText(/Unauthorized - You need the following role to view this page:/);
   });
-  it('should login without authentication', async () => {
-    // Arrange
-    const path = 'http://url/path';
-    const auth = {
-      login: jest.fn(),
-    };
-    const state = {
-      session: {
-        authenticated: false,
-      },
-    };
-    const store = createStore(state);
-    (hasNeededRole as jest.Mock).mockReturnValue(true);
-
-    // Act
-    render(getPrivateRoute(store, auth, userRole, path));
-
-    // Assert
-    expect(auth.login).toHaveBeenCalledWith({ appState: { targetUrl: 'http://url/path' } });
-  });
   it('should render with authentication and without role', () => {
     // Arrange
     const auth = {};
