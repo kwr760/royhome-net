@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { Auth0Context } from '../../../../util/auth0/auth0-context';
 import hasNeededRole from '../../../../../common/util/auth0/has-needed-role';
 import PrivateRoute from './index';
-import configureStore from '../../../store/configure-store';
+import createStore from '../../../store/create-store';
 
 jest.mock('../../../../../common/util/auth0/has-needed-role');
 
@@ -30,7 +30,7 @@ describe('client/components/page/private-route', () => {
         authenticated: true,
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
     (hasNeededRole as jest.Mock).mockReturnValue(true);
 
     // Act
@@ -49,7 +49,7 @@ describe('client/components/page/private-route', () => {
         authenticated: true,
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
     (hasNeededRole as jest.Mock).mockReturnValue(false);
 
     // Act
@@ -58,26 +58,6 @@ describe('client/components/page/private-route', () => {
     // Assert
     getByText(/admin/);
     getByText(/Unauthorized - You need the following role to view this page:/);
-  });
-  it('should login without authentication', async () => {
-    // Arrange
-    const path = 'http://url/path';
-    const auth = {
-      login: jest.fn(),
-    };
-    const state = {
-      session: {
-        authenticated: false,
-      },
-    };
-    const store = configureStore(state);
-    (hasNeededRole as jest.Mock).mockReturnValue(true);
-
-    // Act
-    render(getPrivateRoute(store, auth, userRole, path));
-
-    // Assert
-    expect(auth.login).toHaveBeenCalledWith({ appState: { targetUrl: 'http://url/path' } });
   });
   it('should render with authentication and without role', () => {
     // Arrange
@@ -88,7 +68,7 @@ describe('client/components/page/private-route', () => {
       },
     };
     const role = undefined;
-    const store = configureStore(state);
+    const store = createStore(state);
     (hasNeededRole as jest.Mock).mockReturnValue(true);
 
     // Act

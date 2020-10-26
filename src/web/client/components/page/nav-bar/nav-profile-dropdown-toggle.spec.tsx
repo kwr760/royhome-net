@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { UncontrolledDropdown } from 'reactstrap';
 import NavProfileDropDownToggle from './nav-profile-dropdown-toggle';
-import configureStore from '../../../store/configure-store';
+import createStore from '../../../store/create-store';
 
 describe('client/components/page/nav-bar/nav-profile-dropdown-toggle', () => {
   const getComponent = (store, name) => (
@@ -22,7 +22,7 @@ describe('client/components/page/nav-bar/nav-profile-dropdown-toggle', () => {
         picture: 'picture',
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
 
     // Act
     const { getByAltText } = render(getComponent(store, 'Tester'));
@@ -37,7 +37,7 @@ describe('client/components/page/nav-bar/nav-profile-dropdown-toggle', () => {
         name: 'Tester',
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
 
     // Act
     const { getByAltText } = render(getComponent(store, 'Tester'));

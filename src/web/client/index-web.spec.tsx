@@ -64,7 +64,7 @@ describe('src/client/index-web', () => {
   it('launches the App with empty root', () => {
     jest.isolateModules(() => {
       // Arrange
-      jest.spyOn(document, 'getElementById').mockImplementation(() => (null));
+      jest.spyOn(document, 'getElementById').mockImplementation(() => null);
 
       // Act
       require('./index-web');

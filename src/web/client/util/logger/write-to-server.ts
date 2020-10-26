@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { LogMsgType } from '../../../../types/logger.types';
+import { ApiConfigs } from '../api/api.config';
 
-import { getParsedUrl } from '../url/get-parsed-url';
+import { getParsedUrl } from '../api/get-parsed-url';
 
-import { ApiConfigs } from '../../store/api/api.contants';
-import { getApiUrl } from '../url/get-api-url';
+import { getApiUrl } from '../api/get-api-url';
 
 /**
  * Assumes that the location being written to has been created.
@@ -12,7 +12,7 @@ import { getApiUrl } from '../url/get-api-url';
 const writeToServer = ({ logType, msg }: LogMsgType): void => {
   const apiUrl = getApiUrl();
   const params = {};
-  const logUrl = getParsedUrl(apiUrl, ApiConfigs.PUT_LOG.url, params);
+  const logUrl = getParsedUrl(apiUrl, ApiConfigs.PUT_LOG.path, params);
   const options = {
     headers: {
       'Content-Type': 'application/json',

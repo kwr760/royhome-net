@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import {
   DropdownToggle,
 } from 'reactstrap';
@@ -10,7 +10,7 @@ interface Props {
   name: string;
 }
 
-const NavProfileDropDownToggle = ({ name }: Props): JSX.Element => {
+const NavProfileDropDownToggle: FunctionComponent<Props> = ({ name }) => {
   const user = useSelector((state) => getUser(state));
   const picture = (user && user.picture) || '';
 

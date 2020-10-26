@@ -9,7 +9,7 @@ import { renderToString } from 'react-dom/server';
 import env from '../../../config';
 import populateState from './populate-state';
 import displayMessage from '../../../common/server/middleware/display-message';
-import configureStore from '../../client/store/configure-store';
+import createStore from '../../client/store/create-store';
 
 const renderReact = async (req: Request, res: Response): Promise<void> => {
   displayMessage(`Server render:  ${req.url}`);
@@ -23,7 +23,7 @@ const renderReact = async (req: Request, res: Response): Promise<void> => {
   const urlPath = parseUrl(req).pathname;
   const { cookies } = req;
   const state = await populateState(urlPath, cookies);
-  const store = configureStore(state);
+  const store = createStore(state);
   const jsx = webExtractor.collectChunks(
     <Main
       url={urlPath}

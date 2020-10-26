@@ -15,6 +15,9 @@ export interface UserStateType {
   email?: string;
   picture?: string;
 }
+export interface UserSliceType {
+  user: UserStateType;
+}
 export type ResumeStateType = {
   email: string;
   resume?: ResumeType;

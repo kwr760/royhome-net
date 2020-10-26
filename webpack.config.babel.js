@@ -9,6 +9,7 @@ import StylelintPlugin from 'stylelint-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
+import { DefinePlugin, EnvironmentPlugin } from 'webpack';
 
 const dev = !process.env.RELEASE_ENV || process.env.RELEASE_ENV === 'dev';
 
@@ -136,6 +137,12 @@ const getConfig = (target) => {
         ],
       }),
       new LodashModuleReplacementPlugin(),
+      new EnvironmentPlugin({
+        RELEASE_ENV: dev ? 'dev' : 'prod',
+      }),
+      // new DefinePlugin({
+      //   'process.env.RELEASE_ENV': JSON.stringify('dev'),
+      // }),
       ...additionalPlugins,
     ],
     resolve: {

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { NavLink } from 'reactstrap';
 import { VscGithub } from 'react-icons/vsc';
 
-const Footer = (): JSX.Element => (
+const Footer: FunctionComponent = () => (
   <footer className="p-3 text-center">
     <NavLink
       href="https://github.com/kwr760/royhome-net"

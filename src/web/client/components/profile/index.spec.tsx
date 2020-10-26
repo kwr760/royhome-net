@@ -7,7 +7,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { Provider } from 'react-redux';
 import { StateType } from '../../../types/state.types';
 import Profile from './index';
-import configureStore from '../../store/configure-store';
+import createStore from '../../store/create-store';
 
 describe('client/components/resume/profile', () => {
   const getProfile = (store) => (
@@ -35,7 +35,7 @@ describe('client/components/resume/profile', () => {
         email: 'Resume Email',
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
 
     // Act
     const { getByText, getByAltText } = render(getProfile(store));
@@ -60,7 +60,7 @@ describe('client/components/resume/profile', () => {
         email: 'email',
       },
     };
-    const store = configureStore(state);
+    const store = createStore(state);
 
     // Act
     const { getByAltText } = render(getProfile(store));

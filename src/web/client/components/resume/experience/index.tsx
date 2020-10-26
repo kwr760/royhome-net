@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Col, Row } from 'reactstrap';
 import { isEmpty } from 'lodash';
 
@@ -8,7 +8,7 @@ import { ExperienceType } from '../../../../../types/resume.types';
 interface Props {
   experience: ExperienceType[];
 }
-const ResumeExperience = ({ experience }: Props): JSX.Element => (
+const ResumeExperience: FunctionComponent<Props> = ({ experience }) => (
   <Row>
     <Col>
       <div className="title">Professional Experience</div>

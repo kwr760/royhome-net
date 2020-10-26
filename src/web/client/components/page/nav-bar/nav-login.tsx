@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import {
   Button,
   NavItem,
@@ -7,7 +7,7 @@ import { FiLogIn } from 'react-icons/fi';
 
 import { useAuth0 } from '../../../../util/auth0/auth0-context';
 
-const NavLogin = (): JSX.Element => {
+const NavLogin: FunctionComponent = () => {
   const { login } = useAuth0();
 
   return (
