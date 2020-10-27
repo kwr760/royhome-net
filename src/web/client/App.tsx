@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
-
 import { useSelector } from 'react-redux';
+import loadable from '@loadable/component';
+
 import NavBar from './components/page/nav-bar';
 import Footer from './components/page/footer';
 import Loading from './components/page/loading';
 import PrivateRoute from './components/page/private-route';
-import AboutPage from './components/about';
 import AuthorPage from './components/author';
 import PrivacyPage from './components/privacy';
 import TicTacToePage from './components/tictactoe';
@@ -16,6 +16,9 @@ import ResumePage from './components/resume';
 
 import { isLoading, getDarkMode } from './store/session/session.selector';
 import { DarkModes } from './store/session/session.constants';
+
+const AboutPage = /* #__LOADABLE__ */ () => import('./components/about');
+const AboutLoadable = loadable(AboutPage, { ssr: true });
 
 /**
  * @return {string}
@@ -44,7 +47,7 @@ const App: FunctionComponent = () => {
               exact
               component={ResumePage}
             />
-            <Route path="/about" component={AboutPage} />
+            <Route path="/about" component={AboutLoadable} />
             <Route path="/author" component={AuthorPage} />
             <Route path="/privacy" component={PrivacyPage} />
             <PrivateRoute

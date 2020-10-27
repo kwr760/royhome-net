@@ -9,7 +9,7 @@ import StylelintPlugin from 'stylelint-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
-import { DefinePlugin, EnvironmentPlugin } from 'webpack';
+import { EnvironmentPlugin } from 'webpack';
 
 const dev = !process.env.RELEASE_ENV || process.env.RELEASE_ENV === 'dev';
 
@@ -55,9 +55,18 @@ const getConfig = (target) => {
     module: {
       rules: [
         {
-          test: /\.tsx?$/,
-          use: 'ts-loader',
+          test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-react',
+                '@babel/preset-typescript',
+              ],
+            },
+          },
         },
         {
           test: /\.css$/,
@@ -140,9 +149,6 @@ const getConfig = (target) => {
       new EnvironmentPlugin({
         RELEASE_ENV: dev ? 'dev' : 'prod',
       }),
-      // new DefinePlugin({
-      //   'process.env.RELEASE_ENV': JSON.stringify('dev'),
-      // }),
       ...additionalPlugins,
     ],
     resolve: {
