@@ -6,9 +6,7 @@ import MockProvider from '../util/auth0/auth0-spa';
 import MockApp from './App';
 
 jest.mock('../../web/util/auth0/auth0-spa');
-jest.mock('@loadable/component', () => ({
-  loadableReady: (done) => (done()),
-}));
+jest.mock('@loadable/component');
 jest.mock('./App');
 
 describe('src/client/index-web', () => {
