@@ -1,4 +1,3 @@
-import { ChunkExtractor } from '@loadable/server';
 import { Request, Response } from 'express';
 import { getResumeProxy } from '../proxy/resume.proxy';
 import renderReact from './render-react';
@@ -20,13 +19,6 @@ describe('server/rendering/render-react', () => {
       send: jest.fn(),
       sendStatus: jest.fn(),
     } as unknown as Response;
-    ChunkExtractor.mockImplementation(() => ({
-      requireEntrypoint: jest.fn(() => ({ default: jest.fn() })),
-      collectChunks: jest.fn(() => '<div>Chunks</div>'),
-      getLinkTags: jest.fn(() => '<div>Links</div>'),
-      getStyleTags: jest.fn(() => '<div>Styles</div>'),
-      getScriptTags: jest.fn(() => '<div>Scripts</div>'),
-    }));
     (getResumeProxy as jest.Mock).mockResolvedValue(resume);
 
     // Act

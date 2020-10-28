@@ -1,21 +1,34 @@
 import React, { FunctionComponent } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
-
 import { useSelector } from 'react-redux';
+import loadable from '@loadable/component';
+
 import NavBar from './components/page/nav-bar';
 import Footer from './components/page/footer';
 import Loading from './components/page/loading';
 import PrivateRoute from './components/page/private-route';
-import AboutPage from './components/about';
-import AuthorPage from './components/author';
-import PrivacyPage from './components/privacy';
-import TicTacToePage from './components/tictactoe';
-import ProfilePage from './components/profile';
 import ResumePage from './components/resume';
 
 import { isLoading, getDarkMode } from './store/session/session.selector';
 import { DarkModes } from './store/session/session.constants';
+
+const AboutPage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/about');
+const AuthorPage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/author');
+const PrivacyPage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/privacy');
+// const ProfilePage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/profile');
+// const TicTacToePage = /* #__LOADABLE__ */ () => import('./components/tictactoe');
+const AboutLoadable = loadable(AboutPage, { ssr: true });
+const AuthorLoadable = loadable(AuthorPage, { ssr: true });
+const PrivacyLoadable = loadable(PrivacyPage, { ssr: true });
+const ProfileLoadable = loadable(
+  /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/profile'),
+  { ssr: true },
+);
+const TicTacToeLoadable = loadable(
+  /* #__LOADABLE__ */ () => import('./components/tictactoe'),
+  { ssr: true },
+);
 
 /**
  * @return {string}
@@ -44,15 +57,15 @@ const App: FunctionComponent = () => {
               exact
               component={ResumePage}
             />
-            <Route path="/about" component={AboutPage} />
-            <Route path="/author" component={AuthorPage} />
-            <Route path="/privacy" component={PrivacyPage} />
+            <Route path="/about" component={AboutLoadable} />
+            <Route path="/author" component={AuthorLoadable} />
+            <Route path="/privacy" component={PrivacyLoadable} />
             <PrivateRoute
               path="/tictactoe"
-              component={TicTacToePage}
+              component={TicTacToeLoadable}
               userRole="engineer"
             />
-            <PrivateRoute path="/profile" component={ProfilePage} />
+            <PrivateRoute path="/profile" component={ProfileLoadable} />
           </Switch>
         </Container>
         <Footer />

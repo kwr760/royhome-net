@@ -13,7 +13,6 @@ module.exports = (api) => {
 
   return {
     presets: [
-      '@babel/preset-typescript',
       [
         '@babel/preset-env',
         {
@@ -24,6 +23,7 @@ module.exports = (api) => {
         },
       ],
       '@babel/preset-react',
+      '@babel/preset-typescript',
     ],
     retainLines: true,
     plugins: [
@@ -41,7 +41,12 @@ module.exports = (api) => {
         },
       ],
       '@babel/plugin-syntax-dynamic-import',
-      '@babel/plugin-transform-runtime',
+      [
+        '@babel/plugin-transform-runtime',
+        {
+          'regenerator': true,
+        },
+      ],
       [
         '@babel/plugin-proposal-class-properties',
         {
