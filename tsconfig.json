@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "src",
     "module": "commonjs",
-    "target": "esnext",
+    "target": "ES2019",
     "outDir": "build",
     "sourceMap": true,
     "jsx": "react",
