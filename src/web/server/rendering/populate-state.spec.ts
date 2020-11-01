@@ -35,7 +35,9 @@ describe('server/rendering/populate-state', () => {
       user: {},
       resume: {
         email: email,
-        [email]: resume,
+        resumes: {
+          [email]: resume,
+        },
       },
     };
 
@@ -87,7 +89,9 @@ describe('server/rendering/populate-state', () => {
       user: {},
       resume: {
         email: email,
-        [email]: resume,
+        resumes: {
+          [email]: resume,
+        },
       },
     };
 

@@ -21,7 +21,9 @@ describe('server/rendering/fetch-routes', () => {
     const expectedResult = {
       resume: {
         email: email,
-        [email]: resume,
+        resumes: {
+          [email]: resume,
+        },
       },
     };
 
