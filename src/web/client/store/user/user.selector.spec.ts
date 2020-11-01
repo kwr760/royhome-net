@@ -14,10 +14,10 @@ describe('client/store/user/user.selector', () => {
     const mockState = {
       user: expectedUser,
     };
-    useSelector.mockImplementation((callback) => callback(mockState));
+    (useSelector as jest.Mock).mockImplementation((callback) => callback(mockState));
 
     // Act
-    const user = useSelector((state) => getUser(state));
+    const user = useSelector(getUser);
 
     // Assert
     expect(user).toEqual(expectedUser);

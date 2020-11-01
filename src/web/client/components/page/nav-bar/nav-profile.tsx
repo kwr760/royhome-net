@@ -9,7 +9,7 @@ import NavLogin from './nav-login';
 import NavProfileDropDown from './nav-profile-dropdown';
 
 const NavProfile: FunctionComponent = () => {
-  const authenticated = useSelector((state) => isAuthenticated(state));
+  const authenticated = useSelector(isAuthenticated);
 
   let NavComponent;
   if (authenticated) {

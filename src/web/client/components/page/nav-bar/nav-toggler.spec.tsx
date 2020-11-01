@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
+import { Store } from 'redux';
 
 import createStore from '../../../store/create-store';
 import NavToggler from './nav-toggler';
@@ -12,7 +13,7 @@ jest.mock('./nav-toggler-button');
 jest.mock('./nav-toggler-menu');
 
 describe('client/components/page/nav-bar/nav-toggler', () => {
-  const getComponent = (store) => (
+  const getComponent = (store: Store) => (
     <Provider store={store}>
       <Router>
         <NavToggler />

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, RouteComponentProps } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import { Store } from 'redux';
 
 import { Auth0Context } from '../util/auth0/auth0-context';
 import App from './App';
@@ -27,15 +28,20 @@ jest.mock('./components/author');
 jest.mock('./components/tictactoe');
 
 describe('src/client/App', () => {
-  const getApp = (store) => (
+  const getApp = (store: Store, props: RouteComponentProps) => (
     <Provider store={store}>
-      <Auth0Context.Provider value={{}}>
+      <Auth0Context.Provider value={{
+        login: () => {},
+        logout: () => {},
+        getToken: () => {},
+      }}>
         <Router>
-          <App />
+          <App {...props} />
         </Router>
       </Auth0Context.Provider>
     </Provider>
   );
+  const props = {} as unknown as RouteComponentProps;
   beforeEach(() => {
     global.console.error = jest.fn();
     global.console.log = jest.fn();
@@ -64,7 +70,7 @@ describe('src/client/App', () => {
     (TicTacToe as jest.Mock).mockImplementation(() => <div>Tic Tac Toe</div>);
 
     // Act
-    const { container, getByText, queryByText } = render(getApp(store));
+    const { container, getByText, queryByText } = render(getApp(store, props));
 
     // Assert
     getByText(/NavBar/);
@@ -84,7 +90,7 @@ describe('src/client/App', () => {
     const store = createStore(state);
 
     // Act
-    const { getByText, queryByText } = render(getApp(store));
+    const { getByText, queryByText } = render(getApp(store, props));
 
     // Assert
     getByText(/Loading/);
@@ -100,7 +106,7 @@ describe('src/client/App', () => {
     const store = createStore(state);
 
     // Act
-    const { container } = render(getApp(store));
+    const { container } = render(getApp(store, props));
 
     // Assert
     expect((container.firstChild as HTMLElement).classList.contains('dark-theme')).toBe(true);
@@ -115,7 +121,7 @@ describe('src/client/App', () => {
     const store = createStore(state);
 
     // Act
-    const { container } = render(getApp(store));
+    const { container } = render(getApp(store, props));
 
     // Assert
     expect((container.firstChild as HTMLElement).classList.contains('light-theme')).toBe(true);

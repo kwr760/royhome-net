@@ -9,7 +9,7 @@ const Auth0Provider: React.FC<Auth0ProviderType> = ({
     value={{
       logout: () => {},
       login: () => {},
-      getToken: () => undefined,
+      getToken: () => {},
     }}
   >
     {children}

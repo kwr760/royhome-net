@@ -2,14 +2,7 @@ import { ResumeType } from '../../types/resume.types';
 import { UserStateType } from './state.types';
 
 export interface ResumeActionType {
-  type: string;
-  status: string;
-  payload: {
-    email?: string;
-  };
-  data?: {
-    resume?: ResumeType;
-  }
+  resume: ResumeType;
   error?: string;
 }
 

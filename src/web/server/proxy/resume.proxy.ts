@@ -13,6 +13,5 @@ export const getResumeProxy = async (email: string): Promise<unknown> => {
   const url = getParsedUrl(apiUrl, config.path, params);
 
   const { data: { resume } } = await axios.get(url);
-
   return resume;
 };

@@ -11,7 +11,9 @@ export const fetchRoutes: RouteFetchType[] = [
       return {
         resume: {
           email: email,
-          [email]: resume,
+          resumes: {
+            [email]: resume,
+          },
         },
       };
     },

@@ -14,7 +14,7 @@ import NavProfileDropDownLogout from './nav-profile-dropdown-logout';
 import NavProfileDropDownToggle from './nav-profile-dropdown-toggle';
 
 const NavProfileDropDown: FunctionComponent = () => {
-  const user = useSelector((state) => getUser(state));
+  const user = useSelector(getUser);
   const name = (user && user.name) || '';
   const UserIcon = <FiUser className="mr-3" />;
   const PrivacyIcon = <VscGistSecret className="mr-3" />;

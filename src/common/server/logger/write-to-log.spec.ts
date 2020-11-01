@@ -14,8 +14,8 @@ describe('server/logger/write-to-log', () => {
   });
   it('should write to the file', () => {
     // Arrange
-    mocked(appendFile).mockImplementation((f, m, cb) => {
-      cb(undefined);
+    mocked(appendFile).mockImplementation((_f, _m, cb) => {
+      cb(null);
     });
 
     // Act
@@ -27,7 +27,8 @@ describe('server/logger/write-to-log', () => {
   it('should throw error on failure', () => {
     // Arrange
     mocked(appendFile).mockImplementation((f, m, cb) => {
-      cb(new Error('Error'));
+      const msg = f + ' - ' + m;
+      cb(new Error(msg));
     });
 
     // Act
@@ -35,7 +36,7 @@ describe('server/logger/write-to-log', () => {
       writeToLog('filename', 'message');
       expect(false).toBe(true);
     } catch (e) {
-      expect(e).toEqual(Error('Error'));
+      expect(e).toEqual(Error('filename - message\n'));
     }
   });
 });

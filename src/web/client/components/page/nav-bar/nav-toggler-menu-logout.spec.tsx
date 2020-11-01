@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
 import { FiLogOut } from 'react-icons/fi';
+import { Auth0ContextType } from '../../../../types/auth0.types';
 
 import { Auth0Context } from '../../../../util/auth0/auth0-context';
 import NavTogglerMenuLogout from './nav-toggler-menu-logout';
@@ -9,7 +10,7 @@ import NavTogglerMenuLogout from './nav-toggler-menu-logout';
 jest.mock('react-icons/fi');
 
 describe('client/components/page/nav-bar/nav-toggler-menu-logout', () => {
-  const getComponent = (auth, name) => (
+  const getComponent = (auth: Auth0ContextType, name: string) => (
     <Auth0Context.Provider value={auth}>
       <Router>
         <NavTogglerMenuLogout name={name} />
@@ -20,7 +21,7 @@ describe('client/components/page/nav-bar/nav-toggler-menu-logout', () => {
     // Arrange
     const auth = {
       logout: jest.fn(),
-    };
+    } as unknown as Auth0ContextType;
     (FiLogOut as jest.Mock).mockImplementation(() => 'FiLogOut');
 
     // Act

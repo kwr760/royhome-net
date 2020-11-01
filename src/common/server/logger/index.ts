@@ -1,40 +1,41 @@
+import { LogMsgType } from '../../../types/logger.types';
 import LOG_LEVELS from '../../util/logger/logger-levels';
 import log from './log';
 
 class Logger {
-  writeLog = (msg) => {
+  writeLog = (msg: LogMsgType) => {
     log(msg);
   };
 
-  debug = (msg) => {
+  debug = (msg: string) => {
     this.writeLog({
       logType: LOG_LEVELS.DEBUG,
       msg,
     });
   };
 
-  log = (msg) => {
+  log = (msg: string) => {
     this.writeLog({
       logType: LOG_LEVELS.INFO,
       msg,
     });
   };
 
-  warning = (msg) => {
+  warning = (msg: string) => {
     this.writeLog({
       logType: LOG_LEVELS.WARN,
       msg,
     });
   };
 
-  error = (msg) => {
+  error = (msg: string) => {
     this.writeLog({
       logType: LOG_LEVELS.ERROR,
       msg,
     });
   };
 
-  fatal = (msg) => {
+  fatal = (msg: string) => {
     this.writeLog({
       logType: LOG_LEVELS.FATAL,
       msg,

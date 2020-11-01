@@ -1,3 +1,4 @@
+import { CookieType } from '../../types/state.types';
 import { COOKIE_JWT_PAYLOAD } from '../../util/auth0/auth0.constants';
 import { TOKEN_URL } from '../../../common/util/auth0/role.constants';
 
@@ -20,7 +21,7 @@ describe('server/rendering/populate-state', () => {
   it('should return an state from empty context', async () => {
     // Arrange
     const url = '/';
-    const cookies = {
+    const cookies: CookieType = {
       [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
     };
     (getResumeProxy as jest.Mock).mockResolvedValueOnce(resume);
@@ -47,7 +48,7 @@ describe('server/rendering/populate-state', () => {
   it('should not find route', async () => {
     // Arrange
     const url = '/notfound';
-    const cookies = {
+    const cookies: CookieType = {
       [COOKIE_JWT_PAYLOAD]: JSON.stringify(jwt),
     };
     (getResumeProxy as jest.Mock).mockResolvedValueOnce(resume);
@@ -59,6 +60,10 @@ describe('server/rendering/populate-state', () => {
         darkMode: DarkModes.CLEAR_MODE,
       },
       user: {},
+      resume: {
+        email: '',
+        resumes: {},
+      },
     };
 
     // Act
@@ -70,9 +75,7 @@ describe('server/rendering/populate-state', () => {
   it('should not find payload', async () => {
     // Arrange
     const url = '/';
-    const cookies = {
-      nopayload: JSON.stringify(jwt),
-    };
+    const cookies: CookieType = {};
     (getResumeProxy as jest.Mock).mockResolvedValueOnce({});
     const expected = {
       session: {

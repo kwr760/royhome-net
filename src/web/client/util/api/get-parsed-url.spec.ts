@@ -4,7 +4,6 @@ describe('client/util/url/get-parsed-url', () => {
   const savedGlobalLocation = global.location;
 
   beforeEach(() => {
-    delete global.location;
     global.location = {
       href: 'https://www.royk.us',
     } as Location;

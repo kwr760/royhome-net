@@ -32,13 +32,15 @@ describe('client/store/resume/resume.selector', () => {
     const mockState = {
       resume: {
         email: email,
-        [email]: expectedResume,
+        resumes: {
+          [email]: expectedResume,
+        },
       },
     };
-    useSelector.mockImplementation((callback) => callback(mockState));
+    (useSelector as jest.Mock).mockImplementation((callback) => callback(mockState));
 
     // Act
-    const resume = useSelector((state) => getResume(state));
+    const resume = useSelector(getResume);
 
     // Assert
     expect(resume).toEqual(expectedResume);

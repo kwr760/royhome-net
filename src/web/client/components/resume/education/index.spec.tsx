@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { EducationType } from '../../../../../types/resume.types';
 
 import ResumeEducation from './index';
 
@@ -24,7 +25,7 @@ describe('client/components/resume/education', () => {
   });
   it('should render without props', () => {
     // Arrange
-    const education = [];
+    const education: EducationType[] = [];
 
     // Act
     const { getByText } = render(

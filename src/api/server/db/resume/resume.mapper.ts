@@ -90,10 +90,10 @@ export const resumeSkillsMapper = (src: unknown[]): SkillsType[] => {
     throw ERROR_CODE.DB_UNEXPECTED_RESULT;
   }
 
-  return src.reduce((acc: SkillsType[], row: SkillsType) => {
-    const rowSkill = merge(row, skillMap) as SkillsType;
+  return src.reduce((acc: SkillsType[], row: unknown) => {
+    const rowSkill = merge(row as SkillsType, skillMap) as SkillsType;
     rowSkill.items = [] as SkillItemType[];
-    const rowItem = merge(row, skillItemMap) as SkillItemType;
+    const rowItem = merge(row as SkillsType, skillItemMap) as SkillItemType;
     let skill = acc.find((e) => e.id === rowSkill.id);
     if (!skill) {
       skill = rowSkill;
@@ -101,7 +101,7 @@ export const resumeSkillsMapper = (src: unknown[]): SkillsType[] => {
     }
     skill.items.push(rowItem);
     return acc;
-  }, []) as SkillsType[];
+  }, [] as SkillsType[]) as SkillsType[];
 };
 
 export const resumeExperienceMapper = (src: unknown[]): ExperienceType[] => {
@@ -109,13 +109,13 @@ export const resumeExperienceMapper = (src: unknown[]): ExperienceType[] => {
     throw ERROR_CODE.DB_UNEXPECTED_RESULT;
   }
 
-  return src.reduce((acc: ExperienceType[], row: ExperienceType) => {
-    const rowExperience = merge(row, experienceMap) as ExperienceType;
+  return src.reduce((acc: ExperienceType[], row: unknown) => {
+    const rowExperience = merge(row as ExperienceType, experienceMap) as ExperienceType;
     rowExperience.description = [];
     rowExperience.bullets = [];
     rowExperience.techs = [];
-    const rowItem = merge(row, experienceItemMap) as ExperienceItemType;
-    let experience = acc.find((e) => e.id === rowExperience.id);
+    const rowItem = merge(row as ExperienceType, experienceItemMap) as ExperienceItemType;
+    let experience: ExperienceType = acc.find((e) => e.id === rowExperience.id) as ExperienceType;
     if (!experience) {
       experience = rowExperience;
       acc.push(experience);
@@ -132,7 +132,7 @@ export const resumeExperienceMapper = (src: unknown[]): ExperienceType[] => {
       break;
     }
     return acc;
-  }, []) as ExperienceType[];
+  }, [] as ExperienceType[]) as ExperienceType[];
 };
 
 export const resumeEducationMapper = (src: unknown[]): EducationType[] => {
@@ -141,8 +141,8 @@ export const resumeEducationMapper = (src: unknown[]): EducationType[] => {
     throw ERROR_CODE.DB_UNEXPECTED_RESULT;
   }
 
-  src.forEach((item: unknown[]) => {
-    mappedItems.push(merge(item, educationMap) as EducationType);
+  src.forEach((item: unknown) => {
+    return mappedItems.push(merge(item as EducationType, educationMap) as EducationType);
   });
   return mappedItems;
 };

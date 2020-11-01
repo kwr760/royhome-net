@@ -7,7 +7,7 @@ import pool from './db-pool';
 const dbQuery = (
   sql: string,
   params: unknown[],
-): Promise<QueryResult<unknown>> => new Promise((resolve, reject) => {
+): Promise<QueryResult> => new Promise((resolve, reject) => {
   pool.query(sql, params)
     .then((res) => {
       resolve(res);
@@ -20,7 +20,7 @@ const dbQuery = (
 export const processDatabaseQuery = async (
   sql: string,
   args: unknown[],
-  mapper: (unknown) => unknown,
+  mapper: (arg: unknown[]) => unknown,
   schema: AnySchema,
 ) : Promise<unknown> => {
   let result;

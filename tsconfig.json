@@ -10,16 +10,29 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "lib": ["es6", "dom"],
     "typeRoots" : [
       "node_modules/@types",
       "src/types"
-    ]
+    ],
+    "removeComments": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "alwaysStrict": true,
+    "noUnusedParameters": true,
+    "strict": true
   },
   "include": [
     "src/types",
     "src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/**/__mocks__/**"
   ]
 }
+

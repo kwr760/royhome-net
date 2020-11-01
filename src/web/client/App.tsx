@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, RouteComponentProps } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import { useSelector } from 'react-redux';
 import loadable from '@loadable/component';
@@ -16,26 +16,20 @@ import { DarkModes } from './store/session/session.constants';
 const AboutPage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/about');
 const AuthorPage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/author');
 const PrivacyPage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/privacy');
-// const ProfilePage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/profile');
-// const TicTacToePage = /* #__LOADABLE__ */ () => import('./components/tictactoe');
+const ProfilePage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/profile');
+const TicTacToePage = /* #__LOADABLE__ */ () => import('./components/tictactoe');
 const AboutLoadable = loadable(AboutPage, { ssr: true });
 const AuthorLoadable = loadable(AuthorPage, { ssr: true });
 const PrivacyLoadable = loadable(PrivacyPage, { ssr: true });
-const ProfileLoadable = loadable(
-  /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/profile'),
-  { ssr: true },
-);
-const TicTacToeLoadable = loadable(
-  /* #__LOADABLE__ */ () => import('./components/tictactoe'),
-  { ssr: true },
-);
+const ProfileLoadable = loadable(ProfilePage, { ssr: true });
+const TicTacToeLoadable = loadable(TicTacToePage, { ssr: true });
 
 /**
  * @return {string}
  */
-const App: FunctionComponent = () => {
-  const loading = useSelector((state) => isLoading(state));
-  const darkMode = useSelector((state) => getDarkMode(state));
+const App: FunctionComponent<RouteComponentProps> = () => {
+  const loading = useSelector(isLoading);
+  const darkMode = useSelector(getDarkMode);
 
   let appClasses = 'd-flex flex-column h-100 backdrop';
   if (darkMode === DarkModes.DARK_MODE) {

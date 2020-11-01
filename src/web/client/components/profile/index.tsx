@@ -8,8 +8,8 @@ import { isLoading } from '../../store/session/session.selector';
 import { getUser } from '../../store/user/user.selector';
 
 const Profile: FunctionComponent = () => {
-  const user = useSelector((state) => getUser(state));
-  const loading = useSelector((state) => isLoading(state));
+  const user = useSelector(getUser);
+  const loading = useSelector(isLoading);
   const displayLoading = loading || isEmpty(user);
 
   return (

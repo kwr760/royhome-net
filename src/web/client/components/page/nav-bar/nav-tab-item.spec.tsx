@@ -4,11 +4,12 @@ import '@testing-library/jest-dom';
 
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Store } from 'redux';
 import NavTabItem from './nav-tab-item';
 import createStore from '../../../store/create-store';
 
 describe('client/components/page/nav-bar/nav-tab-item', () => {
-  const getComponent = (store, path, name, role) => (
+  const getComponent = (store: Store, path: string, name: string, role?: string) => (
     <Provider store={store}>
       <Router>
         <NavTabItem path={path} name={name} neededRole={role} />
@@ -63,7 +64,7 @@ describe('client/components/page/nav-bar/nav-tab-item', () => {
     const store = createStore(state);
 
     // Act
-    const { getByText } = render(getComponent(store, '/path', 'Name', undefined));
+    const { getByText } = render(getComponent(store, '/path', 'Name'));
 
     // Assert
     getByText(/Name/);

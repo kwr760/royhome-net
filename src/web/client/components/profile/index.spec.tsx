@@ -5,12 +5,13 @@ import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import { Provider } from 'react-redux';
+import { Store } from 'redux';
 import { StateType } from '../../../types/state.types';
 import Profile from './index';
 import createStore from '../../store/create-store';
 
 describe('client/components/resume/profile', () => {
-  const getProfile = (store) => (
+  const getProfile = (store: Store) => (
     <Provider store={store}>
       <Router>
         <Profile />
@@ -33,6 +34,7 @@ describe('client/components/resume/profile', () => {
       },
       resume: {
         email: 'Resume Email',
+        resumes: {},
       },
     };
     const store = createStore(state);
@@ -58,6 +60,7 @@ describe('client/components/resume/profile', () => {
       user: {},
       resume: {
         email: 'email',
+        resumes: {},
       },
     };
     const store = createStore(state);

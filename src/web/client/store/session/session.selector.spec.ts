@@ -14,10 +14,10 @@ describe('client/store/session/session.selector', () => {
         authenticated: expectedAuthentication,
       },
     };
-    useSelector.mockImplementation((callback) => callback(mockState));
+    (useSelector as jest.Mock).mockImplementation((callback) => callback(mockState));
 
     // Act
-    const authenticated = useSelector((state) => isAuthenticated(state));
+    const authenticated = useSelector(isAuthenticated);
 
     // Assert
     expect(authenticated).toEqual(expectedAuthentication);
@@ -30,10 +30,10 @@ describe('client/store/session/session.selector', () => {
         isLoading: expectedLoading,
       },
     };
-    useSelector.mockImplementation((callback) => callback(mockState));
+    (useSelector as jest.Mock).mockImplementation((callback) => callback(mockState));
 
     // Act
-    const loading = useSelector((state) => isLoading(state));
+    const loading = useSelector(isLoading);
 
     // Assert
     expect(loading).toEqual(expectedLoading);
@@ -46,10 +46,10 @@ describe('client/store/session/session.selector', () => {
         darkMode: expectedDarkMode,
       },
     };
-    useSelector.mockImplementation((callback) => callback(mockState));
+    (useSelector as jest.Mock).mockImplementation((callback) => callback(mockState));
 
     // Act
-    const darkMode = useSelector((state) => getDarkMode(state));
+    const darkMode = useSelector(getDarkMode);
 
     // Assert
     expect(darkMode).toEqual(expectedDarkMode);

@@ -8,7 +8,7 @@ import NavTogglerMenuItem from './nav-toggler-menu-item';
 jest.mock('react-icons/fi');
 
 describe('client/components/page/nav-bar/nav-toggler-menu-item', () => {
-  const getComponent = (path, name, icon) => (
+  const getComponent = (path: string, name: string, icon: JSX.Element) => (
     <Router>
       <NavTogglerMenuItem path={path} name={name} icon={icon} />
     </Router>

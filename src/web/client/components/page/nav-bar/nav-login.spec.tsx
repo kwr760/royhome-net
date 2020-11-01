@@ -1,11 +1,12 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { Auth0ContextType } from '../../../../types/auth0.types';
 
 import { Auth0Context } from '../../../../util/auth0/auth0-context';
 import NavLogin from './nav-login';
 
 describe('client/components/page/nav-bar/nav-login', () => {
-  const getNavLogin = (auth) => (
+  const getNavLogin = (auth: Auth0ContextType) => (
     <Auth0Context.Provider value={auth}>
       <NavLogin />
     </Auth0Context.Provider>
@@ -14,6 +15,8 @@ describe('client/components/page/nav-bar/nav-login', () => {
     // Arrange
     const auth = {
       login: jest.fn(),
+      logout: jest.fn(),
+      getToken: jest.fn(),
     };
 
     // Act

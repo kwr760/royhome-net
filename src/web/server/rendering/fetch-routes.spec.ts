@@ -27,7 +27,7 @@ describe('server/rendering/fetch-routes', () => {
 
     // Act
     const activeRoute = fetchRoutes.find((route) => matchPath(url, route));
-    const data = activeRoute.fetchData ? await activeRoute.fetchData() : {};
+    const data = (activeRoute && activeRoute.fetchData) ? await activeRoute.fetchData() : {};
 
     // Assert
     expect(data).toEqual(expectedResult);

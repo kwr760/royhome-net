@@ -10,7 +10,7 @@ const log = ({ logType, msg }: LogMsgType): void => {
     stdout: displayToScreen,
   } = env.log;
 
-  if (logType.level >= logLevel) {
+  if (logType.level >= logLevel.level) {
     writeToServer({ logType, msg });
 
     if (displayToScreen) {

@@ -17,7 +17,7 @@ const NavTogglerButton: FunctionComponent = () => {
         <Button
           id="LoginButtonDropdown"
           color="secondary"
-          onClick={() => login()}
+          onClick={() => login({})}
         >
           <FiLogIn className="mr-3" />
           Log in

@@ -1,31 +1,31 @@
+/* eslint-disable camelcase */
+import { GetTokenSilentlyOptions, RedirectLoginOptions } from '@auth0/auth0-spa-js';
 import React from 'react';
 
 export interface Auth0ProviderType {
   children: React.ReactNode;
   context?: Auth0ContextType;
-  onRedirectCallback?: (string) => unknown;
+  onRedirectCallback?: (cb: string) => unknown;
   audience?: string;
-  // eslint-disable-next-line camelcase
   client_id: string;
   domain: string;
-  // eslint-disable-next-line camelcase
   redirect_uri?: string;
 }
 export interface Auth0ClientType {
-  loginWithRedirect?: (...p: unknown[]) => unknown;
-  logout?: (...p: unknown[]) => unknown;
-  getTokenSilently?: (...p: unknown[]) => Promise<string>;
+  loginWithRedirect: (...p: unknown[]) => unknown;
+  logout: (...p: unknown[]) => unknown;
+  getTokenSilently: ((...p: unknown[]) => Promise<string>) | (() => unknown);
 }
 export interface Auth0ContextType {
-  login?: (...p: unknown[]) => unknown;
-  logout?: (...p: unknown[]) => unknown;
-  getToken?: (...p: unknown[]) => Promise<string>;
+  login: (props: RedirectLoginOptions) => unknown;
+  logout: (...p: unknown[]) => unknown;
+  getToken: ((props: GetTokenSilentlyOptions) => Promise<string>) | (() => unknown);
   jwt?: {
     expiresAt: number,
-    user: {
+    user?: {
       name: string,
     },
-    data: {
+    data?: {
       key: string,
     },
   }

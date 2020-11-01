@@ -1,4 +1,4 @@
-import express, { Router } from 'express';
+import express, { Router, Request, Response } from 'express';
 
 import checkJwt from '../../../common/server/middleware/check-jwt';
 import checkRole from '../../../common/server/middleware/check-role';
@@ -31,7 +31,7 @@ const generate = (routes: RouteType[]): Router => {
       router.get(
         path,
         middleware,
-        (req, res) => routeHandler(route, req, res),
+        (req: Request, res:  Response) => routeHandler(route, req, res),
       );
       break;
     case 'put':
@@ -39,7 +39,7 @@ const generate = (routes: RouteType[]): Router => {
       router.put(
         path,
         middleware,
-        (req, res) => routeHandler(route, req, res),
+        (req: Request, res: Response) => routeHandler(route, req, res),
       );
       break;
     case 'post':
@@ -47,7 +47,7 @@ const generate = (routes: RouteType[]): Router => {
       router.post(
         path,
         middleware,
-        (req, res) => routeHandler(route, req, res),
+        (req: Request, res: Response) => routeHandler(route, req, res),
       );
       break;
     default:

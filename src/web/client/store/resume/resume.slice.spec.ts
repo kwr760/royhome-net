@@ -1,6 +1,8 @@
 import { AxiosResponse } from 'axios';
+import { AnyAction } from 'redux';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
+import { ResumeStateType } from '../../../types/state.types';
 
 import resumeReducer, { fetchResume } from './resume.slice';
 import { callApi } from '../../util/api/call-api';
@@ -17,7 +19,9 @@ describe('client/store/resume/resume.slice', () => {
       resume: {},
     };
     const expectedState = {
-      unknown: {},
+      resumes: {
+        unknown: {},
+      },
     };
     const response = {
       data: expectedResume,
@@ -27,9 +31,9 @@ describe('client/store/resume/resume.slice', () => {
     (callApi as jest.Mock).mockReturnValue(response);
 
     // Act
-    await store.dispatch(fetchResume(email));
+    await store.dispatch(fetchResume(email) as unknown as AnyAction);
     const actions = store.getActions();
-    const newState = resumeReducer(store.getState(), actions[2]);
+    const newState = resumeReducer(store.getState() as ResumeStateType, actions[2]);
 
     // Assert
     expect(actions[0].type).toEqual('session/setLoading');
@@ -48,9 +52,9 @@ describe('client/store/resume/resume.slice', () => {
     (callApi as jest.Mock).mockImplementation(() => { throw Error(errorMsg); });
 
     // Act
-    await store.dispatch(fetchResume(email));
+    await store.dispatch(fetchResume(email) as unknown as AnyAction);
     const actions = store.getActions();
-    const newState = resumeReducer(store.getState(), actions[2]);
+    const newState = resumeReducer(store.getState() as ResumeStateType, actions[2]);
 
     // Assert
     expect(actions[0].type).toEqual('session/setLoading');

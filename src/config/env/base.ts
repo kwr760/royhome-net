@@ -4,7 +4,7 @@ const rootPath = path.normalize(`${__dirname}/../../..`);
 
 const currentHost = global.origin || 'https://royk.us';
 
-const env = (host) => ({
+const env = (host: string) => ({
   appName: 'roy-home',
   host,
   root: rootPath,

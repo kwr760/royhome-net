@@ -3,30 +3,39 @@ import fs from 'fs';
 import parseUrl from 'parseurl';
 import { Request, Response } from 'express';
 import { ChunkExtractor } from '@loadable/server';
-import React from 'react';
+import React, { ComponentType } from 'react';
 import { renderToString } from 'react-dom/server';
+import { Store } from 'redux';
 
 import env from '../../../config';
 import populateState from './populate-state';
 import displayMessage from '../../../common/server/middleware/display-message';
 import createStore from '../../client/store/create-store';
 
+interface Props {
+  url: string,
+  store: Store,
+}
+interface MainType {
+  default: ComponentType<Props>,
+}
 const renderReact = async (req: Request, res: Response): Promise<void> => {
   displayMessage(`Server render:  ${req.url}`);
 
   // Extract the creation of the markup to a separate file
   const nodeStats = path.resolve(env.root, './dist/node/loadable-stats.json');
   const nodeExtractor = new ChunkExtractor({ statsFile: nodeStats });
-  const { default: Main } = nodeExtractor.requireEntrypoint();
+  const { default: Main } = nodeExtractor.requireEntrypoint() as unknown as MainType;
   const webStats = path.resolve(env.root, './dist/web/loadable-stats.json');
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
-  const urlPath = parseUrl(req).pathname;
+  const url = parseUrl(req) || { pathname: ''};
+  const pathname = url.pathname || '';
   const { cookies } = req;
-  const state = await populateState(urlPath, cookies);
+  const state = await populateState(pathname, cookies);
   const store = createStore(state);
   const jsx = webExtractor.collectChunks(
     <Main
-      url={urlPath}
+      url={pathname}
       store={store}
     />,
   );
