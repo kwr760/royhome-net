@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { Provider } from 'react-redux';
+import { Store } from 'redux';
 import NavLogin from './nav-login';
 import NavProfile from './nav-profile';
 import createStore from '../../../store/create-store';
@@ -11,7 +12,7 @@ jest.mock('./nav-profile-dropdown');
 jest.mock('./nav-login');
 
 describe('client/components/page/nav-bar/nav-profile', () => {
-  const getComponent = (store) => (
+  const getComponent = (store: Store) => (
     <Provider store={store}>
       <NavProfile />
     </Provider>

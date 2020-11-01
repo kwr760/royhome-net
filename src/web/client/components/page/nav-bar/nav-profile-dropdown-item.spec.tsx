@@ -8,7 +8,7 @@ import NavProfileDropDownItem from './nav-profile-dropdown-item';
 jest.mock('react-icons/fi');
 
 describe('client/components/page/nav-bar/nav-profile-dropdown-item', () => {
-  const getComponent = (path, name, icon) => (
+  const getComponent = (path: string, name: string, icon: JSX.Element) => (
     <Router>
       <NavProfileDropDownItem path={path} name={name} icon={icon} />
     </Router>

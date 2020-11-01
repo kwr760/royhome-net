@@ -1,24 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ResumeActionType } from '../../../types/action.types';
 import { ResumeStateType } from '../../../types/state.types';
 import { callApi } from '../../util/api/call-api';
 import { ApiConfigs } from '../../util/api/api.config';
 import { setLoading, clearLoading } from '../session/session.slice';
 import { AppThunk } from '../create-store';
 
-
-
 const initialState: ResumeStateType = {
   email: 'kroy760@gmail.com',
+  resumes: {},
 } as ResumeStateType;
 
 const resumeSlice = createSlice({
   name: 'resume',
   initialState,
   reducers: {
-    getResumeSuccess: (state, action: PayloadAction<ResumeStateType>) => {
+    getResumeSuccess: (state: ResumeStateType, action: PayloadAction<ResumeActionType>) => {
       const { resume } = action.payload;
       const { email = 'unknown'} = resume && resume.contact || {};
-      state[email] = action.payload.resume;
+      state.resumes = {
+        [email]: resume,
+      };
     },
     getResumeFailure: (state, action: PayloadAction<string>) => {
       state.error = action.payload;

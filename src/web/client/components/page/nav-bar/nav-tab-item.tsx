@@ -17,8 +17,8 @@ interface Props {
 }
 
 const NavTabItem: FunctionComponent<Props> = ({ path, name, neededRole = '' }) => {
-  const authenticated = useSelector((state) => isAuthenticated(state));
-  const user = useSelector((state) => getUser(state));
+  const authenticated = useSelector(isAuthenticated);
+  const user = useSelector(getUser);
   const shouldDisplayTab = (checkRole: string) => {
     if (checkRole.length > 0) {
       if (!authenticated || !hasNeededRole(checkRole, user.context)) {

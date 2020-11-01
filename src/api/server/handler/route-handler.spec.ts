@@ -21,7 +21,7 @@ describe('server/routes/handler/route-handler', () => {
     const res = {
       status: jest.fn(() => res),
       send: jest.fn(),
-    };
+    } as unknown as Response;
     const expectedBody = { test: 'TEST' };
     const apiResponse = {
       status: OK,
@@ -49,9 +49,9 @@ describe('server/routes/handler/route-handler', () => {
       status: jest.fn(() => res),
       send: jest.fn(),
       json: jest.fn(),
-    };
+    } as unknown as Response;
     const mockRouter = {
-      put: jest.fn((path, middleware, handler) => { handler({}, res); }),
+      put: jest.fn((_path, _middleware, handler) => { handler({}, res); }),
     };
     (express.Router as jest.Mock).mockImplementation(() => mockRouter);
     const errMsg = 'Error message';
@@ -82,7 +82,7 @@ describe('server/routes/handler/route-handler', () => {
       status: jest.fn(() => res),
       send: jest.fn(),
       json: jest.fn(),
-    };
+    } as unknown as Response;
     const error = {};
     const route = {
       method: 'GET',

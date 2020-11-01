@@ -30,7 +30,7 @@ describe('server/db/resume/resume.mapper', () => {
     });
     it('should throw an error when it is unexpected', () => {
       // Arrange
-      const src = [];
+      const src: unknown[] = [];
       const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;
 
       // Act/Assert
@@ -65,7 +65,7 @@ describe('server/db/resume/resume.mapper', () => {
     });
     it('should throw an error when it is unexpected', () => {
       // Arrange
-      const src = [];
+      const src : unknown[] = [];
       const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;
 
       // Act/Assert
@@ -96,7 +96,7 @@ describe('server/db/resume/resume.mapper', () => {
     });
     it('should throw an error when it is unexpected', () => {
       // Arrange
-      const src = [];
+      const src: unknown[] = [];
       const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;
 
       // Act/Assert
@@ -127,7 +127,7 @@ describe('server/db/resume/resume.mapper', () => {
     });
     it('should throw an error when it is unexpected', () => {
       // Arrange
-      const src = [];
+      const src: unknown[] = [];
       const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;
 
       // Act/Assert
@@ -182,7 +182,7 @@ describe('server/db/resume/resume.mapper', () => {
     });
     it('should throw an error when it is unexpected', () => {
       // Arrange
-      const src = [];
+      const src: unknown[] = [];
       const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;
 
       // Act/Assert
@@ -322,7 +322,7 @@ describe('server/db/resume/resume.mapper', () => {
     });
     it('should throw an error when it is unexpected', () => {
       // Arrange
-      const src = [];
+      const src: unknown[] = [];
       const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;
 
       // Act/Assert
@@ -357,7 +357,7 @@ describe('server/db/resume/resume.mapper', () => {
     });
     it('should throw an error when it is unexpected', () => {
       // Arrange
-      const src = [];
+      const src: unknown[] = [];
       const expectedError = ERROR_CODE.DB_UNEXPECTED_RESULT;
 
       // Act/Assert

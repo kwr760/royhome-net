@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
+import { Store } from 'redux';
+import { Auth0ContextType } from '../../../../types/auth0.types';
 import { Auth0Context } from '../../../../util/auth0/auth0-context';
 import hasNeededRole from '../../../../../common/util/auth0/has-needed-role';
 import PrivateRoute from './index';
@@ -12,7 +14,7 @@ jest.mock('../../../../../common/util/auth0/has-needed-role');
 describe('client/components/page/private-route', () => {
   const userRole = 'admin';
   const mockComponent = () => <div>Mocked</div>;
-  const getPrivateRoute = (store, auth, role, path = '/') => (
+  const getPrivateRoute = (store: Store, auth: Auth0ContextType, role?: string, path = '/') => (
     <Router>
       <Provider store={store}>
         <Auth0Context.Provider value={auth}>
@@ -24,7 +26,7 @@ describe('client/components/page/private-route', () => {
 
   it('should render with authentication and role', () => {
     // Arrange
-    const auth = {};
+    const auth = {} as unknown as Auth0ContextType;
     const state = {
       session: {
         authenticated: true,
@@ -43,7 +45,7 @@ describe('client/components/page/private-route', () => {
     // Arrange
     const auth = {
       isAuthenticated: true,
-    };
+    } as unknown as Auth0ContextType;
     const state = {
       session: {
         authenticated: true,
@@ -61,18 +63,17 @@ describe('client/components/page/private-route', () => {
   });
   it('should render with authentication and without role', () => {
     // Arrange
-    const auth = {};
+    const auth = {} as unknown as Auth0ContextType;
     const state = {
       session: {
         authenticated: true,
       },
     };
-    const role = undefined;
     const store = createStore(state);
     (hasNeededRole as jest.Mock).mockReturnValue(true);
 
     // Act
-    const { getByText } = render(getPrivateRoute(store, auth, role));
+    const { getByText } = render(getPrivateRoute(store, auth));
 
     // Assert
     getByText(/Mocked/);

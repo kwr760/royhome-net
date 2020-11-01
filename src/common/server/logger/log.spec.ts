@@ -22,8 +22,9 @@ describe('server/logger/log', () => {
     // Arrange
     env.log = {
       dir: 'dir_name',
-      level: LOG_LEVELS.WARN.level,
+      level: LOG_LEVELS.WARN,
       stdout: true,
+      includePidFilename: false,
     };
     const msg = 'Log message';
     const logMsg = {
@@ -43,9 +44,10 @@ describe('server/logger/log', () => {
       dir: 'dir_name',
       level: LOG_LEVELS.WARN,
       stdout: true,
+      includePidFilename: false,
     };
     const consoleMock = jest.fn();
-    (getConsole as jest.Mock).mockReturnValue((msg) => consoleMock(msg));
+    (getConsole as jest.Mock).mockReturnValue((msg: string) => consoleMock(msg));
     const formattedMessage = 'formatted_message';
     (formatMessage as jest.Mock).mockReturnValue(formattedMessage);
     const logFilename = 'log_filename';
@@ -70,9 +72,10 @@ describe('server/logger/log', () => {
       dir: 'dir_name',
       level: LOG_LEVELS.WARN,
       stdout: false,
+      includePidFilename: false,
     };
     const consoleMock = jest.fn();
-    (getConsole as jest.Mock).mockReturnValue((msg) => consoleMock(msg));
+    (getConsole as jest.Mock).mockReturnValue((msg: string) => consoleMock(msg));
     const formattedMessage = 'formatted_message';
     (formatMessage as jest.Mock).mockReturnValue(formattedMessage);
     const logFilename = 'log_filename';

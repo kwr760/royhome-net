@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { SkillsType } from '../../../../../types/resume.types';
 
 import ResumeSkills from './index';
 
@@ -48,7 +49,7 @@ describe('client/components/resume/skills', () => {
   });
   it('should render without props', () => {
     // Arrange
-    const skills = [];
+    const skills: SkillsType[] = [];
 
     // Act
     const { getByText } = render(

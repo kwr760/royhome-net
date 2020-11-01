@@ -11,7 +11,7 @@ describe('server/db/query', () => {
   it('should call data layer and return data', async () => {
     // Arrange
     const sql = 'SELECT COUNT(*) FROM 1';
-    const data = [];
+    const data: unknown[] = [];
     const expected = {
       field: 'data',
     };
@@ -38,7 +38,7 @@ describe('server/db/query', () => {
   it('should call data layer and throw error on validation problem', async () => {
     // Arrange
     const sql = 'SELECT COUNT(*) FROM 1';
-    const data = [];
+    const data: unknown[] = [];
     const expected = {
       field: 'data',
     };
@@ -73,7 +73,7 @@ describe('server/db/query', () => {
   it('should call data layer and catch database error', async () => {
     // Arrange
     const sql = 'SELECT COUNT(*) FROM 1';
-    const data = [];
+    const data: unknown[] = [];
     const error = { error: 'Error happened' };
     (pool.query as jest.Mock).mockRejectedValue(error);
     const expectedError = ERROR_CODE.DB_UNKNOWN_ERROR;

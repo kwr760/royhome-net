@@ -1,8 +1,9 @@
 import LOG_LEVELS from '../../../../common/util/logger/logger-levels';
+import { LogMsgType } from '../../../../types/logger.types';
 import log from './log';
 
 class Logger {
-  writeLog = (msg) => {
+  writeLog = (msg: LogMsgType) => {
     log(msg);
   };
 

@@ -16,7 +16,7 @@ const NavLogin: FunctionComponent = () => {
         id="LoginButton"
         color="secondary"
         className="btn-margin border-0"
-        onClick={() => login()}
+        onClick={() => login({})}
       >
         <FiLogIn className="mr-3" />
         Log in

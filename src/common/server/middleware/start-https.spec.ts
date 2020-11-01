@@ -22,7 +22,7 @@ describe('server/middleware/start-https', () => {
       cert: 'cert',
       ca: 'ca',
     };
-    const mockServer = { listen: (_, cb) => { cb(); } };
+    const mockServer = { listen: (_: unknown, cb: () => unknown) => { cb(); } };
     (spdy.createServer as jest.Mock).mockImplementation(() => mockServer);
     (displayMessage as jest.Mock).mockImplementation(() => jest.fn());
 

@@ -1,14 +1,15 @@
 import { matchPath } from 'react-router-dom';
-import { StateType } from '../../types/state.types';
+import { StateType, CookieType } from '../../types/state.types';
 
 import { COOKIE_JWT_PAYLOAD } from '../../util/auth0/auth0.constants';
 import { fetchRoutes } from './fetch-routes';
 import { DarkModes } from '../../client/store/session/session.constants';
 
-const populateState = async (path: string, cookies: unknown): Promise<StateType> => {
+const populateState = async (path: string, cookies: CookieType): Promise<StateType> => {
   const activeRoute = fetchRoutes.find((route) => matchPath(path, route));
   const data = (activeRoute && activeRoute.fetchData) ? await activeRoute.fetchData() : {};
-  const jwt = cookies[COOKIE_JWT_PAYLOAD] ? JSON.parse(cookies[COOKIE_JWT_PAYLOAD]) : {};
+  const payload = cookies[COOKIE_JWT_PAYLOAD] || undefined;
+  const jwt = payload ? JSON.parse(payload) : {};
   const { exp = 0, user = {} } = jwt;
   const expiresAt = exp * 1000;
   const session = {
@@ -21,6 +22,10 @@ const populateState = async (path: string, cookies: unknown): Promise<StateType>
   return {
     session,
     user,
+    resume: {
+      email: '',
+      resumes: {},
+    },
     ...data,
   };
 };

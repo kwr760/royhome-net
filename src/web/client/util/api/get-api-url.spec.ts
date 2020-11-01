@@ -9,6 +9,8 @@ describe('client/util/url/get-browser-url-info', () => {
   it('should create an url', () => {
     // Arrange
     const expected = 'https://api.royk.us';
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     delete global.location;
     global.location = {
       host: 'www.royk.us',

@@ -6,7 +6,7 @@ import NavTogglerButton from './nav-toggler-button';
 import NavTogglerMenu from './nav-toggler-menu';
 
 const NavToggler: FunctionComponent = () => {
-  const authenticated = useSelector((state) => isAuthenticated(state));
+  const authenticated = useSelector(isAuthenticated);
 
   if (!authenticated) {
     return <NavTogglerButton />;

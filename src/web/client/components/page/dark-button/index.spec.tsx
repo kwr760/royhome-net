@@ -1,22 +1,20 @@
 import React from 'react';
-import { useDispatch, Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import { fireEvent, render } from '@testing-library/react';
 import { FiSun, FiMoon } from 'react-icons/fi';
+import { Store } from 'redux';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 
 import DarkButton from './index';
 import { DarkModes } from '../../../store/session/session.constants';
-import createStore from '../../../store/create-store';
 
 jest.mock('react-icons/fi');
-jest.mock('react-redux', () => ({
-  ...jest.requireActual('react-redux'),
-  useDispatch: jest.fn(),
-}));
 
 describe('src/client/components/page/dark-mode', () => {
-  const expectLightMode = { payload: DarkModes.LIGHT_MODE, type: 'session/updateDarkMode' };
-  const expectDarkMode = { payload: DarkModes.DARK_MODE, type: 'session/updateDarkMode' };
-  const getComponent = (store) => (
+  const mockStore = configureMockStore([thunk]);
+  const actionType = 'session/updateDarkMode';
+  const getComponent = (store: Store) => (
     <Provider store={store}>
       <DarkButton />
     </Provider>
@@ -28,18 +26,19 @@ describe('src/client/components/page/dark-mode', () => {
         darkMode: DarkModes.LIGHT_MODE,
       },
     };
-    const store = createStore(state);
+    const store = mockStore(state);
     (FiSun as jest.Mock).mockImplementation(() => 'FiSun');
-    const dispatch = jest.fn();
-    (useDispatch as jest.Mock).mockReturnValue(dispatch);
 
     // Act
     const { getByText, getByRole } = render(getComponent(store));
+    const actions = store.getActions();
     fireEvent.click(getByRole('button'));
 
     // Assert
     getByText(/FiSun/);
-    expect(dispatch).toHaveBeenNthCalledWith(1, expectDarkMode);
+    expect(actions.length).toEqual(1);
+    expect(actions[0].type).toEqual(actionType);
+    expect(actions[0].payload).toEqual(DarkModes.DARK_MODE);
   });
   it('renders in dark mode', () => {
     // Arrange
@@ -48,17 +47,19 @@ describe('src/client/components/page/dark-mode', () => {
         darkMode: DarkModes.DARK_MODE,
       },
     };
-    const store = createStore(state);
+    // const store = createStore(state);
+    const store = mockStore(state);
     (FiMoon as jest.Mock).mockImplementation(() => 'FiMoon');
-    const dispatch = jest.fn();
-    (useDispatch as jest.Mock).mockReturnValue(dispatch);
 
     // Act
     const { getByText, getByRole } = render(getComponent(store));
+    const actions = store.getActions();
     fireEvent.click(getByRole('button'));
 
     // Assert
     getByText(/FiMoon/);
-    expect(dispatch).toHaveBeenNthCalledWith(1, expectLightMode);
+    expect(actions.length).toEqual(1);
+    expect(actions[0].type).toEqual(actionType);
+    expect(actions[0].payload).toEqual(DarkModes.LIGHT_MODE);
   });
 });

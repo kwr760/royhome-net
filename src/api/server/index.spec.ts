@@ -43,7 +43,7 @@ describe('server/index', () => {
 
   beforeEach(() => {
     (express as unknown as jest.Mock).mockReturnValue(mockExpress);
-    cors.mockReturnValue(corsCb);
+    (cors as jest.Mock).mockReturnValue(corsCb);
     (helmet as unknown as jest.Mock).mockReturnValue(helmetCb);
     (compression as unknown as jest.Mock).mockReturnValue(compressionCb);
     (bodyParser.json as jest.Mock).mockReturnValue(bodyParserJsonCb);

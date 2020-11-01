@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Provider } from 'react-redux';
-import { StaticRouter as Router, Route } from 'react-router-dom';
+import { StaticRouter as Router, Route, RouteComponentProps } from 'react-router-dom';
+import { Store } from 'redux';
 
 import Auth0Provider from '../util/auth0/auth0-node';
 import { config } from '../util/auth0/auth0.constants';
@@ -8,7 +9,7 @@ import App from './App';
 
 interface Props {
   url: string;
-  store: unknown;
+  store: Store;
 }
 const Main: FunctionComponent<Props> = ({ url, store }) => (
   <Provider store={store}>
@@ -17,7 +18,10 @@ const Main: FunctionComponent<Props> = ({ url, store }) => (
       client_id={config.clientId}
     >
       <Router location={url} context={{}}>
-        <Route component={(props) => <App {...props} />} />
+        <Route component={
+          (props: RouteComponentProps) => <App {...props} />
+        }
+        />
       </Router>
     </Auth0Provider>
   </Provider>

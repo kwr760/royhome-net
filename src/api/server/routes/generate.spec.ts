@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Response } from 'express';
 
 import Logger from '../../../common/server/logger';
 import generate from './generate';
@@ -23,11 +23,11 @@ describe('server/routes/generate', () => {
       const res = {
         status: jest.fn(() => res),
         send: jest.fn(),
-      };
+      } as unknown as Response;
       const mockRouter = {
-        get: jest.fn((path, middleware, handler) => { handler({}, res); }),
-        post: jest.fn((path, middleware, handler) => { handler({}, res); }),
-        put: jest.fn((path, middleware, handler) => { handler({}, res); }),
+        get: jest.fn((_path, _middleware, handler) => { handler({}, res); }),
+        post: jest.fn((_path, _middleware, handler) => { handler({}, res); }),
+        put: jest.fn((_path, _middleware, handler) => { handler({}, res); }),
       };
       const mockHandler = jest.fn();
       (routeHandler as jest.Mock).mockImplementation((route) => { route.handler(); });

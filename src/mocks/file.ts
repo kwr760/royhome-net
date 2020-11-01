@@ -1,1 +1,3 @@
-module.exports = 'mocked file';
+const file = 'mocked file';
+
+export default file;

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import { Auth0ContextType } from '../../../types/auth0.types';
 
 import { Auth0Context } from '../../../util/auth0/auth0-context';
 import { fetchResume } from '../../store/resume/resume.slice';
@@ -27,8 +28,8 @@ describe('client/components/private/resume', () => {
   const dispatch = jest.fn();
   const defaultAuth = {
     getToken: jest.fn(() => token),
-  };
-  const getResume = (auth) => (
+  } as unknown as Auth0ContextType;
+  const getResume = (auth: Auth0ContextType) => (
     <Auth0Context.Provider value={auth}>
       <Resume />
     </Auth0Context.Provider>
@@ -47,7 +48,7 @@ describe('client/components/private/resume', () => {
 
   it('should render request', async () => {
     // Arrange
-    useDispatch.mockReturnValue(dispatch);
+    (useDispatch as jest.Mock).mockReturnValue(dispatch);
 
     // Act
     const { getByText } = render(getResume(defaultAuth));
@@ -62,8 +63,8 @@ describe('client/components/private/resume', () => {
   });
   it('should not render resume when loading', async () => {
     // Arrange
-    useDispatch.mockReturnValue(dispatch);
-    useSelector.mockReturnValueOnce({ owner: 'owner' }).mockReturnValueOnce(true);
+    (useDispatch as jest.Mock).mockReturnValue(dispatch);
+    (useSelector as jest.Mock).mockReturnValueOnce({ owner: 'owner' }).mockReturnValueOnce(true);
 
     // Act
     const { queryByText } = render(getResume(defaultAuth));

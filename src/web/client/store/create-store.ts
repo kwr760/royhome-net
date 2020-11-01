@@ -4,7 +4,7 @@ import { ThunkAction } from 'redux-thunk';
 import env from '../../../config';
 import rootReducer, { RootState } from './root.reducer';
 
-const createStore = (preloadedState = undefined): Store => {
+const createStore = (preloadedState = {}): Store => {
   const reducer = rootReducer;
 
   return configureStore({

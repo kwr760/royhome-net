@@ -77,7 +77,7 @@ describe('client/components/resume/experience', () => {
   });
   it('should render without props', () => {
     // Arrange
-    const experiences = [];
+    const experiences: ExperienceType[] = [];
 
     // Act
     const { getByText } = render(

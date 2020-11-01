@@ -14,6 +14,7 @@ describe('client/store/configure', () => {
       user: {},
       resume: {
         email: 'kroy760@gmail.com',
+        resumes: {},
       },
     };
 

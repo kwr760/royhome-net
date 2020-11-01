@@ -9,8 +9,8 @@ import { getDarkMode } from '../../../store/session/session.selector';
 
 const DarkMode: FunctionComponent = () => {
   const dispatch = useDispatch();
-  const darkness = useSelector((state) => getDarkMode(state));
-  const changeDarkMode = (mode) => {
+  const darkness = useSelector(getDarkMode);
+  const changeDarkMode = (mode: string) => {
     dispatch(updateDarkMode(mode));
   };
   const handleClick = useCallback(changeDarkMode, [dispatch]);

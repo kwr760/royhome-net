@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getResumeProxy } from '../proxy/resume.proxy';
 import renderReact from './render-react';
 
+jest.mock('parseurl');
 jest.mock('@loadable/server');
 jest.mock('../proxy/resume.proxy');
 

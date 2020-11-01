@@ -14,8 +14,8 @@ describe('util/auth0/react-auth0-node', () => {
 
     return (
       <div>
-        { `login: ${login()}` }
-        { `getToken: ${getToken()}` }
+        { `login: ${login({})}` }
+        { `getToken: ${getToken({})}` }
         { `logout: ${logout()}` }
       </div>
     );
@@ -23,6 +23,9 @@ describe('util/auth0/react-auth0-node', () => {
   it('should populate a Provider', () => {
     // Arrange
     const context = {
+      login: () => {},
+      logout: () => {},
+      getToken: () => {},
       jwt: {
         expiresAt: 99999999999999,
         user: {

@@ -13,6 +13,9 @@ jest.mock('react-redux');
 
 describe('util/auth0/react-auth0-spa', () => {
   const testContext = {
+    login: () => {},
+    logout: () => {},
+    getToken: () => {},
     jwt: {
       expiresAt: 0,
       user: {
@@ -23,7 +26,7 @@ describe('util/auth0/react-auth0-spa', () => {
       },
     },
   };
-  const testProvider = (context: Auth0ContextType, coverage?: boolean) => (
+  const testProvider = (context: Auth0ContextType, coverage = false) => (
     <Auth0Provider
       domain="domain"
       client_id="clientId"
@@ -43,8 +46,8 @@ describe('util/auth0/react-auth0-spa', () => {
     } = useAuth0();
 
     if (coverage) {
-      login();
-      getToken();
+      login({});
+      getToken({});
     }
 
     return (
@@ -58,7 +61,7 @@ describe('util/auth0/react-auth0-spa', () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
-  it('should logout an authenticated provider', async () => {
+  it('should login an authenticated provider', async () => {
     // Arrange
     (createAuth0Client as jest.Mock).mockResolvedValue({
       isAuthenticated: jest.fn(() => true),
@@ -67,7 +70,7 @@ describe('util/auth0/react-auth0-spa', () => {
       getIdTokenClaims: jest.fn(() => ({ exp: 999999999, 'http:\\royhome.net': { data: 'test data' } })),
     });
     const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
+    (useDispatch as jest.Mock).mockReturnValue(dispatch);
     const expectedLoadingOn = { payload: undefined, type: 'session/setLoading' };
     const expectedLoadingOff = { payload: undefined, type: 'session/clearLoading' };
     const expectedAuthOn = {
@@ -93,6 +96,29 @@ describe('util/auth0/react-auth0-spa', () => {
     expect(dispatch).toHaveBeenNthCalledWith(5, expectedAuthOff);
     expect(dispatch).toHaveBeenNthCalledWith(6, expectedUserOff);
   });
+  it('should login a limited authenticated provider', async () => {
+    // Arrange
+    (createAuth0Client as jest.Mock).mockResolvedValue({
+      isAuthenticated: jest.fn(() => true),
+      getUser: jest.fn(() => ({ name: 'Tester' })),
+      logout: jest.fn(() => ({})),
+      getIdTokenClaims: jest.fn(() => ({ 'http:\\royhome.net': { data: 'test data' } })),
+    });
+    const dispatch = jest.fn();
+    (useDispatch as jest.Mock).mockReturnValue(dispatch);
+    const expectedAuthOn = {
+      payload: { authenticated: true, expiration: 0 },
+      type: 'session/updateAuthentication',
+    };
+
+    // Act
+    render(testProvider(testContext));
+    await waitFor(() => {});
+
+    // Assert
+    expect(dispatch).toBeCalledTimes(4);
+    expect(dispatch).toHaveBeenNthCalledWith(2, expectedAuthOn);
+  });
   it('should handle redirect callback', async () => {
     // Arrange
     const savedWindow = global.window;
@@ -112,7 +138,7 @@ describe('util/auth0/react-auth0-spa', () => {
       handleRedirectCallback: jest.fn(() => ({ test: 'kroy' })),
     });
     const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
+    (useDispatch as jest.Mock).mockReturnValue(dispatch);
     const expectedLoadingOn = { payload: undefined, type: 'session/setLoading' };
     const expectedLoadingOff = { payload: undefined, type: 'session/clearLoading' };
     const expectedAuthOff = { payload: { authenticated: false, expiration: 0 }, type: 'session/updateAuthentication' };

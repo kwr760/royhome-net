@@ -11,7 +11,7 @@ interface Props {
 }
 
 const NavProfileDropDownToggle: FunctionComponent<Props> = ({ name }) => {
-  const user = useSelector((state) => getUser(state));
+  const user = useSelector(getUser);
   const picture = (user && user.picture) || '';
 
   return (
