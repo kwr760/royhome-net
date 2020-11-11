@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Col, Row } from 'reactstrap';
+import { Grid } from '@material-ui/core';
 import { SummaryType } from '../../../../../types/resume.types';
 
 interface Props {
@@ -8,14 +8,16 @@ interface Props {
 const ResumeSummary: FunctionComponent<Props> = ({ summary }) => {
   const { summary: summaryText = '' } = summary;
   return (
-    <Row>
-      <Col>
-        <div className="title">Summary for test </div>
+    <Grid container>
+      <Grid item sm={12}>
+        <div className="title">Summary</div>
+      </Grid>
+      <Grid item>
         <div className="content text-justify">
           { summaryText }
         </div>
-      </Col>
-    </Row>
+      </Grid>
+    </Grid>
   );
 };
 

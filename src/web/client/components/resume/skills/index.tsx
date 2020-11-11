@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Col, Row } from 'reactstrap';
+import { Grid } from '@material-ui/core';
 
 import './skills.css';
 import { SkillsType } from '../../../../../types/resume.types';
@@ -8,26 +8,26 @@ interface Props {
   skills: SkillsType[];
 }
 const ResumeSkills: FunctionComponent<Props> = ({ skills }) => (
-  <Row>
-    <Col>
+  <Grid container>
+    <Grid item sm={12}>
       <div className="title">Skills</div>
-      {
-        skills.map((item) => {
-          const { name, items } = item;
-          return (
-            <Row key={name}>
-              <Col className="skill-header" sm="3">
-                {name}
-              </Col>
-              <Col className="skill-list" sm="9">
-                {items.map((e) => e.name).join(', ')}
-              </Col>
-            </Row>
-          );
-        })
-      }
-    </Col>
-  </Row>
+    </Grid>
+    {
+      skills.map((item) => {
+        const { name, items } = item;
+        return (
+          <Grid container key={name}>
+            <Grid item className="skill-header" sm={3}>
+              {name}
+            </Grid>
+            <Grid item className="skill-list" sm={9}>
+              {items.map((e) => e.name).join(', ')}
+            </Grid>
+          </Grid>
+        );
+      })
+    }
+  </Grid>
 );
 
 export default ResumeSkills;

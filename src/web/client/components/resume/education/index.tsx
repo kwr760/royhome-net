@@ -1,33 +1,33 @@
 import React, { FunctionComponent } from 'react';
-import { Col, Row } from 'reactstrap';
+import { Grid } from '@material-ui/core';
 import { EducationType } from '../../../../../types/resume.types';
 
 interface Props {
   education: EducationType[];
 }
 const ResumeEducation: FunctionComponent<Props> = ({ education }) => (
-  <Row>
-    <Col>
+  <Grid container>
+    <Grid item sm={12}>
       <div className="title">Education</div>
-      {
-        education.map((item) => {
-          const { degree, school, graduationDate } = item;
-          return (
-            <Row key={school}>
-              <Col sm="9">
-                {degree}
-                ,
-                <i>{school}</i>
-              </Col>
-              <Col sm="3" className="text-right">
-                {graduationDate}
-              </Col>
-            </Row>
-          );
-        })
-      }
-    </Col>
-  </Row>
+    </Grid>
+    {
+      education.map((item) => {
+        const { degree, school, graduationDate } = item;
+        return (
+          <Grid container key={school}>
+            <Grid item sm={9}>
+              {degree}
+              ,
+              <i>{school}</i>
+            </Grid>
+            <Grid item sm={3} className="text-right">
+              {graduationDate}
+            </Grid>
+          </Grid>
+        );
+      })
+    }
+  </Grid>
 );
 
 export default ResumeEducation;

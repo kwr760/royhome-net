@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Container } from 'reactstrap';
+import { Container } from '@material-ui/core';
 import {
   AddressType,
   ContactType, EducationType, ExperienceType,
