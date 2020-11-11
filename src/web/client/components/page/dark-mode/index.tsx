@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useCallback } from 'react';
-import { Button, ButtonGroup } from 'reactstrap';
+import { Button, ButtonGroup } from '@material-ui/core';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { FiSun, FiMoon } from 'react-icons/fi';
@@ -16,11 +16,11 @@ const DarkMode: FunctionComponent = () => {
   const handleClick = useCallback(changeDarkMode, [dispatch]);
 
   return (
-    <ButtonGroup size="sm" className="dark-mode-group m-3">
+    <ButtonGroup size="small" className="dark-mode-group m-3">
       <Button
         className="dark-switch remove-outline light-button"
         onClick={() => handleClick(DarkModes.LIGHT_MODE)}
-        active={darkness === DarkModes.LIGHT_MODE}
+        disabled={darkness !== DarkModes.LIGHT_MODE}
       >
         <FiSun />
       </Button>
@@ -31,7 +31,7 @@ const DarkMode: FunctionComponent = () => {
       <Button
         className="dark-switch remove-outline dark-button"
         onClick={() => handleClick(DarkModes.DARK_MODE)}
-        active={darkness === DarkModes.DARK_MODE}
+        disabled={darkness !== DarkModes.DARK_MODE}
       >
         <FiMoon />
       </Button>

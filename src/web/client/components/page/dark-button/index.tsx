@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useCallback } from 'react';
-import { Button } from 'reactstrap';
+import { Button } from '@material-ui/core';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { FiSun, FiMoon } from 'react-icons/fi';
