@@ -3,16 +3,16 @@
 import LOG_LEVELS from '../common/util/logger/logger-levels';
 
 describe('config/index', () => {
-  const { RELEASE_ENV } = process.env;
+  const { NODE_ENV } = process.env;
 
   describe('production', () => {
     beforeEach(() => {
       jest.resetModules();
-      process.env.RELEASE_ENV = 'prod';
+      process.env.NODE_ENV = 'production';
     });
 
     afterEach(() => {
-      process.env.RELEASE_ENV = RELEASE_ENV;
+      process.env.NODE_ENV = NODE_ENV;
     });
 
     it('should load prod as expected', () => {
@@ -61,11 +61,11 @@ describe('config/index', () => {
   describe('development', () => {
     beforeEach(() => {
       jest.resetModules();
-      process.env.RELEASE_ENV = 'dev';
+      process.env.NODE_ENV = 'development';
     });
 
     afterEach(() => {
-      process.env.RELEASE_ENV = RELEASE_ENV;
+      process.env.NODE_ENV = NODE_ENV;
     });
 
     it('should load dev as expected', () => {

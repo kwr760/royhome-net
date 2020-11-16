@@ -18,6 +18,7 @@ const resumeSlice = createSlice({
     getResumeSuccess: (state: ResumeStateType, action: PayloadAction<ResumeActionType>) => {
       const { resume } = action.payload;
       const { email = 'unknown'} = resume && resume.contact || {};
+      state.email = email;
       state.resumes = {
         [email]: resume,
       };

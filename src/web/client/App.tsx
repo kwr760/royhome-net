@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { Route, Switch, RouteComponentProps } from 'react-router-dom';
-import { Container } from 'reactstrap';
+import { Container } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import loadable from '@loadable/component';
 
-import NavBar from './components/page/nav-bar';
+import NavBar from './components/page/app-bar';
 import Footer from './components/page/footer';
 import Loading from './components/page/loading';
 import PrivateRoute from './components/page/private-route';

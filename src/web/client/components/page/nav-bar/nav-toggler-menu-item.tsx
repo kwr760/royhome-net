@@ -1,9 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
-import {
-  NavItem,
-  // NavLink,
-} from 'reactstrap';
+import { NavItem } from 'reactstrap';
 
 interface Props {
   path: string;

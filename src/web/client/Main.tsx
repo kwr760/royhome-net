@@ -1,36 +1,38 @@
-import { CssBaseline } from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
 import React, { FunctionComponent } from 'react';
 import { Provider } from 'react-redux';
-import { StaticRouter as Router, Route, RouteComponentProps } from 'react-router-dom';
+import { StaticRouter as Router } from 'react-router';
+import { Route, RouteComponentProps } from 'react-router-dom';
 import { Store } from 'redux';
-import { ThemeProvider } from '@material-ui/core/styles';
-
 import Auth0Provider from '../util/auth0/auth0-node';
 import { config } from '../util/auth0/auth0.constants';
 import App from './App';
 import theme from './theme';
 
 interface Props {
-  url: string;
+  url?: string;
   store: Store;
 }
 const Main: FunctionComponent<Props> = ({ url, store }) => (
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Provider store={store}>
       <Auth0Provider
         domain={config.domain}
         client_id={config.clientId}
+        audience={config.audience}
+        redirect_uri={window.location.origin}
       >
-        <Router location={url} context={{}}>
+        <Router location={url}>
           <Route component={
             (props: RouteComponentProps) => <App {...props} />
           }
           />
         </Router>
       </Auth0Provider>
-    </ThemeProvider>
-  </Provider>
+    </Provider>
+  </ThemeProvider>
 );
 
 export default Main;

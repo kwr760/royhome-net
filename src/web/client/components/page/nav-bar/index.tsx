@@ -1,11 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import {
-  Collapse,
-  Container,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-} from 'reactstrap';
+import { Collapse, Container, Navbar, NavbarToggler, NavbarBrand } from 'reactstrap';
 
 import NavTabs from './nav-tabs';
 import NavProfile from './nav-profile';

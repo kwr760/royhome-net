@@ -6,9 +6,9 @@ import dev from './env/dev';
 
 let mergedConfig;
 
-const release = process.env.RELEASE_ENV || 'prod';
+const release = process.env['NODE_ENV'] || 'production';
 switch (release) {
-case 'dev':
+case 'development':
   mergedConfig = merge({}, base, dev);
   break;
 default:

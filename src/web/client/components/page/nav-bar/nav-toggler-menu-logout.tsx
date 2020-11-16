@@ -1,11 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
-
-import {
-  NavItem,
-  // NavLink,
-} from 'reactstrap';
+import { NavItem } from 'reactstrap';
 
 import { useAuth0 } from '../../../../util/auth0/auth0-context';
 

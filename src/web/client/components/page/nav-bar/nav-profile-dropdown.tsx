@@ -1,10 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  DropdownItem,
-  DropdownMenu,
-  UncontrolledDropdown,
-} from 'reactstrap';
+import { DropdownItem, DropdownMenu, UncontrolledDropdown } from 'reactstrap';
 import { FiUser } from 'react-icons/fi';
 import { VscGistSecret } from 'react-icons/vsc';
 

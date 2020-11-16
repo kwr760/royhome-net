@@ -1,8 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
-import {
-  DropdownItem,
-} from 'reactstrap';
+import { DropdownItem } from 'reactstrap';
 
 interface Props {
   path: string;

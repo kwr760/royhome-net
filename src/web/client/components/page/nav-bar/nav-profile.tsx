@@ -1,8 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  Nav,
-} from 'reactstrap';
+import { Nav } from 'reactstrap';
 
 import { isAuthenticated } from '../../../store/session/session.selector';
 import NavLogin from './nav-login';

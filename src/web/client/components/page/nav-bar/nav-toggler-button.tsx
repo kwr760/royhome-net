@@ -1,9 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {
-  Button,
-  Nav,
-  NavItem,
-} from 'reactstrap';
+import { Button, Nav, NavItem } from 'reactstrap';
 import { FiLogIn } from 'react-icons/fi';
 
 import { useAuth0 } from '../../../../util/auth0/auth0-context';

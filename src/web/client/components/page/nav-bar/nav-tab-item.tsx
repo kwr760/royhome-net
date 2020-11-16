@@ -1,10 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink as RouterNavLink } from 'react-router-dom';
-import {
-  NavItem,
-  NavLink,
-} from 'reactstrap';
+import { NavItem, NavLink } from 'reactstrap';
 
 import hasNeededRole from '../../../../../common/util/auth0/has-needed-role';
 import { isAuthenticated } from '../../../store/session/session.selector';

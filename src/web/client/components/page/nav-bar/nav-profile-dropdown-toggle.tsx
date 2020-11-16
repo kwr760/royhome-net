@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {
-  DropdownToggle,
-} from 'reactstrap';
+import { DropdownToggle } from 'reactstrap';
 
 import { useSelector } from 'react-redux';
 import { getUser } from '../../../store/user/user.selector';

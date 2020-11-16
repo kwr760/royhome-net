@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {
-  Nav,
-} from 'reactstrap';
+import { Nav } from 'reactstrap';
 
 import NavTabItem from './nav-tab-item';
 
