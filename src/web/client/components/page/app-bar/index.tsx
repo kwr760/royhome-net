@@ -21,12 +21,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import { useSelector } from 'react-redux';
+import { useLocation , NavLink } from 'react-router-dom';
 import hasNeededRole from '../../../../../common/util/auth0/has-needed-role';
 import { useAuth0 } from '../../../../util/auth0/auth0-context';
 import { isAuthenticated } from '../../../store/session/session.selector';
 import { getUser } from '../../../store/user/user.selector';
 import DarkButton from '../dark-button';
-import { NavLink } from 'react-router-dom';
+
 import logo from '../../../assets/images/browns-on-gray.png';
 import { FiUser, FiLogIn, FiLogOut, FiEyeOff } from 'react-icons/fi';
 
@@ -157,7 +158,20 @@ const useMenu = (
 
 const NavBar: FunctionComponent = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const location = useLocation();
+  let initialTab = 0;
+  switch (location.pathname) {
+  case '/author':
+    initialTab = 1;
+    break;
+  case '/about':
+    initialTab = 2;
+    break;
+  case '/tictactoe':
+    initialTab = 3;
+    break;
+  }
+  const [value, setValue] = React.useState(initialTab);
   const anchorState = React.useState<null | HTMLElement>(null);
   const setAnchor = anchorState[1];
   const theme = useTheme();
