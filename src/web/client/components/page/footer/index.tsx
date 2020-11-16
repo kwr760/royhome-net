@@ -3,7 +3,7 @@ import { Container, Link } from '@material-ui/core';
 import { VscGithub } from 'react-icons/vsc';
 
 const Footer: FunctionComponent = () => (
-  <Container className={`p-0`}>
+  <Container className={'p-0'}>
     <footer className="p-3 text-center">
       <Link
         href="https://github.com/kwr760/royhome-net"

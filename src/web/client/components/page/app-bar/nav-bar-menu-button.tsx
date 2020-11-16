@@ -1,4 +1,4 @@
-import { Avatar, createStyles, IconButton, Theme, Toolbar } from '@material-ui/core';
+import { Avatar, createStyles, IconButton, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import React, { Dispatch, FunctionComponent, SetStateAction } from 'react';

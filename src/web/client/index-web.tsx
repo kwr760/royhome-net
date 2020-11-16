@@ -32,7 +32,7 @@ interface Props {
 const Main: FunctionComponent<Props> = ({ store }) => {
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
+    if (jssStyles && jssStyles.parentElement) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
