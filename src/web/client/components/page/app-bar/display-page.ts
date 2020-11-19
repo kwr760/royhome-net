@@ -5,7 +5,7 @@ import { UserStateType } from '../../../../types/state.types';
 
 export const displayPage = (authenticated: boolean, user: UserStateType) => (page: TabPageType): boolean => {
   if (page.role) {
-    return (authenticated && shouldDisplayTab(authenticated, page.role, user));
+    return shouldDisplayTab(authenticated, page.role, user);
   }
 
   if (page.authenticated) {

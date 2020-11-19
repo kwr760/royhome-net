@@ -6,11 +6,12 @@ import Footer from './index';
 describe('src/client/components/page/footer', () => {
   it('renders', () => {
     // Arrange/Act
-    const { getByTestId } = render(
+    const { getByRole, getByText } = render(
       <Footer />,
     );
 
     // Assert
-    getByTestId(/footer-logo/);
+    getByRole(/link/);
+    getByText(/Link to github/);
   });
 });

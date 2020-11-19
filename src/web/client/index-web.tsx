@@ -14,10 +14,12 @@ import { StateType } from '../types/state.types';
 
 import Auth0Provider from '../util/auth0/auth0-spa';
 import { config } from '../util/auth0/auth0.constants';
-import App from './App';
-import createStore from './store/create-store';
-import theme from './theme';
 import { CssBaseline } from '@material-ui/core';
+
+import App from './App';
+import theme from './theme';
+import createStore from './store/create-store';
+import { removeJssStyle } from './util/remove-jss-style';
 
 declare global {
   interface Window {
@@ -32,9 +34,7 @@ interface Props {
 const Main: FunctionComponent<Props> = ({ store }) => {
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles && jssStyles.parentElement) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
+    removeJssStyle(jssStyles);
   }, []);
 
   return (

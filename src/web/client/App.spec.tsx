@@ -7,7 +7,7 @@ import { Store } from 'redux';
 import { Auth0Context } from '../util/auth0/auth0-context';
 import App from './App';
 import Loading from './components/page/loading';
-import NavBar from './components/page/nav-bar';
+import NavBar from './components/page/app-bar';
 import Footer from './components/page/footer';
 import Resume from './components/resume';
 import About from './components/about';
@@ -20,7 +20,7 @@ jest.mock('axios', () => ({
   put: jest.fn().mockResolvedValue({}),
 }));
 jest.mock('./components/page/loading');
-jest.mock('./components/page/nav-bar');
+jest.mock('./components/page/app-bar');
 jest.mock('./components/page/footer');
 jest.mock('./components/resume');
 jest.mock('./components/about');

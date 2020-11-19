@@ -43,6 +43,14 @@ export const NavBarMenu: FunctionComponent<Props> = ( { anchor, setAnchor }) => 
   const handleMenuClose = () => { setAnchor(null); };
   const { login, logout } = useAuth0();
   const user = useSelector(getUser);
+  const onLogin = () => {
+    login({});
+    handleMenuClose();
+  };
+  const onLogout = () => {
+    logout();
+    handleMenuClose();
+  };
 
   return (
     <Menu
@@ -80,12 +88,12 @@ export const NavBarMenu: FunctionComponent<Props> = ( { anchor, setAnchor }) => 
       </MenuItem>
       <Divider />
       { authenticated ? (
-        <MenuItem onClick={() => logout()}>
+        <MenuItem onClick={onLogout}>
           <ListItemIcon><FiLogOut /></ListItemIcon>
           <ListItemText primary="Logout"/>
         </MenuItem>
       ) : (
-        <MenuItem onClick={() => login({})}>
+        <MenuItem onClick={onLogin}>
           <ListItemIcon><FiLogIn /></ListItemIcon>
           <ListItemText primary="Login"/>
         </MenuItem>

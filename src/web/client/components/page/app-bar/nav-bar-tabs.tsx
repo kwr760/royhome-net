@@ -8,11 +8,11 @@ import { getUser } from '../../../store/user/user.selector';
 import { displayPage } from './display-page';
 import { pages } from './pages';
 
-
 interface Props {
   position: number;
   setPosition: Dispatch<SetStateAction<number>>;
 }
+
 export const NavBarTabs: FunctionComponent<Props> = ({ position, setPosition }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
