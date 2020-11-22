@@ -7,8 +7,6 @@ import { Provider } from 'react-redux';
 import { loadableReady } from '@loadable/component';
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import './styles/index.scss';
 import { Store } from 'redux';
 import { StateType } from '../types/state.types';
 
@@ -17,7 +15,7 @@ import { config } from '../util/auth0/auth0.constants';
 import { CssBaseline } from '@material-ui/core';
 
 import App from './App';
-import theme from './theme';
+import themeLight from './theme-light';
 import createStore from './store/create-store';
 import { removeJssStyle } from './util/remove-jss-style';
 
@@ -39,7 +37,7 @@ const Main: FunctionComponent<Props> = ({ store }) => {
 
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeLight}>
         <CssBaseline />
         <Auth0Provider
           domain={config.domain}

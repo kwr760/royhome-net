@@ -1,4 +1,3 @@
-import { Button } from '@material-ui/core';
 import mediaQuery from 'css-mediaquery';
 import React, { Dispatch, SetStateAction } from 'react';
 import { fireEvent, render } from '@testing-library/react';

@@ -8,7 +8,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import Auth0Provider from '../util/auth0/auth0-node';
 import { config } from '../util/auth0/auth0.constants';
 import App from './App';
-import theme from './theme';
+import themeLight  from './theme-light';
 
 interface Props {
   url: string;
@@ -16,7 +16,7 @@ interface Props {
 }
 const Main: FunctionComponent<Props> = ({ url, store }) => (
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeLight}>
       <CssBaseline />
       <Auth0Provider
         domain={config.domain}

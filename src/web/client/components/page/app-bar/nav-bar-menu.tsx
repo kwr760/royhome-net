@@ -16,17 +16,17 @@ import { pages } from './pages';
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
-      background: '#fff2e4',
-      color: '#000',
       border: '1px solid #000',
     },
     list: {
       paddingTop: 0,
       paddingBottom: 0,
     },
-    profileName: {
+    profile: {
       paddingRight: theme.spacing(2),
       paddingLeft: theme.spacing(2),
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2),
     },
   }),
 );
@@ -64,12 +64,12 @@ export const NavBarMenu: FunctionComponent<Props> = ( { anchor, setAnchor }) => 
       onClose={handleMenuClose}
       classes={{ list: classes.list, paper: classes.paper }}
     >
-      { authenticated ? <Typography className={`${classes.profileName} my-3`}>Kevin Roy</Typography> : null }
+      { authenticated ? <Typography className={classes.profile}>Kevin Roy</Typography> : null }
       { authenticated ? <Divider /> : null }
       { isMobile ?
         pages.filter(displayPage(authenticated, user)).map((page) => {
           return (
-            <MenuItem component={NavLink} key={page.path} to={page.path}>
+            <MenuItem component={NavLink} key={page.path} to={page.path} onClick={handleMenuClose}>
               <ListItemIcon /><ListItemText primary={page.name} />
             </MenuItem>
           );
@@ -77,12 +77,12 @@ export const NavBarMenu: FunctionComponent<Props> = ( { anchor, setAnchor }) => 
         null }
       { isMobile ? <Divider /> : null }
       { authenticated ? (
-        <MenuItem component={NavLink} to="/profile">
+        <MenuItem component={NavLink} to="/profile" onClick={handleMenuClose}>
           <ListItemIcon><FiUser /></ListItemIcon>
           <ListItemText primary="Profile"/>
         </MenuItem>
       ) : null }
-      <MenuItem component={NavLink} to="/privacy">
+      <MenuItem component={NavLink} to="/privacy" onClick={handleMenuClose}>
         <ListItemIcon><FiEyeOff /></ListItemIcon>
         <ListItemText primary="Privacy"/>
       </MenuItem>

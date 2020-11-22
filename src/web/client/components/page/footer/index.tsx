@@ -1,20 +1,47 @@
+import { makeStyles } from '@material-ui/core/styles';
 import React, { FunctionComponent } from 'react';
-import { Container, Link } from '@material-ui/core';
+import { Container, createStyles, Link, Theme } from '@material-ui/core';
+import { emphasize } from '@material-ui/core/styles/colorManipulator';
+
 import { VscGithub } from 'react-icons/vsc';
 
-const Footer: FunctionComponent = () => (
-  <Container className={'p-0'}>
-    <footer className="p-3 text-center">
-      <Link
-        href="https://github.com/kwr760/royhome-net"
-        target="_target"
-        className="nav-link"
-      >
-        <VscGithub className="fa-2x" />
-        <span className="sr-only">Link to github</span>
-      </Link>
-    </footer>
-  </Container>
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    container: {
+      paddingRight: 0,
+      paddingLeft: 0,
+    },
+    banner: {
+      boxShadow: theme.custom.boxShadow,
+      background: theme.custom.backgroundGradient,
+      zIndex: 1,
+      padding: '1rem',
+      textAlign: 'center',
+    },
+    icon: {
+      color: theme.palette.secondary.main,
+      '&:hover, &:focus': {
+        color: emphasize(theme.palette.secondary.main, 0.4),
+      },
+    },
+  }),
 );
 
-export default Footer;
+const BottomBar: FunctionComponent = () => {
+  const classes = useStyles();
+  return (
+    <Container className={classes.container}>
+      <footer className={classes.banner}>
+        <Link
+          href="https://github.com/kwr760/royhome-net"
+          target="_target"
+        >
+          <VscGithub className={`${classes.icon} fa-2x`} />
+          <span className="sr-only">Link to github</span>
+        </Link>
+      </footer>
+    </Container>
+  );
+};
+
+export default BottomBar;

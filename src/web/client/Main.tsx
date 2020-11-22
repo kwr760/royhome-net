@@ -8,14 +8,14 @@ import { Store } from 'redux';
 import Auth0Provider from '../util/auth0/auth0-node';
 import { config } from '../util/auth0/auth0.constants';
 import App from './App';
-import theme from './theme';
+import themeLight from './theme-light';
 
 interface Props {
   url?: string;
   store: Store;
 }
 const Main: FunctionComponent<Props> = ({ url, store }) => (
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={themeLight}>
     <CssBaseline />
     <Provider store={store}>
       <Auth0Provider

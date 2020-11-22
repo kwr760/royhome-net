@@ -13,14 +13,18 @@ import logo from '../../../assets/images/browns-on-gray.png';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    container: {
+      padding: 0,
+    },
     avator: {
       width: theme.spacing(7),
       height: theme.spacing(7),
       display: 'flex',
       marginRight: theme.spacing(3),
     },
-    appbarColor: {
-      background: 'linear-gradient(to bottom right, var(--color-banner-dark), var(--color-banner-light))',
+    banner: {
+      boxShadow: theme.custom.boxShadow,
+      background: theme.custom.backgroundGradient,
       zIndex: 1,
     },
     grow: {
@@ -37,9 +41,9 @@ const NavBar: FunctionComponent = () => {
   const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);
 
   return (
-    <Container className={'p-0'}>
-      <div className={`${classes.grow}`}>
-        <AppBar className={`${classes.appbarColor} nav-link`} position="static">
+    <Container className={classes.container}>
+      <div className={classes.grow}>
+        <AppBar className={classes.banner} position="static">
           <Toolbar>
             <Avatar alt="RoyHome" src={logo} className={classes.avator}/>
             <NavBarTabs position={position} setPosition={setPosition} />
