@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, RouteComponentProps } from 'react-router-dom';
@@ -14,6 +15,7 @@ import About from './components/about';
 import Author from './components/author';
 import TicTacToe from './components/tictactoe';
 import createStore from './store/create-store';
+import themeLight from './theme-light';
 
 jest.mock('@loadable/component');
 jest.mock('axios', () => ({
@@ -30,15 +32,17 @@ jest.mock('./components/tictactoe');
 describe('src/client/App', () => {
   const getApp = (store: Store, props: RouteComponentProps) => (
     <Provider store={store}>
-      <Auth0Context.Provider value={{
-        login: () => {},
-        logout: () => {},
-        getToken: () => {},
-      }}>
-        <Router>
-          <App {...props} />
-        </Router>
-      </Auth0Context.Provider>
+      <ThemeProvider theme={themeLight}>
+        <Auth0Context.Provider value={{
+          login: () => {},
+          logout: () => {},
+          getToken: () => {},
+        }}>
+          <Router>
+            <App {...props} />
+          </Router>
+        </Auth0Context.Provider>
+      </ThemeProvider>
     </Provider>
   );
   const props = {} as unknown as RouteComponentProps;
@@ -95,35 +99,5 @@ describe('src/client/App', () => {
     // Assert
     getByText(/Loading/);
     expect(queryByText('Home')).toBeNull();
-  });
-  it('renders in dark mode', () => {
-    // Arrange
-    const state = {
-      session: {
-        darkMode: 'dark-mode',
-      },
-    };
-    const store = createStore(state);
-
-    // Act
-    const { container } = render(getApp(store, props));
-
-    // Assert
-    expect((container.firstChild as HTMLElement).classList.contains('dark-theme')).toBe(true);
-  });
-  it('renders in light mode', () => {
-    // Arrange
-    const state = {
-      session: {
-        darkMode: 'light-mode',
-      },
-    };
-    const store = createStore(state);
-
-    // Act
-    const { container } = render(getApp(store, props));
-
-    // Assert
-    expect((container.firstChild as HTMLElement).classList.contains('light-theme')).toBe(true);
   });
 });

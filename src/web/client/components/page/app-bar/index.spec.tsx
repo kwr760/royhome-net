@@ -1,5 +1,7 @@
+import { ThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 import { render } from '@testing-library/react';
+import themeLight from '../../../theme-light';
 
 import DarkButton from '../dark-button';
 import NavBar from './index';
@@ -26,7 +28,11 @@ describe('src/client/components/page/app-bar/index', () => {
     (DarkButton as jest.Mock).mockImplementation(() => <div>Dark Button</div>);
 
     // Act
-    const { getByText } = render(<NavBar />);
+    const { getByText } = render(
+      <ThemeProvider theme={themeLight}>
+        <NavBar />
+      </ThemeProvider>,
+    );
 
     // Assert
     getByText(/NavBar Tabs/);
