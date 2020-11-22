@@ -165,7 +165,6 @@ const getConfig = (target) => {
               const splitMap = [
                 { name: 'core-js', packages: ['core-js'] },
                 { name: 'react', packages: ['react', 'react-router', 'react-router-dom', 'react-redux', 'redux', 'react-dom', 'react-transition-group'] },
-                { name: 'reactstrap', packages: ['reactstrap', 'popper.js'] },
                 { name: 'axios', packages: ['axios'] },
                 { name: 'lodash', packages: ['lodash'] },
                 { name: 'auth0-spa', packages: ['auth0'] },

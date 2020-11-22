@@ -30,10 +30,6 @@ module.exports = (api) => {
       [
         'transform-imports',
         {
-          reactstrap: {
-            transform: 'reactstrap/lib/${member}',
-            preventFullImport: true,
-          },
           lodash: {
             transform: 'lodash/${member}',
             preventFullImport: true,
