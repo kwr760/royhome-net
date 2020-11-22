@@ -1,4 +1,4 @@
-import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
