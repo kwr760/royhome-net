@@ -2,10 +2,12 @@
 import React from 'react';
 import reactDOM, { render, unmountComponentAtNode } from 'react-dom';
 
+import Auth0Provider from '../util/auth0/auth0-spa';
 import App from './App';
 
 jest.mock('@loadable/component');
 jest.mock('./App');
+jest.mock('../util/auth0/auth0-spa');
 
 describe('src/client/index-web', () => {
   const mockApp = jest.fn(() => <div>App</div>);
@@ -21,14 +23,13 @@ describe('src/client/index-web', () => {
     // cleanup on exiting
     unmountComponentAtNode(mainContainer);
     mainContainer.remove();
-    // mainContainer = null;
   });
 
   it('launches the App with targetUrl', () => {
-    jest.isolateModules(() => {
+    jest.isolateModules(async () => {
       // Arrange
       (App as jest.Mock).mockImplementation(mockApp);
-      jest.spyOn(React, 'useEffect').mockImplementation(() => {});
+      (Auth0Provider as jest.Mock).mockImplementation(({ children }) => <div>Auth0Provider: { children }</div>);
       jest.spyOn(reactDOM, 'hydrate').mockImplementation(
         (element, container) => render(element, container),
       );
@@ -37,6 +38,7 @@ describe('src/client/index-web', () => {
       require('./index-web');
 
       // Assert
+      expect(Auth0Provider).toBeCalled();
       expect(mockApp).toBeCalled();
     });
   });

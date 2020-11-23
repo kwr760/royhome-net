@@ -9,13 +9,12 @@ import StylelintPlugin from 'stylelint-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
-import { EnvironmentPlugin } from 'webpack';
 
-const dev = !process.env.RELEASE_ENV || process.env.RELEASE_ENV === 'dev';
+const isDevel = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 const getConfig = (target) => {
   let additionalPlugins = [];
-  if (dev) {
+  if (isDevel) {
     if (target === 'web') {
       additionalPlugins = [
         new BundleAnalyzerPlugin({
@@ -36,7 +35,7 @@ const getConfig = (target) => {
   }
 
   let devServer;
-  if (dev) {
+  if (isDevel) {
     devServer = {
       contentBase: path.join(__dirname, 'dist'),
       watchContentBase: true,
@@ -48,7 +47,7 @@ const getConfig = (target) => {
 
   return {
     name: target,
-    mode: dev ? 'development' : 'production',
+    mode: isDevel ? 'development' : 'production',
     target,
     devtool: 'source-map',
     entry: `./src/web/client/index-${target}.tsx`,
@@ -88,7 +87,7 @@ const getConfig = (target) => {
             {
               loader: 'sass-loader',
               options: {
-                sourceMap: dev,
+                sourceMap: isDevel,
               },
             },
           ],
@@ -122,16 +121,16 @@ const getConfig = (target) => {
     ] : undefined,
     output: {
       path: path.resolve(__dirname, 'dist', target),
-      filename: dev ? '[name].js' : '[name].[chunkhash:8].js',
-      publicPath: `/dist/${target}/`,
+      filename: isDevel ? '[name].js' : '[name].[chunkhash:8].js',
+      publicPath: `/dist/web/`,
       libraryTarget: target === 'node' ? 'commonjs2' : undefined,
     },
     plugins: [
       new CleanWebpackPlugin(),
       new LoadablePlugin(),
       new MiniCssExtractPlugin({
-        filename: dev ? '[name].css' : '[name].[chunkhash:8].css',
-        chunkFilename: dev ? '[id].css' : '[id].[chunkhash:8].css',
+        filename: isDevel ? '[name].css' : '[name].[chunkhash:8].css',
+        chunkFilename: isDevel ? '[id].css' : '[id].[chunkhash:8].css',
       }),
       new WebpackMd5Hash(),
       new StylelintPlugin({
@@ -146,9 +145,6 @@ const getConfig = (target) => {
         ],
       }),
       new LodashModuleReplacementPlugin(),
-      new EnvironmentPlugin({
-        RELEASE_ENV: dev ? 'dev' : 'prod',
-      }),
       ...additionalPlugins,
     ],
     resolve: {
@@ -169,7 +165,6 @@ const getConfig = (target) => {
               const splitMap = [
                 { name: 'core-js', packages: ['core-js'] },
                 { name: 'react', packages: ['react', 'react-router', 'react-router-dom', 'react-redux', 'redux', 'react-dom', 'react-transition-group'] },
-                { name: 'reactstrap', packages: ['reactstrap', 'popper.js'] },
                 { name: 'axios', packages: ['axios'] },
                 { name: 'lodash', packages: ['lodash'] },
                 { name: 'auth0-spa', packages: ['auth0'] },

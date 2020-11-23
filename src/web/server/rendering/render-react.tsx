@@ -6,6 +6,7 @@ import { ChunkExtractor } from '@loadable/server';
 import React, { ComponentType } from 'react';
 import { renderToString } from 'react-dom/server';
 import { Store } from 'redux';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 
 import env from '../../../config';
 import populateState from './populate-state';
@@ -33,19 +34,22 @@ const renderReact = async (req: Request, res: Response): Promise<void> => {
   const { cookies } = req;
   const state = await populateState(pathname, cookies);
   const store = createStore(state);
+  const sheets = new ServerStyleSheets();
   const jsx = webExtractor.collectChunks(
-    <Main
+    sheets.collect(<Main
       url={pathname}
       store={store}
-    />,
+    />),
   );
   const markup = renderToString(jsx);
+  const css = sheets.toString();
 
   // Extract the creation of the html to a separate file
   const indexFile = path.resolve('./src/web/client/assets/index.html');
   const contents = fs.readFileSync(indexFile, 'utf8');
   const preloadedState = JSON.stringify(store.getState()).replace(/</g, '\\u003c');
   const responseHtml = contents
+    .replace('{css}', css)
     .replace('{markup}', markup)
     .replace('{linkTags}', webExtractor.getLinkTags())
     .replace('{styleTags}', webExtractor.getStyleTags())

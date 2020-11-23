@@ -1,33 +1,57 @@
+import { makeStyles } from '@material-ui/core/styles';
 import React, { FunctionComponent } from 'react';
-import { Col, Row } from 'reactstrap';
+import { createStyles, Grid, Theme } from '@material-ui/core';
 
-import './skills.css';
 import { SkillsType } from '../../../../../types/resume.types';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    title: {
+      marginBottom: theme.spacing(3),
+      textTransform: 'uppercase',
+      fontSize: 'larger',
+      fontWeight: 'bold',
+      marginTop: '10px',
+      borderBottom: '1px solid',
+    },
+    header: {
+      fontStyle: 'italic',
+      fontWeight: 'normal',
+    },
+    list: {
+      marginTop: '0.5rem',
+      marginBottom: 0,
+    },
+  }),
+);
 
 interface Props {
   skills: SkillsType[];
 }
-const ResumeSkills: FunctionComponent<Props> = ({ skills }) => (
-  <Row>
-    <Col>
-      <div className="title">Skills</div>
+const ResumeSkills: FunctionComponent<Props> = ({ skills }) => {
+  const classes = useStyles();
+  return (
+    <Grid container>
+      <Grid item sm={12}>
+        <div className={classes.title}>Skills</div>
+      </Grid>
       {
         skills.map((item) => {
           const { name, items } = item;
           return (
-            <Row key={name}>
-              <Col className="skill-header" sm="3">
+            <Grid container key={name}>
+              <Grid item className={classes.header} sm={3}>
                 {name}
-              </Col>
-              <Col className="skill-list" sm="9">
+              </Grid>
+              <Grid item className={classes.list} sm={9}>
                 {items.map((e) => e.name).join(', ')}
-              </Col>
-            </Row>
+              </Grid>
+            </Grid>
           );
         })
       }
-    </Col>
-  </Row>
-);
+    </Grid>
+  );
+};
 
 export default ResumeSkills;

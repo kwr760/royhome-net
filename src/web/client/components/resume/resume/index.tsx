@@ -1,5 +1,6 @@
+import { makeStyles } from '@material-ui/core/styles';
 import React, { FunctionComponent } from 'react';
-import { Container } from 'reactstrap';
+import { Container, createStyles, Theme } from '@material-ui/core';
 import {
   AddressType,
   ContactType, EducationType, ExperienceType,
@@ -15,12 +16,20 @@ import ResumeSummary from '../summary';
 import ResumeExperience from '../experience';
 import ResumeEducation from '../education';
 
-import './resume.css';
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    container: {
+      marginBottom: theme.spacing(3),
+    },
+  }),
+);
 
 interface Props {
   resume: ResumeType;
 }
 const ResumePage: FunctionComponent<Props> = ({ resume = {} as ResumeType}) => {
+  const classes = useStyles();
+
   const {
     owner = {} as OwnerType,
     contact = {} as ContactType,
@@ -32,7 +41,7 @@ const ResumePage: FunctionComponent<Props> = ({ resume = {} as ResumeType}) => {
   } = resume;
 
   return (
-    <Container className="mb-3">
+    <Container className={classes.container}>
       <ResumeHeader owner={owner} contact={contact} address={address} />
       <ResumeSummary summary={summary} />
       <ResumeSkills skills={skills} />

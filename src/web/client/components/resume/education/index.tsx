@@ -1,33 +1,54 @@
+import { makeStyles } from '@material-ui/core/styles';
 import React, { FunctionComponent } from 'react';
-import { Col, Row } from 'reactstrap';
+import { createStyles, Grid, Theme } from '@material-ui/core';
 import { EducationType } from '../../../../../types/resume.types';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    title: {
+      marginBottom: theme.spacing(3),
+      textTransform: 'uppercase',
+      fontSize: 'larger',
+      fontWeight: 'bold',
+      marginTop: '10px',
+      borderBottom: '1px solid',
+    },
+    date: {
+      textAlign: 'right',
+    },
+  }),
+);
 
 interface Props {
   education: EducationType[];
 }
-const ResumeEducation: FunctionComponent<Props> = ({ education }) => (
-  <Row>
-    <Col>
-      <div className="title">Education</div>
+const ResumeEducation: FunctionComponent<Props> = ({ education }) => {
+  const classes = useStyles();
+
+  return (
+    <Grid container>
+      <Grid item sm={12}>
+        <div className={classes.title}>Education</div>
+      </Grid>
       {
         education.map((item) => {
           const { degree, school, graduationDate } = item;
           return (
-            <Row key={school}>
-              <Col sm="9">
+            <Grid container key={school}>
+              <Grid item sm={9}>
                 {degree}
                 ,
                 <i>{school}</i>
-              </Col>
-              <Col sm="3" className="text-right">
+              </Grid>
+              <Grid item sm={3} className={classes.date}>
                 {graduationDate}
-              </Col>
-            </Row>
+              </Grid>
+            </Grid>
           );
         })
       }
-    </Col>
-  </Row>
-);
+    </Grid>
+  );
+};
 
 export default ResumeEducation;

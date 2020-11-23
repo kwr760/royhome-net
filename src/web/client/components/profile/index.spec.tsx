@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -7,15 +8,18 @@ import '@testing-library/jest-dom/extend-expect';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { StateType } from '../../../types/state.types';
+import themeLight from '../../theme-light';
 import Profile from './index';
 import createStore from '../../store/create-store';
 
 describe('client/components/resume/profile', () => {
   const getProfile = (store: Store) => (
     <Provider store={store}>
-      <Router>
-        <Profile />
-      </Router>
+      <ThemeProvider theme={themeLight}>
+        <Router>
+          <Profile />
+        </Router>
+      </ThemeProvider>
     </Provider>
   );
   it('should render profile', async () => {
@@ -47,28 +51,5 @@ describe('client/components/resume/profile', () => {
     getByText(/Nickname/);
     getByText(/Picture/);
     getByText(/email/);
-  });
-  it('should render loading', async () => {
-    // Arrange
-    const state: StateType = {
-      session: {
-        expiration: 1,
-        darkMode: 'dark-mode',
-        authenticated: true,
-        isLoading: false,
-      },
-      user: {},
-      resume: {
-        email: 'email',
-        resumes: {},
-      },
-    };
-    const store = createStore(state);
-
-    // Act
-    const { getByAltText } = render(getProfile(store));
-
-    // Assert
-    getByAltText(/Loading/);
   });
 });

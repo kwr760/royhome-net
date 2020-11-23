@@ -6,52 +6,48 @@ import { DarkModes } from './session.constants';
 jest.mock('react-redux');
 
 describe('client/store/session/session.selector', () => {
-  it('should return authenicated', () => {
+  it('should return session information', () => {
     // Arrange
     const expectedAuthentication = true;
-    const mockState = {
-      session: {
-        authenticated: expectedAuthentication,
-      },
-    };
-    (useSelector as jest.Mock).mockImplementation((callback) => callback(mockState));
-
-    // Act
-    const authenticated = useSelector(isAuthenticated);
-
-    // Assert
-    expect(authenticated).toEqual(expectedAuthentication);
-  });
-  it('should return isLoading', () => {
-    // Arrange
     const expectedLoading = true;
-    const mockState = {
-      session: {
-        isLoading: expectedLoading,
-      },
-    };
-    (useSelector as jest.Mock).mockImplementation((callback) => callback(mockState));
-
-    // Act
-    const loading = useSelector(isLoading);
-
-    // Assert
-    expect(loading).toEqual(expectedLoading);
-  });
-  it('should return darkMode', () => {
-    // Arrange
     const expectedDarkMode = DarkModes.DARK_MODE;
     const mockState = {
       session: {
+        authenticated: expectedAuthentication,
+        isLoading: expectedLoading,
         darkMode: expectedDarkMode,
       },
     };
     (useSelector as jest.Mock).mockImplementation((callback) => callback(mockState));
 
     // Act
+    const authenticated = useSelector(isAuthenticated);
+    const loading = useSelector(isLoading);
     const darkMode = useSelector(getDarkMode);
 
     // Assert
+    expect(authenticated).toEqual(expectedAuthentication);
+    expect(loading).toEqual(expectedLoading);
+    expect(darkMode).toEqual(expectedDarkMode);
+  });
+  it('should return session default', () => {
+    // Arrange
+    const expectedAuthentication = false;
+    const expectedLoading = false;
+    const expectedDarkMode = DarkModes.CLEAR_MODE;
+    const mockState = {
+      session: {},
+    };
+    (useSelector as jest.Mock).mockImplementation((callback) => callback(mockState));
+
+    // Act
+    const authenticated = useSelector(isAuthenticated);
+    const loading = useSelector(isLoading);
+    const darkMode = useSelector(getDarkMode);
+
+    // Assert
+    expect(authenticated).toEqual(expectedAuthentication);
+    expect(loading).toEqual(expectedLoading);
     expect(darkMode).toEqual(expectedDarkMode);
   });
 });

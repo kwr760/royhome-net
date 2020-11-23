@@ -19,6 +19,7 @@ describe('client/store/resume/resume.slice', () => {
       resume: {},
     };
     const expectedState = {
+      email: 'unknown',
       resumes: {
         unknown: {},
       },
