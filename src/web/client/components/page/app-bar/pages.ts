@@ -18,7 +18,7 @@ export const pages: TabPageType[] = [
   },
   {
     name: 'Work In Progress',
-    path: '/tictoctoe',
+    path: '/tictactoe',
     role: 'engineer',
     authenticated: true,
     tab: 3,

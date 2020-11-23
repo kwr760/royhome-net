@@ -7,7 +7,7 @@ describe('web/client/components/page/app-bar/find-route-tab', () => {
     expect(findRouteTab('/')).toBe(0);
     expect(findRouteTab('/about')).toBe(1);
     expect(findRouteTab('/author')).toBe(2);
-    expect(findRouteTab('/tictactoe')).toBe(0);
+    expect(findRouteTab('/tictactoe')).toBe(3);
     expect(pages.length).toBe(4);
   });
 });
