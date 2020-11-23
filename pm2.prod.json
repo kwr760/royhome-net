@@ -1,15 +1,9 @@
 {
   "apps" : [{
     "name"        : "api",
-    "script"      : "ts-node src/api/server/index.ts",
-    "env_production" : {
-      "NODE_ENV": "production"
-    }
+    "script"      : "NODE_ENV=production ts-node src/api/server/index.ts"
   },{
     "name"       : "web",
-    "script"     : "ts-node src/web/server/index.ts",
-    "env_production" : {
-      "NODE_ENV": "production"
-    }
+    "script"     : "NODE_ENV=production ts-node src/web/server/index.ts"
   }]
 }
