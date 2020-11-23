@@ -18,7 +18,7 @@ const AboutPage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ '
 const AuthorPage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/author');
 const PrivacyPage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/privacy');
 const ProfilePage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/profile');
-const TicTacToePage = /* #__LOADABLE__ */ () => import('./components/tictactoe');
+const TicTacToePage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/tictactoe');
 const AboutLoadable = loadable(AboutPage, { ssr: true });
 const AuthorLoadable = loadable(AuthorPage, { ssr: true });
 const PrivacyLoadable = loadable(PrivacyPage, { ssr: true });
