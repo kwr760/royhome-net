@@ -62,9 +62,6 @@ describe('src/client/App', () => {
       },
     };
     const store = createStore(state);
-    // (loadable as jest.Mock).mockImplementation((page) => () => {
-    //   page();
-    // });
     (Loading as jest.Mock).mockImplementation(() => <div>Loading</div>);
     (NavBar as jest.Mock).mockImplementation(() => <div>NavBar</div>);
     (Footer as jest.Mock).mockImplementation(() => <div>Footer</div>);

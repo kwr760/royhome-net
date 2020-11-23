@@ -12,7 +12,6 @@ import PrivateRoute from './components/page/private-route';
 import ResumePage from './components/resume';
 
 import { isLoading  } from './store/session/session.selector';
-// import { DarkModes } from './store/session/session.constants';
 
 const AboutPage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/about');
 const AuthorPage = /* #__LOADABLE__ */ () => import(/* webpackPrefetch: true */ './components/author');
@@ -48,14 +47,6 @@ const useStyles = makeStyles((theme: Theme) =>
 const App: FunctionComponent<RouteComponentProps> = () => {
   const classes = useStyles();
   const loading = useSelector(isLoading);
-  // const darkMode = useSelector(getDarkMode);
-  //
-  // let appClasses = '';
-  // if (darkMode === DarkModes.DARK_MODE) {
-  //   appClasses += ' dark-theme';
-  // } else if (darkMode === DarkModes.LIGHT_MODE) {
-  //   appClasses += ' light-theme';
-  // }
 
   return (
     <>

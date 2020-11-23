@@ -133,11 +133,11 @@ const getConfig = (target) => {
         chunkFilename: isDevel ? '[id].css' : '[id].[chunkhash:8].css',
       }),
       new WebpackMd5Hash(),
-      new StylelintPlugin({
-        configFile: './stylelint.config.js',
-        files: './src/**/*.scss',
-        syntax: 'scss',
-      }),
+      // new StylelintPlugin({
+      //   configFile: './stylelint.config.js',
+      //   files: './src/**/*.scss',
+      //   syntax: 'scss',
+      // }),
       new CopyPlugin({
         patterns: [
           { from: 'src/web/client/assets/favicon.ico', to: './favicon.ico' },
@@ -148,7 +148,7 @@ const getConfig = (target) => {
       ...additionalPlugins,
     ],
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss'],
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
       alias: {
         '@src': path.resolve(__dirname, 'src/'),
       },
