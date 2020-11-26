@@ -10,7 +10,7 @@ const createStore = (preloadedState = {}): Store => {
   return configureStore({
     reducer,
     preloadedState,
-    devTools: env.mode === 'development',
+    devTools: env.mode === 'dev',
   });
 };
 

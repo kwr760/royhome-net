@@ -13,21 +13,20 @@
     "url": "https://github.com/kwr760/royhome-net/issues"
   },
   "scripts": {
-    "run:dev:web": "NODE_ENV=development ts-node src/web/server/index.ts",
-    "run:dev:api": "NODE_ENV=development ts-node src/api/server/index.ts",
+    "run:dev:web": "FLAVOR=dev ts-node src/web/server/index.ts",
+    "run:dev:api": "FLAVOR=dev ts-node src/api/server/index.ts",
     "run:dev:all": "yarn run:dev:web & yarn run:dev:api",
     "docker:dev:web": "yarn build:dev & yarn run:dev:web",
     "docker:dev:api": "yarn build:dev & yarn run:dev:api",
-    "build:watch:dev": "yarn clean & webpack --mode=development --watch",
-    "build:dev": "yarn clean & webpack --mode=development",
+    "build:dev": "yarn clean & FLAVOR=dev webpack --watch",
 
     "test": "yarn test:lint && yarn test:only",
     "test:lint": "eslint src && tsc",
     "test:only": "jest --colors",
 
-    "docker:prod:web": "NODE_ENV=production ts-node src/web/server/index.ts",
-    "docker:prod:api": "NODE_ENV=production ts-node src/api/server/index.ts",
-    "build:prod": "yarn clean & webpack --mode=production",
+    "docker:prod:web": "FLAVOR=prod ts-node src/web/server/index.ts",
+    "docker:prod:api": "FLAVOR=prod ts-node src/api/server/index.ts",
+    "build:prod": "yarn clean & FLAVOR=prod webpack",
 
     "clean": "rimraf dist build log/*.log"
   },

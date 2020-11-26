@@ -5,12 +5,11 @@ import TerserPlugin from 'terser-webpack-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import StylelintPlugin from 'stylelint-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 
-const isDevel = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+const isDevel = !process.env.FLAVOR || process.env.FLAVOR === 'dev';
 
 const getConfig = (target) => {
   let additionalPlugins = [];
