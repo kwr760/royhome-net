@@ -1,0 +1,10 @@
+# base image
+FROM node:12.18.4-alpine
+
+# setup envirnoment
+ENV PATH /app/node_modules/.bin:$PATH
+
+# copy and install
+WORKDIR /var/app/royhome.net
+COPY . .
+RUN yarn install

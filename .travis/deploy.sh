@@ -24,7 +24,7 @@ ssh $RELEASE_HOST 'git clone https://github.com/kwr760/royhome-net.git /var/app/
 echo -e "\nRemote:  scp env"
 scp .env $RELEASE_HOST:/var/app/royhome-net
 echo -e "\nRemote:  yarn install"
-ssh $RELEASE_HOST 'cd /var/app/royhome-net ; yarn install'
+ssh $RELEASE_HOST 'cd /var/app/royhome-net ; yarn install --production'
 echo -e "\nRemote:  build webpack"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net ; node --version'
 ssh $RELEASE_HOST 'cd /var/app/royhome-net ; yarn run build:prod'
