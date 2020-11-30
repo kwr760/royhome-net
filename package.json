@@ -15,15 +15,11 @@
   "scripts": {
     "debug:dev:web": "FLAVOR=dev ts-node src/web/server/index.ts",
     "debug:dev:api": "FLAVOR=dev ts-node src/api/server/index.ts",
-    "debug:prod:web": "FLAVOR=prod ts-node src/web/server/index.ts",
-    "debug:prod:api": "FLAVOR=prod ts-node src/api/server/index.ts",
     "build:dev": "yarn clean & FLAVOR=dev webpack --watch",
     "test": "yarn test:lint && yarn test:only",
     "test:lint": "eslint src && tsc",
     "test:only": "jest --colors",
     "clean": "rimraf dist build log/*.log",
-    "run:prod:web": "pm2-docker start pm2.prod.web.json",
-    "run:prod:qpi": "pm2-docker start pm2.prod.api.json",
     "docker:dev:web": "yarn build:dev & pm2-docker start pm2.dev.web.json",
     "docker:dev:api": "yarn build:dev & pm2-docker start pm2.dev.api.json",
     "docker:prod:web": "pm2-docker start pm2.prod.web.json",
@@ -159,7 +155,7 @@
     "node-sass": "^4.14.1",
     "redux-mock-store": "^1.5.4",
     "sass-loader": "^9.0.2",
-    "style-loader": "^1.2.1",
-    "stylelint": "^13.6.1"
+    "stylelint": "^13.6.1",
+    "style-loader": "^1.2.1"
   }
 }
