@@ -26,7 +26,9 @@ services:
       - /var/cert/royk.us:/var/cert/royk.us
     ports:
       - "5000:5000"
-      - "9239:9229"
+      - "9230:9229"
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
     command: ["yarn", "run", "docker:${FLAVOR}:api"]
     deploy:
       replicas: 1

@@ -1,0 +1,8 @@
+{
+  "name": "Api Server: prod",
+  "script": "node --require ts-node/register src/api/server/index.ts",
+  "log_file": "./log/api.log",
+  "env": {
+    "FLAVOR": "prod"
+  }
+}

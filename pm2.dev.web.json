@@ -1,0 +1,10 @@
+{
+  "name": "Web Server: dev",
+  "script": "node --inspect=0.0.0.0:9229 --require ts-node/register src/web/server/index.ts",
+  "log_file": "./log/web.log",
+  "watch": ["src/web", "config"],
+  "watch_delay": 1000,
+  "env": {
+    "FLAVOR": "dev"
+  }
+}

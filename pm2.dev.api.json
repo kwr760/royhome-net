@@ -1,0 +1,10 @@
+{
+  "name": "Api Server: dev",
+  "script": "node --inspect=0.0.0.0:9229 --require ts-node/register src/api/server/index.ts",
+  "log_file": "./log/api.log",
+  "watch": ["src/api", "config"],
+  "watch_delay": 1000,
+  "env": {
+    "FLAVOR": "dev"
+  }
+}
