@@ -9,7 +9,7 @@ import CopyPlugin from 'copy-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 
-const isDevel = !process.env.FLAVOR || process.env.FLAVOR === 'dev';
+const isDevel = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 const getConfig = (target) => {
   let additionalPlugins = [];

@@ -13,18 +13,18 @@
     "url": "https://github.com/kwr760/royhome-net/issues"
   },
   "scripts": {
-    "debug:dev:web": "FLAVOR=dev ts-node src/web/server/index.ts",
-    "debug:dev:api": "FLAVOR=dev ts-node src/api/server/index.ts",
-    "build:dev": "yarn clean & FLAVOR=dev webpack --watch",
+    "debug:dev:web": "NODE_ENV=development ts-node src/web/server/index.ts",
+    "debug:dev:api": "NODE_ENV=development ts-node src/api/server/index.ts",
+    "build:dev": "yarn clean & NODE_ENV=development webpack --watch",
     "test": "yarn test:lint && yarn test:only",
     "test:lint": "eslint src && tsc",
     "test:only": "jest --colors",
     "clean": "rimraf dist build log/*.log",
     "docker:dev:web": "yarn build:dev & nodemon --config nodemon.web.json",
     "docker:dev:api": "yarn build:dev & nodemon --config nodemon.api.json",
-    "docker:prod:web": "yarn build:prod && FLAVOR=prod NODE_ENV=production ts-node src/web/server/index.ts",
-    "docker:prod:api": "FLAVOR=prod NODE_ENV=production ts-node src/api/server/index.ts",
-    "build:prod": "yarn clean && NODE_ENV=production FLAVOR=prod webpack"
+    "docker:prod:web": "yarn build:prod && NODE_ENV=production ts-node src/web/server/index.ts",
+    "docker:prod:api": "NODE_ENV=production ts-node src/api/server/index.ts",
+    "build:prod": "yarn clean && NODE_ENV=production webpack"
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.11.0",

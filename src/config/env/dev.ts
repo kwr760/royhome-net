@@ -1,7 +1,7 @@
 import LOG_LEVELS from '../../common/util/logger/logger-levels';
 
 const env = {
-  mode: 'dev',
+  mode: 'development',
   log: {
     dir: './log',
     level: LOG_LEVELS.DEBUG,
