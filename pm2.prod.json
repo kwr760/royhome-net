@@ -1,9 +1,0 @@
-{
-  "apps" : [{
-    "name"        : "api",
-    "script"      : "FLAVOR=prod ts-node src/api/server/index.ts"
-  },{
-    "name"       : "web",
-    "script"     : "FLAVOR=prod ts-node src/web/server/index.ts"
-  }]
-}

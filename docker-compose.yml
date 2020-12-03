@@ -4,33 +4,31 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile-${FLAVOR}
+      args:
+        APP: web
+        RELEASE: ${RELEASE}
     volumes:
       - /var/cert/royk.us:/var/cert/royk.us
+      - .:/var/app/royhome-net
     ports:
       - "3000:3000"
       - "9229:9229"
-    command: ["yarn", "run", "docker:${FLAVOR}:web"]
+    extra_hosts:
+      - "api.royk.us:172.17.0.1"
     depends_on:
       - api
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
 
   api:
     build:
       context: .
-      dockerfile: Dockerfile-${FLAVOR}
+      args:
+        APP: api
+        RELEASE: ${RELEASE}
     volumes:
       - /var/cert/royk.us:/var/cert/royk.us
+      - .:/var/app/royhome-net
     ports:
       - "5000:5000"
       - "9230:9229"
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
-    command: ["yarn", "run", "docker:${FLAVOR}:api"]
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure

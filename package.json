@@ -20,11 +20,11 @@
     "test:lint": "eslint src && tsc",
     "test:only": "jest --colors",
     "clean": "rimraf dist build log/*.log",
-    "docker:dev:web": "yarn build:dev & pm2-docker start pm2.dev.web.json",
-    "docker:dev:api": "yarn build:dev & pm2-docker start pm2.dev.api.json",
-    "docker:prod:web": "pm2-docker start pm2.prod.web.json",
-    "docker:prod:api": "pm2-docker start pm2.prod.api.json",
-    "build:prod": "yarn clean & FLAVOR=prod webpack"
+    "docker:dev:web": "yarn build:dev & nodemon --config nodemon.web.json",
+    "docker:dev:api": "yarn build:dev & nodemon --config nodemon.api.json",
+    "docker:prod:web": "yarn build:prod && FLAVOR=prod NODE_ENV=production ts-node src/web/server/index.ts",
+    "docker:prod:api": "FLAVOR=prod NODE_ENV=production ts-node src/api/server/index.ts",
+    "build:prod": "yarn clean && NODE_ENV=production FLAVOR=prod webpack"
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.11.0",
