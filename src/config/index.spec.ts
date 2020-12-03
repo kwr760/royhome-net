@@ -39,7 +39,7 @@ describe('config/index', () => {
             key: '/var/cert/royk.us/privkey.pem',
           },
           log: {
-            dir: '/var/log/royhome.net',
+            dir: '/var/log/royhome-net',
             level: LOG_LEVELS.WARN,
             stdout: false,
             includePidFilename: true,
@@ -145,7 +145,7 @@ describe('config/index', () => {
             key: '/var/cert/royk.us/privkey.pem',
           },
           log: {
-            dir: '/var/log/royhome.net',
+            dir: '/var/log/royhome-net',
             level: LOG_LEVELS.WARN,
             stdout: false,
             includePidFilename: true,
