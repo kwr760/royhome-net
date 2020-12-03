@@ -1,9 +1,0 @@
-{
-  "apps" : [{
-    "name"        : "api",
-    "script"      : "NODE_ENV=production ts-node src/api/server/index.ts"
-  },{
-    "name"       : "web",
-    "script"     : "NODE_ENV=production ts-node src/web/server/index.ts"
-  }]
-}

@@ -1,18 +1,12 @@
-# base image
-FROM node:12.8.0-alpine
+FROM node:12.18.4-alpine
 
-# set working directory
-WORKDIR /app
+WORKDIR /var/app/royhome-net
+COPY ["package.json", "yarn.lock", "./"]
+RUN yarn install
+COPY . .
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install and cache app dependencies
-COPY package*.json /app
-RUN npm install --silent
-COPY . /app
-
-EXPOSE 3000
-
-# start app
-CMD ["npm", "run", "client"]
+ARG APP
+ENV APP $APP
+ARG RELEASE
+ENV RELEASE $RELEASE
+CMD yarn run docker:$RELEASE:$APP
