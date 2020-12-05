@@ -8,11 +8,14 @@ services:
         APP: web
         RELEASE: ${RELEASE}
     volumes:
-      - /var/cert/royk.us:/var/cert/royk.us
+      - /var/cert/royk.us.open:/var/cert/royk.us
       - .:/var/app/royhome-net
+      - /var/app/royhome-net/node_modules
+      - /var/log/royhome-net
     ports:
       - "3000:3000"
       - "9229:9229"
+    network_mode: "host"
     extra_hosts:
       - "api.royk.us:172.17.0.1"
     depends_on:
@@ -27,8 +30,11 @@ services:
     volumes:
       - /var/cert/royk.us:/var/cert/royk.us
       - .:/var/app/royhome-net
+      - /var/app/royhome-net/node_modules
+      - /var/log/royhome-net
     ports:
       - "5000:5000"
       - "9230:9229"
+    network_mode: "host"
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
