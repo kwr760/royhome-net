@@ -18,6 +18,7 @@ services:
     network_mode: "host"
     extra_hosts:
       - "api.royk.us:172.17.0.1"
+      - "api.royhome.net:172.17.0.1"
     depends_on:
       - api
 
