@@ -35,10 +35,10 @@ echo -e "\nRemote:  promote staging"
 ssh $RELEASE_HOST 'mv /var/app/royhome-net.stage /var/app/royhome-net'
 echo -e "\nRemote:  start new server"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net ; RELEASE=prod docker-compose up -d'
-echo -e "\nRemote:  clean docker"
-ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker container prune -f'
-ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker image prune -f'
-ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker volume prune -f'
+#echo -e "\nRemote:  clean docker"
+#ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker container prune -f'
+#ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker image prune -f'
+#ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker volume prune -f'
 
 echo -e "\nRemote:  certbot renew"
 ssh $RELEASE_HOST 'sudo -H certbot renew --standalone'
