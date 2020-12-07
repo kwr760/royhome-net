@@ -13,6 +13,10 @@ ssh-add private-key
 echo -e "\nTravis:  openssl rm"
 rm private-key
 
+echo -e "\nRemote:  clean docker"
+ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker container prune -f'
+ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker image prune -f'
+ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker volume prune -f'
 echo -e "\nRemote:  copy new code to stage"
 ssh $RELEASE_HOST 'git clone https://github.com/kwr760/royhome-net.git /var/app/royhome-net.stage'
 echo -e "\nRemote:  scp env"
@@ -35,10 +39,6 @@ echo -e "\nRemote:  promote staging"
 ssh $RELEASE_HOST 'mv /var/app/royhome-net.stage /var/app/royhome-net'
 echo -e "\nRemote:  start new server"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net ; RELEASE=prod docker-compose up -d'
-#echo -e "\nRemote:  clean docker"
-#ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker container prune -f'
-#ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker image prune -f'
-#ssh $RELEASE_HOST 'cd /var/app/royhome-net ; docker volume prune -f'
 
 echo -e "\nRemote:  certbot renew"
 ssh $RELEASE_HOST 'sudo -H certbot renew --standalone'
