@@ -16,7 +16,7 @@ rm private-key
 echo -e "\nRemote:  copy new code to stage"
 ssh $RELEASE_HOST 'git clone https://github.com/kwr760/royhome-net.git /var/app/royhome-net.stage'
 echo -e "\nRemote:  scp env"
-scp .env $RELEASE_HOST:/var/app/royhome-net
+scp .env $RELEASE_HOST:/var/app/royhome-net.stage
 echo -e "\nRemote:  docker-compose build"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net.stage ; RELEASE=prod docker-compose build'
 echo -e "\nRemote:  stop existing server"
