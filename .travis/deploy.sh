@@ -22,6 +22,7 @@ ssh $RELEASE_HOST 'sudo -H cp /var/cert/royk.us/cert.pem /var/cert/royhome.net'
 ssh $RELEASE_HOST 'sudo -H cp /var/cert/royk.us/chain.pem /var/cert/royhome.net'
 ssh $RELEASE_HOST 'sudo -H cp /var/cert/royk.us/fullchain.pem /var/cert/royhome.net'
 ssh $RELEASE_HOST 'sudo -H cp /var/cert/royk.us/privkey.pem /var/cert/royhome.net'
+ssh $RELEASE_HOST 'sudo -H chmod 644 /var/cert/royhome.net/*'
 echo -e "\nRemote:  docker-compose build"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net.stage ; RELEASE=prod docker-compose build'
 echo -e "\nRemote:  stop existing server"
