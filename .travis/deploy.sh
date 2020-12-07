@@ -18,13 +18,13 @@ ssh $RELEASE_HOST 'git clone https://github.com/kwr760/royhome-net.git /var/app/
 echo -e "\nRemote:  scp env"
 scp .env $RELEASE_HOST:/var/app/royhome-net.stage
 echo -e "\nRemote:  cp letsencrypt"
-ssh $RELEASE_HOST 'cp /var/cert/royk.us/* /var/cert/royhome.net'
+ssh $RELEASE_HOST 'sudo cp /var/cert/royk.us/* /var/cert/royhome.net'
 echo -e "\nRemote:  docker-compose build"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net.stage ; RELEASE=prod docker-compose build'
 echo -e "\nRemote:  stop existing server"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net ; RELEASE=prod docker-compose down'
 echo -e "\nRemote:  remove old release"
-ssh $RELEASE_HOST 'rm -rf /var/app/royhome-net.rollback'
+ssh $RELEASE_HOST 'sudo rm -rf /var/app/royhome-net.rollback'
 echo -e "\nRemote:  backup existing server"
 ssh $RELEASE_HOST 'mv /var/app/royhome-net /var/app/royhome-net.rollback'
 echo -e "\nRemote:  promote staging"
