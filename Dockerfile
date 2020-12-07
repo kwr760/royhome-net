@@ -4,9 +4,6 @@ WORKDIR /var/app/royhome-net
 COPY ["package.json", "yarn.lock", "./"]
 RUN yarn install
 COPY . .
-RUN mkdir -p /var/cert/royk.us
-RUN mkdir -p /var/log/royhome-net
-RUN chmod 777 /var/log/royhome-net
 
 ARG APP
 ENV APP $APP
