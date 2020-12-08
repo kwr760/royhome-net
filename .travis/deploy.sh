@@ -24,7 +24,7 @@ scp .env $RELEASE_HOST:/var/app/royhome-net.stage
 echo -e "\nRemote:  cp letsencrypt"
 ssh $RELEASE_HOST 'sudo -H cp /var/cert/royk.us/cert.pem /var/cert/royhome.net'
 ssh $RELEASE_HOST 'sudo -H cp /var/cert/royk.us/chain.pem /var/cert/royhome.net'
-ssh $RELEASE_HOST 'sudo -H cp /var/cert/royk.us/fullchain.pem /var/cert/royhome.net'
+# ssh $RELEASE_HOST 'sudo -H cp /var/cert/royk.us/fullchain.pem /var/cert/royhome.net'
 ssh $RELEASE_HOST 'sudo -H cp /var/cert/royk.us/privkey.pem /var/cert/royhome.net'
 ssh $RELEASE_HOST 'sudo -H chmod 644 /var/cert/royhome.net/*'
 echo -e "\nRemote:  docker-compose build"

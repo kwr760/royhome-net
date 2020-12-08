@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingTop: '1rem',
       flexGrow: 1,
       overflow: 'auto',
+      '@media print': {
+        overflow: 'visible',
+        boxShadow: 'none',
+      },
     },
     app: {
       display: 'flex',

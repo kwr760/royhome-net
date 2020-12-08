@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme: Theme) =>
     container: {
       paddingRight: 0,
       paddingLeft: 0,
+      '@media print': {
+        display: 'none',
+      },
     },
     banner: {
       boxShadow: theme.custom.boxShadow,
