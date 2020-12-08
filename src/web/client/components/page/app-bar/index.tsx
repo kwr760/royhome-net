@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       padding: 0,
+      '@media print': {
+        display: 'none',
+      },
     },
     avator: {
       width: theme.spacing(7),

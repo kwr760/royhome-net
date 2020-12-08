@@ -18,6 +18,12 @@ exports[`server/rendering/render-react should return a html page 1`] = `
     <div>Links</div>
     <div>Styles</div>
     <style id=\\"jss-server-side\\">$</style>
+    <style>
+      @page {
+        size: letter;
+        margin: 0;
+      }
+    </style>
     <script>window.__PRELOADED_STATE__ = {\\"session\\":{\\"authenticated\\":false,\\"expiration\\":-1,\\"isLoading\\":false,\\"darkMode\\":\\"clear-mode\\"},\\"user\\":{},\\"resume\\":{\\"email\\":\\"kroy760@gmail.com\\",\\"resumes\\":{\\"kroy760@gmail.com\\":{\\"owner\\":\\"owner\\"}}}}</script>
   </head>
   <body>
