@@ -93,5 +93,3 @@ rollback-0.sql - drop the sequences and tables
 upgrade-0.sql - create tables and sequences
 validate-0.sql - add the data to the tables
 ```
-
-
