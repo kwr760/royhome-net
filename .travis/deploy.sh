@@ -41,7 +41,9 @@ echo -e "\nRemote:  start new server"
 ssh $RELEASE_HOST 'cd /var/app/royhome-net ; RELEASE=prod docker-compose up -d'
 
 echo -e "\nRemote:  certbot renew"
+ssh $RELEASE_HOST 'sudo systemctl stop nginx'
 ssh $RELEASE_HOST 'sudo -H certbot renew --standalone'
+ssh $RELEASE_HOST 'sudo systemctl start nginx'
 
 # Don't forget to cleanup your agent after you're done using it if you're not on an ephemeral build server.
 ssh-agent -k
