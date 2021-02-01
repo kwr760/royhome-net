@@ -40,7 +40,7 @@ const BottomBar: FunctionComponent = () => {
           target="_target"
         >
           <VscGithub className={`${classes.icon} fa-2x`} />
-          <span className="sr-only">Link to github</span>
+          <span className="sr-only">Link to GitHub</span>
         </Link>
       </footer>
     </Container>

@@ -16,6 +16,6 @@ describe('src/client/components/page/footer', () => {
 
     // Assert
     getByRole(/link/);
-    getByText(/Link to github/);
+    getByText(/Link to GitHub/);
   });
 });

@@ -80,8 +80,8 @@ INSERT INTO resume_summary(user_id, summary)
 SELECT user_id, summary FROM
 ( VALUES (
   'Diligent, Independent, Articulate.  Experienced Web Developer.  Prefers backend, enjoys UI ' ||
-  'considers myself fullstack. I have broad professional experience, looking to continue ' ||
-  'focus on developing complex application in a professional engineering environment.'
+  'considers myself full stack. I have broad professional experience, looking to continue ' ||
+  'to focus on developing complex application in a professional engineering environment.'
   )
 ) AS data(summary)
 JOIN login_auth0 ON email = 'kroy760@gmail.com';
@@ -123,7 +123,7 @@ INSERT INTO resume_skill_item(skill_id, user_id, position, item)
 SELECT resume_skill.id, login_auth0.user_id, pos, skill FROM
 ( VALUES
   ('Languages', 1, 'TypeScript'),
-  ('Languages', 2, 'Javascript'),
+  ('Languages', 2, 'JavaScript'),
   ('Languages', 3, 'HTML'),
   ('Languages', 4, 'CSS'),
   ('Languages', 5, 'Kotlin'),
@@ -135,7 +135,7 @@ SELECT resume_skill.id, login_auth0.user_id, pos, skill FROM
   ('Languages', 11, 'bash'),
   ('Frameworks', 1, 'React'),
   ('Frameworks', 2, 'React Redux'),
-  ('Frameworks', 3, 'nodejs'),
+  ('Frameworks', 3, 'NodeJS'),
   ('Frameworks', 4, 'jest'),
   ('Frameworks', 5, 'enzyme'),
   ('Frameworks', 6, 'testing-library/react'),
@@ -144,9 +144,9 @@ SELECT resume_skill.id, login_auth0.user_id, pos, skill FROM
   ('Frameworks', 9, 'Spring'),
   ('Frameworks', 11, 'reactstrap'),
   ('Frameworks', 12, 'flowtype'),
-  ('Frameworks', 13, 'axios'),
+  ('Frameworks', 13, 'Axios'),
   ('Frameworks', 14, 'Material UI'),
-  ('Frameworks', 15, 'jquery'),
+  ('Frameworks', 15, 'jQuery'),
   ('Frameworks', 16, 'Resilence4J'),
   ('Frameworks', 17, 'PL/SQL'),
   ('Frameworks', 18, 'bootstrap'),
@@ -157,17 +157,17 @@ SELECT resume_skill.id, login_auth0.user_id, pos, skill FROM
   ('Tools', 1, 'git'),
   ('Tools', 2, 'Jira'),
   ('Tools', 3, 'Confluence'),
-  ('Tools', 4, 'splunk'),
+  ('Tools', 4, 'Splunk'),
   ('Tools', 5, 'docker'),
-  ('Tools', 6, 'jenkins'),
-  ('Tools', 7, 'datadog'),
-  ('Tools', 8, 'gradle'),
+  ('Tools', 6, 'Jenkins'),
+  ('Tools', 7, 'Datadog'),
+  ('Tools', 8, 'Gradle'),
   ('Tools', 9, 'maven'),
-  ('Tools', 11, 'aws'),
+  ('Tools', 11, 'AWS'),
   ('Tools', 12, 'IntelliJ'),
   ('Tools', 13, 'vim'),
-  ('Tools', 14, 'phanthomjs'),
-  ('Tools', 15, 'clearcase')
+  ('Tools', 14, 'PhantomJS'),
+  ('Tools', 15, 'ClearCase')
 ) AS data(skill_group, pos, skill)
 JOIN login_auth0 ON email = 'kroy760@gmail.com'
 JOIN resume_skill ON name = skill_group;
@@ -218,12 +218,12 @@ INSERT INTO resume_experience_item(experience_id, user_id, position, type, item)
 SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
 ( VALUES
   ('Expedia Group', 1, 'text',
-   'Worked in organization responsible for the messaging tool for customer agents.  This tool connects the ' ||
+   'Worked in an organization responsible for the messaging tool for customer agents.  This tool connects the ' ||
    'customer with the agent.  The tool provides a branded experience with the use of channels, allowing the ' ||
-   'customer to commucations with chat, email, service requests, and a voice experience.'),
+   'customer to communication with chat, email, service requests, and a voice experience.'),
   ('Expedia Group', 2, 'text',
    'The team rebuilt the application using React on the front-end and Java/Kotlin on the back-end.  I worked ' ||
-   'primarily on the front-end but communicated through techincal and product teams.'),
+   'primarily on the front-end but communicated through technical and product teams.'),
   ('Expedia Group', 3, 'bullet',
    'Branded the Agent Messaging Tool: the project took the existing styling and converted it to our branded ' ||
    'UITK framework.'),
@@ -232,29 +232,29 @@ SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
    'information while the agent enters protected customer information.  This was a complex interaction between ' ||
    'multiple back-end system'),
   ('Expedia Group', 4, 'bullet',
-   'Virtual Agent API Server: Worked on a Kotlin API server.  Created an asynchornious endpoint to change the state ' ||
+   'Virtual Agent API Server: Worked on a Kotlin API server.  Created an asynchronous endpoint to change the state ' ||
    'of the conversation, from reserved to released.  As it was a new server setup/implemented basic server ' ||
-   'functionlity, such as retries, circuit breaker, haystack id, and others.'),
+   'functionality, such as retries, circuit breaker, haystack id, and others.'),
   ('Expedia Group', 5, 'bullet',
-   'Rich Card Server: Created a server for a new "techology" called rich-cards, this server/repository with build ' ||
+   'Rich Card Server: Created a server for a new "technology" called rich-cards, this server/repository with build ' ||
    'process.  This repository is used by multiple projects and requires the building of certain resources, the ' ||
-   'packages and branded css files'),
+   'packages and branded CSS files'),
   ('Expedia Group', 6, 'bullet',
-   'Outbound voice:  this project enabled agents to place a softphone call from the agent messaing tool.'),
+   'Outbound voice:  this project enabled agents to place a softphone call from the agent messaging tool.'),
   ('Expedia Group', 10, 'tech', 'Ubuntu'),
   ('Expedia Group', 11, 'tech', 'React'),
   ('Expedia Group', 12, 'tech', 'Kotlin'),
-  ('Expedia Group', 13, 'tech', 'nodejs'),
+  ('Expedia Group', 13, 'tech', 'NodeJS'),
   ('Expedia Group', 14, 'tech', 'React Redux'),
   ('Expedia Group', 15, 'tech', 'webpack'),
   ('Expedia Group', 16, 'tech', 'jest'),
   ('Expedia Group', 17, 'tech', 'Spring'),
   ('Expedia Group', 18, 'tech', 'Enzyme'),
   ('Expedia Group', 19, 'tech', 'testing-library/react'),
-  ('Expedia Group', 20, 'tech', 'aws'),
-  ('Expedia Group', 21, 'tech', 'jenkins'),
-  ('Expedia Group', 22, 'tech', 'splunk'),
-  ('Expedia Group', 23, 'tech', 'dtadog'),
+  ('Expedia Group', 20, 'tech', 'AWS'),
+  ('Expedia Group', 21, 'tech', 'Jenkins'),
+  ('Expedia Group', 22, 'tech', 'Splunk'),
+  ('Expedia Group', 23, 'tech', 'Datadog'),
 
   ('Sterling Talent Solutions', 1, 'text',
    'A key contributor on developing a product in a small aggressive company to be acquired by a large industry ' ||
@@ -262,8 +262,8 @@ SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
    'and developed multiple large features individually and as a leader in the team.'),
   ('Sterling Talent Solutions', 2, 'text',
    'I worked on two major aspects of the company''s product. The first is a highly configurable form based data ' ||
-   'collection framework. The second being the position and processing of the various searches and the compliance ' ||
-   'around them.'),
+   'collection framework. The second being the position and processing of the various searches and the surrounding ' ||
+   'compliance.'),
   ('Sterling Talent Solutions', 3, 'bullet',
    'Fair Chance: Implemented the current states requirements for a process similar to Individualized Assessment ' ||
    'including filling out state provided forms.'),
@@ -271,28 +271,28 @@ SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
    'Individualized Assessment: Implemented the ability for the customer to request and process a candidate''s ' ||
    'response to an adverse action being preformed on a candidate.'),
   ('Sterling Talent Solutions', 5, 'bullet',
-   'eDispute: Implemented the ability for candidate to review and dispute the reports or searches preformed on them.'),
+   'eDispute: Implemented the ability for the candidate to review and dispute the reports or searches preformed on them.'),
   ('Sterling Talent Solutions', 6, 'bullet',
-   'Form Review: Implemented the customers ability to review the customized forms, including sending the form ' ||
+   'Form Review: Implemented the customer''s ability to review the customized forms, including sending the form ' ||
    'back to the candidate for modification.'),
   ('Sterling Talent Solutions', 7, 'bullet',
-   'Esignature: Developed the signing experience to provide confirmation that the user is certifying their actions. ' ||
-   'Including the generate of a PDF from HTML.'),
+   'E-signature: Developed the signing experience to provide confirmation that the user is certifying their actions. ' ||
+   'Including the generation of a PDF from HTML.'),
   ('Sterling Talent Solutions', 8, 'bullet',
    'Candidate Model Export: Provided a feature to enable customer to export the data about their candidates.'),
   ('Sterling Talent Solutions', 9, 'bullet',
-   'Professional Services Billing System: Enable another team to easily bill customer based on their ' ||
+   'Professional Services Billing System: Enable another team to easily bill a customer based on their ' ||
    'individual contracts.'),
   ('Sterling Talent Solutions', 10, 'tech', 'Ubuntu'),
   ('Sterling Talent Solutions', 11, 'tech', 'Apache'),
   ('Sterling Talent Solutions', 12, 'tech', 'MySQL'),
-  ('Sterling Talent Solutions', 13, 'tech', 'Php'),
-  ('Sterling Talent Solutions', 14, 'tech', 'Html'),
+  ('Sterling Talent Solutions', 13, 'tech', 'PHP'),
+  ('Sterling Talent Solutions', 14, 'tech', 'HTML'),
   ('Sterling Talent Solutions', 15, 'tech', 'JavaScript'),
-  ('Sterling Talent Solutions', 16, 'tech', 'Css'),
-  ('Sterling Talent Solutions', 17, 'tech', 'phantomJs'),
+  ('Sterling Talent Solutions', 16, 'tech', 'CSS'),
+  ('Sterling Talent Solutions', 17, 'tech', 'PhantomJS'),
   ('Sterling Talent Solutions', 18, 'tech', 'IntelliJ'),
-  ('Sterling Talent Solutions', 19, 'tech', 'PhpUnit'),
+  ('Sterling Talent Solutions', 19, 'tech', 'PHPUnit'),
   ('Applied Discovery, Inc.', 1, 'text',
    'Worked on team to design the next generation e-Discovery processing line using open source technologies.'),
   ('Applied Discovery, Inc.', 2, 'bullet',
@@ -302,7 +302,7 @@ SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
   ('Applied Discovery, Inc.', 3, 'bullet',
    'Implemented Straw man of new system written in Java using a RESTful API.'),
   ('Applied Discovery, Inc.', 4, 'bullet',
-   'Implemented an Object Oriented Application (C++) to utilize Oracle’s OutsideIn Technology to parse and load ' ||
+   'Implemented an Object-Oriented Application (C++) to utilize Oracle’s OutsideIn Technology to parse and load ' ||
    'Microsoft Outlook pst file.'),
   ('Applied Discovery, Inc.', 5, 'tech', 'Java'),
   ('Applied Discovery, Inc.', 6, 'tech', 'C'),
@@ -318,9 +318,9 @@ SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
    'Led technical effort to internationalize products into local languages that allowed sales in foreign markets.'),
   ('SofTech, Inc.', 3, 'bullet',
    'Designed and implemented revision editing tool that enabled administrators to define multiple revision ' ||
-   'sequences and apply them to classes, which increased value of company’s product line.'),
+   'sequences and apply them to classes, which increased value of the company’s product line.'),
   ('SofTech, Inc.', 4, 'bullet',
-   'Built feature that pushed files into replication servers to increase performance over the WANs.'),
+   'Built feature that pushed files into replication servers to increase performance over the WAN.'),
   ('SofTech, Inc.', 5, 'bullet',
    'Transited to server-based report generation using libxml2 and libxslt technology to improve performance.'),
   ('SofTech, Inc.', 6, 'bullet',
@@ -343,9 +343,9 @@ SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
    'management services for online retailers and catalogs. Developed prototype value-added payment program in ' ||
    'J2EE and loyalty-based system of electronic coupons. Cleaned code and automated processes.'),
   ('OrderTrust', 2, 'bullet',
-   'Simplified code maintenance of entire system by moving legacy code into standardized build environment.'),
+   'Simplified code maintenance of the entire system by moving legacy code into standardized build environment.'),
   ('OrderTrust', 3, 'bullet',
-   'Automated testing Dining A La Card system with new systems using Perl script that improved accuracy and ' ||
+   'Automated testing Dining À la Card system with new systems using Perl script that improved accuracy and ' ||
    'reduced time needed to test systems and removed element of human error.'),
   ('OrderTrust', 4, 'tech', 'C++'),
   ('OrderTrust', 5, 'tech', 'Unix'),
@@ -353,7 +353,7 @@ SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
   ('OrderTrust', 7, 'tech', 'Java'),
   ('OrderTrust', 8, 'tech', 'Perl'),
   ('PSW Technology', 1, 'text',
-   'Worked for consulting company for the IBM/Lotus Notes with 10 employees to port Lotus Notes and toolkits ' ||
+   'Worked for a consulting company for the IBM/Lotus Notes with 10 employees to port Lotus Notes and toolkits ' ||
    'to IBM AS/400 system and to correct bugs. Developed and convinced engineers to buy into solutions to problems.'),
   ('PSW Technology', 2, 'bullet',
    'Built portable code using a cross-compiler and corrected bugs using native AS/400 debugger.'),
@@ -362,7 +362,7 @@ SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
   ('Celestica, Inc.', 1, 'text',
    'Developed, repaired and enhanced programs and processes for electronics manufacturer using in-house ' ||
    'client/server application system to manage flow of process lines. Developed and debugged client/server ' ||
-   'applications in C, Informix Embedded SQL and Korn Shell and created new modules for integration with ' ||
+   'applications in C, Informix Embedded SQL and KornShell and created new modules for integration with ' ||
    'X Windows program and ESQL.'),
   ('Celestica, Inc.', 2, 'bullet',
    'Redesigned process of changing bill-of-materials workstation structures that avoided deadlocks.'),
@@ -370,7 +370,7 @@ SELECT resume_experience.id, login_auth0.user_id, pos, type, item FROM
    'Fixed key user interface, enabling users to step through process of building workstations and PCs.'),
   ('Celestica, Inc.', 4, 'bullet',
    'Determined report needs of users that included finding lost workstations and bottlenecks and implemented ' ||
-   'intranet-accessible reports using C, Korn Shell, HTML and Sapphire CGI generator.'),
+   'intranet-accessible reports using C, KornShell, HTML and Sapphire CGI generator.'),
   ('Celestica, Inc.', 5, 'tech', 'C/C++'),
   ('Celestica, Inc.', 6, 'tech', 'HP/UX'),
   ('Boston Technology, Inc.', 1, 'text',
@@ -401,8 +401,8 @@ ALTER TABLE resume_education OWNER TO server;
 INSERT INTO resume_education(user_id, degree, school, graduation_date)
 SELECT user_id, degree, school, date(grad_date) FROM
 ( VALUES
-  ('Master of Science in Computer Science', 'University of Massachusetts at Lowell', '2001-02-01'),
-  ('Bachelor of Science in Computer Science', 'Worcester Polytechnic Institute', '1994-05-01')
+  ('Master of Science in Computer Science', ' University of Massachusetts at Lowell', '2001-02-01'),
+  ('Bachelor of Science in Computer Science', ' Worcester Polytechnic Institute', '1994-05-01')
 ) AS data(degree, school, grad_date)
 JOIN login_auth0 ON email = 'kroy760@gmail.com';
 
